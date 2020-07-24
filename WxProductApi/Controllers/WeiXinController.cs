@@ -119,12 +119,15 @@ namespace WxProductApi.Controllers
         }
 
         [HttpGet]
-        public void GetUserInfo(string key,string code){
+        public string GetUserInfo(string state,string code){
             if(string.IsNullOrEmpty(code)){
-                Response.Redirect($"https://open.weixin.qq.com/connect/oauth2/authorize?appid={AppConfig.WeiXin.Appid}&redirect_uri={ HttpUtility.UrlEncode("http://t1.ngrok.wjbjp.cn/WeiXin/GetUserInfo?code=%2211%22")}&response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect");
+                var url=Helper.WeiChat.Utility.GetWebpageAuthorization(AppConfig.WeiXin.Appid,$"http://{Request.Host.Host}{Request.Path}",state,false);
+                Response.Redirect(url);
+                return "";
             }
             else{
-                var i=1;
+                var reStr=Helper.WeiChat.Utility.GetWebpageUserInfo(AppConfig.WeiXin.Appid,AppConfig.WeiXin.Secret,code);
+                return TypeChange.ObjectToStr(reStr);
             }
         }
         /// <summary>

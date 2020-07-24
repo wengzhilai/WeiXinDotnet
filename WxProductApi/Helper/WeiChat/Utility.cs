@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using Helper.WeiChat.Entities;
 
 namespace Helper.WeiChat
 {
@@ -87,6 +88,58 @@ namespace Helper.WeiChat
                 msgStr = ticketDict["errcode"];
             }
             return msgStr;
+        }
+
+        /// <summary>
+        /// 获取网页授权的地址
+        /// </summary>
+        /// <param name="appid"></param>
+        /// <param name="redirect_uri">回调地址，该地址，需接受code、state两个参数</param>
+        /// <param name="state">该值会传入到回调地址里</param>
+        /// <param name="isConfirm">true 表示要弹出确认框</param>
+        /// <returns></returns>
+        public static string GetWebpageAuthorization(string appid,string redirect_uri,string state,bool isConfirm){
+            var scope=isConfirm?"snsapi_userinfo":"snsapi_base";
+            return $"https://open.weixin.qq.com/connect/oauth2/authorize?appid={appid}&redirect_uri={redirect_uri}&response_type=code&scope={scope}&state={state}#wechat_redirect";
+        }
+
+        /// <summary>
+        /// 获取网页授权access_token
+        /// </summary>
+        /// <param name="appid"></param>
+        /// <param name="secret"></param>
+        /// <param name="code">网页授权地址返回的code</param>
+        /// <returns></returns>
+        public static WebpageToken GetWebpageToken(string appid,string secret,string code){
+            var url=$"https://api.weixin.qq.com/sns/oauth2/access_token?appid={appid}&secret={secret}&code={code}&grant_type=authorization_code";
+            string reJson= Fun.HttpGetJson(url);
+            var t= TypeChange.JsonToObject(reJson);
+            if(t.ContainsKey("openid")){
+                return TypeChange.JsonToObject<WebpageToken>(reJson);
+            }
+            throw new Exception(reJson);
+        }
+
+        public static WebpageUserInfo GetWebpageUserInfo(string access_token,string openid){
+            string url=$"https://api.weixin.qq.com/sns/userinfo?access_token={access_token}&openid={openid}&lang=zh_CN";
+            string reJson= Fun.HttpGetJson(url);
+            var t= TypeChange.JsonToObject(reJson);
+            if(t.ContainsKey("openid")){
+                return TypeChange.JsonToObject<WebpageUserInfo>(reJson);
+            }
+            throw new Exception(reJson);
+        }
+
+        public static WebpageUserInfo GetWebpageUserInfo(string appid,string secret,string code){
+            var webpageToken=GetWebpageToken(appid,secret,code);
+
+            string url=$"https://api.weixin.qq.com/sns/userinfo?access_token={webpageToken.access_token}&openid={webpageToken.openid}&lang=zh_CN";
+            string reJson= Fun.HttpGetJson(url);
+            var t= TypeChange.JsonToObject(reJson);
+            if(t.ContainsKey("openid")){
+                return TypeChange.JsonToObject<WebpageUserInfo>(reJson);
+            }
+            throw new Exception(reJson);
         }
     }
 }
