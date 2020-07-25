@@ -1,4 +1,4 @@
-
+﻿
 using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -8,14 +8,14 @@ namespace Models.Entity
     /// <summary>
     /// 登录
     /// </summary>
-    [Table("fa_files")]
-    public class FaFilesEntity : BaseModel
+    [Table("files")]
+    public class FilesEntity : BaseModel
     {
         /// <summary>
         /// ID
         /// </summary>
         [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]
+        [DatabaseGenerated(DatabaseGeneratedOption.Computed)]
         [Display(Name = "ID")]
         [Column]
         public int id { get; set; }
@@ -33,26 +33,20 @@ namespace Models.Entity
         [Display(Name = "路径")]
         [Column]
         public string path { get; set; }
-        /// <summary>
-        /// USER_ID
-        /// </summary>
-        [Range(0, 2147483647)]
-        [Display(Name = "USER_ID")]
-        [Column]
-        public Nullable<int> userId { get; set; }
+
         /// <summary>
         /// 大小
         /// </summary>
         [Range(0, 2147483647)]
         [Display(Name = "大小")]
         [Column]
-        public Int64 length { get; set; }
+        public long length { get; set; }
         /// <summary>
         /// 添加时间
         /// </summary>
         [Display(Name = "添加时间")]
-        [Column]
-        public Nullable<DateTime> uploadTime { get; set; }
+        [Column("upload_time")]
+        public long uploadTime { get; set; }
         /// <summary>
         /// 备注
         /// </summary>
@@ -72,9 +66,23 @@ namespace Models.Entity
         /// </summary>
         [StringLength(50)]
         [Display(Name = "文件类型")]
-        [Column]
+        [Column("file_type")]
         public string fileType { get; set; }
 
-
+        /// <summary>
+        /// 文件md5
+        /// </summary>
+        /// <value></value>
+        [StringLength(32)]
+        [Display(Name = "文件md5")]
+        [Column("md5_str")]
+        public string md5Str{get;set;}
+        /// <summary>
+        /// 文件base64
+        /// </summary>
+        [Display(Name = "文件base64")]
+        [Column("base64_str")]
+        public string base64Str{get;set;}
+        
     }
 }

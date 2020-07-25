@@ -36,9 +36,9 @@ namespace WebApi.Controllers
         /// <returns></returns>
         [HttpPost]
         [RequestSizeLimit(100_000_000)] //最大100m左右
-        async public Task<ResultObj<FaFilesEntity>> UploadPhotos()
+        async public Task<ResultObj<FilesEntity>> UploadPhotos()
         {
-            ResultObj<FaFilesEntity> reEnt = new ResultObj<FaFilesEntity>();
+            ResultObj<FilesEntity> reEnt = new ResultObj<FilesEntity>();
 
             var files = Request.Form.Files;
             var fileFolder = string.Format("{0}", DateTime.Now.ToString("yyyyMM"));
@@ -59,14 +59,19 @@ namespace WebApi.Controllers
                         await formFile.CopyToAsync(stream);
                         reEnt.success = true;
                         reEnt.msg = filePath;
-                        reEnt.data = new FaFilesEntity
+                        byte[] bytes=new byte[stream.Length];
+                        stream.Read(bytes,0,(int)stream.Length);
+                        reEnt.data = new FilesEntity
                         {
+                            id=0,
                             name = fileName,
                             path = allPath,
-                            url = fileName,
+                            url = fileName,                            
                             length = stream.Length,
-                            uploadTime = DateTime.Now,
+                            uploadTime = Helper.DataTimeHelper.getDateLong(DateTime.Now),
                             fileType = Path.GetExtension(formFile.FileName),
+                            md5Str=Helper.Fun.Md5Hash(bytes),
+                            base64Str=Convert.ToBase64String(bytes)
                         };
                         stream.Flush();
                     }
