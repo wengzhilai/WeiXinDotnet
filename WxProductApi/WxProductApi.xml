@@ -1,0 +1,3768 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>WxProductApi</name>
+    </assembly>
+    <members>
+        <member name="T:WxProductApi.Config.AppConfig">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:WxProductApi.Config.AppConfig.WebConfig">
+            <summary>
+            配置
+            </summary>
+        </member>
+        <member name="P:WxProductApi.Config.AppConfig.BaseConfig">
+            <summary>
+            基本配置
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:WxProductApi.Config.ConfigWebConfig">
+            <summary>
+            配置
+            </summary>
+        </member>
+        <member name="P:WxProductApi.Config.ConfigWebConfig.ClientPrice">
+            <summary>
+            推广一个客户的费用
+            </summary>
+        </member>
+        <member name="T:WxProductApi.Config.BaseConfig">
+            <summary>
+             系统验证
+            </summary>
+        </member>
+        <member name="P:WxProductApi.Config.BaseConfig.VerifyCode">
+            <summary>
+            是否需要验证码
+            </summary>
+            <value></value>
+        </member>
+        <!-- Badly formed XML comment ignored for member "P:WxProductApi.Config.BaseConfig.VerifyExpireMinute" -->
+        <member name="P:WxProductApi.Config.BaseConfig.PwdComplexity">
+            <summary>
+            密码复杂度
+            </summary>
+            <value></value>
+        </member>
+        <member name="T:WxProductApi.Controllers.ILoginController">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:WxProductApi.Controllers.ILoginController.userLogin(Models.LogingDto)">
+            <summary>
+            密码登录
+            </summary>
+            <param name="inEnt"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WxProductApi.Controllers.ILoginController.loginReg(Models.LogingDto)">
+            <summary>
+            
+            </summary>
+            <param name="inEnt"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WxProductApi.Controllers.ILoginController.deleteUser(Models.DtoKey)">
+            <summary>
+            
+            </summary>
+            <param name="userName"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WxProductApi.Controllers.ILoginController.userEditPwd(Models.EditPwdDto)">
+            <summary>
+            
+            </summary>
+            <param name="inEnt"></param>
+            <returns></returns>
+        </member>
+        <member name="T:WxProductApi.Controllers.UserCodeLoginDto">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:WxProductApi.Controllers.UserCodeLoginDto.LoginName">
+            <summary>
+            登录名
+            </summary>
+        </member>
+        <member name="P:WxProductApi.Controllers.UserCodeLoginDto.Code">
+            <summary>
+            验证码
+            </summary>
+        </member>
+        <member name="T:WxProductApi.Controllers.IModuleController">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:WxProductApi.Controllers.IModuleController.singleByKey(Models.DtoDo{System.Int32})">
+            查询单个
+            @param inEnt
+            @return
+        </member>
+        <member name="M:WxProductApi.Controllers.IModuleController.save(Models.DtoSave{Models.Entity.FaModuleEntity})">
+            保存
+            @param inEnt
+            @return
+        </member>
+        <member name="M:WxProductApi.Controllers.IModuleController.delete(Models.DtoDo{System.Int32})">
+            删除
+            @param inEnt
+            @return
+        </member>
+        <member name="M:WxProductApi.Controllers.IModuleController.getUserMenu">
+            获取菜单
+            @return
+        </member>
+        <member name="T:WxProductApi.Controllers.IQueryController">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:WxProductApi.Controllers.IQueryController.getSingleQuery(Models.DtoKey)">
+            根据代码查询Query
+            @param inObj
+            @return
+        </member>
+        <member name="M:WxProductApi.Controllers.IQueryController.getListData(Models.Entity.QuerySearchDto)">
+            <summary>
+            
+            </summary>
+            <param name="querySearchModel"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WxProductApi.Controllers.IQueryController.singleByKey(Models.DtoDo{System.Int32})">
+            查询单个Query
+            @param inEnt
+            @return
+        </member>
+        <member name="M:WxProductApi.Controllers.IQueryController.save(Models.DtoSave{Models.Entity.FaQueryEntity})">
+            保存Query
+            @param inEnt
+            @return
+        </member>
+        <member name="M:WxProductApi.Controllers.IQueryController.delete(Models.DtoDo{System.Int32})">
+            删除Query
+            @param inEnt
+            @return
+        </member>
+        <member name="M:WxProductApi.Controllers.IQueryController.downFile(Models.DtoKey)">
+            下载文件
+            @param postJson
+            @return
+        </member>
+        <member name="T:WxProductApi.Controllers.IRoleController">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:WxProductApi.Controllers.IRoleController.singleByKey(Models.DtoDo{System.Int32})">
+            查询单条
+            @param inObj
+            @return
+        </member>
+        <member name="M:WxProductApi.Controllers.IRoleController.delete(Models.DtoDo{System.Int32})">
+            删除
+            @param inObj
+            @return
+        </member>
+        <member name="M:WxProductApi.Controllers.IRoleController.save(Models.DtoSave{Models.Entity.FaRoleEntity})">
+            保存基本信息
+            @param inEnt
+            @return
+        </member>
+        <member name="T:WxProductApi.Controllers.IUserController">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:WxProductApi.Controllers.IUserController.singleByKey(Models.DtoDo{System.Int32})">
+            查询单条
+            @param inObj
+            @return
+        </member>
+        <member name="M:WxProductApi.Controllers.IUserController.delete(Models.DtoDo{System.Int32})">
+            删除
+            @param inObj
+            @return
+        </member>
+        <member name="M:WxProductApi.Controllers.IUserController.save(Models.DtoSave{Models.Entity.FaUserEntity})">
+            保存基本信息
+            @param inEnt
+            @return
+        </member>
+        <member name="T:WxProductApi.Controllers.LoginController">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:WxProductApi.Controllers.LoginController.#ctor(System.Net.Http.IHttpClientFactory,IRepository.ILoginRepository)">
+            <summary>
+            
+            </summary>
+            <param name="clientFactory"></param>
+            <param name="login"></param>
+        </member>
+        <member name="M:WxProductApi.Controllers.LoginController.userLogin(Models.LogingDto)">
+            <summary>
+            密码登录
+            </summary>
+            <param name="inEnt"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WxProductApi.Controllers.LoginController.loginOut(Models.LogingDto)">
+            <summary>
+            退出登录
+            </summary>
+            <param name="inEnt"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WxProductApi.Controllers.LoginController.loginReg(Models.LogingDto)">
+            <summary>
+            注册
+            </summary>
+            <param name="inEnt"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WxProductApi.Controllers.LoginController.deleteUser(Models.DtoKey)">
+            <summary>
+            删除用户
+            </summary>
+            <param name="userName"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WxProductApi.Controllers.LoginController.userEditPwd(Models.EditPwdDto)">
+            <summary>
+            修改用户 名
+            </summary>
+            <param name="inEnt"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WxProductApi.Controllers.LoginController.changeLoginName(IRepository.ChangeLoginNameDto)">
+            <summary>
+            更新账号
+            </summary>
+            <param name="inEnt"></param>
+            <returns></returns>
+        </member>
+        <member name="T:WxProductApi.Controllers.ModuleController">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:WxProductApi.Controllers.ModuleController.#ctor(IRepository.IModuleRepository)">
+            <summary>
+            
+            </summary>
+            <param name="module"></param>
+        </member>
+        <member name="M:WxProductApi.Controllers.ModuleController.getUserMenu">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:WxProductApi.Controllers.ModuleController.save(Models.DtoSave{Models.Entity.FaModuleEntity})">
+            <summary>
+            保存Query
+            </summary>
+            <param name="inEnt"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WxProductApi.Controllers.ModuleController.singleByKey(Models.DtoDo{System.Int32})">
+            <summary>
+            查找单条
+            </summary>
+            <param name="inEnt"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WxProductApi.Controllers.ModuleController.delete(Models.DtoDo{System.Int32})">
+            <summary>
+            删除单条
+            </summary>
+            <param name="inEnt"></param>
+            <returns></returns>
+        </member>
+        <member name="T:WxProductApi.Controllers.QueryController">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:WxProductApi.Controllers.QueryController.#ctor(IRepository.IQueryRepository)">
+            <summary>
+            
+            </summary>
+            <param name="query"></param>
+        </member>
+        <member name="M:WxProductApi.Controllers.QueryController.getListData(Models.Entity.QuerySearchDto)">
+            <summary>
+            获取数据对象
+            </summary>
+            <param name="querySearchModel"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WxProductApi.Controllers.QueryController.getSingleQuery(Models.DtoKey)">
+            <summary>
+            获取Query对象
+            </summary>
+            <param name="inEnt"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WxProductApi.Controllers.QueryController.downFile(Models.Entity.QuerySearchDto)">
+            <summary>
+            导出Excel数据
+            </summary>
+            <param name="querySearchModel"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WxProductApi.Controllers.QueryController.downFile(Models.DtoKey)">
+            <summary>
+            
+            </summary>
+            <param name="code"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WxProductApi.Controllers.QueryController.makeQueryCfg(System.String)">
+            <summary>
+            生成配置数据
+            </summary>
+            <param name="code"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WxProductApi.Controllers.QueryController.save(Models.DtoSave{Models.Entity.FaQueryEntity})">
+            <summary>
+            保存Query
+            </summary>
+            <param name="inEnt"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WxProductApi.Controllers.QueryController.singleByKey(Models.DtoDo{System.Int32})">
+            <summary>
+            查找单条
+            </summary>
+            <param name="inEnt"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WxProductApi.Controllers.QueryController.delete(Models.DtoDo{System.Int32})">
+            <summary>
+            删除单条
+            </summary>
+            <param name="inEnt"></param>
+            <returns></returns>
+        </member>
+        <member name="T:WxProductApi.Controllers.RoleController">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:WxProductApi.Controllers.RoleController.#ctor(IRepository.IRoleRepository)">
+            <summary>
+            
+            </summary>
+            <param name="Role"></param>
+        </member>
+        <member name="M:WxProductApi.Controllers.RoleController.save(Models.DtoSave{Models.Entity.FaRoleEntity})">
+            <summary>
+            保存Query
+            </summary>
+            <param name="inEnt"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WxProductApi.Controllers.RoleController.singleByKey(Models.DtoDo{System.Int32})">
+            <summary>
+            查找单条
+            </summary>
+            <param name="inEnt"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WxProductApi.Controllers.RoleController.delete(Models.DtoDo{System.Int32})">
+            <summary>
+            删除单条
+            </summary>
+            <param name="inEnt"></param>
+            <returns></returns>
+        </member>
+        <member name="T:WxProductApi.Controllers.TestController">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:WxProductApi.Controllers.TestController.TestUser(Models.DtoKey)">
+            <summary>
+            测试超级管理员用户
+            </summary>
+            <param name="inEnt"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WxProductApi.Controllers.TestController.Test(Models.DtoKey)">
+            <summary>
+            接口测试
+            </summary>
+            <param name="inEnt"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WxProductApi.Controllers.TestController.TestAuth(Models.DtoKey)">
+            <summary>
+            权限接口测试
+            </summary>
+            <param name="inEnt"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WxProductApi.Controllers.WeiXinController.PostXml(Helper.WeiChat.Entities.XmlModel)">
+            <summary>
+            用于微信绑定时间
+            </summary>
+            <param name="xml"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WxProductApi.Controllers.WeiXinController.GetJsApi(Models.DtoKey)">
+            <summary>
+            生成JSapi对象
+            </summary>
+            <param name="inObj"></param>
+            <returns></returns>
+        </member>
+        <member name="P:WxProductApi.Startup.Configuration">
+            <summary>
+            读取配置
+            </summary>
+            <value></value>
+        </member>
+        <member name="P:WxProductApi.Startup.repository">
+            <summary>
+            加载日志资源
+            </summary>
+            <value></value>
+        </member>
+        <member name="P:WxProductApi.Startup.WebHostEnvironment">
+            <summary>
+            环境
+            </summary>
+            <value></value>
+        </member>
+        <member name="T:WebApi.Controllers.UpFileController">
+            <summary>
+            授权管理
+            </summary>
+        </member>
+        <member name="M:WebApi.Controllers.UpFileController.#ctor(Microsoft.AspNetCore.Hosting.IWebHostEnvironment)">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:WebApi.Controllers.UpFileController.UploadPhotos">
+            <summary>
+            图片上传
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:WebApi.Controllers.UpFileController.LookfileByPath(System.String,System.String,System.String)">
+            <summary>
+            根据路径查看图片
+            </summary>
+            <param name="dir"></param>
+            <param name="fileName"></param>
+            <param name="type"></param>
+            <returns></returns>
+        </member>
+        <member name="T:ApiUser.Controllers.UserController">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:ApiUser.Controllers.UserController.#ctor(IRepository.IUserRepository)">
+            <summary>
+            
+            </summary>
+            <param name="User"></param>
+        </member>
+        <member name="M:ApiUser.Controllers.UserController.save(Models.DtoSave{Models.Entity.FaUserEntity})">
+            <summary>
+            保存Query
+            </summary>
+            <param name="inEnt"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ApiUser.Controllers.UserController.singleByKey(Models.DtoDo{System.Int32})">
+            <summary>
+            查找单条
+            </summary>
+            <param name="inEnt"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ApiUser.Controllers.UserController.delete(Models.DtoDo{System.Int32})">
+            <summary>
+            删除单条
+            </summary>
+            <param name="inEnt"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Helper.DapperHelper.TranscationBegin">
+            <summary>
+            开始事务
+            </summary>
+        </member>
+        <member name="M:Helper.DapperHelper.GetConnection">
+            <summary>
+            获取连接
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Helper.DapperHelper.TranscationRollback">
+            <summary>
+            回滚事务
+            </summary>
+        </member>
+        <member name="M:Helper.DapperHelper.TranscationCommit">
+            <summary>
+            提交事务
+            </summary>
+        </member>
+        <member name="M:Helper.DapperHelper.GetDataTable(System.String,System.Object)">
+            <summary>
+            获取Table
+            </summary>
+            <param name="sql"></param>
+            <param name="param"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Helper.DapperHelper`1.FindAll(System.String,System.Collections.Generic.List{System.String})">
+            <summary>
+            获取指定,字段的类
+            </summary>
+            <param name="whereStr">不带where的字符串</param>
+            <returns></returns>
+        </member>
+        <member name="M:Helper.DapperHelper`1.FindNum(`0,Models.DtoSearch)">
+            <summary>
+            获取满足条件的个数
+            </summary>
+            <param name="inEnt"></param>
+            <param name="inSearch"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Helper.DapperHelper`1.Count(System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}})">
+            <summary>
+            总数
+            </summary>
+            <param name="where"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Helper.DapperHelper`1.Count(System.String)">
+            <summary>
+            总数
+            </summary>
+            <param name="whereStr"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Helper.DapperHelper`1.Update(Models.DtoSave{`0})">
+            <summary>
+            返回影响的条数
+            </summary>
+            <param name="inObj"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Helper.Fun.CheckPassword(System.String,System.Int32)">
+            <summary>
+            检测密码的复杂度是否满足
+            </summary>
+            <param name="pwdStr"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Helper.Fun.GetExceptionMessage(System.Exception)">
+            <summary>
+            
+            </summary>
+            <param name="e"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Helper.Fun.TableToClass``1(System.Data.DataTable)">
+            <summary>
+            将DataTable数据转换成实体类
+            本功能主要用于外导EXCEL
+            </summary>
+            <typeparam name="T">MVC的实体类</typeparam>
+            <param name="dt">输入的DataTable</param>
+            <returns>实体类的LIST</returns>
+        </member>
+        <member name="M:Helper.Fun.ClassToCopy``2(``0,``1,System.Collections.Generic.IList{System.String})">
+            <summary>
+            复制一个类里所有属性到别一个类
+            </summary>
+            <typeparam name="inT">传入的类型</typeparam>
+            <typeparam name="outT">输出类型</typeparam>
+            <param name="inClass">传入的类</param>
+            <param name="outClass">输入的类</param>
+            <returns>复制结果的类</returns>
+        </member>
+        <member name="M:Helper.Fun.ClassToCopy``2(``0)">
+            <summary>
+            
+            </summary>
+            <typeparam name="inT"></typeparam>
+            <typeparam name="outT"></typeparam>
+            <param name="inClass"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Helper.Fun.ClassListToCopy``2(System.Collections.Generic.IList{``0})">
+            <summary>
+            转换IList内的所有属性
+            </summary>
+            <typeparam name="inT"></typeparam>
+            <typeparam name="outT"></typeparam>
+            <param name="inClass"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Helper.Fun.Md5Hash(System.Byte[])">
+            <summary>
+            计算MD5
+            </summary>
+            <param name="fileContent"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Helper.Fun.Md5Hash(System.String)">
+            <summary>
+            32位MD5加密
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Helper.Fun.GetClassDescription``1">
+            <summary>
+            获取类的备注信息
+            </summary>
+            <typeparam name="T"></typeparam>
+            <returns></returns>
+        </member>
+        <member name="M:Helper.Fun.GetClassProperDescription``1(System.String)">
+            <summary>
+            获取类的属性说明
+            </summary>
+            <typeparam name="T"></typeparam>
+            <returns></returns>
+        </member>
+        <member name="M:Helper.Fun.RandomIntList(System.Int32,System.Int32,System.Int32)">
+            <summary>
+            产生一组不重复的随机数
+            </summary>
+        </member>
+        <member name="M:Helper.Fun.GetDistance(System.Double,System.Double,System.Double,System.Double)">
+            <summary>
+            通过两个点的经纬度计算距离(米)
+            </summary>
+            <param name="lat1"></param>
+            <param name="lng1"></param>
+            <param name="lat2"></param>
+            <param name="lng2"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Helper.Fun.GetDistance(System.String,System.String,System.String,System.String)">
+            <summary>
+            通过两个点的经纬度计算距离(米)
+            </summary>
+            <param name="lat1"></param>
+            <param name="lng1"></param>
+            <param name="lat2"></param>
+            <param name="lng2"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Helper.Fun.GetSelectScript(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="p"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Helper.Fun.NoHTML(System.String)">
+            <summary>
+            去除HTML标记
+            </summary>
+            <param name="NoHTML">包括HTML的源码 </param>
+            <returns>已经去除后的文字</returns>
+        </member>
+        <member name="M:Helper.Fun.ExecutePostJson(System.String,System.String,System.Net.CookieContainer)">
+            <summary>
+            
+            </summary>
+            <param name="server_addr"></param>
+            <param name="postStr"></param>
+            <param name="cookieList"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Helper.Fun.HttpGetJson(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="server_addr"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Helper.Fun.Substring(System.String,System.String,System.String)">
+            <summary>
+            
+            </summary>
+            <param name="inStr"></param>
+            <param name="startStr"></param>
+            <param name="endStr"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Helper.Fun.DownLoadSoft(System.String,System.String,System.String)">
+            <summary>
+            下载
+            </summary>
+        </member>
+        <member name="M:Helper.Fun.GetPowerList(System.String)">
+            <summary>
+            获取权限
+            </summary>
+            <param name="powerInt"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Helper.Fun.FormatLunlarTime(System.Nullable{System.DateTime})">
+            <summary>
+            格式华农历时间
+            </summary>
+            <param name="inTime"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Helper.Fun.NumberToChinese(System.Int32)">
+            <summary>
+            数字转中文
+            </summary>
+            <param name="number">eg: 22</param>
+            <returns></returns>
+        </member>
+        <member name="M:Helper.Fun.HashEncrypt(System.String,System.String)">
+            <summary>
+            加密
+            </summary>
+            <param name="Text"></param>
+            <param name="sKey"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Helper.Fun.HashDecrypt(System.String,System.String)">
+            <summary> 
+            解密数据 
+            </summary> 
+            <param name="Text"></param> 
+            <param name="sKey"></param> 
+            <returns></returns> 
+        </member>
+        <member name="T:Helper.LambdaToSqlHelper.EnumNodeType">
+            <summary>
+            NodeType枚举
+            </summary>
+        </member>
+        <member name="F:Helper.LambdaToSqlHelper.EnumNodeType.BinaryOperator">
+            <summary>
+            二元运算符
+            </summary>
+        </member>
+        <member name="F:Helper.LambdaToSqlHelper.EnumNodeType.UndryOperator">
+            <summary>
+            一元运算符
+            </summary>
+        </member>
+        <member name="F:Helper.LambdaToSqlHelper.EnumNodeType.Constant">
+            <summary>
+            常量表达式
+            </summary>
+        </member>
+        <member name="F:Helper.LambdaToSqlHelper.EnumNodeType.MemberAccess">
+            <summary>
+            成员（变量）
+            </summary>
+        </member>
+        <member name="F:Helper.LambdaToSqlHelper.EnumNodeType.Call">
+            <summary>
+            函数
+            </summary>
+        </member>
+        <member name="F:Helper.LambdaToSqlHelper.EnumNodeType.Unknown">
+            <summary>
+            未知
+            </summary>
+        </member>
+        <member name="F:Helper.LambdaToSqlHelper.EnumNodeType.NotSupported">
+            <summary>
+            不支持
+            </summary>
+        </member>
+        <member name="M:Helper.LambdaToSqlHelper.CheckExpressionType(System.Linq.Expressions.Expression)">
+            <summary>
+            判断表达式类型
+            </summary>
+            <param name="exp">lambda表达式</param>
+            <returns></returns>
+        </member>
+        <member name="M:Helper.LambdaToSqlHelper.ExpressionTypeCast(System.Linq.Expressions.ExpressionType)">
+            <summary>
+            表达式类型转换
+            </summary>
+            <param name="type"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Helper.LambdaToSqlHelper.ExpressionRouter(System.Linq.Expressions.Expression,System.Collections.Generic.List{System.Collections.Generic.KeyValuePair{System.String,System.Object}})">
+            <summary>
+            路由计算
+            </summary>
+            <param name="exp"></param>
+            <param name="listSqlParaModel"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Helper.LambdaToSqlHelper.GetValueType(System.Object)">
+            <summary>
+            值类型转换
+            </summary>
+            <param name="_value"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Helper.LambdaToSqlHelper.GetSqlParaModel(System.Collections.Generic.List{System.Collections.Generic.KeyValuePair{System.String,System.Object}},System.Object)">
+            <summary>
+            sql参数
+            </summary>
+            <param name="listSqlParaModel"></param>
+            <param name="val"></param>
+        </member>
+        <member name="M:Helper.LambdaToSqlHelper.GetWhereSql``1(System.Linq.Expressions.Expression{System.Func{``0,System.Boolean}},System.Collections.Generic.List{System.Collections.Generic.KeyValuePair{System.String,System.Object}})">
+            <summary>
+            lambda表达式转换sql
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="where"></param>
+            <param name="listSqlParaModel"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Helper.LambdaToSqlHelper.GetOrderBySql``1(System.Linq.Expressions.Expression{System.Func{System.Linq.IQueryable{``0},System.Linq.IOrderedQueryable{``0}}})">
+            <summary>
+            lambda表达式转换sql
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="orderBy"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Helper.LambdaToSqlHelper.GetQueryField``1(System.Linq.Expressions.Expression{System.Func{``0,System.Object}})">
+            <summary>
+            lambda表达式转换sql
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="fields"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Helper.LogHelper.WriteErrorLog``1(System.String,System.Exception)">
+            <summary>
+            输出错误日志到Log4Net
+            </summary>
+            <param name="ex"></param>
+        </member>
+        <member name="M:Helper.LogHelper.WriteLog``1(System.String)">
+            <summary>
+            输出记录日志到Log4Net
+            </summary>
+            <param name="msg"></param>
+        </member>
+        <member name="T:Helper.ModelHelper`1">
+            <summary>
+            用于，根据实体类，生成相应的SQL，以及数据验证
+            </summary>
+            <typeparam name="T"></typeparam>
+        </member>
+        <member name="P:Helper.ModelHelper`1.inEnt">
+            <summary>
+            传入的参数
+            </summary>
+        </member>
+        <member name="M:Helper.ModelHelper`1.GetTableFields(System.Collections.Generic.List{System.String},System.Collections.Generic.List{System.String})">
+            <summary>
+            获取所有字段列表,Key表示属性名，Value表示字段名
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Helper.ModelHelper`1.GetDirct(System.Collections.Generic.List{System.String},System.Collections.Generic.List{System.String})">
+            <summary>
+            获取类的键值数据
+            </summary>
+            <param name="saveFieldList"></param>
+            <param name="ignoreFieldList"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Helper.ModelHelper`1.GetDynamicParameters(System.Collections.Generic.List{System.String},System.Collections.Generic.List{System.String})">
+            <summary>
+            获取Dapper的动态参数
+            </summary>
+            <param name="saveFieldList"></param>
+            <param name="ignoreFieldList"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Helper.ModelHelper`1.GetDisplayDirct">
+            <summary>
+            获取类的每个字段的中文说明
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Helper.ModelHelper`1.GetTableFieldDirct">
+            <summary>
+            获取属性对表字段
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Helper.ModelHelper`1.GetTableName">
+            <summary>
+            得到表名
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Helper.ModelHelper`1.GetKeyField">
+            <summary>
+            获取主键,Key为属性名，Value为数据名
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Helper.ModelHelper`1.GetKeyIsAuto">
+            <summary>
+            获取Key是否是自动生成的
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Helper.ModelHelper`1.GetSaveSql(System.Collections.Generic.List{System.String},System.Collections.Generic.List{System.String})">
+            <summary>
+            新增加数据，并返回增加的ID
+            </summary>
+            <param name="errorMessage"></param>
+            <param name="sql"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Helper.ModelHelper`1.GetUpdateSql(System.Collections.Generic.List{System.String},System.Collections.Generic.List{System.String},System.Collections.Generic.List{System.String})">
+            <summary>
+            生成查询的SQL语句
+            如果没有传条件值，则默认为主键
+            </summary>
+            <param name="saveFieldList">保存的字段</param>
+            <param name="ignoreFieldList">忽略的字段</param>
+            <param name="whereList">条件字段</param>
+            <returns></returns>
+        </member>
+        <member name="M:Helper.ModelHelper`1.GetDeleteSql(System.Collections.Generic.List{System.String})">
+            <summary>
+            获取删除SQL
+            </summary>
+            <param name="filterList"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Helper.ModelHelper`1.GetFindAllSql(Models.DtoSearch)">
+            <summary>
+            获取查看所有SQL
+            </summary>
+            <param name="inSearch"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Helper.ModelHelper`1.GetFindNumSql(Models.DtoSearch)">
+            <summary>
+            查看满足条件的数量
+            </summary>
+            <param name="inSearch"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Helper.ModelHelper`1.GetSingleSql(System.Collections.Generic.List{System.String},System.String)">
+            <summary>
+            获取单条SQL
+            </summary>
+            <param name="filterList"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Helper.ModelHelper`1.GetSingleSql">
+            <summary>
+            获取单条SQL 根据主键获取单条
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Helper.RedisReadHelper.GetObject``1(System.String)">
+            <summary>
+            根据名称获取对象
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="name"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Helper.RedisReadHelper.GetObjects``1(System.Collections.Generic.List{System.String})">
+            <summary>
+            根据名称获取，对象列表
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="names"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Helper.RedisReadHelper.StringGet``1(System.String)">
+            <summary>
+            获取值
+            </summary>
+            <param name="key"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Helper.RedisReadHelper.KeyExists(System.String)">
+            <summary>
+            判断Key是否存在
+            </summary>
+            <param name="key"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Helper.RedisWriteHelper.SetObject``1(System.String,``0)">
+            <summary>
+            实体类，保存到redis
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="name"></param>
+            <param name="inObj"></param>
+            <param name="saveItems"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Helper.RedisWriteHelper.HashSetKey``1(System.String,System.String,System.String)">
+            <summary>
+            将key中存储的哈希中的字段设置为value。 如果key不存在，则创建一个包含哈希的新密钥。 如果哈希中已存在字段，则会覆盖该字段。
+            </summary>
+            <param name="hash"></param>
+            <param name="key"></param>
+            <param name="value"></param>
+        </member>
+        <member name="M:Helper.RedisWriteHelper.KeyDelete(System.String)">
+            <summary>
+            删除根据Key删除
+            </summary>
+            <param name="hash">keyName</param>
+        </member>
+        <member name="M:Helper.RedisWriteHelper.HashDelete``1(System.String,System.String)">
+            <summary>
+            删除hask的Key
+            </summary>
+            <param name="hash"></param>
+            <param name="key"></param>
+            <param name="value"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Helper.RedisWriteHelper.StringHashSetKey``1(System.String,System.String,System.String)">
+            <summary>
+            更新
+            </summary>
+            <param name="hash"></param>
+            <param name="key"></param>
+            <param name="value"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Helper.TypeChange.ToJsonObject``1(System.String)">
+            <summary>
+            将JSON 字符转换为对象
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="str"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Helper.TypeChange.GetEntity``1(System.Data.DataTable)">
+            <summary>
+            将DataTable转变为实体对象
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="table"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Helper.TypeChange.GetEntities``1(System.Data.DataTable)">
+            <summary>
+            将DataTable转换为实体对象集合List(如果DataTable列中缺少实体的属性，则实体集合中的属性为NULL，不会报错)
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="table"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Helper.TypeChange.DicToObject``1(System.Collections.Generic.Dictionary{System.String,System.Object})">
+            <summary>
+            将Dictionary转成对象
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="dic"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Helper.TypeChange.ObjectToDic``1(``0)">
+            <summary>
+            
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="inEnt"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Helper.TypeChange.DataTableToString(System.Data.DataTable,System.Boolean)">
+            <summary>
+            将数据表转到CSV数据
+            </summary>
+            <param name="data"></param>
+            <param name="exportHeader"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Helper.TypeChange.DynamicToKeyValueList(System.Object)">
+            <summary>
+            动态对象转Kv数组
+            </summary>
+            <param name="obj"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Helper.TypeChange.DynamicToKeyList(System.Object)">
+            <summary>
+            动态对象转Kv数组
+            </summary>
+            <param name="obj"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Helper.TypeChange.UrlToEntities``1(System.String)">
+            <summary>
+            Url地址转对象
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="request"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Helper.TypeChange.XmlToDict(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="xmlStr"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Helper.TypeChange.DateToLunar(System.DateTime)">
+            <summary>
+            获取阴历 key为时间字符串
+            </summary>
+            <param name="datetime">时间字符串</param>
+            <returns></returns>
+        </member>
+        <member name="M:Helper.TypeChange.DateToSolar(System.DateTime)">
+            <summary>
+            获取阳历 key为时间字符串
+            </summary>
+            <param name="datetime">时间字符串</param>
+            <returns></returns>
+        </member>
+        <member name="M:Helper.TypeChange.LamdbToList``1(System.Linq.Expressions.Expression{System.Func{``0,System.Object[]}})">
+            <summary>
+            将查询表达式。转成数据,用于获取保存字段使用
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="expression"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Helper.WeiChat.CheckSignature">
+            <summary>
+            签名验证类
+            </summary>
+        </member>
+        <member name="F:Helper.WeiChat.CheckSignature.Token">
+            <summary>
+            在网站没有提供Token（或传入为null）的情况下的默认Token，建议在网站中进行配置。
+            </summary>
+        </member>
+        <member name="M:Helper.WeiChat.CheckSignature.Check(System.String,Helper.WeiChat.PostModel)">
+            <summary>
+            检查签名是否正确
+            </summary>
+            <param name="signature"></param>
+            <param name="postModel">需要提供：Timestamp、Nonce、Token</param>
+            <returns></returns>
+        </member>
+        <member name="M:Helper.WeiChat.CheckSignature.Check(System.String,System.String,System.String,System.String)">
+            <summary>
+            检查签名是否正确
+            </summary>
+            <param name="signature"></param>
+            <param name="timestamp"></param>
+            <param name="nonce"></param>
+            <param name="token"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Helper.WeiChat.CheckSignature.GetSignature(Helper.WeiChat.PostModel)">
+            <summary>
+            返回正确的签名
+            </summary>
+            <param name="postModel">需要提供：Timestamp、Nonce、Token</param>
+            <returns></returns>
+        </member>
+        <member name="M:Helper.WeiChat.CheckSignature.GetSignature(System.String,System.String,System.String)">
+            <summary>
+            返回正确的签名
+            </summary>
+            <param name="timestamp"></param>
+            <param name="nonce"></param>
+            <param name="token"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Helper.WeiChat.Entities.IEncryptPostModel">
+            <summary>
+            接收加密信息统一接口
+            </summary>
+        </member>
+        <member name="P:Helper.WeiChat.Entities.IEncryptPostModel.Signature">
+            <summary>
+            Signature
+            </summary>
+        </member>
+        <member name="P:Helper.WeiChat.Entities.IEncryptPostModel.Msg_Signature">
+            <summary>
+            Msg_Signature
+            </summary>
+        </member>
+        <member name="P:Helper.WeiChat.Entities.IEncryptPostModel.Timestamp">
+            <summary>
+            Timestamp
+            </summary>
+        </member>
+        <member name="P:Helper.WeiChat.Entities.IEncryptPostModel.Nonce">
+            <summary>
+            Nonce
+            </summary>
+        </member>
+        <member name="P:Helper.WeiChat.Entities.IEncryptPostModel.Token">
+            <summary>
+            Token
+            </summary>
+        </member>
+        <member name="P:Helper.WeiChat.Entities.IEncryptPostModel.EncodingAESKey">
+            <summary>
+            EncodingAESKey
+            </summary>
+        </member>
+        <member name="T:Helper.WeiChat.Entities.EncryptPostModel">
+            <summary>
+            接收加密信息统一基类
+            </summary>
+        </member>
+        <member name="P:Helper.WeiChat.Entities.EncryptPostModel.Signature">
+            <summary>
+            Signature
+            </summary>
+        </member>
+        <member name="P:Helper.WeiChat.Entities.EncryptPostModel.Msg_Signature">
+            <summary>
+            Msg_Signature
+            </summary>
+        </member>
+        <member name="P:Helper.WeiChat.Entities.EncryptPostModel.Timestamp">
+            <summary>
+            Timestamp
+            </summary>
+        </member>
+        <member name="P:Helper.WeiChat.Entities.EncryptPostModel.Nonce">
+            <summary>
+            Nonce
+            </summary>
+        </member>
+        <member name="P:Helper.WeiChat.Entities.EncryptPostModel.Token">
+            <summary>
+            Token
+            </summary>
+        </member>
+        <member name="P:Helper.WeiChat.Entities.EncryptPostModel.EncodingAESKey">
+            <summary>
+            EncodingAESKey
+            </summary>
+        </member>
+        <member name="M:Helper.WeiChat.Entities.EncryptPostModel.SetSecretInfo(System.String,System.String)">
+            <summary>
+            设置服务器内部保密信息
+            </summary>
+            <param name="token"></param>
+            <param name="encodingAESKey"></param>
+        </member>
+        <member name="P:Helper.WeiChat.Entities.JsApiModel.noncestr">
+            <summary>
+            随机字符串
+            </summary>
+        </member>
+        <member name="P:Helper.WeiChat.Entities.JsApiModel.timestamp">
+            <summary>
+            时间戳
+            </summary>
+        </member>
+        <member name="P:Helper.WeiChat.Entities.JsApiModel.url">
+            <summary>
+            当前网页的URL
+            </summary>
+        </member>
+        <member name="P:Helper.WeiChat.Entities.JsApiModel.signature">
+            <summary>
+            签名
+            </summary>
+        </member>
+        <member name="P:Helper.WeiChat.Entities.JsApiModel.appid">
+            <summary>
+            appid
+            </summary>
+        </member>
+        <member name="T:Helper.WeiChat.Entities.MenuModel">
+            <summary>
+            微信菜单
+            </summary>
+        </member>
+        <member name="P:Helper.WeiChat.Entities.MenuModel.button">
+            <summary>
+            按钮
+            </summary>
+        </member>
+        <member name="P:Helper.WeiChat.Entities.MenuNodeModel.type">
+            <summary>
+            类型 click,view
+            </summary>
+        </member>
+        <member name="P:Helper.WeiChat.Entities.MenuNodeModel.name">
+            <summary>
+            名称
+            </summary>
+        </member>
+        <member name="P:Helper.WeiChat.Entities.MenuNodeModel.key">
+            <summary>
+            主键
+            </summary>
+        </member>
+        <member name="P:Helper.WeiChat.Entities.MenuNodeModel.url">
+            <summary>
+            url地址
+            </summary>
+        </member>
+        <member name="P:Helper.WeiChat.Entities.MenuNodeModel.sub_button">
+            <summary>
+            子菜单
+            </summary>
+        </member>
+        <member name="P:Helper.WeiChat.Entities.WebpageToken.access_token">
+            <summary>
+            网页授权接口调用凭证,注意：此access_token与基础支持的access_token不同
+            </summary>
+        </member>
+        <member name="P:Helper.WeiChat.Entities.WebpageToken.expires_in">
+            <summary>
+            access_token接口调用凭证超时时间，单位（秒）
+            </summary>
+        </member>
+        <member name="P:Helper.WeiChat.Entities.WebpageToken.refresh_token">
+            <summary>
+            用户刷新access_token
+            </summary>
+        </member>
+        <member name="P:Helper.WeiChat.Entities.WebpageToken.openid">
+            <summary>
+            用户唯一标识
+            </summary>
+        </member>
+        <member name="P:Helper.WeiChat.Entities.WebpageToken.scope">
+            <summary>
+            用户授权的作用域
+            </summary>
+        </member>
+        <member name="P:Helper.WeiChat.Entities.WebpageUserInfo.nickname">
+            <summary>
+            用户昵称
+            </summary>
+        </member>
+        <member name="P:Helper.WeiChat.Entities.WebpageUserInfo.sex">
+            <summary>
+            sex	用户的性别，值为1时是男性，值为2时是女性，值为0时是未知
+            </summary>
+        </member>
+        <member name="P:Helper.WeiChat.Entities.WebpageUserInfo.province">
+            <summary>
+            	用户个人资料填写的省份
+            </summary>
+        </member>
+        <member name="P:Helper.WeiChat.Entities.WebpageUserInfo.openid">
+            <summary>
+            用户唯一标识
+            </summary>
+        </member>
+        <member name="P:Helper.WeiChat.Entities.WebpageUserInfo.city">
+            <summary>
+            普通用户个人资料填写的城市
+            </summary>
+        </member>
+        <member name="P:Helper.WeiChat.Entities.WebpageUserInfo.country">
+            <summary>
+             国家，如中国为CN
+            </summary>
+        </member>
+        <member name="P:Helper.WeiChat.Entities.WebpageUserInfo.headimgurl">
+            <summary>
+             用户头像
+            </summary>
+        </member>
+        <member name="P:Helper.WeiChat.Entities.WebpageUserInfo.privilege">
+            <summary>
+            用户特权信息
+            </summary>
+        </member>
+        <member name="P:Helper.WeiChat.Entities.WebpageUserInfo.unionid">
+            <summary>
+            只有在用户将公众号绑定到微信开放平台帐号后，才会出现该字段。
+            </summary>
+        </member>
+        <member name="T:Helper.WeiChat.Entities.XmlModel">
+            <summary>
+            微信的Xml结构
+            </summary>
+        </member>
+        <member name="P:Helper.WeiChat.Entities.XmlModel.ToUserName">
+            <summary>
+            公众号的微信号
+            </summary>
+        </member>
+        <member name="P:Helper.WeiChat.Entities.XmlModel.FromUserName">
+            <summary>
+            用户的微信号
+            </summary>
+        </member>
+        <member name="P:Helper.WeiChat.Entities.XmlModel.CreateTime">
+            <summary>
+            时间
+            </summary>
+        </member>
+        <member name="P:Helper.WeiChat.Entities.XmlModel.MsgType">
+            <summary>
+            消息类型
+             text, image, voice, video, link, location, event
+            </summary>
+        </member>
+        <member name="P:Helper.WeiChat.Entities.XmlModel.Event">
+            <summary>
+            事件
+            subscribe,unsubscribe,CLICK,VIEW
+            </summary>
+        </member>
+        <member name="P:Helper.WeiChat.Entities.XmlModel.EventKey">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Helper.WeiChat.Entities.XmlModel.Ticket">
+            <summary>
+            获取的二维码ticket
+            </summary>
+        </member>
+        <member name="M:Helper.WeiChat.MessageUtil.initText(System.String,System.String,System.String)">
+            <summary>
+            生成文本信息
+            </summary>
+            <param name="toUserName"></param>
+            <param name="fromUserName"></param>
+            <param name="replay"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Helper.WeiChat.PostModel">
+            <summary>
+            微信公众服务器Post过来的加密参数集合（不包括PostData）
+            <para>如需使用 NeuChar，需要在 MessageHandler 中提供 PostModel 并设置 AppId</para>
+            </summary>
+        </member>
+        <member name="P:Helper.WeiChat.PostModel.AppId">
+            <summary>
+            当前请求对应的微信 AppId
+            如需在 MessageHandler 中使用 NeuChar 进行消息处理，请无比在此处提供 AppId，并对AppId-Secret进行注册，以便自动调用高级接口（如自动发送客服消息）
+            </summary>
+        </member>
+        <member name="M:Helper.WeiChat.PostModel.SetSecretInfo(System.String,System.String,System.String)">
+            <summary>
+            设置服务器内部保密信息
+            </summary>
+            <param name="token"></param>
+            <param name="encodingAESKey"></param>
+            <param name="appId"></param>
+        </member>
+        <member name="M:Helper.WeiChat.Utility.GetAccessToken(System.String,System.String)">
+            <summary>
+            获取微信的token
+            </summary>
+            <param name="appid"></param>
+            <param name="secret"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Helper.WeiChat.Utility.GetQrCodeTicket(System.String,System.String)">
+            <summary>
+            获取维护关注公众号带参数的二维码
+            </summary>
+            <param name="token"></param>
+            <param name="postEnt"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Helper.WeiChat.Utility.GetJsapiTicket(System.String)">
+            <summary>
+            jsapi_ticket是公众号用于调用微信JS接口的临时票据
+            </summary>
+            <param name="accessToken"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Helper.WeiChat.Utility.GetWebpageAuthorization(System.String,System.String,System.String,System.Boolean)">
+            <summary>
+            获取网页授权的地址
+            </summary>
+            <param name="appid"></param>
+            <param name="redirect_uri">回调地址，该地址，需接受code、state两个参数</param>
+            <param name="state">该值会传入到回调地址里</param>
+            <param name="isConfirm">true 表示要弹出确认框</param>
+            <returns></returns>
+        </member>
+        <member name="M:Helper.WeiChat.Utility.GetWebpageToken(System.String,System.String,System.String)">
+            <summary>
+            获取网页授权access_token
+            </summary>
+            <param name="appid"></param>
+            <param name="secret"></param>
+            <param name="code">网页授权地址返回的code</param>
+            <returns></returns>
+        </member>
+        <member name="T:System.StringExtensions">
+            <summary>
+            字符串扩展类
+            </summary>
+        </member>
+        <member name="M:System.StringExtensions.GetChineseSpell(System.String)">
+            <summary>
+            取中文简拼
+            </summary>
+            <param name="source">源字符串</param>
+            <returns>转化后的字符串</returns>
+        </member>
+        <member name="M:System.StringExtensions.IsOnlyNumber(System.String)">
+            <summary>
+            是否为纯数字字符串(0..9)
+            </summary>
+            <param name="source">源字符串</param>
+        </member>
+        <member name="M:System.StringExtensions.IsPhoneNumber(System.String)">
+            <summary>
+            难证是否是电话号码
+            </summary>
+            <param name="source"></param>
+            <returns></returns>
+        </member>
+        <member name="M:System.StringExtensions.IsNumberAndString(System.String)">
+            <summary>
+            是否为数字+字母字符串(0..9,a..z,A..Z)
+            </summary>
+            <param name="source">源字符串</param>
+        </member>
+        <member name="M:System.StringExtensions.IsOnlyWord(System.String)">
+            <summary>
+            是否为纯字母字符串(a..z,A..Z)
+            </summary>
+            <param name="source">源字符串</param>
+        </member>
+        <member name="M:System.StringExtensions.SameText(System.String,System.String)">
+            <summary>
+            比较字符串是否相同(不区分大小写)
+            </summary>
+            <param name="source">源字符串</param>
+            <param name="s">比较的字符串</param>
+            <returns>是否相同</returns>
+        </member>
+        <member name="M:System.StringExtensions.IsInt64(System.String)">
+            <summary>
+            是否为有效的整数
+            </summary>
+        </member>
+        <member name="M:System.StringExtensions.FormatMe(System.String,System.Object[])">
+            <summary>
+            直接格式化字符串
+            </summary>
+        </member>
+        <member name="M:System.StringExtensions.IsNullOrEmpty(System.String)">
+            <summary>
+            指示指定的 System.String 对象是 null 还是 System.String.Empty 字符串。
+            </summary>
+        </member>
+        <member name="M:System.StringExtensions.LeftString(System.String,System.Int32)">
+            <summary>
+            取左边字符串
+            </summary>
+        </member>
+        <member name="M:System.StringExtensions.RightString(System.String,System.Int32)">
+            <summary>
+            取左边字符串
+            </summary>
+        </member>
+        <member name="M:ICacheService.Exists(System.String)">
+            <summary>
+            验证缓存项是否存在
+            </summary>
+            <param name="key">缓存Key</param>
+            <returns></returns>
+        </member>
+        <member name="M:ICacheService.Add``1(System.String,``0,System.Nullable{System.TimeSpan},System.Nullable{System.TimeSpan})">
+            <summary>
+            添加缓存
+            </summary>
+            <param name="key">缓存Key</param>
+            <param name="value">缓存Value</param>
+            <param name="expiresSliding">滑动过期时长（如果在过期时间内有操作，则以当前时间点延长过期时间）</param>
+            <param name="expiressAbsoulte">绝对过期时长</param>
+            <returns></returns>
+        </member>
+        <member name="M:ICacheService.Remove(System.String)">
+            <summary>
+            删除缓存
+            </summary>
+            <param name="key">缓存Key</param>
+            <returns></returns>
+        </member>
+        <member name="M:ICacheService.RemoveAll(System.Collections.Generic.IEnumerable{System.String})">
+            <summary>
+            批量删除缓存
+            </summary>
+            <param name="key">缓存Key集合</param>
+            <returns></returns>
+        </member>
+        <member name="M:ICacheService.Get``1(System.String)">
+            <summary>
+            获取缓存
+            </summary>
+            <param name="key">缓存Key</param>
+            <returns></returns>
+        </member>
+        <member name="M:ICacheService.GetAll``1(System.Collections.Generic.List{System.String})">
+            <summary>
+            获取缓存集合
+            </summary>
+            <param name="keys">缓存Key集合</param>
+            <returns></returns>
+        </member>
+        <member name="M:ICacheService.Replace``1(System.String,``0,System.Nullable{System.TimeSpan},System.Nullable{System.TimeSpan})">
+            <summary>
+            修改缓存
+            </summary>
+            <param name="key">缓存Key</param>
+            <param name="value">新的缓存Value</param>
+            <param name="expiresSliding">滑动过期时长（如果在过期时间内有操作，则以当前时间点延长过期时间）</param>
+            <param name="expiressAbsoulte">绝对过期时长</param>
+            <returns></returns>
+        </member>
+        <member name="M:ICacheService.ReplaceHashSetKey``1(System.String,System.String,System.Object,System.Nullable{System.TimeSpan},System.Nullable{System.TimeSpan})">
+            <summary>
+            
+            </summary>
+            <param name="name">缓存Key</param>
+            <param name="key">字段名称</param>
+            <param name="value">新的缓存Value</param>
+            <param name="expiresSliding">滑动过期时长（如果在过期时间内有操作，则以当前时间点延长过期时间）</param>
+            <param name="expiressAbsoulte">绝对过期时长</param>
+            <typeparam name="T"></typeparam>
+            <returns></returns>
+        </member>
+        <member name="M:MemoryCacheService.Exists(System.String)">
+            <summary>
+            验证缓存项是否存在
+            </summary>
+            <param name="key">缓存Key</param>
+            <returns></returns>
+        </member>
+        <member name="M:MemoryCacheService.Add``1(System.String,``0,System.Nullable{System.TimeSpan},System.Nullable{System.TimeSpan})">
+            <summary>
+            添加缓存
+            </summary>
+            <param name="key">缓存Key</param>
+            <param name="value">缓存Value</param>
+            <param name="expiresSliding">滑动过期时长（如果在过期时间内有操作，则以当前时间点延长过期时间）</param>
+            <param name="expiressAbsoulte">绝对过期时长</param>
+            <returns></returns>
+        </member>
+        <member name="M:MemoryCacheService.Remove(System.String)">
+            <summary>
+            删除缓存
+            </summary>
+            <param name="key">缓存Key</param>
+            <returns></returns>
+        </member>
+        <member name="M:MemoryCacheService.RemoveAll(System.Collections.Generic.IEnumerable{System.String})">
+            <summary>
+            批量删除缓存
+            </summary>
+            <param name="key">缓存Key集合</param>
+            <returns></returns>
+        </member>
+        <member name="M:MemoryCacheService.Get``1(System.String)">
+            <summary>
+            获取缓存
+            </summary>
+            <param name="key">缓存Key</param>
+            <returns></returns>
+        </member>
+        <member name="M:MemoryCacheService.GetAll``1(System.Collections.Generic.List{System.String})">
+            <summary>
+            获取缓存集合
+            </summary>
+            <param name="keys">缓存Key集合</param>
+            <returns></returns>
+        </member>
+        <member name="M:MemoryCacheService.Replace``1(System.String,``0,System.Nullable{System.TimeSpan},System.Nullable{System.TimeSpan})">
+            <summary>
+            修改缓存
+            </summary>
+            <param name="key">缓存Key</param>
+            <param name="value">新的缓存Value</param>
+            <param name="expiresSliding">滑动过期时长（如果在过期时间内有操作，则以当前时间点延长过期时间）</param>
+            <param name="expiressAbsoulte">绝对过期时长</param>
+            <returns></returns>
+        </member>
+        <member name="P:Models.BaseModel._DictStr">
+            <summary>
+            本类字段说明
+            </summary>
+        </member>
+        <member name="T:Models.CheckAuthDto">
+            <summary>
+            用于检测用户权限
+            </summary>
+        </member>
+        <member name="P:Models.CheckAuthDto.UserId">
+            <summary>
+            检测的用户
+            </summary>
+        </member>
+        <member name="P:Models.CheckAuthDto.Authority">
+            <summary>
+            权限代码，最大值是:777，
+            </summary>
+        </member>
+        <member name="P:Models.CheckAuthDto.PowerNum">
+            <summary>
+            要检测的权限,1添加，2修改，4查看
+            </summary>
+        </member>
+        <member name="P:Models.CheckAuthDto.IsCreater">
+            <summary>
+            是否是创建者
+            </summary>
+        </member>
+        <member name="T:Models.CreateTaskDto">
+            <summary>
+            创建任务
+            </summary>
+        </member>
+        <member name="P:Models.CreateTaskDto.TaskFlowId">
+            <summary>
+            任务类型，0或null表示是非流程任务
+            </summary>
+            <value></value>
+        </member>
+        <member name="P:Models.CreateTaskDto.Name">
+            <summary>
+            任务名称
+            </summary>
+            <value></value>
+        </member>
+        <member name="P:Models.CreateTaskDto.KeyId">
+            <summary>
+            外键
+            </summary>
+            <value></value>
+        </member>
+        <member name="P:Models.CreateTaskDto.Remark">
+            <summary>
+            备注
+            </summary>
+            <value></value>
+        </member>
+        <member name="T:Models.DtoDo`1">
+            <summary>
+            用于查询和删除
+            </summary>
+            <typeparam name="T"></typeparam>
+        </member>
+        <member name="M:Models.DtoDo`1.#ctor">
+            <summary>
+            构造
+            </summary>
+        </member>
+        <member name="P:Models.DtoDo`1.Key">
+            <summary>
+            传入的值
+            </summary>
+        </member>
+        <member name="P:Models.DtoKey.Key">
+            <summary>
+            传入的值
+            </summary>
+        </member>
+        <member name="T:Models.DtoEquipment">
+            <summary>
+            用于设备操作
+            </summary>
+        </member>
+        <member name="M:Models.DtoEquipment.#ctor">
+            <summary>
+            构造
+            </summary>
+        </member>
+        <member name="P:Models.DtoEquipment.TypeId">
+            <summary>
+            传入的值
+            </summary>
+        </member>
+        <member name="P:Models.DtoEquipment.Id">
+            <summary>
+            主键
+            </summary>
+            <value></value>
+        </member>
+        <member name="P:Models.DtoEquipment.DataStr">
+            <summary>
+            数据内容
+            </summary>
+            <value></value>
+        </member>
+        <member name="T:Models.DtoSave`1">
+            <summary>
+            用于保存
+            </summary>
+        </member>
+        <member name="M:Models.DtoSave`1.#ctor">
+            <summary>
+            初始化
+            </summary>
+        </member>
+        <member name="P:Models.DtoSave`1.data">
+            <summary>
+            用于操作的对象
+            </summary>
+        </member>
+        <member name="F:Models.DtoSave`1._saveFieldList">
+            <summary>
+            需要保存的字段
+            </summary>
+        </member>
+        <member name="F:Models.DtoSave`1._ignoreFieldList">
+            <summary>
+            需要忽略的字段
+            </summary>
+        </member>
+        <member name="F:Models.DtoSave`1._whereList">
+            <summary>
+            更新条件,如果为空.则以主键为更新条件
+            </summary>
+        </member>
+        <member name="P:Models.DtoSave`1.saveFieldListExp">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Models.DtoSave`1.LamdbToList``1(System.Linq.Expressions.Expression{System.Func{``0,System.Object[]}})">
+            <summary>
+            将查询表达式。转成数据,用于获取保存字段使用
+            </summary>
+            <typeparam name="T1"></typeparam>
+            <param name="expression"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Models.DtoSearch">
+            <summary>
+            用于查询
+            </summary>
+        </member>
+        <member name="P:Models.DtoSearch.FilterList">
+            <summary>
+            筛选条件
+            </summary>
+        </member>
+        <member name="P:Models.DtoSearch.OrderType">
+            <summary>
+            排序字符串，包括字段和类型，如 ："ID DESC"
+            </summary>
+        </member>
+        <member name="P:Models.DtoSearch.PageIndex">
+            <summary>
+            当前页面
+            </summary>
+        </member>
+        <member name="P:Models.DtoSearch.PageSize">
+            <summary>
+            页码大小
+            </summary>
+        </member>
+        <member name="P:Models.DtoSearch.IgnoreFieldList">
+            <summary>
+            查询时需要忽略的字段
+            </summary>
+        </member>
+        <member name="P:Models.DtoSearch`1.FilterList">
+            <summary>
+            筛选条件
+            </summary>
+        </member>
+        <member name="P:Models.DtoSearch`1.OrderType">
+            <summary>
+            排序字符串，包括字段和类型，如 ："ID DESC"
+            </summary>
+        </member>
+        <member name="P:Models.DtoSearch`1.PageIndex">
+            <summary>
+            当前页面
+            </summary>
+        </member>
+        <member name="P:Models.DtoSearch`1.PageSize">
+            <summary>
+            页码大小
+            </summary>
+        </member>
+        <member name="P:Models.DtoSearch`1.IgnoreFieldList">
+            <summary>
+            查询时需要忽略的字段
+            </summary>
+        </member>
+        <member name="T:Models.EditPwdDto">
+            <summary>
+            修改用户密码
+            </summary>
+        </member>
+        <member name="M:Models.EditPwdDto.#ctor">
+            <summary>
+            构造
+            </summary>
+        </member>
+        <member name="P:Models.EditPwdDto.LoginName">
+            <summary>
+            用户登录名
+            </summary>
+        </member>
+        <member name="P:Models.EditPwdDto.OldPwd">
+            <summary>
+            旧密码
+            </summary>
+        </member>
+        <member name="P:Models.EditPwdDto.NewPwd">
+            <summary>
+            新密码
+            </summary>
+            <value></value>
+        </member>
+        <member name="P:Models.EditPwdDto.ReNewPwd">
+            <summary>
+            重置新密码
+            </summary>
+            <value></value>
+        </member>
+        <member name="T:Models.LogingDto">
+            <summary>
+            用户登录实体
+            </summary>
+        </member>
+        <member name="P:Models.LogingDto.userName">
+            <summary>
+            用户姓名
+            </summary>
+        </member>
+        <member name="P:Models.LogingDto.loginName">
+            <summary>
+            登录名
+            </summary>
+        </member>
+        <member name="P:Models.LogingDto.password">
+            <summary>
+            密码
+            </summary>
+        </member>
+        <member name="P:Models.LogingDto.imei">
+            <summary>
+            手机串号
+            </summary>
+        </member>
+        <member name="P:Models.LogingDto.version">
+            <summary>
+            版本号
+            </summary>
+        </member>
+        <member name="P:Models.LogingDto.code">
+            <summary>
+            短信验证码
+            </summary>
+        </member>
+        <member name="P:Models.LogingDto.openid">
+            <summary>
+            微信
+            </summary>
+        </member>
+        <member name="P:Models.LogingDto.userId">
+            <summary>
+            用户ID
+            </summary>
+        </member>
+        <member name="P:Models.LogingDto.pollCode">
+            <summary>
+            推荐码
+            </summary>
+        </member>
+        <member name="P:Models.LogingDto.type">
+            <summary>
+            类型
+            </summary>
+        </member>
+        <member name="T:Models.ResetPasswordDto">
+            <summary>
+            用户登录实体
+            </summary>
+        </member>
+        <member name="M:Models.ResetPasswordDto.#ctor">
+            <summary>
+            构造
+            </summary>
+        </member>
+        <member name="P:Models.ResetPasswordDto.VerifyCode">
+            <summary>
+            验证码
+            </summary>
+        </member>
+        <member name="P:Models.ResetPasswordDto.LoginName">
+            <summary>
+            登录码
+            </summary>
+            <value></value>
+        </member>
+        <member name="P:Models.ResetPasswordDto.NewPwd">
+            <summary>
+            新密码
+            </summary>
+            <value></value>
+        </member>
+        <member name="P:Models.ResetPasswordDto.msg_id">
+            <summary>
+            用于短信验证码
+            </summary>
+        </member>
+        <member name="T:Models.SmartTableSetting">
+            <summary>
+            用户登录实体
+            </summary>
+        </member>
+        <member name="P:Models.SmartTableColumnSetting.type">
+            <summary>
+            'text'|'html'|'custom'
+            </summary>
+            <value></value>
+        </member>
+        <member name="P:Models.ColumnEditorSetting.type">
+            <summary>
+            'text' | 'textarea' | 'completer' | 'list' | 'checkbox'
+            </summary>
+            <value></value>
+        </member>
+        <member name="P:Models.ColumnEditorSetting.config">
+            <summary>
+             completer, list
+            </summary>
+            <value></value>
+        </member>
+        <member name="T:Models.FaRoleModuleEntityView">
+            <summary>
+            用户扩展
+            </summary>
+        </member>
+        <member name="P:Models.FaRoleModuleEntityView.RoleName">
+            <summary>
+            角色名
+            </summary>
+        </member>
+        <member name="P:Models.FaRoleModuleEntityView.ROLE_ID">
+            <summary>
+            角色ID
+            </summary>
+            <value></value>
+        </member>
+        <member name="P:Models.FaRoleModuleEntityView.MODULE_ID">
+            <summary>
+            模块ID
+            </summary>
+            <value></value>
+        </member>
+        <member name="P:Models.FaRoleModuleEntityView.PARENT_ID">
+            <summary>
+            上级
+            </summary>
+        </member>
+        <member name="P:Models.FaRoleModuleEntityView.NAME">
+            <summary>
+            模块名
+            </summary>
+        </member>
+        <member name="P:Models.FaRoleModuleEntityView.LOCATION">
+            <summary>
+            地址
+            </summary>
+        </member>
+        <member name="P:Models.FaRoleModuleEntityView.CODE">
+            <summary>
+            代码
+            </summary>
+        </member>
+        <member name="P:Models.FaRoleModuleEntityView.IS_DEBUG">
+            <summary>
+            调试
+            </summary>
+        </member>
+        <member name="P:Models.FaRoleModuleEntityView.IS_HIDE">
+            <summary>
+            隐藏
+            </summary>
+        </member>
+        <member name="P:Models.FaRoleModuleEntityView.SHOW_ORDER">
+            <summary>
+            排序
+            </summary>
+        </member>
+        <member name="P:Models.FaRoleModuleEntityView.DESCRIPTION">
+            <summary>
+            描述
+            </summary>
+        </member>
+        <member name="P:Models.FaRoleModuleEntityView.IMAGE_URL">
+            <summary>
+            图片
+            </summary>
+        </member>
+        <member name="P:Models.FaRoleModuleEntityView.DESKTOP_ROLE">
+            <summary>
+            桌面角色
+            </summary>
+        </member>
+        <member name="P:Models.FaRoleModuleEntityView.W">
+            <summary>
+            宽
+            </summary>
+        </member>
+        <member name="P:Models.FaRoleModuleEntityView.H">
+            <summary>
+            高
+            </summary>
+        </member>
+        <member name="T:Models.EntityView.FaUserInfoEntityView">
+            <summary>
+            用户扩展
+            </summary>
+        </member>
+        <member name="P:Models.EntityView.FaUserInfoEntityView.fatherName">
+            <summary>
+            父亲姓名
+            </summary>
+        </member>
+        <member name="P:Models.EntityView.FaUserInfoEntityView.elderName">
+            <summary>
+            辈分
+            </summary>
+        </member>
+        <member name="P:Models.EntityView.FaUserInfoEntityView.elderSort">
+            <summary>
+            辈分排号
+            </summary>
+        </member>
+        <member name="P:Models.EntityView.FaUserInfoEntityView.coupleName">
+            <summary>
+            配偶姓名
+            </summary>
+        </member>
+        <member name="P:Models.EntityView.FaUserInfoEntityView.childNum">
+            <summary>
+            子女数
+            </summary>
+        </member>
+        <member name="P:Models.EntityView.FaUserInfoEntityView.id">
+            <summary>
+            ID
+            </summary>
+        </member>
+        <member name="P:Models.EntityView.FaUserInfoEntityView.levelId">
+            <summary>
+            LEVEL_ID
+            </summary>
+        </member>
+        <member name="P:Models.EntityView.FaUserInfoEntityView.elderId">
+            <summary>
+            ELDER_ID
+            </summary>
+        </member>
+        <member name="P:Models.EntityView.FaUserInfoEntityView.fatherId">
+            <summary>
+            父亲ID
+            </summary>
+        </member>
+        <member name="P:Models.EntityView.FaUserInfoEntityView.coupleId">
+            <summary>
+            配偶ID
+            </summary>
+        </member>
+        <member name="P:Models.EntityView.FaUserInfoEntityView.birthdayTime">
+            <summary>
+            出生日期
+            </summary>
+        </member>
+        <member name="P:Models.EntityView.FaUserInfoEntityView.birthdayPlace">
+            <summary>
+            出生地点
+            </summary>
+        </member>
+        <member name="P:Models.EntityView.FaUserInfoEntityView.isLive">
+            <summary>
+            是否健在
+            </summary>
+        </member>
+        <member name="P:Models.EntityView.FaUserInfoEntityView.diedTime">
+            <summary>
+            过逝日期
+            </summary>
+        </member>
+        <member name="P:Models.EntityView.FaUserInfoEntityView.diedPlace">
+            <summary>
+            过逝地点
+            </summary>
+        </member>
+        <member name="P:Models.EntityView.FaUserInfoEntityView.yearsType">
+            <summary>
+            日期类型
+            </summary>
+        </member>
+        <member name="P:Models.EntityView.FaUserInfoEntityView.sex">
+            <summary>
+            性别
+            </summary>
+        </member>
+        <member name="P:Models.EntityView.FaUserInfoEntityView.status">
+            <summary>
+            状态
+            </summary>
+        </member>
+        <member name="P:Models.EntityView.FaUserInfoEntityView.alias">
+            <summary>
+            别名
+            </summary>
+            <value></value>
+        </member>
+        <member name="P:Models.EntityView.FaUserInfoEntityView.authority">
+            <summary>
+            权限
+            </summary>
+        </member>
+        <member name="P:Models.EntityView.FaUserInfoEntityView.remark">
+            <summary>
+            备注
+            </summary>
+        </member>
+        <member name="P:Models.EntityView.FaUserInfoEntityView.education">
+            <summary>
+            教育背影
+            </summary>
+            <value></value>
+        </member>
+        <member name="P:Models.EntityView.FaUserInfoEntityView.industry">
+            <summary>
+            行业
+            </summary>
+            <value></value>
+        </member>
+        <member name="P:Models.EntityView.FaUserInfoEntityView.birthdayChinaYear">
+            <summary>
+            出生国号
+            </summary>
+            <value></value>
+        </member>
+        <member name="P:Models.EntityView.FaUserInfoEntityView.diedChinaYear">
+            <summary>
+            过逝国号
+            </summary>
+            <value></value>
+        </member>
+        <member name="P:Models.EntityView.FaUserInfoEntityView.createUserId">
+            <summary>
+            创建用户ID
+            </summary>
+        </member>
+        <member name="P:Models.EntityView.FaUserInfoEntityView.name">
+            <summary>
+            姓名
+            </summary>
+        </member>
+        <member name="P:Models.EntityView.FaUserInfoEntityView.loginName">
+            <summary>
+            登录名
+            </summary>
+        </member>
+        <member name="P:Models.EntityView.FaUserInfoEntityView.iconFiles">
+            <summary>
+            头像图片
+            </summary>
+        </member>
+        <member name="P:Models.EntityView.FaUserInfoEntityView.districtId">
+            <summary>
+            归属地
+            </summary>
+        </member>
+        <member name="P:Models.EntityView.FaUserInfoEntityView.isLocked">
+            <summary>
+            锁定
+            </summary>
+        </member>
+        <member name="P:Models.EntityView.FaUserInfoEntityView.createTime">
+            <summary>
+            创建时间
+            </summary>
+        </member>
+        <member name="P:Models.EntityView.FaUserInfoEntityView.birthdaylunlarDate">
+            <summary>
+            出生阴历
+            </summary>
+            <value></value>
+        </member>
+        <member name="P:Models.EntityView.FaUserInfoEntityView.birthdaysolarDate">
+            <summary>
+            出生阳历
+            </summary>
+            <value></value>
+        </member>
+        <member name="P:Models.EntityView.FaUserInfoEntityView.diedlunlarDate">
+            <summary>
+            逝世阴历
+            </summary>
+            <value></value>
+        </member>
+        <member name="P:Models.EntityView.FaUserInfoEntityView.diedsolarDate">
+            <summary>
+            逝世阳历
+            </summary>
+            <value></value>
+        </member>
+        <member name="P:Models.EntityView.FaUserInfoEntityView.IconFilesEnt">
+            <summary>
+            头像信息，只用于添加头像时有效
+            </summary>
+            <value></value>
+        </member>
+        <member name="T:Models.Entity.FaUserRoleEntityView">
+            <summary>
+            系统角色
+            </summary>
+        </member>
+        <member name="P:Models.Entity.FaUserRoleEntityView.roleName">
+            <summary>
+            角色名
+            </summary>
+        </member>
+        <member name="P:Models.Entity.FaUserRoleEntityView.roleType">
+            <summary>
+            类型
+            </summary>
+        </member>
+        <member name="P:Models.Entity.FaUserRoleEntityView.roleId">
+            <summary>
+            ROLE_ID
+            </summary>
+        </member>
+        <member name="P:Models.Entity.FaUserRoleEntityView.userId">
+            <summary>
+            USER_ID
+            </summary>
+        </member>
+        <member name="P:Models.Entity.FaUserRoleEntityView.userName">
+            <summary>
+            用户姓名
+            </summary>
+        </member>
+        <member name="T:Models.Entity.FaLoginEntity">
+            <summary>
+            登录
+            </summary>
+        </member>
+        <member name="P:Models.Entity.FaLoginEntity.id">
+            <summary>
+            ID
+            </summary>
+        </member>
+        <member name="P:Models.Entity.FaLoginEntity.loginName">
+            <summary>
+            登录名
+            </summary>
+        </member>
+        <member name="P:Models.Entity.FaLoginEntity.password">
+            <summary>
+            密码
+            </summary>
+        </member>
+        <member name="P:Models.Entity.FaLoginEntity.phoneNo">
+            <summary>
+            联系电话
+            </summary>
+        </member>
+        <member name="P:Models.Entity.FaLoginEntity.emailAddr">
+            <summary>
+            电子邮件
+            </summary>
+        </member>
+        <member name="P:Models.Entity.FaLoginEntity.verifyCode">
+            <summary>
+            验证码
+            </summary>
+        </member>
+        <member name="P:Models.Entity.FaLoginEntity.verifyTime">
+            <summary>
+            验证码时间
+            </summary>
+        </member>
+        <member name="P:Models.Entity.FaLoginEntity.isLocked">
+            <summary>
+            是否禁用
+            </summary>
+        </member>
+        <member name="P:Models.Entity.FaLoginEntity.passUpdateDate">
+            <summary>
+            密码修改时间
+            </summary>
+        </member>
+        <member name="P:Models.Entity.FaLoginEntity.lockedReason">
+            <summary>
+            禁用原因
+            </summary>
+        </member>
+        <member name="P:Models.Entity.FaLoginEntity.failCount">
+            <summary>
+            失败次数
+            </summary>
+        </member>
+        <member name="T:Models.Entity.FaLoginHistoryEntity">
+            <summary>
+            登录历史
+            </summary>
+        </member>
+        <member name="P:Models.Entity.FaLoginHistoryEntity.ID">
+            <summary>
+            ID
+            </summary>
+        </member>
+        <member name="P:Models.Entity.FaLoginHistoryEntity.USER_ID">
+            <summary>
+            USER_ID
+            </summary>
+        </member>
+        <member name="P:Models.Entity.FaLoginHistoryEntity.LOGIN_TIME">
+            <summary>
+            LOGIN_TIME
+            </summary>
+        </member>
+        <member name="P:Models.Entity.FaLoginHistoryEntity.LOGIN_HOST">
+            <summary>
+            LOGIN_HOST
+            </summary>
+        </member>
+        <member name="P:Models.Entity.FaLoginHistoryEntity.LOGOUT_TIME">
+            <summary>
+            LOGOUT_TIME
+            </summary>
+        </member>
+        <member name="P:Models.Entity.FaLoginHistoryEntity.LOGIN_HISTORY_TYPE">
+            <summary>
+            LOGIN_HISTORY_TYPE
+            </summary>
+        </member>
+        <member name="P:Models.Entity.FaLoginHistoryEntity.MESSAGE">
+            <summary>
+            MESSAGE
+            </summary>
+        </member>
+        <member name="T:Models.Entity.FaModuleEntity">
+            <summary>
+            登录历史
+            </summary>
+        </member>
+        <member name="P:Models.Entity.FaModuleEntity.id">
+            <summary>
+            id
+            </summary>
+        </member>
+        <member name="P:Models.Entity.FaModuleEntity.parentId">
+            <summary>
+            父ID
+            </summary>
+        </member>
+        <member name="P:Models.Entity.FaModuleEntity.name">
+            <summary>
+            模块名称
+            </summary>
+        </member>
+        <member name="P:Models.Entity.FaModuleEntity.location">
+            <summary>
+            连接地址
+            </summary>
+        </member>
+        <member name="P:Models.Entity.FaModuleEntity.code">
+            <summary>
+            代码
+            </summary>
+        </member>
+        <member name="P:Models.Entity.FaModuleEntity.isDebug">
+            <summary>
+            调试
+            </summary>
+        </member>
+        <member name="P:Models.Entity.FaModuleEntity.isHide">
+            <summary>
+            隐藏
+            </summary>
+        </member>
+        <member name="P:Models.Entity.FaModuleEntity.showOrder">
+            <summary>
+            排序
+            </summary>
+        </member>
+        <member name="P:Models.Entity.FaModuleEntity.description">
+            <summary>
+            描述
+            </summary>
+        </member>
+        <member name="P:Models.Entity.FaModuleEntity.imageUrl">
+            <summary>
+            图片地址
+            </summary>
+        </member>
+        <member name="P:Models.Entity.FaModuleEntity.desktopRole">
+            <summary>
+            桌面
+            </summary>
+        </member>
+        <member name="P:Models.Entity.FaModuleEntity.w">
+            <summary>
+            宽
+            </summary>
+        </member>
+        <member name="P:Models.Entity.FaModuleEntity.h">
+            <summary>
+            高
+            </summary>
+        </member>
+        <member name="P:Models.Entity.FaModuleEntity.children">
+            <summary>
+            所有子项
+            </summary>
+            <value></value>
+        </member>
+        <member name="T:Models.Entity.FaQueryEntity">
+            <summary>
+            查询
+            </summary>
+        </member>
+        <member name="P:Models.Entity.FaQueryEntity.id">
+            <summary>
+            ID
+            </summary>
+        </member>
+        <member name="P:Models.Entity.FaQueryEntity.name">
+            <summary>
+            名称
+            </summary>
+        </member>
+        <member name="P:Models.Entity.FaQueryEntity.code">
+            <summary>
+            代码
+            </summary>
+        </member>
+        <member name="P:Models.Entity.FaQueryEntity.autoLoad">
+            <summary>
+            自动加载
+            </summary>
+        </member>
+        <member name="P:Models.Entity.FaQueryEntity.pageSize">
+            <summary>
+            页面大小
+            </summary>
+        </member>
+        <member name="P:Models.Entity.FaQueryEntity.showCheckbox">
+            <summary>
+            复选框
+            </summary>
+        </member>
+        <member name="P:Models.Entity.FaQueryEntity.isDebug">
+            <summary>
+            调试
+            </summary>
+        </member>
+        <member name="P:Models.Entity.FaQueryEntity.queryConf">
+            <summary>
+            查询语句
+            </summary>
+        </member>
+        <member name="P:Models.Entity.FaQueryEntity.queryCfgJson">
+            <summary>
+            配置信息
+            </summary>
+        </member>
+        <member name="P:Models.Entity.FaQueryEntity.inParaJson">
+            <summary>
+            传入参数
+            </summary>
+        </member>
+        <member name="P:Models.Entity.FaQueryEntity.jsStr">
+            <summary>
+            JS脚本
+            </summary>
+        </member>
+        <member name="P:Models.Entity.FaQueryEntity.rowsBtn">
+            <summary>
+            行按钮
+            </summary>
+        </member>
+        <member name="P:Models.Entity.FaQueryEntity.heardBtn">
+            <summary>
+            表头按钮
+            </summary>
+        </member>
+        <member name="P:Models.Entity.FaQueryEntity.reportScript">
+            <summary>
+            报表脚本
+            </summary>
+        </member>
+        <member name="P:Models.Entity.FaQueryEntity.chartsCfg">
+            <summary>
+            图表配置
+            </summary>
+        </member>
+        <member name="P:Models.Entity.FaQueryEntity.chartsType">
+            <summary>
+            图表类型
+            </summary>
+        </member>
+        <member name="P:Models.Entity.FaQueryEntity.filtrLevel">
+            <summary>
+            统计范围
+            </summary>
+        </member>
+        <member name="P:Models.Entity.FaQueryEntity.filtrStr">
+            <summary>
+            过滤配置
+            </summary>
+        </member>
+        <member name="P:Models.Entity.FaQueryEntity.dbServerId">
+            <summary>
+            查询库
+            </summary>
+        </member>
+        <member name="P:Models.Entity.FaQueryEntity.remark">
+            <summary>
+            说明
+            </summary>
+        </member>
+        <member name="P:Models.Entity.FaQueryEntity.new_data">
+            <summary>
+            最新时间
+            </summary>
+        </member>
+        <member name="P:Models.Entity.QuerySearchDto.sort">
+            <summary>
+            排序字段
+            </summary>
+        </member>
+        <member name="P:Models.Entity.QuerySearchDto.order">
+            <summary>
+            排序类型 asc|desc
+            </summary>
+        </member>
+        <member name="P:Models.Entity.QuerySearchDto.page">
+            <summary>
+            当前页码
+            </summary>
+        </member>
+        <member name="P:Models.Entity.QuerySearchDto.rows">
+            <summary>
+            每页显示数
+            </summary>
+        </member>
+        <member name="P:Models.Entity.QuerySearchDto.paraList">
+            <summary>
+            简单筛选条件
+            </summary>
+        </member>
+        <member name="P:Models.Entity.QuerySearchDto.whereList">
+            <summary>
+            复杂筛选条件
+            </summary>
+        </member>
+        <member name="T:Models.Entity.QueryPara">
+            <summary>
+            参数
+            </summary>
+        </member>
+        <member name="P:Models.Entity.QueryPara.paraName">
+            <summary>
+            参数名称
+            </summary>
+        </member>
+        <member name="P:Models.Entity.QueryPara.value">
+            <summary>
+            参数值
+            </summary>
+        </member>
+        <member name="T:Models.Entity.QueryCfg">
+            <summary>
+            配置
+            </summary>
+        </member>
+        <member name="P:Models.Entity.QueryCfg.fieldName">
+            <summary>
+            字段名称
+            </summary>
+        </member>
+        <member name="P:Models.Entity.QueryCfg.alias">
+            <summary>
+            别名
+            </summary>
+        </member>
+        <member name="P:Models.Entity.QueryCfg.canSearch">
+            <summary>
+            是否可搜索
+            </summary>
+        </member>
+        <member name="P:Models.Entity.QueryCfg.searchType">
+            <summary>
+            过滤控件类型
+            </summary>
+        </member>
+        <member name="P:Models.Entity.QueryCfg.searchScript">
+            <summary>
+            过滤控件脚本
+            </summary>
+        </member>
+        <member name="P:Models.Entity.QueryCfg.show">
+            <summary>
+            是否显示
+            </summary>
+        </member>
+        <member name="P:Models.Entity.QueryCfg.width">
+            <summary>
+            宽度
+            </summary>
+        </member>
+        <member name="P:Models.Entity.QueryCfg.sortable">
+            <summary>
+            可排序
+            </summary>
+        </member>
+        <member name="P:Models.Entity.QueryCfg.isVariable">
+            <summary>
+            变量
+            </summary>
+        </member>
+        <member name="P:Models.Entity.QueryCfg.fieldType">
+            <summary>
+            字段类型
+            </summary>
+        </member>
+        <member name="P:Models.Entity.QueryCfg.format">
+            <summary>
+            格式化
+            </summary>
+        </member>
+        <member name="T:Models.Entity.QueryRowBtnShowCondition">
+            <summary>
+            行按键显示条件
+            </summary>
+        </member>
+        <member name="P:Models.Entity.QueryRowBtnShowCondition.objFiled">
+            <summary>
+            对象字段
+            </summary>
+        </member>
+        <member name="P:Models.Entity.QueryRowBtnShowCondition.opType">
+            <summary>
+            操作符 如：between、in、《、》、=、like
+            </summary>
+        </member>
+        <member name="P:Models.Entity.QueryRowBtnShowCondition.value">
+            <summary>
+            值
+            </summary>
+        </member>
+        <member name="P:Models.Entity.QueryRowBtnShowCondition.fieldName">
+            <summary>
+            字段名称
+            </summary>
+        </member>
+        <member name="T:Models.Entity.FaRoleEntity">
+            <summary>
+            系统角色
+            </summary>
+        </member>
+        <member name="P:Models.Entity.FaRoleEntity.id">
+            <summary>
+            ID
+            </summary>
+        </member>
+        <member name="P:Models.Entity.FaRoleEntity.name">
+            <summary>
+            角色名
+            </summary>
+        </member>
+        <member name="P:Models.Entity.FaRoleEntity.remark">
+            <summary>
+            备注
+            </summary>
+        </member>
+        <member name="P:Models.Entity.FaRoleEntity.type">
+            <summary>
+            类型
+            </summary>
+        </member>
+        <member name="P:Models.Entity.FaRoleEntity.moduleIdStr">
+            <summary>
+            模块ID集合
+            </summary>
+            <value></value>
+        </member>
+        <member name="T:Models.Entity.FaUserEntity">
+            <summary>
+            系统用户
+            </summary>
+        </member>
+        <member name="P:Models.Entity.FaUserEntity.id">
+            <summary>
+            ID
+            </summary>
+        </member>
+        <member name="P:Models.Entity.FaUserEntity.name">
+            <summary>
+            姓名
+            </summary>
+        </member>
+        <member name="P:Models.Entity.FaUserEntity.loginName">
+            <summary>
+            登录账号
+            </summary>
+        </member>
+        <member name="P:Models.Entity.FaUserEntity.iconFiles">
+            <summary>
+            头像
+            </summary>
+        </member>
+        <member name="P:Models.Entity.FaUserEntity.districtId">
+            <summary>
+            区域
+            </summary>
+        </member>
+        <member name="P:Models.Entity.FaUserEntity.isLocked">
+            <summary>
+            是否可用
+            </summary>
+        </member>
+        <member name="P:Models.Entity.FaUserEntity.createTime">
+            <summary>
+            创建时间
+            </summary>
+        </member>
+        <member name="P:Models.Entity.FaUserEntity.loginCount">
+            <summary>
+            登录次数
+            </summary>
+        </member>
+        <member name="P:Models.Entity.FaUserEntity.lastLoginTime">
+            <summary>
+            最后登录时间
+            </summary>
+        </member>
+        <member name="P:Models.Entity.FaUserEntity.lastLogoutTime">
+            <summary>
+            最后登出时间
+            </summary>
+        </member>
+        <member name="P:Models.Entity.FaUserEntity.lastActiveTime">
+            <summary>
+            最后活动时间
+            </summary>
+        </member>
+        <member name="P:Models.Entity.FaUserEntity.remark">
+            <summary>
+            备注
+            </summary>
+        </member>
+        <member name="P:Models.Entity.FaUserEntity.isAdmin">
+            <summary>
+            是管理管理员
+            </summary>
+            <value></value>
+        </member>
+        <member name="P:Models.Entity.FaUserEntity.isLeader">
+            <summary>
+            是普通管理员
+            </summary>
+            <value></value>
+        </member>
+        <member name="P:Models.Entity.FaUserEntity.roleIdList">
+            <summary>
+            用户角色
+            </summary>
+            <value></value>
+        </member>
+        <member name="P:Models.Entity.FaUserEntity.canEditIdList">
+            <summary>
+            可编辑的用户ID
+            </summary>
+            <value></value>
+        </member>
+        <member name="T:Models.Entity.FilesEntity">
+            <summary>
+            登录
+            </summary>
+        </member>
+        <member name="P:Models.Entity.FilesEntity.id">
+            <summary>
+            ID
+            </summary>
+        </member>
+        <member name="P:Models.Entity.FilesEntity.name">
+            <summary>
+            名称
+            </summary>
+        </member>
+        <member name="P:Models.Entity.FilesEntity.path">
+            <summary>
+            路径
+            </summary>
+        </member>
+        <member name="P:Models.Entity.FilesEntity.length">
+            <summary>
+            大小
+            </summary>
+        </member>
+        <member name="P:Models.Entity.FilesEntity.uploadTime">
+            <summary>
+            添加时间
+            </summary>
+        </member>
+        <member name="P:Models.Entity.FilesEntity.remark">
+            <summary>
+            备注
+            </summary>
+        </member>
+        <member name="P:Models.Entity.FilesEntity.url">
+            <summary>
+            相对路径
+            </summary>
+        </member>
+        <member name="P:Models.Entity.FilesEntity.fileType">
+            <summary>
+            文件类型
+            </summary>
+        </member>
+        <member name="P:Models.Entity.FilesEntity.md5Str">
+            <summary>
+            文件md5
+            </summary>
+            <value></value>
+        </member>
+        <member name="P:Models.Entity.FilesEntity.base64Str">
+            <summary>
+            文件base64
+            </summary>
+        </member>
+        <member name="T:Models.Entity.SequenceEntity">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Models.Entity.SequenceEntity.seq_name">
+            <summary>
+            表名
+            </summary>
+        </member>
+        <member name="P:Models.Entity.SequenceEntity.current_val">
+            <summary>
+            当前值
+            </summary>
+        </member>
+        <member name="P:Models.Entity.SequenceEntity.increment_val">
+            <summary>
+            增加值
+            </summary>
+        </member>
+        <member name="P:Models.GlobalUser.Ticket">
+            <summary>
+            登录凭证
+            </summary>
+        </member>
+        <member name="P:Models.GlobalUser.Guid">
+            <summary>
+            登录凭证
+            </summary>
+        </member>
+        <member name="P:Models.GlobalUser.UserId">
+            <summary>
+            用户ID
+            </summary>
+        </member>
+        <member name="P:Models.GlobalUser.DistrictId">
+            <summary>
+            当前节点ID
+            </summary>
+        </member>
+        <member name="P:Models.GlobalUser.DistrictCode">
+            <summary>
+            当前节点代码
+            </summary>
+        </member>
+        <member name="P:Models.GlobalUser.LevelId">
+            <summary>
+            用户层级
+            </summary>
+        </member>
+        <member name="P:Models.GlobalUser.Region">
+            <summary>
+            当前区域
+            </summary>
+        </member>
+        <member name="P:Models.GlobalUser.UserName">
+            <summary>
+            用户姓名
+            </summary>
+        </member>
+        <member name="P:Models.GlobalUser.LoginName">
+            <summary>
+            用户登录名
+            </summary>
+        </member>
+        <member name="P:Models.GlobalUser.RoleID">
+            <summary>
+            用户权限ID
+            </summary>
+        </member>
+        <member name="P:Models.GlobalUser.RegionList">
+            <summary>
+            区域层级
+            </summary>
+        </member>
+        <member name="P:Models.GlobalUser.RuleRegionStr">
+            <summary>
+            用户管辖区域
+            </summary>
+        </member>
+        <member name="P:Models.GlobalUser.LastOpTime">
+            <summary>
+            最后操作时间
+            </summary>
+        </member>
+        <member name="P:Models.GlobalUser.LoginIP">
+            <summary>
+            登录IP
+            </summary>
+        </member>
+        <member name="M:Models.GlobalUser.GetRegionLeveStr">
+            <summary>
+            区域层级
+            </summary>
+        </member>
+        <member name="M:Models.GlobalUser.GetRoleAllStr">
+            <summary>
+            所有角色字符串
+            </summary>
+        </member>
+        <member name="T:Models.KTV">
+            <summary>
+            主键 类型 值
+            </summary>
+        </member>
+        <member name="P:Models.KTV.t">
+            <summary>
+            类型
+            </summary>
+        </member>
+        <member name="P:Models.KV.k">
+            <summary>
+            主键
+            </summary>
+        </member>
+        <member name="P:Models.KV.v">
+            <summary>
+            值
+            </summary>
+        </member>
+        <member name="T:Models.QuartzTaskModel">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Models.QuartzTaskModel.keyName">
+            <summary>
+            名称
+            </summary>
+            <value></value>
+        </member>
+        <member name="P:Models.QuartzTaskModel.keyGroup">
+            <summary>
+            组名称
+            </summary>
+            <value></value>
+        </member>
+        <member name="P:Models.QuartzTaskModel.jobDataListStr">
+            <summary>
+            传入的参数
+            </summary>
+            <value></value>
+        </member>
+        <member name="P:Models.QuartzTaskModel.calendarName">
+            <summary>
+            日历名称
+            </summary>
+            <value></value>
+        </member>
+        <member name="P:Models.QuartzTaskModel.description">
+            <summary>
+            描述
+            </summary>
+            <value></value>
+        </member>
+        <member name="P:Models.QuartzTaskModel.endTime">
+            <summary>
+            结束时间
+            </summary>
+            <value></value>
+        </member>
+        <member name="P:Models.QuartzTaskModel.finalFireTimeUtc">
+            <summary>
+            最后一次执行时间
+            </summary>
+            <value></value>
+        </member>
+        <member name="P:Models.QuartzTaskModel.nextFireTime">
+            <summary>
+            下次执行时间
+            </summary>
+            <value></value>
+        </member>
+        <member name="P:Models.QuartzTaskModel.priority">
+            <summary>
+            执行级别
+            </summary>
+            <value></value>
+        </member>
+        <member name="P:Models.QuartzTaskModel.startTimeUtc">
+            <summary>
+            开始执行时间
+            </summary>
+            <value></value>
+        </member>
+        <member name="T:Models.Redis.UserRedis">
+            <summary>
+            用户缓存信息
+            </summary>
+        </member>
+        <member name="P:Models.Redis.UserRedis.Token">
+            <summary>
+             用户令牌
+            </summary>
+            <value></value>
+        </member>
+        <member name="T:Models.RelativeItem">
+            <summary>
+            关系数据
+            </summary>
+        </member>
+        <member name="P:Models.RelativeItem.Id">
+            <summary>
+            主键
+            </summary>
+        </member>
+        <member name="P:Models.RelativeItem.ElderId">
+            <summary>
+            辈字排号
+            </summary>
+        </member>
+        <member name="P:Models.RelativeItem.ElderName">
+            <summary>
+            辈字
+            </summary>
+        </member>
+        <member name="P:Models.RelativeItem.Name">
+            <summary>
+            姓名
+            </summary>
+        </member>
+        <member name="P:Models.RelativeItem.FatherId">
+            <summary>
+            父亲ID
+            </summary>
+        </member>
+        <member name="P:Models.RelativeItem.IcoUrl">
+            <summary>
+            头像图片
+            </summary>
+        </member>
+        <member name="P:Models.RelativeItem.Sex">
+            <summary>
+            性别
+            </summary>
+        </member>
+        <member name="P:Models.RelativeItem.x">
+            <summary>
+            坐标X
+            </summary>
+        </member>
+        <member name="P:Models.RelativeItem.y">
+            <summary>
+            坐标Y
+            </summary>
+        </member>
+        <member name="P:Models.RelativeItem.CompletionRatio">
+            <summary>
+            完成比例
+            </summary>
+        </member>
+        <member name="P:Models.Result.success">
+            <summary>
+            是否成功
+            </summary>
+            <value></value>
+        </member>
+        <member name="P:Models.Result.msg">
+            <summary>
+            消息
+            </summary>
+            <value></value>
+        </member>
+        <member name="P:Models.Result.code">
+            <summary>
+            代码
+            </summary>
+            <value></value>
+        </member>
+        <member name="T:Models.ResultObj`1">
+            <summary>
+            返回的数据
+            </summary>
+            <typeparam name="T"></typeparam>
+        </member>
+        <member name="P:Models.ResultObj`1.data">
+            <summary>
+            返回数据
+            </summary>
+            <value></value>
+        </member>
+        <member name="P:Models.ResultObj`1.dataList">
+            <summary>
+            返回列表数据
+            </summary>
+            <typeparam name="T"></typeparam>
+            <returns></returns>
+        </member>
+        <member name="P:Models.ResultObj`1.tmp">
+            <summary>
+            备注字段
+            </summary>
+            <value></value>
+        </member>
+        <member name="P:Models.ResultObj`1.total">
+            <summary>
+            总数
+            </summary>
+        </member>
+        <member name="T:Models.ResultPaging`1">
+            <summary>
+            分页数据
+            </summary>
+            <typeparam name="T"></typeparam>
+        </member>
+        <member name="P:Models.ResultPaging`1.currentPage">
+            <summary>
+            当前页码
+            </summary>
+        </member>
+        <member name="P:Models.ResultPaging`1.pageSize">
+            <summary>
+            页面条数
+            </summary>
+        </member>
+        <member name="P:Models.ResultPaging`1.totalPage">
+            <summary>
+            总页数
+            </summary>
+        </member>
+        <member name="P:Models.ResultPaging`1.totalCount">
+            <summary>
+            总记录数
+            </summary>
+        </member>
+        <member name="M:Repository.FaLoginHistoryRepository.SingleByKey(System.Int32)">
+            <summary>
+            获取单条
+            </summary>
+            <param name="key"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Repository.FaLoginHistoryRepository.FindAll(System.Linq.Expressions.Expression{System.Func{Models.Entity.FaLoginHistoryEntity,System.Boolean}})">
+            <summary>
+            查找所有
+            </summary>
+            <param name="inParm"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Repository.FaLoginHistoryRepository.Save(Models.DtoSave{Models.Entity.FaLoginHistoryEntity})">
+            <summary>
+            保存操作记录
+            </summary>
+            <param name="inObj"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Repository.FileRepository.SingleByKey(System.Int32)">
+            <summary>
+            获取单条
+            </summary>
+            <param name="key"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Repository.FileRepository.FindAll(System.Linq.Expressions.Expression{System.Func{Models.Entity.FilesEntity,System.Boolean}})">
+            <summary>
+            查找所有
+            </summary>
+            <param name="inParm"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Repository.LoginRepository.SingleByKey(System.Int32)">
+            <summary>
+            获取单条
+            </summary>
+            <param name="key"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Repository.LoginRepository.FindAll(System.Linq.Expressions.Expression{System.Func{Models.Entity.FaLoginEntity,System.Boolean}})">
+            <summary>
+            查找所有
+            </summary>
+            <param name="inParm"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Repository.LoginRepository.LoginReg(Models.LogingDto)">
+            <summary>
+            注册账号
+            <para>1、添加登录工号 </para>
+            <para>2、添加用户</para>
+            </summary>
+            <param name="inEnt"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Repository.LoginRepository.LoginOut(Models.DtoSave{Models.Entity.FaLoginHistoryEntity})">
+            <summary>
+            注销用户登录状态
+            <para>清除用户的缓存状态</para>
+            <para>记录退出日志</para>
+            </summary>
+            <param name="inEnt"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Repository.LoginRepository.UserLogin(Models.LogingDto)">
+            <summary>
+            用户登录
+            <para>只验证用户账号</para>
+            </summary>
+            <param name="inEnt"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Repository.LoginRepository.ResetPassword(Models.ResetPasswordDto)">
+            <summary>
+            重置用户密码
+            <para>VerifyCode:短信验证码</para>
+            <para>LoginName:登录名</para>
+            <para>NewPwd:新密码</para>
+            </summary>
+            <param name="inEnt"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Repository.LoginRepository.UserEditPwd(Models.EditPwdDto)">
+            <summary>
+            修改用户密码
+            <para>entity:旧密码</para>
+            <para>NewPwd:新密码</para>
+            </summary>
+            <param name="inEnt"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Repository.LoginRepository.UserEditLoginName(System.String,System.String,System.String,System.Int32,System.String,System.String)">
+            <summary>
+            更新登录名
+            </summary>
+            <param name="oldLoginName"></param>
+            <param name="NewLoginName"></param>
+            <param name="name"></param>
+            <param name="userId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Repository.LoginRepository.ChangeLoginName(IRepository.ChangeLoginNameDto)">
+            <summary>
+            替换账号
+            </summary>
+            <param name="inEnt"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Repository.ModuleRepository.SingleByKey(System.Int32)">
+            <summary>
+            获取单条
+            </summary>
+            <param name="key"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Repository.ModuleRepository.GetMenu(System.Linq.Expressions.Expression{System.Func{Models.Entity.FaModuleEntity,System.Boolean}})">
+            <summary>
+            查找所有
+            </summary>
+            <param name="inParm"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Repository.QueryRepository.QueryExecute(Models.Entity.QuerySearchDto)">
+            <summary>
+            获取所有数据
+            msg为SQL语句
+            </summary>
+            <param name="inEnt"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Repository.QueryRepository.QueryExecuteCsv(Models.Entity.QuerySearchDto)">
+            <summary>
+            获取Csv数据,支持大数据下载
+            </summary>
+            <param name="inEnt"></param>
+            <param name="sqlStr"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Repository.QueryRepository.QueryPageExecute(Models.Entity.QuerySearchDto)">
+            <summary>
+            执行分页数据
+            </summary>
+            <param name="inEnt"></param>
+            <param name="sqlStr"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Repository.QueryRepository.MakeQueryCfg(System.String)">
+            <summary>
+            生成配置数据
+            </summary>
+            <param name="code"></param>
+            <param name="sqlStr"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Repository.QueryRepository.MakePageSql(System.String,System.Int32,System.Int32,System.String,System.String,System.Collections.Generic.IList{System.String})">
+            <summary>
+            生成分页的SQL
+            </summary>
+            <param name="sql"></param>
+            <param name="pageIndex"></param>
+            <param name="pageSize"></param>
+            <param name="orderStr"></param>
+            <param name="whereStr"></param>
+            <param name="fieldList"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Repository.QueryRepository.MakeSql(Models.Entity.QuerySearchDto,System.String,System.String@)">
+            <summary>
+            根据Query的SQL 生成需要的SQL
+            </summary>
+            <param name="inEnt"></param>
+            <param name="querySql"></param>
+            <param name="whereStr"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Repository.RedisRepository.UserTokenSet(System.Int32,System.String)">
+            <summary>
+            保存，用户登录
+            </summary>
+            <param name="userId"></param>
+            <param name="key"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Repository.RedisRepository.UserTokenDelete(System.Int32)">
+            <summary>
+            删除用户是的Token
+            </summary>
+            <param name="userId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Repository.RoleRepository.SingleByKey(System.Int32)">
+            <summary>
+            获取单条
+            </summary>
+            <param name="key"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Repository.RoleRepository.FindAll(System.Linq.Expressions.Expression{System.Func{Models.Entity.FaRoleEntity,System.Boolean}})">
+            <summary>
+            查找所有
+            </summary>
+            <param name="inParm"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Repository.RoleRepository.CheckAuth(Models.CheckAuthDto)">
+            <summary>
+             权限字符串，第一位表示创建者，第二位管理员，第三位表示超级管理员
+             判断的权限，1添加，2修改，4查看
+            </summary>
+            <param name="userId"></param>
+            <param name="authority"></param>
+            <param name="prowNum">验证的权限，1添加，2修改，4查看</param>
+            <param name="isCreater">是否是创建者</param>
+            <returns></returns>
+        </member>
+        <member name="M:Repository.SequenceRepository.GetNextID``1">
+            <summary>
+            获取单条
+            </summary>
+            <param name="key"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Repository.UserRepository.SingleByKey(System.Int32)">
+            <summary>
+            获取单条
+            </summary>
+            <param name="key"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Repository.UserRepository.FindAll(System.Linq.Expressions.Expression{System.Func{Models.Entity.FaUserEntity,System.Boolean}})">
+            <summary>
+            查找所有
+            </summary>
+            <param name="inParm"></param>
+            <returns></returns>
+        </member>
+        <member name="M:IRepository.IFileRepository.FindAll(System.Linq.Expressions.Expression{System.Func{Models.Entity.FilesEntity,System.Boolean}})">
+            <summary>
+            查找所有
+            </summary>
+            <param name="inParm"></param>
+            <returns></returns>
+        </member>
+        <member name="M:IRepository.ILoginRepository.FindAll(System.Linq.Expressions.Expression{System.Func{Models.Entity.FaLoginEntity,System.Boolean}})">
+            <summary>
+            查找所有
+            </summary>
+            <param name="inParm"></param>
+            <returns></returns>
+        </member>
+        <member name="M:IRepository.ILoginRepository.LoginReg(Models.LogingDto)">
+            <summary>
+            注册账号
+            <para>1、添加登录工号 </para>
+            <para>2、添加用户</para>
+            </summary>
+            <param name="inEnt"></param>
+            <returns></returns>
+        </member>
+        <member name="M:IRepository.ILoginRepository.LoginOut(Models.DtoSave{Models.Entity.FaLoginHistoryEntity})">
+            <summary>
+            注销用户登录状态
+            <para>清除用户的缓存状态</para>
+            <para>记录退出日志</para>
+            </summary>
+            <param name="inEnt"></param>
+            <returns></returns>
+        </member>
+        <member name="M:IRepository.ILoginRepository.UserLogin(Models.LogingDto)">
+            <summary>
+            用户登录
+            <para>只验证用户账号</para>
+            </summary>
+            <param name="inEnt"></param>
+            <returns></returns>
+        </member>
+        <member name="M:IRepository.ILoginRepository.ResetPassword(Models.ResetPasswordDto)">
+            <summary>
+            重置用户密码
+            <para>VerifyCode:短信验证码</para>
+            <para>LoginName:登录名</para>
+            <para>NewPwd:新密码</para>
+            </summary>
+            <param name="inEnt"></param>
+            <returns></returns>
+        </member>
+        <member name="M:IRepository.ILoginRepository.UserEditPwd(Models.EditPwdDto)">
+            <summary>
+            修改用户密码
+            <para>entity:旧密码</para>
+            <para>NewPwd:新密码</para>
+            </summary>
+            <param name="inEnt"></param>
+            <returns></returns>
+        </member>
+        <member name="M:IRepository.ILoginRepository.ChangeLoginName(IRepository.ChangeLoginNameDto)">
+            <summary>
+            改变登录名
+            </summary>
+            <param name="inEnt"></param>
+            <returns></returns>
+        </member>
+        <member name="P:IRepository.ChangeLoginNameDto.oldLoginName">
+            <summary>
+            原登录名
+            </summary>
+        </member>
+        <member name="P:IRepository.ChangeLoginNameDto.password">
+            <summary>
+            密码
+            </summary>
+        </member>
+        <member name="P:IRepository.ChangeLoginNameDto.newLoginName">
+            <summary>
+            新的登录名
+            </summary>
+        </member>
+        <member name="M:IRepository.IModuleRepository.SingleByKey(System.Int32)">
+            <summary>
+            查询单条
+            </summary>
+            <param name="key"></param>
+            <returns></returns>
+        </member>
+        <member name="M:IRepository.IModuleRepository.Delete(System.Int32)">
+            <summary>
+            删除
+            </summary>
+            <param name="scriptId">主键 ID</param>
+            <returns></returns>
+        </member>
+        <member name="M:IRepository.IModuleRepository.Save(Models.DtoSave{Models.Entity.FaModuleEntity})">
+            <summary>
+            保存基本信息
+            </summary>
+            <param name="inEnt"></param>
+            <returns></returns>
+        </member>
+        <member name="M:IRepository.IModuleRepository.GetMenu(System.Linq.Expressions.Expression{System.Func{Models.Entity.FaModuleEntity,System.Boolean}})">
+            <summary>
+            查找所有模块菜单
+            </summary>
+            <param name="inParm"></param>
+            <returns></returns>
+        </member>
+        <member name="M:IRepository.IQueryRepository.QueryExecute(Models.Entity.QuerySearchDto)">
+            <summary>
+            获取所有数据
+            msg为SQL语句
+            </summary>
+            <param name="inEnt"></param>
+            <returns></returns>
+        </member>
+        <member name="M:IRepository.IQueryRepository.QueryExecuteCsv(Models.Entity.QuerySearchDto)">
+            <summary>
+            获取Csv数据,支持大数据下载
+            </summary>
+            <param name="inEnt"></param>
+            <param name="sqlStr"></param>
+            <returns></returns>
+        </member>
+        <member name="M:IRepository.IQueryRepository.QueryPageExecute(Models.Entity.QuerySearchDto)">
+            <summary>
+            执行分页数据
+            </summary>
+            <param name="inEnt"></param>
+            <param name="sqlStr"></param>
+            <returns></returns>
+        </member>
+        <member name="M:IRepository.IQueryRepository.MakeQueryCfg(System.String)">
+            <summary>
+            生成配置数据
+            </summary>
+            <param name="code"></param>
+            <param name="sqlStr"></param>
+            <returns></returns>
+        </member>
+        <member name="M:IRepository.IQueryRepository.MakePageSql(System.String,System.Int32,System.Int32,System.String,System.String,System.Collections.Generic.IList{System.String})">
+            <summary>
+            生成分页的SQL
+            </summary>
+            <param name="sql"></param>
+            <param name="pageIndex"></param>
+            <param name="pageSize"></param>
+            <param name="orderStr"></param>
+            <param name="whereStr"></param>
+            <param name="fieldList"></param>
+            <returns></returns>
+        </member>
+        <member name="M:IRepository.IQueryRepository.MakeSql(Models.Entity.QuerySearchDto,System.String,System.String@)">
+            <summary>
+            根据Query的SQL 生成需要的SQL
+            </summary>
+            <param name="inEnt"></param>
+            <param name="query"></param>
+            <param name="whereStr"></param>
+            <returns></returns>
+        </member>
+        <member name="M:IRepository.IRoleRepository.SingleByKey(System.Int32)">
+            <summary>
+            查询单条
+            </summary>
+            <param name="key"></param>
+            <returns></returns>
+        </member>
+        <member name="M:IRepository.IRoleRepository.Delete(System.Int32)">
+            <summary>
+            删除
+            </summary>
+            <param name="scriptId">主键 ID</param>
+            <returns></returns>
+        </member>
+        <member name="M:IRepository.IRoleRepository.Save(Models.DtoSave{Models.Entity.FaRoleEntity})">
+            <summary>
+            保存基本信息
+            </summary>
+            <param name="inEnt"></param>
+            <returns></returns>
+        </member>
+        <member name="M:IRepository.IRoleRepository.FindAll(System.Linq.Expressions.Expression{System.Func{Models.Entity.FaRoleEntity,System.Boolean}})">
+            <summary>
+            查找所有
+            </summary>
+            <param name="inParm"></param>
+            <returns></returns>
+        </member>
+        <member name="M:IRepository.IRoleRepository.UserRoleList(System.Int32)">
+            <summary>
+            查找用户的所有角色
+            </summary>
+            <param name="userId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:IRepository.IRoleRepository.CheckAuth(Models.CheckAuthDto)">
+            <summary>
+              检测用户是否有权限
+             权限字符串，第一位表示创建者，第二位管理员，第三位表示超级管理员
+             判断的权限，1添加，2修改，4查看
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:IRepository.IUserRepository.SingleByKey(System.Int32)">
+            <summary>
+            单个查询
+            </summary>
+            <param name="key"></param>
+            <returns></returns>
+        </member>
+        <member name="M:IRepository.IUserRepository.FindAll(System.Linq.Expressions.Expression{System.Func{Models.Entity.FaUserEntity,System.Boolean}})">
+            <summary>
+            查找所有
+            </summary>
+            <param name="inParm"></param>
+            <returns></returns>
+        </member>
+        <member name="M:IRepository.IUserRepository.UserLogin(System.String,System.String)">
+            <summary>
+            用户登录
+            </summary>
+            <param name="username">用户名</param>
+            <param name="password">密码</param>
+            <returns></returns>
+        </member>
+        <member name="M:IRepository.IUserRepository.Save(Models.DtoSave{Models.Entity.FaUserEntity})">
+            <summary>
+            保存基本信息
+            </summary>
+            <param name="inEnt"></param>
+            <returns></returns>
+        </member>
+        <member name="M:IRepository.IUserRepository.Delete(System.Int32)">
+            <summary>
+            删除
+            </summary>
+            <param name="scriptId">主键 ID</param>
+            <returns></returns>
+        </member>
+    </members>
+</doc>

@@ -223,7 +223,7 @@ namespace Helper
         /// </summary>
         /// <param name="input"></param>
         /// <returns></returns>
-        private static string Md5Hash(string input)
+        public static string Md5Hash(string input)
         {
             return Md5Hash(Encoding.Default.GetBytes(input));
         }

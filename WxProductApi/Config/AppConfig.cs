@@ -15,6 +15,14 @@ namespace WxProductApi.Config
         /// </summary>
         public static ConfigWebConfig WebConfig { get; set; } = new ConfigWebConfig();
         public static WeiXin WeiXin { get; set; } = new WeiXin();
+
+        public static MysqlSettings MysqlSettings { get; set; }
+
+        /// <summary>
+        /// 基本配置
+        /// </summary>
+        /// <returns></returns>
+        public static BaseConfig BaseConfig { get; set; }
     }
 
     /// <summary>
@@ -34,6 +42,38 @@ namespace WxProductApi.Config
         public string Secret { get; set; }
         public string Token { get; set; }
     }
+    public class MysqlSettings
+    {
+        public string server { get; set; }
+        public string userid { get; set; }
+        public string pwd { get; set; }
+        public string port { get; set; } 
+        public string database { get; set; }
+        public string sslmode { get; set; }
 
 
+    }
+
+    /// <summary>
+    ///  系统验证
+    /// </summary>
+    public class BaseConfig{
+        /// <summary>
+        /// 是否需要验证码
+        /// </summary>
+        /// <value></value>
+        public bool VerifyCode { get; set; }
+        /// <summary>
+        /// 短信验证码有效时间
+        /// </summary>
+        /// <value></value>
+        public int  VerifyExpireMinute{ get; set; }=30;
+
+        /// <summary>
+        /// 密码复杂度
+        /// </summary>
+        /// <value></value>
+        public int PwdComplexity{get;set;}
+
+    }
 }
