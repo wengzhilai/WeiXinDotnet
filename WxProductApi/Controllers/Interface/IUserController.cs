@@ -14,7 +14,7 @@ namespace WxProductApi.Controllers
          * @param inObj
          * @return
          */
-        Task<ResultObj<FaUserEntity>> singleByKey(DtoDo<int> inObj);
+        Task<ResultObj<SysUserEntity>> singleByKey(DtoDo<int> inObj);
 
          /**
          * 删除
@@ -28,6 +28,6 @@ namespace WxProductApi.Controllers
          * @param inEnt
          * @return
          */
-        Task<ResultObj<int>> save(DtoSave<FaUserEntity> inEnt);
+        Task<ResultObj<int>> save(DtoSave<SysUserEntity> inEnt);
     }
 }

@@ -9,8 +9,8 @@ namespace Models.Entity
     /// <summary>
     /// 系统用户
     /// </summary>
-    [Table("fa_user")]
-    public class FaUserEntity : BaseModel
+    [Table("sys_user")]
+    public class SysUserEntity : BaseModel
     {
 
         /// <summary>
@@ -20,84 +20,58 @@ namespace Models.Entity
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
         [Required]
         [Display(Name = "ID")]
-        [Column("ID")]
+        [Column("id")]
         public int id { get; set; }
 
         /// <summary>
         /// 姓名
         /// </summary>
         [Display(Name = "姓名")]
-        [Column("NAME")]
+        [Column("name")]
         public String name { get; set; }
 
         /// <summary>
         /// 登录账号
         /// </summary>
         [Display(Name = "登录账号")]
-        [Column("LOGIN_NAME")]
+        [Column("login_name")]
         public String loginName { get; set; }
 
         /// <summary>
         /// 头像
         /// </summary>
         [Display(Name = "头像")]
-        [Column("ICON_FILES")]
+        [Column("icon_files")]
         public String iconFiles { get; set; }
 
         /// <summary>
         /// 区域
         /// </summary>
         [Display(Name = "区域")]
-        [Column("DISTRICT_ID")]
-        public int districtId { get; set; }
+        [Column("district_id")]
+        public int? districtId { get; set; }
 
         /// <summary>
         /// 是否可用
         /// </summary>
         [Display(Name = "是否可用")]
-        [Column("IS_LOCKED")]
-        public Decimal isLocked { get; set; }
+        [Column("status")]
+        public int status { get; set; }
 
         /// <summary>
         /// 创建时间
         /// </summary>
         [Display(Name = "创建时间")]
-        [Column("CREATE_TIME")]
-        public DateTime createTime { get; set; }
+        [Column("create_time")]
+        public Int64 createTime { get; set; }
 
-        /// <summary>
-        /// 登录次数
-        /// </summary>
-        [Display(Name = "登录次数")]
-        [Column("LOGIN_COUNT")]
-        public int loginCount { get; set; }
-
-        /// <summary>
-        /// 最后登录时间
-        /// </summary>
-        [Display(Name = "最后登录时间")]
-        [Column("LAST_LOGIN_TIME")]
-        public DateTime lastLoginTime { get; set; }
-
-        /// <summary>
-        /// 最后登出时间
-        /// </summary>
-        [Display(Name = "最后登出时间")]
-        [Column("LAST_LOGOUT_TIME")]
-        public DateTime lastLogoutTime { get; set; }
-
-        /// <summary>
-        /// 最后活动时间
-        /// </summary>
-        [Display(Name = "最后活动时间")]
-        [Column("LAST_ACTIVE_TIME")]
-        public DateTime lastActiveTime { get; set; }
+        
 
         /// <summary>
         /// 备注
         /// </summary>
         [Display(Name = "备注")]
-        [Column("REMARK")]
+        [Column("remark")]
         public String remark { get; set; }
 
 

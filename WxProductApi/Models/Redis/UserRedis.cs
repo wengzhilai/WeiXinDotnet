@@ -5,7 +5,7 @@ namespace Models.Redis
     /// <summary>
     /// 用户缓存信息
     /// </summary>
-    public class UserRedis : Models.Entity.FaUserEntity
+    public class UserRedis : Models.Entity.SysUserEntity
     {
         /// <summary>
         ///  用户令牌

@@ -38,7 +38,7 @@ namespace WxProductApi.Controllers
         /// <param name="inEnt"></param>
         /// <returns></returns>
         [HttpPost]
-        public async Task<ResultObj<int>> save(DtoSave<FaRoleEntity> inEnt)
+        public async Task<ResultObj<int>> save(DtoSave<SysRoleEntity> inEnt)
         {
             ResultObj<int> reObj = new ResultObj<int>();
             try
@@ -61,9 +61,9 @@ namespace WxProductApi.Controllers
         /// <param name="inEnt"></param>
         /// <returns></returns>
         [HttpPost]
-        public async Task<ResultObj<FaRoleEntity>> singleByKey(DtoDo<int> inEnt)
+        public async Task<ResultObj<SysRoleEntity>> singleByKey(DtoDo<int> inEnt)
         {
-            ResultObj<FaRoleEntity> reObj = new ResultObj<FaRoleEntity>();
+            ResultObj<SysRoleEntity> reObj = new ResultObj<SysRoleEntity>();
             try
             {
                 reObj.data = await _respoitory.SingleByKey(inEnt.Key);

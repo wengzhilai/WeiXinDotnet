@@ -16,13 +16,13 @@ namespace Repository
 {
     public class UserRepository : IUserRepository
     {
-        DapperHelper<FaUserEntity> dbHelper = new DapperHelper<FaUserEntity>();
+        DapperHelper<SysUserEntity> dbHelper = new DapperHelper<SysUserEntity>();
         /// <summary>
         /// 获取单条
         /// </summary>
         /// <param name="key"></param>
         /// <returns></returns>
-        public async Task<FaUserEntity> SingleByKey(int key)
+        public async Task<SysUserEntity> SingleByKey(int key)
         {
             var ent=await dbHelper.SingleByKey(key);
             ent.roleIdList = (await new DapperHelper<FaUserRoleEntityView>().FindAll(i => i.userId == key)).Select(x => x.roleId).ToList();
@@ -39,26 +39,26 @@ namespace Repository
         /// </summary>
         /// <param name="inParm"></param>
         /// <returns></returns>
-        public Task<IEnumerable<FaUserEntity>> FindAll(Expression<Func<FaUserEntity, bool>> inParm = null)
+        public Task<IEnumerable<SysUserEntity>> FindAll(Expression<Func<SysUserEntity, bool>> inParm = null)
         {
             return dbHelper.FindAll(inParm);
         }
 
-        public Task<int> Update(DtoSave<FaUserEntity> inObj)
+        public Task<int> Update(DtoSave<SysUserEntity> inObj)
         {
             return dbHelper.Update(inObj);
         }
 
-        public async Task<ResultObj<FaUserEntity>> UserLogin(string username, string password)
+        public async Task<ResultObj<SysUserEntity>> UserLogin(string username, string password)
         {
-            ResultObj<FaUserEntity> reObj = new ResultObj<FaUserEntity>();
-            DapperHelper<FaLoginEntity> dapper=new DapperHelper<FaLoginEntity>();
+            ResultObj<SysUserEntity> reObj = new ResultObj<SysUserEntity>();
+            DapperHelper<SysLoginEntity> dapper=new DapperHelper<SysLoginEntity>();
             var login=await dapper.Single(x=>x.loginName==username);
             if (login != null)
             {
                 if (login.password.ToLower().Equals(Fun.Md5Hash(password).ToLower()))
                 {
-                    reObj.data =await new DapperHelper<FaUserEntity>().Single(x=>x.loginName == username);
+                    reObj.data =await new DapperHelper<SysUserEntity>().Single(x=>x.loginName == username);
                 }
                 else
                 {
@@ -72,7 +72,7 @@ namespace Repository
             return reObj;
         }
 
-        public async Task<ResultObj<int>> Save(DtoSave<FaUserEntity> inEnt)
+        public async Task<ResultObj<int>> Save(DtoSave<SysUserEntity> inEnt)
         {
             ResultObj<int> reObj = new ResultObj<int>();
             try
@@ -80,7 +80,7 @@ namespace Repository
                 dbHelper.TranscationBegin();
                 if (inEnt.data.id == 0)
                 {
-                    inEnt.data.id = await new SequenceRepository().GetNextID<FaUserEntity>();
+                    inEnt.data.id = await new SequenceRepository().GetNextID<SysUserEntity>();
                     reObj.data = await dbHelper.Save(inEnt);
                 }
                 else

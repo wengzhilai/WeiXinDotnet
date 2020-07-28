@@ -35,9 +35,9 @@ namespace WxProductApi.Controllers
         /// </summary>
         /// <returns></returns>
         [HttpPost]
-        async public Task<ResultObj<FaModuleEntity>> getUserMenu()
+        async public Task<ResultObj<SysModuleEntity>> getUserMenu()
         {
-            var reObj = new ResultObj<FaModuleEntity>();
+            var reObj = new ResultObj<SysModuleEntity>();
             try
             {
                 //var allKey = User.Claims.Select(x => new KV { K = x.Type, V = x.Value }).ToList();
@@ -61,7 +61,7 @@ namespace WxProductApi.Controllers
         /// <param name="inEnt"></param>
         /// <returns></returns>
         [HttpPost]
-        public async Task<ResultObj<int>> save(DtoSave<FaModuleEntity> inEnt)
+        public async Task<ResultObj<int>> save(DtoSave<SysModuleEntity> inEnt)
         {
             ResultObj<int> reObj = new ResultObj<int>();
             try
@@ -84,9 +84,9 @@ namespace WxProductApi.Controllers
         /// <param name="inEnt"></param>
         /// <returns></returns>
         [HttpPost]
-        public async Task<ResultObj<FaModuleEntity>> singleByKey(DtoDo<int> inEnt)
+        public async Task<ResultObj<SysModuleEntity>> singleByKey(DtoDo<int> inEnt)
         {
-            ResultObj<FaModuleEntity> reObj = new ResultObj<FaModuleEntity>();
+            ResultObj<SysModuleEntity> reObj = new ResultObj<SysModuleEntity>();
             try
             {
                 reObj.data = await _respoitory.SingleByKey(inEnt.Key);

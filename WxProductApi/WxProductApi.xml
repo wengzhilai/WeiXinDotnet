@@ -106,7 +106,7 @@
             @param inEnt
             @return
         </member>
-        <member name="M:WxProductApi.Controllers.IModuleController.save(Models.DtoSave{Models.Entity.FaModuleEntity})">
+        <member name="M:WxProductApi.Controllers.IModuleController.save(Models.DtoSave{Models.Entity.SysModuleEntity})">
             保存
             @param inEnt
             @return
@@ -142,7 +142,7 @@
             @param inEnt
             @return
         </member>
-        <member name="M:WxProductApi.Controllers.IQueryController.save(Models.DtoSave{Models.Entity.FaQueryEntity})">
+        <member name="M:WxProductApi.Controllers.IQueryController.save(Models.DtoSave{Models.Entity.SysQueryEntity})">
             保存Query
             @param inEnt
             @return
@@ -172,7 +172,7 @@
             @param inObj
             @return
         </member>
-        <member name="M:WxProductApi.Controllers.IRoleController.save(Models.DtoSave{Models.Entity.FaRoleEntity})">
+        <member name="M:WxProductApi.Controllers.IRoleController.save(Models.DtoSave{Models.Entity.SysRoleEntity})">
             保存基本信息
             @param inEnt
             @return
@@ -192,7 +192,7 @@
             @param inObj
             @return
         </member>
-        <member name="M:WxProductApi.Controllers.IUserController.save(Models.DtoSave{Models.Entity.FaUserEntity})">
+        <member name="M:WxProductApi.Controllers.IUserController.save(Models.DtoSave{Models.Entity.SysUserEntity})">
             保存基本信息
             @param inEnt
             @return
@@ -268,7 +268,7 @@
             </summary>
             <returns></returns>
         </member>
-        <member name="M:WxProductApi.Controllers.ModuleController.save(Models.DtoSave{Models.Entity.FaModuleEntity})">
+        <member name="M:WxProductApi.Controllers.ModuleController.save(Models.DtoSave{Models.Entity.SysModuleEntity})">
             <summary>
             保存Query
             </summary>
@@ -335,7 +335,7 @@
             <param name="code"></param>
             <returns></returns>
         </member>
-        <member name="M:WxProductApi.Controllers.QueryController.save(Models.DtoSave{Models.Entity.FaQueryEntity})">
+        <member name="M:WxProductApi.Controllers.QueryController.save(Models.DtoSave{Models.Entity.SysQueryEntity})">
             <summary>
             保存Query
             </summary>
@@ -367,7 +367,7 @@
             </summary>
             <param name="Role"></param>
         </member>
-        <member name="M:WxProductApi.Controllers.RoleController.save(Models.DtoSave{Models.Entity.FaRoleEntity})">
+        <member name="M:WxProductApi.Controllers.RoleController.save(Models.DtoSave{Models.Entity.SysRoleEntity})">
             <summary>
             保存Query
             </summary>
@@ -482,7 +482,7 @@
             </summary>
             <param name="User"></param>
         </member>
-        <member name="M:ApiUser.Controllers.UserController.save(Models.DtoSave{Models.Entity.FaUserEntity})">
+        <member name="M:ApiUser.Controllers.UserController.save(Models.DtoSave{Models.Entity.SysUserEntity})">
             <summary>
             保存Query
             </summary>
@@ -2367,290 +2367,366 @@
             用户姓名
             </summary>
         </member>
-        <member name="T:Models.Entity.FaLoginEntity">
+        <member name="T:Models.Entity.FilesEntity">
             <summary>
             登录
             </summary>
         </member>
-        <member name="P:Models.Entity.FaLoginEntity.id">
+        <member name="P:Models.Entity.FilesEntity.id">
             <summary>
             ID
             </summary>
         </member>
-        <member name="P:Models.Entity.FaLoginEntity.loginName">
+        <member name="P:Models.Entity.FilesEntity.name">
+            <summary>
+            名称
+            </summary>
+        </member>
+        <member name="P:Models.Entity.FilesEntity.path">
+            <summary>
+            路径
+            </summary>
+        </member>
+        <member name="P:Models.Entity.FilesEntity.length">
+            <summary>
+            大小
+            </summary>
+        </member>
+        <member name="P:Models.Entity.FilesEntity.uploadTime">
+            <summary>
+            添加时间
+            </summary>
+        </member>
+        <member name="P:Models.Entity.FilesEntity.remark">
+            <summary>
+            备注
+            </summary>
+        </member>
+        <member name="P:Models.Entity.FilesEntity.url">
+            <summary>
+            相对路径
+            </summary>
+        </member>
+        <member name="P:Models.Entity.FilesEntity.fileType">
+            <summary>
+            文件类型
+            </summary>
+        </member>
+        <member name="P:Models.Entity.FilesEntity.md5Str">
+            <summary>
+            文件md5
+            </summary>
+            <value></value>
+        </member>
+        <member name="P:Models.Entity.FilesEntity.base64Str">
+            <summary>
+            文件base64
+            </summary>
+        </member>
+        <member name="T:Models.Entity.SequenceEntity">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Models.Entity.SequenceEntity.seq_name">
+            <summary>
+            表名
+            </summary>
+        </member>
+        <member name="P:Models.Entity.SequenceEntity.current_val">
+            <summary>
+            当前值
+            </summary>
+        </member>
+        <member name="P:Models.Entity.SequenceEntity.increment_val">
+            <summary>
+            增加值
+            </summary>
+        </member>
+        <member name="T:Models.Entity.SysLoginEntity">
+            <summary>
+            登录
+            </summary>
+        </member>
+        <member name="P:Models.Entity.SysLoginEntity.id">
+            <summary>
+            ID
+            </summary>
+        </member>
+        <member name="P:Models.Entity.SysLoginEntity.loginName">
             <summary>
             登录名
             </summary>
         </member>
-        <member name="P:Models.Entity.FaLoginEntity.password">
+        <member name="P:Models.Entity.SysLoginEntity.password">
             <summary>
             密码
             </summary>
         </member>
-        <member name="P:Models.Entity.FaLoginEntity.phoneNo">
+        <member name="P:Models.Entity.SysLoginEntity.phoneNo">
             <summary>
             联系电话
             </summary>
         </member>
-        <member name="P:Models.Entity.FaLoginEntity.emailAddr">
+        <member name="P:Models.Entity.SysLoginEntity.emailAddr">
             <summary>
             电子邮件
             </summary>
         </member>
-        <member name="P:Models.Entity.FaLoginEntity.verifyCode">
+        <member name="P:Models.Entity.SysLoginEntity.verifyCode">
             <summary>
             验证码
             </summary>
         </member>
-        <member name="P:Models.Entity.FaLoginEntity.verifyTime">
+        <member name="P:Models.Entity.SysLoginEntity.verifyTime">
             <summary>
             验证码时间
             </summary>
         </member>
-        <member name="P:Models.Entity.FaLoginEntity.isLocked">
+        <member name="P:Models.Entity.SysLoginEntity.isLocked">
             <summary>
             是否禁用
             </summary>
         </member>
-        <member name="P:Models.Entity.FaLoginEntity.passUpdateDate">
+        <member name="P:Models.Entity.SysLoginEntity.passUpdateDate">
             <summary>
             密码修改时间
             </summary>
         </member>
-        <member name="P:Models.Entity.FaLoginEntity.lockedReason">
+        <member name="P:Models.Entity.SysLoginEntity.lockedReason">
             <summary>
             禁用原因
             </summary>
         </member>
-        <member name="P:Models.Entity.FaLoginEntity.failCount">
+        <member name="P:Models.Entity.SysLoginEntity.failCount">
             <summary>
             失败次数
             </summary>
         </member>
-        <member name="T:Models.Entity.FaLoginHistoryEntity">
+        <member name="P:Models.Entity.SysLoginEntity.loginCount">
+            <summary>
+            登录次数
+            </summary>
+        </member>
+        <member name="P:Models.Entity.SysLoginEntity.lastLoginTime">
+            <summary>
+            最后登录时间
+            </summary>
+        </member>
+        <member name="P:Models.Entity.SysLoginEntity.lastLogoutTime">
+            <summary>
+            最后登出时间
+            </summary>
+        </member>
+        <member name="P:Models.Entity.SysLoginEntity.lastActiveTime">
+            <summary>
+            最后活动时间
+            </summary>
+        </member>
+        <member name="T:Models.Entity.SysLoginHistoryEntity">
             <summary>
             登录历史
             </summary>
         </member>
-        <member name="P:Models.Entity.FaLoginHistoryEntity.ID">
+        <member name="P:Models.Entity.SysLoginHistoryEntity.ID">
             <summary>
             ID
             </summary>
         </member>
-        <member name="P:Models.Entity.FaLoginHistoryEntity.USER_ID">
+        <member name="P:Models.Entity.SysLoginHistoryEntity.USER_ID">
             <summary>
             USER_ID
             </summary>
         </member>
-        <member name="P:Models.Entity.FaLoginHistoryEntity.LOGIN_TIME">
+        <member name="P:Models.Entity.SysLoginHistoryEntity.LOGIN_TIME">
             <summary>
             LOGIN_TIME
             </summary>
         </member>
-        <member name="P:Models.Entity.FaLoginHistoryEntity.LOGIN_HOST">
+        <member name="P:Models.Entity.SysLoginHistoryEntity.LOGIN_HOST">
             <summary>
             LOGIN_HOST
             </summary>
         </member>
-        <member name="P:Models.Entity.FaLoginHistoryEntity.LOGOUT_TIME">
+        <member name="P:Models.Entity.SysLoginHistoryEntity.LOGOUT_TIME">
             <summary>
             LOGOUT_TIME
             </summary>
         </member>
-        <member name="P:Models.Entity.FaLoginHistoryEntity.LOGIN_HISTORY_TYPE">
+        <member name="P:Models.Entity.SysLoginHistoryEntity.LOGIN_HISTORY_TYPE">
             <summary>
             LOGIN_HISTORY_TYPE
             </summary>
         </member>
-        <member name="P:Models.Entity.FaLoginHistoryEntity.MESSAGE">
+        <member name="P:Models.Entity.SysLoginHistoryEntity.MESSAGE">
             <summary>
             MESSAGE
             </summary>
         </member>
-        <member name="T:Models.Entity.FaModuleEntity">
+        <member name="T:Models.Entity.SysModuleEntity">
             <summary>
             登录历史
             </summary>
         </member>
-        <member name="P:Models.Entity.FaModuleEntity.id">
+        <member name="P:Models.Entity.SysModuleEntity.id">
             <summary>
             id
             </summary>
         </member>
-        <member name="P:Models.Entity.FaModuleEntity.parentId">
+        <member name="P:Models.Entity.SysModuleEntity.parentId">
             <summary>
             父ID
             </summary>
         </member>
-        <member name="P:Models.Entity.FaModuleEntity.name">
+        <member name="P:Models.Entity.SysModuleEntity.name">
             <summary>
             模块名称
             </summary>
         </member>
-        <member name="P:Models.Entity.FaModuleEntity.location">
+        <member name="P:Models.Entity.SysModuleEntity.location">
             <summary>
             连接地址
             </summary>
         </member>
-        <member name="P:Models.Entity.FaModuleEntity.code">
+        <member name="P:Models.Entity.SysModuleEntity.code">
             <summary>
             代码
             </summary>
         </member>
-        <member name="P:Models.Entity.FaModuleEntity.isDebug">
+        <member name="P:Models.Entity.SysModuleEntity.isDebug">
             <summary>
             调试
             </summary>
         </member>
-        <member name="P:Models.Entity.FaModuleEntity.isHide">
+        <member name="P:Models.Entity.SysModuleEntity.isHide">
             <summary>
             隐藏
             </summary>
         </member>
-        <member name="P:Models.Entity.FaModuleEntity.showOrder">
+        <member name="P:Models.Entity.SysModuleEntity.showOrder">
             <summary>
             排序
             </summary>
         </member>
-        <member name="P:Models.Entity.FaModuleEntity.description">
+        <member name="P:Models.Entity.SysModuleEntity.description">
             <summary>
             描述
             </summary>
         </member>
-        <member name="P:Models.Entity.FaModuleEntity.imageUrl">
+        <member name="P:Models.Entity.SysModuleEntity.imageUrl">
             <summary>
             图片地址
             </summary>
         </member>
-        <member name="P:Models.Entity.FaModuleEntity.desktopRole">
+        <member name="P:Models.Entity.SysModuleEntity.desktopRole">
             <summary>
             桌面
             </summary>
         </member>
-        <member name="P:Models.Entity.FaModuleEntity.w">
+        <member name="P:Models.Entity.SysModuleEntity.w">
             <summary>
             宽
             </summary>
         </member>
-        <member name="P:Models.Entity.FaModuleEntity.h">
+        <member name="P:Models.Entity.SysModuleEntity.h">
             <summary>
             高
             </summary>
         </member>
-        <member name="P:Models.Entity.FaModuleEntity.children">
+        <member name="P:Models.Entity.SysModuleEntity.children">
             <summary>
             所有子项
             </summary>
             <value></value>
         </member>
-        <member name="T:Models.Entity.FaQueryEntity">
+        <member name="T:Models.Entity.SysQueryEntity">
             <summary>
             查询
             </summary>
         </member>
-        <member name="P:Models.Entity.FaQueryEntity.id">
+        <member name="P:Models.Entity.SysQueryEntity.id">
             <summary>
             ID
             </summary>
         </member>
-        <member name="P:Models.Entity.FaQueryEntity.name">
+        <member name="P:Models.Entity.SysQueryEntity.name">
             <summary>
             名称
             </summary>
         </member>
-        <member name="P:Models.Entity.FaQueryEntity.code">
+        <member name="P:Models.Entity.SysQueryEntity.code">
             <summary>
             代码
             </summary>
         </member>
-        <member name="P:Models.Entity.FaQueryEntity.autoLoad">
+        <member name="P:Models.Entity.SysQueryEntity.autoLoad">
             <summary>
             自动加载
             </summary>
         </member>
-        <member name="P:Models.Entity.FaQueryEntity.pageSize">
+        <member name="P:Models.Entity.SysQueryEntity.pageSize">
             <summary>
             页面大小
             </summary>
         </member>
-        <member name="P:Models.Entity.FaQueryEntity.showCheckbox">
+        <member name="P:Models.Entity.SysQueryEntity.showCheckbox">
             <summary>
             复选框
             </summary>
         </member>
-        <member name="P:Models.Entity.FaQueryEntity.isDebug">
+        <member name="P:Models.Entity.SysQueryEntity.isDebug">
             <summary>
             调试
             </summary>
         </member>
-        <member name="P:Models.Entity.FaQueryEntity.queryConf">
+        <member name="P:Models.Entity.SysQueryEntity.queryConf">
             <summary>
             查询语句
             </summary>
         </member>
-        <member name="P:Models.Entity.FaQueryEntity.queryCfgJson">
+        <member name="P:Models.Entity.SysQueryEntity.queryCfgJson">
             <summary>
             配置信息
             </summary>
         </member>
-        <member name="P:Models.Entity.FaQueryEntity.inParaJson">
+        <member name="P:Models.Entity.SysQueryEntity.inParaJson">
             <summary>
             传入参数
             </summary>
         </member>
-        <member name="P:Models.Entity.FaQueryEntity.jsStr">
+        <member name="P:Models.Entity.SysQueryEntity.jsStr">
             <summary>
             JS脚本
             </summary>
         </member>
-        <member name="P:Models.Entity.FaQueryEntity.rowsBtn">
+        <member name="P:Models.Entity.SysQueryEntity.rowsBtn">
             <summary>
             行按钮
             </summary>
         </member>
-        <member name="P:Models.Entity.FaQueryEntity.heardBtn">
+        <member name="P:Models.Entity.SysQueryEntity.heardBtn">
             <summary>
             表头按钮
             </summary>
         </member>
-        <member name="P:Models.Entity.FaQueryEntity.reportScript">
+        <member name="P:Models.Entity.SysQueryEntity.reportScript">
             <summary>
             报表脚本
             </summary>
         </member>
-        <member name="P:Models.Entity.FaQueryEntity.chartsCfg">
+        <member name="P:Models.Entity.SysQueryEntity.chartsCfg">
             <summary>
             图表配置
             </summary>
         </member>
-        <member name="P:Models.Entity.FaQueryEntity.chartsType">
+        <member name="P:Models.Entity.SysQueryEntity.chartsType">
             <summary>
             图表类型
             </summary>
         </member>
-        <member name="P:Models.Entity.FaQueryEntity.filtrLevel">
-            <summary>
-            统计范围
-            </summary>
-        </member>
-        <member name="P:Models.Entity.FaQueryEntity.filtrStr">
-            <summary>
-            过滤配置
-            </summary>
-        </member>
-        <member name="P:Models.Entity.FaQueryEntity.dbServerId">
-            <summary>
-            查询库
-            </summary>
-        </member>
-        <member name="P:Models.Entity.FaQueryEntity.remark">
+        <member name="P:Models.Entity.SysQueryEntity.remark">
             <summary>
             说明
-            </summary>
-        </member>
-        <member name="P:Models.Entity.FaQueryEntity.new_data">
-            <summary>
-            最新时间
             </summary>
         </member>
         <member name="P:Models.Entity.QuerySearchDto.sort">
@@ -2783,201 +2859,105 @@
             字段名称
             </summary>
         </member>
-        <member name="T:Models.Entity.FaRoleEntity">
+        <member name="T:Models.Entity.SysRoleEntity">
             <summary>
             系统角色
             </summary>
         </member>
-        <member name="P:Models.Entity.FaRoleEntity.id">
+        <member name="P:Models.Entity.SysRoleEntity.id">
             <summary>
             ID
             </summary>
         </member>
-        <member name="P:Models.Entity.FaRoleEntity.name">
+        <member name="P:Models.Entity.SysRoleEntity.name">
             <summary>
             角色名
             </summary>
         </member>
-        <member name="P:Models.Entity.FaRoleEntity.remark">
+        <member name="P:Models.Entity.SysRoleEntity.remark">
             <summary>
             备注
             </summary>
         </member>
-        <member name="P:Models.Entity.FaRoleEntity.type">
+        <member name="P:Models.Entity.SysRoleEntity.type">
             <summary>
             类型
             </summary>
         </member>
-        <member name="P:Models.Entity.FaRoleEntity.moduleIdStr">
+        <member name="P:Models.Entity.SysRoleEntity.moduleIdStr">
             <summary>
             模块ID集合
             </summary>
             <value></value>
         </member>
-        <member name="T:Models.Entity.FaUserEntity">
+        <member name="T:Models.Entity.SysUserEntity">
             <summary>
             系统用户
             </summary>
         </member>
-        <member name="P:Models.Entity.FaUserEntity.id">
+        <member name="P:Models.Entity.SysUserEntity.id">
             <summary>
             ID
             </summary>
         </member>
-        <member name="P:Models.Entity.FaUserEntity.name">
+        <member name="P:Models.Entity.SysUserEntity.name">
             <summary>
             姓名
             </summary>
         </member>
-        <member name="P:Models.Entity.FaUserEntity.loginName">
+        <member name="P:Models.Entity.SysUserEntity.loginName">
             <summary>
             登录账号
             </summary>
         </member>
-        <member name="P:Models.Entity.FaUserEntity.iconFiles">
+        <member name="P:Models.Entity.SysUserEntity.iconFiles">
             <summary>
             头像
             </summary>
         </member>
-        <member name="P:Models.Entity.FaUserEntity.districtId">
+        <member name="P:Models.Entity.SysUserEntity.districtId">
             <summary>
             区域
             </summary>
         </member>
-        <member name="P:Models.Entity.FaUserEntity.isLocked">
+        <member name="P:Models.Entity.SysUserEntity.status">
             <summary>
             是否可用
             </summary>
         </member>
-        <member name="P:Models.Entity.FaUserEntity.createTime">
+        <member name="P:Models.Entity.SysUserEntity.createTime">
             <summary>
             创建时间
             </summary>
         </member>
-        <member name="P:Models.Entity.FaUserEntity.loginCount">
-            <summary>
-            登录次数
-            </summary>
-        </member>
-        <member name="P:Models.Entity.FaUserEntity.lastLoginTime">
-            <summary>
-            最后登录时间
-            </summary>
-        </member>
-        <member name="P:Models.Entity.FaUserEntity.lastLogoutTime">
-            <summary>
-            最后登出时间
-            </summary>
-        </member>
-        <member name="P:Models.Entity.FaUserEntity.lastActiveTime">
-            <summary>
-            最后活动时间
-            </summary>
-        </member>
-        <member name="P:Models.Entity.FaUserEntity.remark">
+        <member name="P:Models.Entity.SysUserEntity.remark">
             <summary>
             备注
             </summary>
         </member>
-        <member name="P:Models.Entity.FaUserEntity.isAdmin">
+        <member name="P:Models.Entity.SysUserEntity.isAdmin">
             <summary>
             是管理管理员
             </summary>
             <value></value>
         </member>
-        <member name="P:Models.Entity.FaUserEntity.isLeader">
+        <member name="P:Models.Entity.SysUserEntity.isLeader">
             <summary>
             是普通管理员
             </summary>
             <value></value>
         </member>
-        <member name="P:Models.Entity.FaUserEntity.roleIdList">
+        <member name="P:Models.Entity.SysUserEntity.roleIdList">
             <summary>
             用户角色
             </summary>
             <value></value>
         </member>
-        <member name="P:Models.Entity.FaUserEntity.canEditIdList">
+        <member name="P:Models.Entity.SysUserEntity.canEditIdList">
             <summary>
             可编辑的用户ID
             </summary>
             <value></value>
-        </member>
-        <member name="T:Models.Entity.FilesEntity">
-            <summary>
-            登录
-            </summary>
-        </member>
-        <member name="P:Models.Entity.FilesEntity.id">
-            <summary>
-            ID
-            </summary>
-        </member>
-        <member name="P:Models.Entity.FilesEntity.name">
-            <summary>
-            名称
-            </summary>
-        </member>
-        <member name="P:Models.Entity.FilesEntity.path">
-            <summary>
-            路径
-            </summary>
-        </member>
-        <member name="P:Models.Entity.FilesEntity.length">
-            <summary>
-            大小
-            </summary>
-        </member>
-        <member name="P:Models.Entity.FilesEntity.uploadTime">
-            <summary>
-            添加时间
-            </summary>
-        </member>
-        <member name="P:Models.Entity.FilesEntity.remark">
-            <summary>
-            备注
-            </summary>
-        </member>
-        <member name="P:Models.Entity.FilesEntity.url">
-            <summary>
-            相对路径
-            </summary>
-        </member>
-        <member name="P:Models.Entity.FilesEntity.fileType">
-            <summary>
-            文件类型
-            </summary>
-        </member>
-        <member name="P:Models.Entity.FilesEntity.md5Str">
-            <summary>
-            文件md5
-            </summary>
-            <value></value>
-        </member>
-        <member name="P:Models.Entity.FilesEntity.base64Str">
-            <summary>
-            文件base64
-            </summary>
-        </member>
-        <member name="T:Models.Entity.SequenceEntity">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="P:Models.Entity.SequenceEntity.seq_name">
-            <summary>
-            表名
-            </summary>
-        </member>
-        <member name="P:Models.Entity.SequenceEntity.current_val">
-            <summary>
-            当前值
-            </summary>
-        </member>
-        <member name="P:Models.Entity.SequenceEntity.increment_val">
-            <summary>
-            增加值
-            </summary>
         </member>
         <member name="P:Models.GlobalUser.Ticket">
             <summary>
@@ -3284,27 +3264,6 @@
             总记录数
             </summary>
         </member>
-        <member name="M:Repository.FaLoginHistoryRepository.SingleByKey(System.Int32)">
-            <summary>
-            获取单条
-            </summary>
-            <param name="key"></param>
-            <returns></returns>
-        </member>
-        <member name="M:Repository.FaLoginHistoryRepository.FindAll(System.Linq.Expressions.Expression{System.Func{Models.Entity.FaLoginHistoryEntity,System.Boolean}})">
-            <summary>
-            查找所有
-            </summary>
-            <param name="inParm"></param>
-            <returns></returns>
-        </member>
-        <member name="M:Repository.FaLoginHistoryRepository.Save(Models.DtoSave{Models.Entity.FaLoginHistoryEntity})">
-            <summary>
-            保存操作记录
-            </summary>
-            <param name="inObj"></param>
-            <returns></returns>
-        </member>
         <member name="M:Repository.FileRepository.SingleByKey(System.Int32)">
             <summary>
             获取单条
@@ -3319,6 +3278,27 @@
             <param name="inParm"></param>
             <returns></returns>
         </member>
+        <member name="M:Repository.LoginHistoryRepository.SingleByKey(System.Int32)">
+            <summary>
+            获取单条
+            </summary>
+            <param name="key"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Repository.LoginHistoryRepository.FindAll(System.Linq.Expressions.Expression{System.Func{Models.Entity.SysLoginHistoryEntity,System.Boolean}})">
+            <summary>
+            查找所有
+            </summary>
+            <param name="inParm"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Repository.LoginHistoryRepository.Save(Models.DtoSave{Models.Entity.SysLoginHistoryEntity})">
+            <summary>
+            保存操作记录
+            </summary>
+            <param name="inObj"></param>
+            <returns></returns>
+        </member>
         <member name="M:Repository.LoginRepository.SingleByKey(System.Int32)">
             <summary>
             获取单条
@@ -3326,7 +3306,7 @@
             <param name="key"></param>
             <returns></returns>
         </member>
-        <member name="M:Repository.LoginRepository.FindAll(System.Linq.Expressions.Expression{System.Func{Models.Entity.FaLoginEntity,System.Boolean}})">
+        <member name="M:Repository.LoginRepository.FindAll(System.Linq.Expressions.Expression{System.Func{Models.Entity.SysLoginEntity,System.Boolean}})">
             <summary>
             查找所有
             </summary>
@@ -3342,7 +3322,7 @@
             <param name="inEnt"></param>
             <returns></returns>
         </member>
-        <member name="M:Repository.LoginRepository.LoginOut(Models.DtoSave{Models.Entity.FaLoginHistoryEntity})">
+        <member name="M:Repository.LoginRepository.LoginOut(Models.DtoSave{Models.Entity.SysLoginHistoryEntity})">
             <summary>
             注销用户登录状态
             <para>清除用户的缓存状态</para>
@@ -3402,7 +3382,7 @@
             <param name="key"></param>
             <returns></returns>
         </member>
-        <member name="M:Repository.ModuleRepository.GetMenu(System.Linq.Expressions.Expression{System.Func{Models.Entity.FaModuleEntity,System.Boolean}})">
+        <member name="M:Repository.ModuleRepository.GetMenu(System.Linq.Expressions.Expression{System.Func{Models.Entity.SysModuleEntity,System.Boolean}})">
             <summary>
             查找所有
             </summary>
@@ -3484,7 +3464,7 @@
             <param name="key"></param>
             <returns></returns>
         </member>
-        <member name="M:Repository.RoleRepository.FindAll(System.Linq.Expressions.Expression{System.Func{Models.Entity.FaRoleEntity,System.Boolean}})">
+        <member name="M:Repository.RoleRepository.FindAll(System.Linq.Expressions.Expression{System.Func{Models.Entity.SysRoleEntity,System.Boolean}})">
             <summary>
             查找所有
             </summary>
@@ -3516,7 +3496,7 @@
             <param name="key"></param>
             <returns></returns>
         </member>
-        <member name="M:Repository.UserRepository.FindAll(System.Linq.Expressions.Expression{System.Func{Models.Entity.FaUserEntity,System.Boolean}})">
+        <member name="M:Repository.UserRepository.FindAll(System.Linq.Expressions.Expression{System.Func{Models.Entity.SysUserEntity,System.Boolean}})">
             <summary>
             查找所有
             </summary>
@@ -3530,7 +3510,7 @@
             <param name="inParm"></param>
             <returns></returns>
         </member>
-        <member name="M:IRepository.ILoginRepository.FindAll(System.Linq.Expressions.Expression{System.Func{Models.Entity.FaLoginEntity,System.Boolean}})">
+        <member name="M:IRepository.ILoginRepository.FindAll(System.Linq.Expressions.Expression{System.Func{Models.Entity.SysLoginEntity,System.Boolean}})">
             <summary>
             查找所有
             </summary>
@@ -3546,7 +3526,7 @@
             <param name="inEnt"></param>
             <returns></returns>
         </member>
-        <member name="M:IRepository.ILoginRepository.LoginOut(Models.DtoSave{Models.Entity.FaLoginHistoryEntity})">
+        <member name="M:IRepository.ILoginRepository.LoginOut(Models.DtoSave{Models.Entity.SysLoginHistoryEntity})">
             <summary>
             注销用户登录状态
             <para>清除用户的缓存状态</para>
@@ -3618,14 +3598,14 @@
             <param name="scriptId">主键 ID</param>
             <returns></returns>
         </member>
-        <member name="M:IRepository.IModuleRepository.Save(Models.DtoSave{Models.Entity.FaModuleEntity})">
+        <member name="M:IRepository.IModuleRepository.Save(Models.DtoSave{Models.Entity.SysModuleEntity})">
             <summary>
             保存基本信息
             </summary>
             <param name="inEnt"></param>
             <returns></returns>
         </member>
-        <member name="M:IRepository.IModuleRepository.GetMenu(System.Linq.Expressions.Expression{System.Func{Models.Entity.FaModuleEntity,System.Boolean}})">
+        <member name="M:IRepository.IModuleRepository.GetMenu(System.Linq.Expressions.Expression{System.Func{Models.Entity.SysModuleEntity,System.Boolean}})">
             <summary>
             查找所有模块菜单
             </summary>
@@ -3699,14 +3679,14 @@
             <param name="scriptId">主键 ID</param>
             <returns></returns>
         </member>
-        <member name="M:IRepository.IRoleRepository.Save(Models.DtoSave{Models.Entity.FaRoleEntity})">
+        <member name="M:IRepository.IRoleRepository.Save(Models.DtoSave{Models.Entity.SysRoleEntity})">
             <summary>
             保存基本信息
             </summary>
             <param name="inEnt"></param>
             <returns></returns>
         </member>
-        <member name="M:IRepository.IRoleRepository.FindAll(System.Linq.Expressions.Expression{System.Func{Models.Entity.FaRoleEntity,System.Boolean}})">
+        <member name="M:IRepository.IRoleRepository.FindAll(System.Linq.Expressions.Expression{System.Func{Models.Entity.SysRoleEntity,System.Boolean}})">
             <summary>
             查找所有
             </summary>
@@ -3735,7 +3715,7 @@
             <param name="key"></param>
             <returns></returns>
         </member>
-        <member name="M:IRepository.IUserRepository.FindAll(System.Linq.Expressions.Expression{System.Func{Models.Entity.FaUserEntity,System.Boolean}})">
+        <member name="M:IRepository.IUserRepository.FindAll(System.Linq.Expressions.Expression{System.Func{Models.Entity.SysUserEntity,System.Boolean}})">
             <summary>
             查找所有
             </summary>
@@ -3750,7 +3730,7 @@
             <param name="password">密码</param>
             <returns></returns>
         </member>
-        <member name="M:IRepository.IUserRepository.Save(Models.DtoSave{Models.Entity.FaUserEntity})">
+        <member name="M:IRepository.IUserRepository.Save(Models.DtoSave{Models.Entity.SysUserEntity})">
             <summary>
             保存基本信息
             </summary>

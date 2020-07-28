@@ -15,14 +15,14 @@ namespace IRepository
         /// </summary>
         /// <param name="key"></param>
         /// <returns></returns>
-        Task<FaUserEntity> SingleByKey(int key);
+        Task<SysUserEntity> SingleByKey(int key);
 
         /// <summary>
         /// 查找所有
         /// </summary>
         /// <param name="inParm"></param>
         /// <returns></returns>
-        Task<IEnumerable<FaUserEntity>> FindAll(Expression<Func<FaUserEntity, bool>> inParm = null);
+        Task<IEnumerable<SysUserEntity>> FindAll(Expression<Func<SysUserEntity, bool>> inParm = null);
 
         /// <summary>
         /// 用户登录
@@ -30,14 +30,14 @@ namespace IRepository
         /// <param name="username">用户名</param>
         /// <param name="password">密码</param>
         /// <returns></returns>
-        Task<ResultObj<FaUserEntity>> UserLogin(string username,string password);
+        Task<ResultObj<SysUserEntity>> UserLogin(string username,string password);
 
         /// <summary>
         /// 保存基本信息
         /// </summary>
         /// <param name="inEnt"></param>
         /// <returns></returns>
-        Task<ResultObj<int>> Save(DtoSave<FaUserEntity> inEnt);
+        Task<ResultObj<int>> Save(DtoSave<SysUserEntity> inEnt);
 
         /// <summary>
         /// 删除

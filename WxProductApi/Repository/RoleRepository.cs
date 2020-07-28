@@ -16,13 +16,13 @@ namespace Repository
 {
     public class RoleRepository : IRoleRepository
     {
-        DapperHelper<FaRoleEntity> dbHelper = new DapperHelper<FaRoleEntity>();
+        DapperHelper<SysRoleEntity> dbHelper = new DapperHelper<SysRoleEntity>();
         /// <summary>
         /// 获取单条
         /// </summary>
         /// <param name="key"></param>
         /// <returns></returns>
-        public async Task<FaRoleEntity> SingleByKey(int key)
+        public async Task<SysRoleEntity> SingleByKey(int key)
         {
             var ent = await dbHelper.SingleByKey(key);
             DapperHelper<FaRoleModuleEntityView> roleModule = new DapperHelper<FaRoleModuleEntityView>();
@@ -35,7 +35,7 @@ namespace Repository
         /// </summary>
         /// <param name="inParm"></param>
         /// <returns></returns>
-        public Task<IEnumerable<FaRoleEntity>> FindAll(Expression<Func<FaRoleEntity, bool>> where)
+        public Task<IEnumerable<SysRoleEntity>> FindAll(Expression<Func<SysRoleEntity, bool>> where)
         {
             return dbHelper.FindAll(where);
         }
@@ -90,17 +90,17 @@ namespace Repository
             return reObj;
         }
 
-        public async Task<ResultObj<int>> Save(DtoSave<FaRoleEntity> inEnt)
+        public async Task<ResultObj<int>> Save(DtoSave<SysRoleEntity> inEnt)
         {
             ResultObj<int> reObj = new ResultObj<int>();
             try
             {
                 dbHelper.TranscationBegin();
-                DapperHelper<FaModuleEntity> moduleDapper = new DapperHelper<FaModuleEntity>(dbHelper.GetConnection(), dbHelper.GetTransaction());
+                DapperHelper<SysModuleEntity> moduleDapper = new DapperHelper<SysModuleEntity>(dbHelper.GetConnection(), dbHelper.GetTransaction());
 
                 if (inEnt.data.id == 0)
                 {
-                    inEnt.data.id = await new SequenceRepository().GetNextID<FaRoleEntity>();
+                    inEnt.data.id = await new SequenceRepository().GetNextID<SysRoleEntity>();
                     reObj.data = await dbHelper.Save(inEnt);
                 }
                 else

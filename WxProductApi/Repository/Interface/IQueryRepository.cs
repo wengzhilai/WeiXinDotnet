@@ -64,13 +64,13 @@ namespace IRepository
 
 
 
-        Task<int> Save(DtoSave<FaQueryEntity> inEnt);
+        Task<int> Save(DtoSave<SysQueryEntity> inEnt);
 
-        Task<List<FaQueryEntity>> FindAll(DtoSearch inSearch);
-        Task<ResultObj<FaQueryEntity>> FindAllPage(DtoSearch inSearch);
-        Task<int> Update(DtoSave<FaQueryEntity> inEnt);
-        Task<FaQueryEntity> Single(Expression<Func<FaQueryEntity, bool>> where);
+        Task<List<SysQueryEntity>> FindAll(DtoSearch inSearch);
+        Task<ResultObj<SysQueryEntity>> FindAllPage(DtoSearch inSearch);
+        Task<int> Update(DtoSave<SysQueryEntity> inEnt);
+        Task<SysQueryEntity> Single(Expression<Func<SysQueryEntity, bool>> where);
 
-        Task<int> Delete(Expression<Func<FaQueryEntity, bool>> where);
+        Task<int> Delete(Expression<Func<SysQueryEntity, bool>> where);
     }
 }

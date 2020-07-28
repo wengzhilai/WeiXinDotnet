@@ -85,9 +85,9 @@ namespace WxProductApi.Controllers
         /// <param name="inEnt"></param>
         /// <returns></returns>
         [HttpPost]
-        public async Task<ResultObj<FaQueryEntity>> getSingleQuery(DtoKey inEnt)
+        public async Task<ResultObj<SysQueryEntity>> getSingleQuery(DtoKey inEnt)
         {
-            ResultObj<FaQueryEntity> reObj = new ResultObj<FaQueryEntity>();
+            ResultObj<SysQueryEntity> reObj = new ResultObj<SysQueryEntity>();
             try
             {
                 reObj.data = await _query.Single(i => i.code == inEnt.Key);
@@ -166,7 +166,7 @@ namespace WxProductApi.Controllers
         /// <param name="inEnt"></param>
         /// <returns></returns>
         [HttpPost]
-        public async Task<ResultObj<int>> save(DtoSave<FaQueryEntity> inEnt)
+        public async Task<ResultObj<int>> save(DtoSave<SysQueryEntity> inEnt)
         {
             ResultObj<int> reObj = new ResultObj<int>();
             try
@@ -196,9 +196,9 @@ namespace WxProductApi.Controllers
         /// <param name="inEnt"></param>
         /// <returns></returns>
         [HttpPost]
-        public async Task<ResultObj<FaQueryEntity>> singleByKey(DtoDo<int> inEnt)
+        public async Task<ResultObj<SysQueryEntity>> singleByKey(DtoDo<int> inEnt)
         {
-            ResultObj<FaQueryEntity> reObj = new ResultObj<FaQueryEntity>();
+            ResultObj<SysQueryEntity> reObj = new ResultObj<SysQueryEntity>();
             try
             {
                 reObj.data = await _query.Single(x=>x.id==inEnt.Key);

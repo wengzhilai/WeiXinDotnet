@@ -16,7 +16,7 @@ namespace IRepository
         /// </summary>
         /// <param name="key"></param>
         /// <returns></returns>
-        Task<FaRoleEntity> SingleByKey(int key);
+        Task<SysRoleEntity> SingleByKey(int key);
 
         /// <summary>
         /// 删除
@@ -30,7 +30,7 @@ namespace IRepository
         /// </summary>
         /// <param name="inEnt"></param>
         /// <returns></returns>
-        Task<ResultObj<int>> Save(DtoSave<FaRoleEntity> inEnt);
+        Task<ResultObj<int>> Save(DtoSave<SysRoleEntity> inEnt);
 
 
         /// <summary>
@@ -38,7 +38,7 @@ namespace IRepository
         /// </summary>
         /// <param name="inParm"></param>
         /// <returns></returns>
-        Task<IEnumerable<FaRoleEntity>> FindAll(Expression<Func<FaRoleEntity, bool>> inParm = null);
+        Task<IEnumerable<SysRoleEntity>> FindAll(Expression<Func<SysRoleEntity, bool>> inParm = null);
 
         /// <summary>
         /// 查找用户的所有角色

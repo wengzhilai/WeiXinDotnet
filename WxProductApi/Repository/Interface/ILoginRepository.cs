@@ -10,14 +10,14 @@ namespace IRepository
 {
     public interface ILoginRepository 
     {
-        Task<FaLoginEntity> SingleByKey(int key);
+        Task<SysLoginEntity> SingleByKey(int key);
 
         /// <summary>
         /// 查找所有
         /// </summary>
         /// <param name="inParm"></param>
         /// <returns></returns>
-        Task<IEnumerable<FaLoginEntity>> FindAll(Expression<Func<FaLoginEntity, bool>> inParm = null);
+        Task<IEnumerable<SysLoginEntity>> FindAll(Expression<Func<SysLoginEntity, bool>> inParm = null);
 
 
         /// <summary>
@@ -43,7 +43,7 @@ namespace IRepository
         /// <param name="inEnt"></param>
         /// <returns></returns>
         
-        Task<ResultObj<FaUserEntity>>  UserLogin(LogingDto inEnt);
+        Task<ResultObj<SysUserEntity>>  UserLogin(LogingDto inEnt);
         /// <summary>
         /// 重置用户密码
         /// <para>VerifyCode:短信验证码</para>

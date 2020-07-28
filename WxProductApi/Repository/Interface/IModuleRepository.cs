@@ -16,7 +16,7 @@ namespace IRepository
         /// </summary>
         /// <param name="key"></param>
         /// <returns></returns>
-        Task<FaModuleEntity> SingleByKey(int key);
+        Task<SysModuleEntity> SingleByKey(int key);
 
         /// <summary>
         /// 删除
@@ -30,7 +30,7 @@ namespace IRepository
         /// </summary>
         /// <param name="inEnt"></param>
         /// <returns></returns>
-        Task<ResultObj<int>> Save(DtoSave<FaModuleEntity> inEnt);
+        Task<ResultObj<int>> Save(DtoSave<SysModuleEntity> inEnt);
 
 
         /// <summary>
@@ -38,11 +38,11 @@ namespace IRepository
         /// </summary>
         /// <param name="inParm"></param>
         /// <returns></returns>
-        Task<ResultObj<FaModuleEntity>> GetMenu(Expression<Func<FaModuleEntity, bool>> inParm = null);
+        Task<ResultObj<SysModuleEntity>> GetMenu(Expression<Func<SysModuleEntity, bool>> inParm = null);
 
-        Task<ResultObj<FaModuleEntity>> GetMenuByRoleId(List<int> roleIdList);
+        Task<ResultObj<SysModuleEntity>> GetMenuByRoleId(List<int> roleIdList);
         
-        Task<ResultObj<FaModuleEntity>> GetMGetMenuByUserId(int userId);
+        Task<ResultObj<SysModuleEntity>> GetMGetMenuByUserId(int userId);
 
 
     }

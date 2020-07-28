@@ -8,8 +8,8 @@ namespace Models.Entity
     /// <summary>
     /// 系统角色
     /// </summary>
-    [Table("fa_role")]
-    public class FaRoleEntity : BaseModel
+    [Table("sys_role")]
+    public class SysRoleEntity : BaseModel
     {
 
         /// <summary>
@@ -19,28 +19,28 @@ namespace Models.Entity
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
         [Required]
         [Display(Name = "ID")]
-        [Column("ID")]
+        [Column("id")]
         public int id { get; set; }
 
         /// <summary>
         /// 角色名
         /// </summary>
         [Display(Name = "角色名")]
-        [Column("NAME")]
+        [Column("name")]
         public String name { get; set; }
 
         /// <summary>
         /// 备注
         /// </summary>
         [Display(Name = "备注")]
-        [Column("REMARK")]
+        [Column("remark")]
         public String remark { get; set; }
 
         /// <summary>
         /// 类型
         /// </summary>
         [Display(Name = "类型")]
-        [Column("TYPE")]
+        [Column("type")]
         public int type { get; set; }
 
 

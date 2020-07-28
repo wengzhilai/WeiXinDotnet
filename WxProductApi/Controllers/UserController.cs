@@ -39,7 +39,7 @@ namespace ApiUser.Controllers
         /// <param name="inEnt"></param>
         /// <returns></returns>
         [HttpPost]
-        public async Task<ResultObj<int>> save(DtoSave<FaUserEntity> inEnt)
+        public async Task<ResultObj<int>> save(DtoSave<SysUserEntity> inEnt)
         {
             ResultObj<int> reObj = new ResultObj<int>();
             try
@@ -62,9 +62,9 @@ namespace ApiUser.Controllers
         /// <returns></returns>
         [HttpPost]
         [Authorize]
-        public async Task<ResultObj<FaUserEntity>> singleByKey(DtoDo<int> inEnt)
+        public async Task<ResultObj<SysUserEntity>> singleByKey(DtoDo<int> inEnt)
         {
-            ResultObj<FaUserEntity> reObj = new ResultObj<FaUserEntity>();
+            ResultObj<SysUserEntity> reObj = new ResultObj<SysUserEntity>();
             try
             {
                 reObj.data = await _respoitory.SingleByKey(inEnt.Key);

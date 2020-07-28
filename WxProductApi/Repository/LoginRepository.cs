@@ -22,9 +22,9 @@ namespace Repository
         /// </summary>
         /// <param name="key"></param>
         /// <returns></returns>
-        public Task<FaLoginEntity> SingleByKey(int key)
+        public Task<SysLoginEntity> SingleByKey(int key)
         {
-            DapperHelper<FaLoginEntity> dbHelper = new DapperHelper<FaLoginEntity>();
+            DapperHelper<SysLoginEntity> dbHelper = new DapperHelper<SysLoginEntity>();
             return dbHelper.SingleByKey(key);
         }
 
@@ -33,9 +33,9 @@ namespace Repository
         /// </summary>
         /// <param name="inParm"></param>
         /// <returns></returns>
-        public Task<IEnumerable<FaLoginEntity>> FindAll(Expression<Func<FaLoginEntity, bool>> inParm = null)
+        public Task<IEnumerable<SysLoginEntity>> FindAll(Expression<Func<SysLoginEntity, bool>> inParm = null)
         {
-            DapperHelper<FaLoginEntity> dbHelper = new DapperHelper<FaLoginEntity>();
+            DapperHelper<SysLoginEntity> dbHelper = new DapperHelper<SysLoginEntity>();
             return dbHelper.FindAll(inParm);
         }
 
@@ -49,7 +49,7 @@ namespace Repository
         /// <returns></returns>
         public async Task<ResultObj<int>> LoginReg(LogingDto inEnt)
         {
-            DapperHelper<FaLoginEntity> dbHelper = new DapperHelper<FaLoginEntity>();
+            DapperHelper<SysLoginEntity> dbHelper = new DapperHelper<SysLoginEntity>();
             dbHelper.TranscationBegin();
             ResultObj<int> reObj = await LoginReg(inEnt, dbHelper);
             if (reObj.success)
@@ -63,7 +63,7 @@ namespace Repository
             return reObj;
         }
 
-        public async Task<ResultObj<int>> LoginReg(LogingDto inEnt, DapperHelper<FaLoginEntity> dbHelper)
+        public async Task<ResultObj<int>> LoginReg(LogingDto inEnt, DapperHelper<SysLoginEntity> dbHelper)
         {
             ResultObj<int> reObj = new ResultObj<int>();
             #region 验证值
@@ -132,13 +132,13 @@ namespace Repository
                 #region 添加登录账号
                 if (loginList.Count() == 0)
                 {
-                    FaLoginEntity inLogin = new FaLoginEntity();
-                    inLogin.id = await new SequenceRepository().GetNextID<FaLoginEntity>();
+                    SysLoginEntity inLogin = new SysLoginEntity();
+                    inLogin.id = await new SequenceRepository().GetNextID<SysLoginEntity>();
                     inLogin.loginName = inEnt.loginName;
                     inLogin.password = inEnt.password.Md5();
                     inLogin.isLocked = 0;
                     inLogin.failCount = 0;
-                    reObj.success = await dbHelper.Save(new DtoSave<FaLoginEntity>()
+                    reObj.success = await dbHelper.Save(new DtoSave<SysLoginEntity>()
                     {
                         data = inLogin
                     }) > 0 ? true : false;
@@ -154,14 +154,14 @@ namespace Repository
 
                 #region 添加user
 
-                FaUserEntity inUser = new FaUserEntity();
+                SysUserEntity inUser = new SysUserEntity();
                 inUser.loginName = inEnt.loginName;
                 inUser.name = inEnt.userName;
-                inUser.id = await new SequenceRepository().GetNextID<FaUserEntity>();
+                inUser.id = await new SequenceRepository().GetNextID<SysUserEntity>();
                 inUser.districtId = 1;
-                inUser.createTime = DateTime.Now;
-                inUser.isLocked = 0;
-                reObj.success = await new DapperHelper<FaUserEntity>(dbHelper.GetConnection(), dbHelper.GetTransaction()).Save(new DtoSave<FaUserEntity>
+                inUser.createTime =Helper.DataTimeHelper.getDateLong(DateTime.Now);
+                inUser.status = 1;
+                reObj.success = await new DapperHelper<SysUserEntity>(dbHelper.GetConnection(), dbHelper.GetTransaction()).Save(new DtoSave<SysUserEntity>
                 {
                     data = inUser,
                     ignoreFieldList = new List<string>()
@@ -199,11 +199,13 @@ namespace Repository
         {
             Result reObj = new Result();
             #region 记录登出历史
-            var userDal = new UserRepository();
+
             //正常退出，修改退出日志
-            reObj.success = await userDal.Update(new DtoSave<FaUserEntity>
+            DapperHelper<SysLoginEntity> dbHelper = new DapperHelper<SysLoginEntity>();
+
+            reObj.success = await dbHelper.Update(new DtoSave<SysLoginEntity>
             {
-                data = new FaUserEntity { id = inEnt.data.USER_ID.Value, lastActiveTime = DateTime.Now, lastLogoutTime = DateTime.Now },
+                data = new SysLoginEntity { id = inEnt.data.USER_ID.Value, lastActiveTime = Helper.DataTimeHelper.getDateLong(DateTime.Now), lastLogoutTime = Helper.DataTimeHelper.getDateLong(DateTime.Now) },
                 saveFieldListExp = x => new object[] { x.lastActiveTime, x.lastLogoutTime }
             }) > 0;
             if (!reObj.success)
@@ -226,9 +228,9 @@ namespace Repository
         /// <param name="inEnt"></param>
         /// <returns></returns>
 
-        public async Task<ResultObj<FaUserEntity>> UserLogin(LogingDto inEnt)
+        public async Task<ResultObj<SysUserEntity>> UserLogin(LogingDto inEnt)
         {
-            ResultObj<FaUserEntity> reObj = new ResultObj<FaUserEntity>();
+            ResultObj<SysUserEntity> reObj = new ResultObj<SysUserEntity>();
 
             if (string.IsNullOrEmpty(inEnt.loginName) || string.IsNullOrEmpty(inEnt.password))
             {
@@ -236,8 +238,8 @@ namespace Repository
                 reObj.msg = "用户名和密码不能为空";
                 return reObj;
             }
-            DapperHelper<FaUserEntity> dapperUser = new DapperHelper<FaUserEntity>();
-            DapperHelper<FaLoginEntity> dapperLogin = new DapperHelper<FaLoginEntity>();
+            DapperHelper<SysUserEntity> dapperUser = new DapperHelper<SysUserEntity>();
+            DapperHelper<SysLoginEntity> dapperLogin = new DapperHelper<SysLoginEntity>();
 
 
 
@@ -274,7 +276,7 @@ namespace Repository
                         Login.isLocked = 1;
                         Login.lockedReason = string.Format("用户连续5次错误登陆，帐号锁定。");
                         Login.failCount = 0;
-                        await dapperLogin.Update(new DtoSave<FaLoginEntity>
+                        await dapperLogin.Update(new DtoSave<SysLoginEntity>
                         {
                             data = Login,
                             saveFieldListExp = x => new object[] { x.isLocked, x.lockedReason }
@@ -284,7 +286,7 @@ namespace Repository
                     else
                     {
                         Login.failCount++;
-                        await dapperLogin.Update(new DtoSave<FaLoginEntity>
+                        await dapperLogin.Update(new DtoSave<SysLoginEntity>
                         {
                             data = Login,
                             saveFieldListExp = x => new object[] { x.failCount }
@@ -299,7 +301,7 @@ namespace Repository
                 {
 
                     Login.failCount = 0;
-                    reObj.success = await dapperLogin.Update(new DtoSave<FaLoginEntity>
+                    reObj.success = await dapperLogin.Update(new DtoSave<SysLoginEntity>
                     {
                         data = Login,
                         saveFieldListExp = x => new object[] { x.failCount }
@@ -334,7 +336,7 @@ namespace Repository
                 reObj.msg = "参数不正确";
                 return reObj;
             }
-            var dapper = new DapperHelper<FaLoginEntity>();
+            var dapper = new DapperHelper<SysLoginEntity>();
 
             var login = await dapper.Single(x => x.loginName == inEnt.LoginName);
             if (login == null)
@@ -357,7 +359,7 @@ namespace Repository
                 return reObj;
             }
             login.password = inEnt.NewPwd.Md5();
-            await dapper.Update(new DtoSave<FaLoginEntity>()
+            await dapper.Update(new DtoSave<SysLoginEntity>()
             {
                 data = login,
                 saveFieldListExp = x => new object[] { x.password }
@@ -390,7 +392,7 @@ namespace Repository
                 reObj.msg = string.Format("密码复杂度不够：{0}", AppConfig.BaseConfig.PwdComplexity);
                 return reObj;
             }
-            DapperHelper<FaLoginEntity> dapper = new DapperHelper<FaLoginEntity>();
+            DapperHelper<SysLoginEntity> dapper = new DapperHelper<SysLoginEntity>();
             var single = await dapper.Single(i => i.loginName == inEnt.LoginName);
             if (single == null)
             {
@@ -406,7 +408,7 @@ namespace Repository
             }
 
             single.password = inEnt.NewPwd.Md5();
-            var upRows = await dapper.Update(new DtoSave<FaLoginEntity>
+            var upRows = await dapper.Update(new DtoSave<SysLoginEntity>
             {
                 data = single,
                 saveFieldListExp = x => new object[] { x.password },
@@ -434,7 +436,7 @@ namespace Repository
         /// <returns></returns>
         async public Task<Result> UserEditLoginName(string oldLoginName, string NewLoginName, string name, int userId, string pwd, string iconFiles)
         {
-            DapperHelper<FaUserEntity> userDapper = new DapperHelper<FaUserEntity>();
+            DapperHelper<SysUserEntity> userDapper = new DapperHelper<SysUserEntity>();
             Result reObj = new Result();
             #region 检测输入
             if (string.IsNullOrEmpty(oldLoginName) && userId == 0)
@@ -455,7 +457,7 @@ namespace Repository
             #endregion
 
             #region 检测电话号码是否存在
-            IEnumerable<FaUserEntity> userList = await userDapper.FindAll(x => x.loginName == NewLoginName);
+            IEnumerable<SysUserEntity> userList = await userDapper.FindAll(x => x.loginName == NewLoginName);
             if (userList.Count() > 0)
             {
                 reObj.success = false;
@@ -467,7 +469,7 @@ namespace Repository
 
             #region 检测用户是否存在
 
-            FaUserEntity user = new FaUserEntity();
+            SysUserEntity user = new SysUserEntity();
             if (userId != 0)
             {
                 user = await userDapper.Single(x => x.id == userId);
@@ -494,7 +496,7 @@ namespace Repository
             user.loginName = NewLoginName;
             user.iconFiles = iconFiles;
 
-            reObj.success = await userDapper.Update(new DtoSave<FaUserEntity>()
+            reObj.success = await userDapper.Update(new DtoSave<SysUserEntity>()
             {
                 data = user,
                 saveFieldListExp = x => new object[] { x.name,x.loginName,x.iconFiles },
@@ -511,17 +513,17 @@ namespace Repository
 
 
             #region 修改登录账号
-            DapperHelper<FaLoginEntity> loginDapper = new DapperHelper<FaLoginEntity>(userDapper.GetConnection(), userDapper.GetTransaction());
+            DapperHelper<SysLoginEntity> loginDapper = new DapperHelper<SysLoginEntity>(userDapper.GetConnection(), userDapper.GetTransaction());
             var login = await loginDapper.Single(x => x.loginName == oldLoginName);
             if (login == null)
             {
-                FaLoginEntity inLogin = new FaLoginEntity();
-                inLogin.id = await new SequenceRepository().GetNextID<FaLoginEntity>();
+                SysLoginEntity inLogin = new SysLoginEntity();
+                inLogin.id = await new SequenceRepository().GetNextID<SysLoginEntity>();
                 inLogin.loginName = NewLoginName;
                 inLogin.password = string.IsNullOrEmpty(pwd) ? NewLoginName.Md5() : pwd.Md5();
                 inLogin.isLocked = 0;
                 inLogin.failCount = 0;
-                reObj.success = await loginDapper.Save(new DtoSave<FaLoginEntity>()
+                reObj.success = await loginDapper.Save(new DtoSave<SysLoginEntity>()
                 {
                     data = inLogin
                 }) > 0 ? true : false;
@@ -530,7 +532,7 @@ namespace Repository
             {
                 login.loginName = NewLoginName;
                 login.password = string.IsNullOrEmpty(pwd) ? NewLoginName.Md5() : pwd.Md5();
-                reObj.success = await loginDapper.Update(new DtoSave<FaLoginEntity>
+                reObj.success = await loginDapper.Update(new DtoSave<SysLoginEntity>
                 {
                     data = login,
                     saveFieldListExp = x => new object[] { x.loginName, x.password },
@@ -560,11 +562,11 @@ namespace Repository
         public async Task<Result> ChangeLoginName(ChangeLoginNameDto inEnt)
         {
             Result reObj = new Result();
-            DapperHelper<FaUserEntity> userDapper = new DapperHelper<FaUserEntity>();
+            DapperHelper<SysUserEntity> userDapper = new DapperHelper<SysUserEntity>();
             userDapper.TranscationBegin();
             try
             {
-                var loginDapper = new DapperHelper<FaLoginEntity>(userDapper.GetConnection(), userDapper.GetTransaction());
+                var loginDapper = new DapperHelper<SysLoginEntity>(userDapper.GetConnection(), userDapper.GetTransaction());
                 if((await loginDapper.Count(x=>x.loginName==inEnt.newLoginName))>0 || (await userDapper.Count(x => x.loginName == inEnt.newLoginName)) > 0)
                 {
                     userDapper.TranscationRollback();
@@ -587,7 +589,7 @@ namespace Repository
                     user.loginName = inEnt.newLoginName;
                     login.loginName = inEnt.newLoginName;
 
-                    reObj.success = await loginDapper.Update(new DtoSave<FaLoginEntity>
+                    reObj.success = await loginDapper.Update(new DtoSave<SysLoginEntity>
                     {
                         data = login,
                         saveFieldListExp = x => new object[] { x.loginName },
@@ -601,7 +603,7 @@ namespace Repository
                         return reObj;
                     }
 
-                    reObj.success = await userDapper.Update(new DtoSave<FaUserEntity>
+                    reObj.success = await userDapper.Update(new DtoSave<SysUserEntity>
                     {
                         data = user,
                         saveFieldListExp = x => new object[] { x.loginName },

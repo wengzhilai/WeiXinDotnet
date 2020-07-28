@@ -9,7 +9,7 @@ namespace Models.Entity
     /// 登录
     /// </summary>
     [Table("sys_login")]
-    public class FaLoginEntity : BaseModel
+    public class SysLoginEntity : BaseModel
     {
 
         /// <summary>
@@ -62,7 +62,7 @@ namespace Models.Entity
         /// </summary>
         [Display(Name = "验证码时间")]
         [Column("verify_time")]
-        public DateTime verifyTime { get; set; }
+        public Int64 verifyTime { get; set; }
 
         /// <summary>
         /// 是否禁用
@@ -76,7 +76,7 @@ namespace Models.Entity
         /// </summary>
         [Display(Name = "密码修改时间")]
         [Column("pass_update_date")]
-        public DateTime passUpdateDate { get; set; }
+        public Int64 passUpdateDate { get; set; }
 
         /// <summary>
         /// 禁用原因
@@ -91,6 +91,34 @@ namespace Models.Entity
         [Display(Name = "失败次数")]
         [Column("fail_count")]
         public int failCount { get; set; }
+
+        /// <summary>
+        /// 登录次数
+        /// </summary>
+        [Display(Name = "登录次数")]
+        [Column("login_count")]
+        public int loginCount { get; set; }
+
+        /// <summary>
+        /// 最后登录时间
+        /// </summary>
+        [Display(Name = "最后登录时间")]
+        [Column("last_login_time")]
+        public Int64 lastLoginTime { get; set; }
+
+        /// <summary>
+        /// 最后登出时间
+        /// </summary>
+        [Display(Name = "最后登出时间")]
+        [Column("last_logout_time")]
+        public Int64 lastLogoutTime { get; set; }
+
+        /// <summary>
+        /// 最后活动时间
+        /// </summary>
+        [Display(Name = "最后活动时间")]
+        [Column("last_active_time")]
+        public Int64 lastActiveTime { get; set; }
 
 
     }

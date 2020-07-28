@@ -22,7 +22,7 @@ namespace Repository
         {
             //ExceptionlessClient.Default.Startup("ZevZKuGg0jZOohtFYKma1kcDiCWvUhBTROnzR1pN");
         }
-        private DapperHelper<FaQueryEntity> dal = new DapperHelper<FaQueryEntity>();
+        private DapperHelper<SysQueryEntity> dal = new DapperHelper<SysQueryEntity>();
 
         /// <summary>
         /// 获取所有数据
@@ -35,7 +35,7 @@ namespace Repository
             ResultObj<Dictionary<string, object>> reObj = new ResultObj<Dictionary<string, object>>();
             Dictionary<string, object> reEnt = new Dictionary<string, object>();
 
-            FaQueryEntity query = await dal.Single(i => i.code == inEnt.code);
+            SysQueryEntity query = await dal.Single(i => i.code == inEnt.code);
             if (query == null)
             {
                 return reObj;
@@ -69,7 +69,7 @@ namespace Repository
             ResultObj<List<byte>> reObj = new ResultObj<List<byte>>();
             List<byte> reEnt = new List<byte>();
 
-            FaQueryEntity query = await dal.Single(i => i.code == inEnt.code);
+            SysQueryEntity query = await dal.Single(i => i.code == inEnt.code);
             if (query == null)
             {
 
@@ -115,7 +115,7 @@ namespace Repository
         {
             ResultObj<Dictionary<string, object>> reObj = new ResultObj<Dictionary<string, object>>();
             Dictionary<string, object> reEnt = new Dictionary<string, object>();
-            FaQueryEntity query = await dal.Single(i => i.code == inEnt.code);
+            SysQueryEntity query = await dal.Single(i => i.code == inEnt.code);
             if (query == null)
             {
                 return reObj;
@@ -159,7 +159,7 @@ namespace Repository
             ResultObj<QueryCfg> reObj = new ResultObj<QueryCfg>();
             QuerySearchDto inEnt = new QuerySearchDto() { code = code };
             List<QueryCfg> reEnt = new List<QueryCfg>();
-            FaQueryEntity query = await dal.Single(i => i.code == inEnt.code);
+            SysQueryEntity query = await dal.Single(i => i.code == inEnt.code);
 
             if (query == null)
             {
@@ -408,24 +408,24 @@ SELECT COUNT(1) ALL_NUM FROM ({0}) T {4}
 
 
 
-        public async Task<int> Save(DtoSave<FaQueryEntity> inEnt)
+        public async Task<int> Save(DtoSave<SysQueryEntity> inEnt)
         {
             if(inEnt.data.id==0){
-                inEnt.data.id=await new SequenceRepository().GetNextID<FaQueryEntity>();
+                inEnt.data.id=await new SequenceRepository().GetNextID<SysQueryEntity>();
             }
             return await dal.Save(inEnt);
         }
 
-        public async Task<List<FaQueryEntity>> FindAll(DtoSearch inSearch)
+        public async Task<List<SysQueryEntity>> FindAll(DtoSearch inSearch)
         {
             var reList = await dal.FindAll(inSearch);
             return reList.ToList();
         }
 
-        public async Task<ResultObj<FaQueryEntity>> FindAllPage(DtoSearch inSearch)
+        public async Task<ResultObj<SysQueryEntity>> FindAllPage(DtoSearch inSearch)
         {
-            var reObj=new ResultObj<FaQueryEntity>();
-            var reList = await dal.FindAllS<FaQueryEntity,KV>(inSearch);
+            var reObj=new ResultObj<SysQueryEntity>();
+            var reList = await dal.FindAllS<SysQueryEntity,KV>(inSearch);
             reObj.dataList=reList.Item1.ToList();
             if(reList.Item2!=null && reList.Item2.Count()>0){
                 reObj.msg=reList.Item2.ToList()[0].v;
@@ -433,21 +433,21 @@ SELECT COUNT(1) ALL_NUM FROM ({0}) T {4}
             return reObj;
         }
 
-        public async Task<int> Update(DtoSave<FaQueryEntity> inEnt)
+        public async Task<int> Update(DtoSave<SysQueryEntity> inEnt)
         {
             return await dal.Update(inEnt);
         }
 
-        public async Task<FaQueryEntity> Single(Expression<Func<FaQueryEntity, bool>> where)
+        public async Task<SysQueryEntity> Single(Expression<Func<SysQueryEntity, bool>> where)
         {
             var reEnt = await dal.Single(where);
-            reEnt._DictStr = TypeChange.ObjectToStr(new ModelHelper<FaQueryEntity>(reEnt).GetDisplayDirct());
+            reEnt._DictStr = TypeChange.ObjectToStr(new ModelHelper<SysQueryEntity>(reEnt).GetDisplayDirct());
             reEnt._dictQueryCfgStr = TypeChange.ObjectToStr(new ModelHelper<QueryCfg>(new QueryCfg()).GetDisplayDirct());
             return reEnt;
 
         }
 
-        public async Task<int> Delete(Expression<Func<FaQueryEntity, bool>> where)
+        public async Task<int> Delete(Expression<Func<SysQueryEntity, bool>> where)
         {
             return await dal.Delete(where);
 

@@ -17,7 +17,7 @@ namespace WxProductApi.Controllers
         * @param inObj
         * @return
         */
-        Task<ResultObj<FaQueryEntity>> getSingleQuery(DtoKey inObj);
+        Task<ResultObj<SysQueryEntity>> getSingleQuery(DtoKey inObj);
         /// <summary>
         /// 
         /// </summary>
@@ -30,14 +30,14 @@ namespace WxProductApi.Controllers
          * @param inEnt
          * @return
          */
-        Task<ResultObj<FaQueryEntity>> singleByKey(DtoDo<int> inEnt);
+        Task<ResultObj<SysQueryEntity>> singleByKey(DtoDo<int> inEnt);
 
         /**
          * 保存Query
          * @param inEnt
          * @return
          */
-        Task<ResultObj<int>> save(DtoSave<FaQueryEntity> inEnt);
+        Task<ResultObj<int>> save(DtoSave<SysQueryEntity> inEnt);
 
         /**
          * 删除Query

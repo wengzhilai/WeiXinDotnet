@@ -15,14 +15,14 @@ namespace WxProductApi.Controllers
          * @param inEnt
          * @return
          */
-        Task<ResultObj<FaModuleEntity>> singleByKey(DtoDo<int> inEnt);
+        Task<ResultObj<SysModuleEntity>> singleByKey(DtoDo<int> inEnt);
 
         /**
          * 保存
          * @param inEnt
          * @return
          */
-        Task<ResultObj<int>> save(DtoSave<FaModuleEntity> inEnt);
+        Task<ResultObj<int>> save(DtoSave<SysModuleEntity> inEnt);
 
         /**
          * 删除
@@ -35,7 +35,7 @@ namespace WxProductApi.Controllers
          * 获取菜单
          * @return
          */
-        Task<ResultObj<FaModuleEntity>> getUserMenu();
+        Task<ResultObj<SysModuleEntity>> getUserMenu();
 
         //——代码分隔线——
     }

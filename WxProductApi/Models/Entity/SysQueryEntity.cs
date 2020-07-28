@@ -10,8 +10,8 @@ namespace Models.Entity
     /// <summary>
     /// 查询
     /// </summary>
-    [Table("fa_query")]
-    public class FaQueryEntity
+    [Table("sys_query")]
+    public class SysQueryEntity
     {
         public string _DictStr;
 
@@ -22,97 +22,97 @@ namespace Models.Entity
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
         [Required]
         [Display(Name = "ID")]
-        [Column("ID")]
+        [Column("id")]
         public int id { get; set; }
         /// <summary>
         /// 名称
         /// </summary>
         [StringLength(50)]
         [Display(Name = "名称")]
-        [Column("NAME")]
+        [Column("name")]
         public string name { get; set; }
         /// <summary>
         /// 代码
         /// </summary>
         [StringLength(20)]
         [Display(Name = "代码")]
-        [Column("CODE")]
+        [Column("code")]
         public string code { get; set; }
         /// <summary>
         /// 自动加载
         /// </summary>
         [Display(Name = "自动加载")]
-        [Column("AUTO_LOAD")]
+        [Column("auto_load")]
         public bool autoLoad { get; set; }
         /// <summary>
         /// 页面大小
         /// </summary>
         [Display(Name = "页面大小")]
-        [Column("PAGE_SIZE")]
+        [Column("page_size")]
         public int pageSize { get; set; }
         /// <summary>
         /// 复选框
         /// </summary>
         [Display(Name = "复选框")]
-        [Column("SHOW_CHECKBOX")]
+        [Column("show_checkbox")]
         public bool showCheckbox { get; set; }
 
         /// <summary>
         /// 调试
         /// </summary>
         [Display(Name = "调试")]
-        [Column("IS_DEBUG")]
+        [Column("is_debug")]
         public bool isDebug { get; set; }
 
         /// <summary>
         /// 查询语句
         /// </summary>
         [Display(Name = "查询语句")]
-        [Column("QUERY_CONF")]
+        [Column("query_conf")]
        
         public string queryConf { get; set; }
         /// <summary>
         /// 配置信息
         /// </summary>
         [Display(Name = "配置信息")]
-        [Column("QUERY_CFG_JSON")]
+        [Column("query_cfg_json")]
         public string queryCfgJson { get; set; }
         /// <summary>
         /// 传入参数
         /// </summary>
         [Display(Name = "传入参数")]
-        [Column("IN_PARA_JSON")]
+        [Column("in_para_json")]
         public string inParaJson { get; set; }
         /// <summary>
         /// JS脚本
         /// </summary>
         [Display(Name = "JS脚本")]
-        [Column("JS_STR")]
+        [Column("js_str")]
         public string jsStr { get; set; }
         /// <summary>
         /// 行按钮
         /// </summary>
         [Display(Name = "行按钮")]
-        [Column("ROWS_BTN")]
+        [Column("rows_btn")]
         public string rowsBtn { get; set; }
         /// <summary>
         /// 表头按钮
         /// </summary>
         [Display(Name = "表头按钮")]
-        [Column("HEARD_BTN")]
+        [Column("heard_btn")]
         public string heardBtn { get; set; }
         /// <summary>
         /// 报表脚本
         /// </summary>
         [Display(Name = "报表脚本")]
-        [Column("REPORT_SCRIPT")]
+        [Column("report_script")]
         public string reportScript { get; set; }
 
         /// <summary>
         /// 图表配置
         /// </summary>
         [Display(Name = "图表配置")]
-        [Column("CHARTS_CFG")]
+        [Column("charts_cfg")]
         public string chartsCfg { get; set; }
 
 
@@ -121,45 +121,19 @@ namespace Models.Entity
         /// </summary>
         [StringLength(50)]
         [Display(Name = "图表类型")]
-        [Column("CHARTS_TYPE")]
+        [Column("charts_type")]
         public string chartsType { get; set; }
 
 
-        /// <summary>
-        /// 统计范围
-        /// </summary>
-        [Display(Name = "统计范围")]
-        [Column("FILTR_LEVEL")]
-        public short filtrLevel { get; set; }
 
-        /// <summary>
-        /// 过滤配置
-        /// </summary>
-        [Display(Name = "过滤配置")]
-        [Column("FILTR_STR")]
-        public string filtrStr { get; set; }
-
-        /// <summary>
-        /// 查询库
-        /// </summary>
-        [Display(Name = "查询库")]
-        [Column("DB_SERVER_ID")]
-        public int dbServerId { get; set; }
 
         /// <summary>
         /// 说明
         /// </summary>
         [Display(Name = "说明")]
-        [Column("REMARK")]
+        [Column("remark")]
         public string remark { get; set; }
 
-        /// <summary>
-        /// 最新时间
-        /// </summary>
-        [StringLength(50)]
-        [Display(Name = "最新时间")]
-        [Column("NEW_DATA")]
-        public string new_data { get; set; }
 
         public string _dictQueryCfgStr { get; set; }
     }

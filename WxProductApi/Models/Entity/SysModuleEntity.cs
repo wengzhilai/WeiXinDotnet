@@ -9,8 +9,8 @@ namespace Models.Entity
     /// <summary>
     /// 登录历史
     /// </summary>
-    [Table("fa_module")]
-    public class FaModuleEntity : BaseModel
+    [Table("sys_module")]
+    public class SysModuleEntity : BaseModel
     {
         /// <summary>
         /// id
@@ -19,91 +19,91 @@ namespace Models.Entity
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
         [Required]
         [Display(Name = "id")]
-        [Column("ID")]
+        [Column("id")]
         public int id { get; set; }
 
         /// <summary>
         /// 父ID
         /// </summary>
         [Display(Name = "父ID")]
-        [Column("PARENT_ID")]
+        [Column("parent_id")]
         public int parentId { get; set; }
 
         /// <summary>
         /// 模块名称
         /// </summary>
         [Display(Name = "模块名称")]
-        [Column("NAME")]
+        [Column("name")]
         public String name { get; set; }
 
         /// <summary>
         /// 连接地址
         /// </summary>
         [Display(Name = "连接地址")]
-        [Column("LOCATION")]
+        [Column("location")]
         public String location { get; set; }
 
         /// <summary>
         /// 代码
         /// </summary>
         [Display(Name = "代码")]
-        [Column("CODE")]
+        [Column("code")]
         public String code { get; set; }
 
         /// <summary>
         /// 调试
         /// </summary>
         [Display(Name = "调试")]
-        [Column("IS_DEBUG")]
+        [Column("is_debug")]
         public Decimal isDebug { get; set; }
 
         /// <summary>
         /// 隐藏
         /// </summary>
         [Display(Name = "隐藏")]
-        [Column("IS_HIDE")]
+        [Column("is_hide")]
         public Decimal isHide { get; set; }
 
         /// <summary>
         /// 排序
         /// </summary>
         [Display(Name = "排序")]
-        [Column("SHOW_ORDER")]
+        [Column("show_order")]
         public Decimal showOrder { get; set; }
 
         /// <summary>
         /// 描述
         /// </summary>
         [Display(Name = "描述")]
-        [Column("DESCRIPTION")]
+        [Column("description")]
         public String description { get; set; }
 
         /// <summary>
         /// 图片地址
         /// </summary>
         [Display(Name = "图片地址")]
-        [Column("IMAGE_URL")]
+        [Column("image_url")]
         public String imageUrl { get; set; }
 
         /// <summary>
         /// 桌面
         /// </summary>
         [Display(Name = "桌面")]
-        [Column("DESKTOP_ROLE")]
+        [Column("desktop_role")]
         public String desktopRole { get; set; }
 
         /// <summary>
         /// 宽
         /// </summary>
         [Display(Name = "宽")]
-        [Column("W")]
+        [Column("w")]
         public int w { get; set; }
 
         /// <summary>
         /// 高
         /// </summary>
         [Display(Name = "高")]
-        [Column("H")]
+        [Column("h")]
         public int h { get; set; }
 
 
@@ -111,6 +111,6 @@ namespace Models.Entity
         /// 所有子项
         /// </summary>
         /// <value></value>
-        public List<FaModuleEntity> children { get; set; }
+        public List<SysModuleEntity> children { get; set; }
     }
 }
