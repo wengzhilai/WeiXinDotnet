@@ -2,9 +2,11 @@
 using Helper;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Options;
 using Models;
 using System.Linq;
 using System.Threading.Tasks;
+using WxProductApi.Config;
 
 namespace WxProductApi.Controllers
 {
@@ -15,6 +17,10 @@ namespace WxProductApi.Controllers
     [ApiController]
     public class TestController : ControllerBase
     {
+        IOptions<AppConfig> appConfig;
+        public TestController(IOptions<AppConfig> _appConfig){
+            appConfig=_appConfig;
+        }
         /// <summary>
         /// 测试超级管理员用户
         /// </summary>
@@ -22,7 +28,7 @@ namespace WxProductApi.Controllers
         /// <returns></returns>
         [HttpPost]
         [Authorize(Roles = "superadmin")]
-        public Result TestUser(DtoKey inEnt)
+        public Result TestUser(DtoKey inEnt )
         {
             Result reEnt = new Result();
             reEnt.success = true;
@@ -41,7 +47,16 @@ namespace WxProductApi.Controllers
         {
             Result reEnt = new Result();
             reEnt.success = true;
-            reEnt.msg = "接口测试成功";
+            reEnt.msg = "接口测试成功："+TypeChange.ObjectToStr(appConfig);
+            return reEnt;
+        }
+        [HttpPost]
+        public async Task<Result> TestDBAsync(DtoKey inEnt)
+        {
+            int i= await new DapperHelper().Exec("SELECT 1 ");
+            Result reEnt = new Result();
+            reEnt.success = true;
+            reEnt.msg = "接口测试成功：数字"+i;
             return reEnt;
         }
         /// <summary>
@@ -50,7 +65,7 @@ namespace WxProductApi.Controllers
         /// <param name="inEnt"></param>
         /// <returns></returns>
         [HttpPost]
-        [Authorize]
+        [Authorize("Adult1")]
         public Result TestAuth(DtoKey inEnt)
         {
             Result reEnt = new Result();

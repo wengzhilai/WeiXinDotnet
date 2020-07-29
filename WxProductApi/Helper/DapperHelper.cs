@@ -18,13 +18,14 @@ namespace Helper
 
     public class DapperHelper : IDisposable
     {
+        public static MysqlSettings mysqlSettings { get; set; }
 
         protected IDbConnection connection;
         protected IDbTransaction transaction = null;
 
         public DapperHelper()
         {
-            var tt = TypeChange.DynamicToKeyValueList(AppConfig.MysqlSettings);
+            var tt = TypeChange.DynamicToKeyValueList(mysqlSettings);
             var alldict = string.Join(";", tt.Select(x => string.Format("{0}={1}", x.Key, x.Value)));
             connection = new MySqlConnection(alldict + ";CharSet=utf8");
         }

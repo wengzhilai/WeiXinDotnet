@@ -16,6 +16,7 @@ using System;
 using Microsoft.AspNetCore.Rewrite;
 using Microsoft.Net.Http.Headers;
 using System.Web;
+using Microsoft.Extensions.Options;
 
 namespace WxProductApi.Controllers
 {
@@ -24,12 +25,17 @@ namespace WxProductApi.Controllers
     public class WeiXinController : ControllerBase
     {
 
+        AppConfig appConfig;
+        public WeiXinController(IOptions<AppConfig> _appConfig){
+            appConfig=_appConfig.Value;
+        }
+
         [HttpGet]
         public string index(string echostr)
         {
 
             PostModel postModel= TypeChange.UrlToEntities<PostModel>(Request.QueryString.Value);
-            if (CheckSignature.Check(postModel.Signature, postModel.Timestamp, postModel.Nonce, AppConfig.WeiXin.Token))
+            if (CheckSignature.Check(postModel.Signature, postModel.Timestamp, postModel.Nonce, appConfig.WeiXin.Token))
             {
                 return echostr; //返回随机字符串则表示验证通过
             }
@@ -45,7 +51,7 @@ namespace WxProductApi.Controllers
         public async Task<string> index()
         {
             PostModel postModel = TypeChange.UrlToEntities<PostModel>(Request.QueryString.Value);
-            if (!CheckSignature.Check(postModel.Signature, postModel.Timestamp, postModel.Nonce, AppConfig.WeiXin.Token))
+            if (!CheckSignature.Check(postModel.Signature, postModel.Timestamp, postModel.Nonce, appConfig.WeiXin.Token))
             {
                 return "参数错误！";
             }
@@ -121,12 +127,12 @@ namespace WxProductApi.Controllers
         [HttpGet]
         public string GetUserInfo(string state,string code){
             if(string.IsNullOrEmpty(code)){
-                var url=Helper.WeiChat.Utility.GetWebpageAuthorization(AppConfig.WeiXin.Appid,$"http://{Request.Host.Host}{Request.Path}",state,false);
+                var url=Helper.WeiChat.Utility.GetWebpageAuthorization(appConfig.WeiXin.Appid,$"http://{Request.Host.Host}{Request.Path}",state,false);
                 Response.Redirect(url);
                 return "";
             }
             else{
-                var reStr=Helper.WeiChat.Utility.GetWebpageUserInfo(AppConfig.WeiXin.Appid,AppConfig.WeiXin.Secret,code);
+                var reStr=Helper.WeiChat.Utility.GetWebpageUserInfo(appConfig.WeiXin.Appid,appConfig.WeiXin.Secret,code);
                 return TypeChange.ObjectToStr(reStr);
             }
         }
@@ -164,7 +170,7 @@ namespace WxProductApi.Controllers
         {
             var reObj = new ResultObj<JsApiModel>();
 
-            var token = Utility.ReadAccessToken(AppConfig.WeiXin.Appid, AppConfig.WeiXin.Secret);
+            var token = Utility.ReadAccessToken(appConfig.WeiXin.Appid, appConfig.WeiXin.Secret);
 
             var jsapiTicket = RedisReadHelper.StringGet("WECHA_JSAPI_TICKET"); ;
             if (string.IsNullOrEmpty(jsapiTicket))
@@ -176,7 +182,7 @@ namespace WxProductApi.Controllers
             reObj.data.noncestr = Guid.NewGuid().ToString("n").Substring(10);
             reObj.data.timestamp = TypeChange.DateToInt64().ToString().Substring(0,10);
             reObj.data.url = inObj.Key;
-            reObj.data.appid = AppConfig.WeiXin.Appid;
+            reObj.data.appid = appConfig.WeiXin.Appid;
 
             reObj.data.signature = CheckSignature.GetSignature(new List<string> { "noncestr=" + reObj.data.noncestr, "timestamp=" + reObj.data.timestamp, "url=" + reObj.data.url, "jsapi_ticket="+jsapiTicket },"&");
             return reObj;
@@ -186,7 +192,7 @@ namespace WxProductApi.Controllers
         [HttpPost]
         public Result MakeMenu()
         {
-            String token = Utility.ReadAccessToken(AppConfig.WeiXin.Appid, AppConfig.WeiXin.Secret);
+            String token = Utility.ReadAccessToken(appConfig.WeiXin.Appid, appConfig.WeiXin.Secret);
             MenuModel makeMenu = new MenuModel();
             makeMenu.button = new LinkedList<MenuNodeModel>();
             //makeMenu.button.AddLast(new MenuNodeModel()
@@ -234,7 +240,7 @@ namespace WxProductApi.Controllers
         {
             var reObj = new Result();
             // var allUser = await staff.getStaffList();
-            var token = Utility.ReadAccessToken(AppConfig.WeiXin.Appid, AppConfig.WeiXin.Secret);
+            var token = Utility.ReadAccessToken(appConfig.WeiXin.Appid, appConfig.WeiXin.Secret);
 
 
             if (!string.IsNullOrEmpty(token))

@@ -13,16 +13,16 @@ namespace WxProductApi.Config
         /// <summary>
         /// 配置
         /// </summary>
-        public static ConfigWebConfig WebConfig { get; set; } = new ConfigWebConfig();
-        public static WeiXin WeiXin { get; set; } = new WeiXin();
+        public ConfigWebConfig WebConfig { get; set; } = new ConfigWebConfig();
+        public WeiXin WeiXin { get; set; } = new WeiXin();
 
-        public static MysqlSettings MysqlSettings { get; set; }
+        public MysqlSettings MysqlSettings { get; set; }
 
         /// <summary>
         /// 基本配置
         /// </summary>
         /// <returns></returns>
-        public static BaseConfig BaseConfig { get; set; }
+        public BaseConfig BaseConfig { get; set; }
     }
 
     /// <summary>

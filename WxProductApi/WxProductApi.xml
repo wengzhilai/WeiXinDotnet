@@ -428,6 +428,11 @@
             <param name="inObj"></param>
             <returns></returns>
         </member>
+        <member name="T:WxProductApi.MiddlewareToken">
+            <summary>
+            token验证中间件
+            </summary>
+        </member>
         <member name="P:WxProductApi.Startup.Configuration">
             <summary>
             读取配置
@@ -445,6 +450,14 @@
             环境
             </summary>
             <value></value>
+        </member>
+        <member name="M:WxProductApi.Startup.Configure(Microsoft.AspNetCore.Builder.IApplicationBuilder,Microsoft.AspNetCore.Hosting.IWebHostEnvironment,Microsoft.Extensions.Options.IOptions{WxProductApi.Config.AppConfig})">
+            <summary>
+            This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
+            </summary>
+            <param name="app"></param>
+            <param name="env"></param>
+            <param name="_appConfig"></param>
         </member>
         <member name="T:WebApi.Controllers.UpFileController">
             <summary>

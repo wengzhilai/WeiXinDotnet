@@ -12,11 +12,19 @@ using Dapper;
 using System.Data;
 using System.Linq.Expressions;
 using WxProductApi.Config;
+using Microsoft.Extensions.Options;
 
 namespace Repository
 {
     public class LoginRepository : ILoginRepository
     {
+
+        AppConfig appConfig;
+        public LoginRepository(IOptions<AppConfig> _appConfig){
+            appConfig=_appConfig.Value;
+        }
+
+        
         /// <summary>
         /// 获取单条
         /// </summary>
@@ -89,11 +97,11 @@ namespace Repository
                 return reObj;
             }
 
-            if (!Fun.CheckPassword(inEnt.password, AppConfig.BaseConfig.PwdComplexity))
+            if (!Fun.CheckPassword(inEnt.password, appConfig.BaseConfig.PwdComplexity))
             {
                 reObj.success = false;
                 reObj.code = "-2";
-                reObj.msg = string.Format("密码复杂度不够：{0}", AppConfig.BaseConfig.PwdComplexity);
+                reObj.msg = string.Format("密码复杂度不够：{0}", appConfig.BaseConfig.PwdComplexity);
                 return reObj;
             }
             #endregion
@@ -128,7 +136,7 @@ namespace Repository
             //开始事务
             try
             {
-                var loginList = await new LoginRepository().FindAll(x => x.loginName == inEnt.loginName);
+                var loginList = await FindAll(x => x.loginName == inEnt.loginName);
                 #region 添加登录账号
                 if (loginList.Count() == 0)
                 {
@@ -352,7 +360,7 @@ namespace Repository
             //    return reObj;
             //}
             //检测密码复杂度
-            if (!Fun.CheckPassword(inEnt.NewPwd, AppConfig.BaseConfig.PwdComplexity))
+            if (!Fun.CheckPassword(inEnt.NewPwd, appConfig.BaseConfig.PwdComplexity))
             {
                 reObj.success = false;
                 reObj.msg = "密码复杂度不够：";
@@ -385,11 +393,11 @@ namespace Repository
                 reObj.msg = "两次密码不一致";
                 return reObj;
             }
-            if (!Fun.CheckPassword(inEnt.NewPwd, AppConfig.BaseConfig.PwdComplexity))
+            if (!Fun.CheckPassword(inEnt.NewPwd, appConfig.BaseConfig.PwdComplexity))
             {
                 reObj.success = false;
                 reObj.code = "-2";
-                reObj.msg = string.Format("密码复杂度不够：{0}", AppConfig.BaseConfig.PwdComplexity);
+                reObj.msg = string.Format("密码复杂度不够：{0}", appConfig.BaseConfig.PwdComplexity);
                 return reObj;
             }
             DapperHelper<SysLoginEntity> dapper = new DapperHelper<SysLoginEntity>();

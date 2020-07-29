@@ -24,6 +24,8 @@ using Newtonsoft.Json;
 using Microsoft.AspNetCore.Mvc.NewtonsoftJson;
 using Newtonsoft.Json.Serialization;
 using Microsoft.OpenApi.Models;
+using Microsoft.Extensions.Options;
+using Microsoft.AspNetCore.Authorization;
 
 namespace WxProductApi
 {
@@ -50,28 +52,41 @@ namespace WxProductApi
         /// <value></value>
         public IWebHostEnvironment WebHostEnvironment { get; }
 
-        
-        public Startup(IConfiguration configuration,IWebHostEnvironment webHostEnvironment)
+
+        public Startup(IConfiguration configuration, IWebHostEnvironment webHostEnvironment)
         {
             Configuration = configuration;
             WebHostEnvironment = webHostEnvironment;
             //log4net
             repository = LogManager.CreateRepository("NETCoreRepository");
             XmlConfigurator.Configure(repository, new FileInfo("Config/log4net.config"));
-            Configuration.Bind("WeiXin", AppConfig.WeiXin);
         }
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-
-           #region 注入
+            //把配置选项注入进来
+            services.Configure<AppConfig>(Configuration);
+            #region 注入
             services.TryAddSingleton<ILoginRepository, LoginRepository>();
             services.TryAddSingleton<IModuleRepository, ModuleRepository>();
             services.TryAddSingleton<IQueryRepository, QueryRepository>();
             services.TryAddSingleton<IRoleRepository, RoleRepository>();
             services.TryAddSingleton<IUserRepository, UserRepository>();
             #endregion
+
+
+            //添加二种认证策略，一种以12岁为界限，一种是18岁
+            services.AddAuthorization(options =>
+            {
+                options.AddPolicy("Adult1", policy =>
+                    policy.Requirements.Add(new AdultPolicyRequirement(12)));
+                options.AddPolicy("Adult2", policy =>
+                    policy.Requirements.Add(new AdultPolicyRequirement(18)));
+            });
+            //添加策略验证handler
+            services.AddSingleton<IAuthorizationHandler, AdultAuthorizationHandler>();
+
 
             services.AddCors(options =>
             {
@@ -104,8 +119,10 @@ namespace WxProductApi
                     Title = "用户文档",
                     Version = "v1",
                     Description = "用于前端和后端调用",
-                    Contact = new OpenApiContact { 
-                        Name = "翁志来", Email = "3188894@qq.com" 
+                    Contact = new OpenApiContact
+                    {
+                        Name = "翁志来",
+                        Email = "3188894@qq.com"
                     }
                 });
 
@@ -142,7 +159,7 @@ namespace WxProductApi
 
 
             services.AddControllers();
-            
+
             services.Configure<FormOptions>(x =>
             {
                 x.ValueLengthLimit = int.MaxValue;
@@ -150,26 +167,24 @@ namespace WxProductApi
             });
         }
 
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        /// <summary>
+        /// This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
+        /// </summary>
+        /// <param name="app"></param>
+        /// <param name="env"></param>
+        /// <param name="_appConfig"></param>
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, IOptions<AppConfig> _appConfig)
         {
+            //配置数据库连接
+            Helper.DapperHelper.mysqlSettings = _appConfig.Value.MysqlSettings;
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
             }
 
             // app.UseHttpsRedirection();
-
-            app.UseRouting();
-
-            app.UseCors(MyAllowSpecificOrigins);
-
-            app.UseAuthorization();
-
-            app.UseEndpoints(endpoints =>
-            {
-                endpoints.MapControllers();
-            });
+            app.UseMiddleware<MiddlewareToken>();
 
             #region 使用SwaggerUI
 
@@ -182,6 +197,19 @@ namespace WxProductApi
             });
 
             #endregion
+
+            app.UseRouting();
+            // 跨域必须要 routing后面
+            app.UseCors(MyAllowSpecificOrigins);
+            //启用验证 必须在cors下面
+            app.UseAuthentication();//
+            app.UseAuthorization();
+            app.UseEndpoints(endpoints =>
+            {
+                endpoints.MapControllers();
+            });
+
+
         }
     }
 }
