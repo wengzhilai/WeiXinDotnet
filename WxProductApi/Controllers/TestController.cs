@@ -65,7 +65,7 @@ namespace WxProductApi.Controllers
         /// <param name="inEnt"></param>
         /// <returns></returns>
         [HttpPost]
-        [Authorize("Adult1")]
+        [Authorize]
         public Result TestAuth(DtoKey inEnt)
         {
             Result reEnt = new Result();

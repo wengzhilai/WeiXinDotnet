@@ -24,16 +24,14 @@ namespace WxProductApi.Controllers
     [Authorize]
     public class LoginController : ControllerBase, ILoginController
     {
-        private readonly IHttpClientFactory clientFactory;
         ILoginRepository _login;
         /// <summary>
         /// 
         /// </summary>
         /// <param name="clientFactory"></param>
         /// <param name="login"></param>
-        public LoginController(IHttpClientFactory clientFactory, ILoginRepository login)
+        public LoginController( ILoginRepository login)
         {
-            this.clientFactory = clientFactory;
             _login = login;
         }
 
@@ -53,10 +51,10 @@ namespace WxProductApi.Controllers
             {
                 var client = new HttpClient();
 
-                var paras = new Dictionary<string, string>();
-                paras.Add("userObjJson", TypeChange.ObjectToStr(loginResult.data));
-                var tokeStr=Fun.HashEncrypt($"{DataTimeHelper.getDateLong(DateTime.Now)}|{loginResult.data.id}|{loginResult.data.loginName}|{loginResult.data.name}");
-                
+                // var paras = new Dictionary<string, string>();
+                // paras.Add("userObjJson", TypeChange.ObjectToStr(loginResult.data));
+                // var tokeStr=Fun.HashEncrypt($"{DataTimeHelper.getDateLong(DateTime.Now)}|{loginResult.data.id}|{loginResult.data.loginName}|{loginResult.data.name}");
+                var tokeStr=Helper.AuthHelper.GenerateToken(loginResult.data);
                 reobj.success = true;
                 reobj.code = tokeStr;
                 reobj.data = TypeChange.ObjectToStr(reobj);

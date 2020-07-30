@@ -26,6 +26,12 @@ using Newtonsoft.Json.Serialization;
 using Microsoft.OpenApi.Models;
 using Microsoft.Extensions.Options;
 using Microsoft.AspNetCore.Authorization;
+using Helper;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.IdentityModel.Tokens;
+using System.Text;
 
 namespace WxProductApi
 {
@@ -75,17 +81,31 @@ namespace WxProductApi
             services.TryAddSingleton<IUserRepository, UserRepository>();
             #endregion
 
+            #region JWT Config
 
-            //添加二种认证策略，一种以12岁为界限，一种是18岁
-            services.AddAuthorization(options =>
+            //nossa key secreta
+            var secretKey = "ZGVtby1hcGktand0";
+
+            services.AddAuthentication(x =>
             {
-                options.AddPolicy("Adult1", policy =>
-                    policy.Requirements.Add(new AdultPolicyRequirement(12)));
-                options.AddPolicy("Adult2", policy =>
-                    policy.Requirements.Add(new AdultPolicyRequirement(18)));
+                x.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                x.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+            })
+            .AddJwtBearer(x =>
+            {
+                x.RequireHttpsMetadata = false;
+                x.SaveToken = true;
+                x.TokenValidationParameters = new TokenValidationParameters
+                {
+                    ValidateIssuerSigningKey = true,
+                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(secretKey)),
+                    ValidateIssuer = false,
+                    ValidateAudience = false
+                };
             });
-            //添加策略验证handler
-            services.AddSingleton<IAuthorizationHandler, AdultAuthorizationHandler>();
+
+            #endregion
+
 
 
             services.AddCors(options =>
@@ -184,7 +204,6 @@ namespace WxProductApi
             }
 
             // app.UseHttpsRedirection();
-            app.UseMiddleware<MiddlewareToken>();
 
             #region 使用SwaggerUI
 
@@ -202,8 +221,9 @@ namespace WxProductApi
             // 跨域必须要 routing后面
             app.UseCors(MyAllowSpecificOrigins);
             //启用验证 必须在cors下面
-            app.UseAuthentication();//
+            app.UseAuthentication();
             app.UseAuthorization();
+
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();

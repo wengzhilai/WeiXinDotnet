@@ -8,46 +8,41 @@ namespace Models.Entity
     /// <summary>
     /// 系统角色
     /// </summary>
-    [Table("fa_user_role ur LEFT JOIN fa_user u on u.ID=ur.USER_ID LEFT JOIN fa_role r on r.ID=ur.ROLE_ID ")]
+    [Table("sys_user_role ur LEFT JOIN sys_user u on u.ID=ur.user_id LEFT JOIN sys_role r on r.ID=ur.role_id ")]
     public class FaUserRoleEntityView
     {
         /// <summary>
         /// 角色名
         /// </summary>
         [StringLength(80)]
-        [Display(Name = "角色名")]
-        [Column("r.`NAME`")]
+        [Column("r.`name`")]
         public string roleName { get; set; }
 
         /// <summary>
         /// 类型
         /// </summary>
-        [Display(Name = "类型")]
-        [Column("r.`TYPE`")]
+        [Column("r.`type`")]
         public Nullable<int> roleType { get; set; }
 
         /// <summary>
         /// ROLE_ID
         /// </summary>
         [Required]
-        [Display(Name = "ROLE_ID")]
-        [Column("ur.ROLE_ID")]
+        [Column("ur.role_id")]
         public int roleId { get; set; }
         /// <summary>
         /// USER_ID
         /// </summary>
         [Required]
         [Key]
-        [Display(Name = "USER_ID")]
-        [Column("ur.USER_ID")]
+        [Column("ur.user_id")]
         public int userId { get; set; }
 
         /// <summary>
         /// 用户姓名
         /// </summary>
         [StringLength(80)]
-        [Display(Name = "用户姓名")]
-        [Column("u.`NAME`")]
+        [Column("u.`name`")]
         public string userName { get; set; }
     }
 }
