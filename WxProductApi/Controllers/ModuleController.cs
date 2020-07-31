@@ -35,6 +35,7 @@ namespace WxProductApi.Controllers
         /// </summary>
         /// <returns></returns>
         [HttpPost]
+        [Authorize]
         async public Task<ResultObj<SysModuleEntity>> getUserMenu()
         {
             var reObj = new ResultObj<SysModuleEntity>();
@@ -42,8 +43,8 @@ namespace WxProductApi.Controllers
             {
                 //var allKey = User.Claims.Select(x => new KV { K = x.Type, V = x.Value }).ToList();
 
-                var userId = User.Claims.Single(a => a.Type == "id").Value;
-
+                // var userId = User.Claims.Single(a => a.Type == "id").Value;
+                var userId=1;
                 reObj = await this._respoitory.GetMGetMenuByUserId(Convert.ToInt32(userId));
             }
             catch (Exception e)
