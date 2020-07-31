@@ -70,7 +70,7 @@ namespace WxProductApi.Controllers
         {
             Result reEnt = new Result();
             reEnt.success = true;
-            reEnt.msg = "权限接口测试成功";
+            reEnt.msg = "权限接口测试成功："+User.Identity.Name;
             return reEnt;
         }
     }

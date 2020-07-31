@@ -14,12 +14,26 @@ namespace WxProductApi.Config
         /// 配置
         /// </summary>
         public ConfigWebConfig WebConfig { get; set; } = new ConfigWebConfig();
+        /// <summary>
+        /// 微信配置
+        /// </summary>
+        /// <returns></returns>
         public WeiXin WeiXin { get; set; } = new WeiXin();
 
+        /// <summary>
+        /// jwtKey配置
+        /// </summary>
+        /// <value></value>
+        public string JwtKey{get;set;}
+
+        /// <summary>
+        /// 数据库配置
+        /// </summary>
+        /// <value></value>
         public MysqlSettings MysqlSettings { get; set; }
 
         /// <summary>
-        /// 基本配置
+        /// 系统验证
         /// </summary>
         /// <returns></returns>
         public BaseConfig BaseConfig { get; set; }

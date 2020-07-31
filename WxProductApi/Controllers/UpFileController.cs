@@ -14,7 +14,7 @@ namespace WebApi.Controllers
     /// <summary>
     /// 授权管理
     /// </summary>
-    [Route("[controller]/[action]")]
+    [Route("file/[controller]/[action]")]
     [EnableCors("AllowSameDomain")]
     [ApiController]
     public class UpFileController : ControllerBase

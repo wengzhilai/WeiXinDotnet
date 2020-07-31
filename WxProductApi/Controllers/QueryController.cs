@@ -14,7 +14,7 @@ namespace WxProductApi.Controllers
     /// <summary>
     /// 
     /// </summary>
-    [Route("[controller]/[action]")]
+    [Route("user/[controller]/[action]")]
     [ApiController]
     [EnableCors]
     [Authorize]

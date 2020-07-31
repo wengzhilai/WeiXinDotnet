@@ -14,9 +14,27 @@
             配置
             </summary>
         </member>
+        <member name="P:WxProductApi.Config.AppConfig.WeiXin">
+            <summary>
+            微信配置
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="P:WxProductApi.Config.AppConfig.JwtKey">
+            <summary>
+            jwtKey配置
+            </summary>
+            <value></value>
+        </member>
+        <member name="P:WxProductApi.Config.AppConfig.MysqlSettings">
+            <summary>
+            数据库配置
+            </summary>
+            <value></value>
+        </member>
         <member name="P:WxProductApi.Config.AppConfig.BaseConfig">
             <summary>
-            基本配置
+            系统验证
             </summary>
             <returns></returns>
         </member>
@@ -428,6 +446,17 @@
             <param name="inObj"></param>
             <returns></returns>
         </member>
+        <member name="T:WxProductApi.Global">
+            <summary>
+            公共配置
+            </summary>
+        </member>
+        <member name="P:WxProductApi.Global.appConfig">
+            <summary>
+            配置信息
+            </summary>
+            <value></value>
+        </member>
         <member name="T:WxProductApi.MiddlewareToken">
             <summary>
             token验证中间件
@@ -514,6 +543,18 @@
             删除单条
             </summary>
             <param name="inEnt"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Helper.AuthHelper">
+            <summary>
+            授权
+            </summary>
+        </member>
+        <member name="M:Helper.AuthHelper.GenerateToken(Models.Entity.SysUserEntity)">
+            <summary>
+            生成token
+            </summary>
+            <param name="user"></param>
             <returns></returns>
         </member>
         <member name="M:Helper.DapperHelper.TranscationBegin">

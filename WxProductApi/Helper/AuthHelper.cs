@@ -8,19 +8,25 @@ using System.Text;
 
 namespace Helper
 {
+    /// <summary>
+    /// 授权
+    /// </summary>
     public class AuthHelper
     {
+        /// <summary>
+        /// 生成token
+        /// </summary>
+        /// <param name="user"></param>
+        /// <returns></returns>
         public static string GenerateToken(SysUserEntity user)
         {
-            var tokenHandler = new JwtSecurityTokenHandler();
-
             //chave secreta
-            var key = Encoding.ASCII.GetBytes("ZGVtby1hcGktand0");
-
+            var key =Encoding.ASCII.GetBytes( WxProductApi.Global.appConfig.JwtKey);
             var tokenDescriptor = new SecurityTokenDescriptor
             {
                 Subject = new ClaimsIdentity(new Claim[]
                 {
+                    new Claim("id", user.id.ToString()),
                     new Claim(ClaimTypes.Name, user.name.ToString()),
                     new Claim(ClaimTypes.Role, RoleFactory(user.roleIdList))
                 }),
@@ -28,9 +34,8 @@ namespace Helper
 
                 SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)
             };
-
+            var tokenHandler = new JwtSecurityTokenHandler();
             var token = tokenHandler.CreateToken(tokenDescriptor);
-
             return tokenHandler.WriteToken(token);
         }
 

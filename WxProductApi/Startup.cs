@@ -197,6 +197,8 @@ namespace WxProductApi
         {
             //配置数据库连接
             Helper.DapperHelper.mysqlSettings = _appConfig.Value.MysqlSettings;
+            //读取配置
+            Global.appConfig=_appConfig.Value;
 
             if (env.IsDevelopment())
             {
