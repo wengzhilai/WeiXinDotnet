@@ -807,6 +807,23 @@
             <param name="sKey"></param> 
             <returns></returns> 
         </member>
+        <member name="M:Helper.ImageHelper.Resize(System.String,System.Int32,System.Int32)">
+            <summary>
+            重置图片
+            </summary>
+            <param name="filePath"></param>
+            <param name="minW"></param>
+            <param name="minH"></param>
+        </member>
+        <member name="M:Helper.ImageHelper.ResizeBitmap(System.IO.FileStream,System.Int32,System.Int32)">
+            <summary>
+            重置图片
+            </summary>
+            <param name="pngStream"></param>
+            <param name="minW"></param>
+            <param name="minH"></param>
+            <returns></returns>
+        </member>
         <member name="T:Helper.LambdaToSqlHelper.EnumNodeType">
             <summary>
             NodeType枚举

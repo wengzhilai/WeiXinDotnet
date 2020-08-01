@@ -38,6 +38,7 @@ namespace WebApi.Controllers
         [RequestSizeLimit(100_000_000)] //最大100m左右
         async public Task<ResultObj<FilesEntity>> UploadPhotos()
         {
+
             ResultObj<FilesEntity> reEnt = new ResultObj<FilesEntity>();
 
             var files = Request.Form.Files;
@@ -51,7 +52,9 @@ namespace WebApi.Controllers
                 if (formFile.Length > 0)
                 {
                     var fileName = formFile.FileName;
+                    var fileName_min = formFile.FileName.Replace(".","_min.");
                     var filePath = Path.Combine(fileFolder, fileName);
+                    var filePath_min = Path.Combine(fileFolder, fileName_min);
                     
                     var allPath = Path.Combine(_env.ContentRootPath, "wwwroot/" + filePath);
                     using (var stream = new FileStream(allPath, FileMode.Create))
@@ -59,8 +62,19 @@ namespace WebApi.Controllers
                         await formFile.CopyToAsync(stream);
                         reEnt.success = true;
                         reEnt.msg = filePath;
-                        byte[] bytes=new byte[stream.Length];
-                        stream.Read(bytes,0,(int)stream.Length);
+
+                        byte[] bytes=Helper.ImageHelper.ResizeByte(stream,100,100);
+
+                        using (var stream_min = new FileStream(Path.Combine(_env.ContentRootPath, "wwwroot/" + filePath_min), FileMode.Create))
+                        {
+                            stream_min.Write(bytes);
+                            stream_min.Close();
+                        }
+
+                        // BinaryReader r = new BinaryReader(stream);
+                        // r.BaseStream.Seek(0, SeekOrigin.Begin);    //将文件指针设置到文件开
+                        // bytes = r.ReadBytes((int)r.BaseStream.Length);
+                        
                         reEnt.data = new FilesEntity
                         {
                             id=0,
