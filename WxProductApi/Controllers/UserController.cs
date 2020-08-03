@@ -9,9 +9,8 @@ using System;
 using Helper;
 using Microsoft.AspNetCore.Cors;
 using Models.Entity;
-using WxProductApi.Controllers;
 
-namespace ApiUser.Controllers
+namespace WxProductApi.Controllers
 {
     /// <summary>
     /// 

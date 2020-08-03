@@ -38,7 +38,7 @@ namespace WxProductApi.Controllers
             return reEnt;
         }
         /// <summary>
-        /// 接口测试
+        /// 测试配置
         /// </summary>
         /// <param name="inEnt"></param>
         /// <returns></returns>
@@ -50,8 +50,13 @@ namespace WxProductApi.Controllers
             reEnt.msg = "接口测试成功："+TypeChange.ObjectToStr(appConfig);
             return reEnt;
         }
+        /// <summary>
+        /// 测试数据连接
+        /// </summary>
+        /// <param name="inEnt"></param>
+        /// <returns></returns>
         [HttpPost]
-        public async Task<Result> TestDBAsync(DtoKey inEnt)
+        public async Task<Result> TestDB(DtoKey inEnt)
         {
             int i= await new DapperHelper().Exec("SELECT 1 ");
             Result reEnt = new Result();

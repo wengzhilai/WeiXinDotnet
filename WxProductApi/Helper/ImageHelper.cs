@@ -7,6 +7,9 @@ using System.Collections.Generic;
 
 namespace Helper
 {
+    /// <summary>
+    /// 图片处理
+    /// </summary>
     public class ImageHelper
     {
         private static List<int> ZoomImage(int sourWidth, int sourHeight, int destHeight, int destWidth)
@@ -73,7 +76,7 @@ namespace Helper
                 var sizeList = ZoomImage(image.Width, image.Height, minW, minH);
                 width = sizeList[0];
                 height = sizeList[1];
-                var resized = new Bitmap(width, height);
+                Bitmap resized = new Bitmap(width, height);
                 using (var graphics = Graphics.FromImage(resized))
                 {
                     graphics.CompositingQuality = CompositingQuality.HighSpeed;
@@ -81,9 +84,17 @@ namespace Helper
                     graphics.CompositingMode = CompositingMode.SourceCopy;
                     graphics.DrawImage(image, 0, 0, width, height);
                 }
-                return resized;
+                Bitmap resized1 = resized;
+                return resized1;
             }
         }
+        /// <summary>
+        /// 缩放图片
+        /// </summary>
+        /// <param name="pngStream"></param>
+        /// <param name="minW"></param>
+        /// <param name="minH"></param>
+        /// <returns></returns>
         public static byte[] ResizeByte(FileStream pngStream, int minW, int minH)
         {
             Bitmap b = ResizeBitmap(pngStream, minW, minH);

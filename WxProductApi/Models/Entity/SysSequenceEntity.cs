@@ -8,8 +8,8 @@ namespace Models.Entity
     /// <summary>
     /// 
     /// </summary>
-    [Table("sequence")]
-    public class SequenceEntity
+    [Table("sys_sequence")]
+    public class SysSequenceEntity
     {
 
         /// <summary>
@@ -18,7 +18,7 @@ namespace Models.Entity
         [Key]
         [Required]
         [Display(Name = "表名")]
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]
+        [DatabaseGenerated(DatabaseGeneratedOption.Computed)]
         [StringLength(20)]
         [Column]
         public string seq_name { get; set; }

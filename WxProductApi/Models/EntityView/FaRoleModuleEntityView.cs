@@ -18,7 +18,7 @@ namespace Models
         /// 角色名
         /// </summary>
         [Display(Name = "角色名")]
-        [Column("b.name RoleName")]
+        [Column("b.name")]
         public string RoleName { get; set; }
 
         /// <summary>

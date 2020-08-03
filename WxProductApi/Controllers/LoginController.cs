@@ -4,7 +4,6 @@ using System.Linq;
 using System.Net.Http;
 using System.Security.Claims;
 using System.Threading.Tasks;
-using ApiUser.Controllers;
 using Helper;
 using IRepository;
 using Microsoft.AspNetCore.Authorization;

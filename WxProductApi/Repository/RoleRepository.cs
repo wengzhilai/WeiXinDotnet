@@ -100,7 +100,7 @@ namespace Repository
 
                 if (inEnt.data.id == 0)
                 {
-                    inEnt.data.id = await new SequenceRepository().GetNextID<SysRoleEntity>();
+                    inEnt.data.id = await SequenceRepository.GetNextID<SysRoleEntity>();
                     reObj.data = await dbHelper.Save(inEnt);
                 }
                 else
@@ -120,9 +120,8 @@ namespace Repository
                     var parent = allModule.GroupBy(i => i.parentId).Select(x => x.Key).Where(x => x != 0).Select(x => x).ToList();
                     moduleIdList = moduleIdList.Concat(parent).ToList();
                     moduleIdList=moduleIdList.GroupBy(i=>i).Select(i=>i.Key).ToList();
-                    new DapperHelper().Init(dbHelper.GetConnection(), dbHelper.GetTransaction());
-                    await new DapperHelper().Exec("delete from fa_role_module where ROLE_ID = " + inEnt.data.id);
-                    var opNum = await new DapperHelper().Exec(string.Format("insert into fa_role_module(ROLE_ID,MODULE_ID) select {0} ROLE_ID,ID MODULE_ID from fa_module where ID IN ({1}) ", inEnt.data.id, string.Join(",", moduleIdList)));
+                    await dbHelper.Exec("delete from sys_role_module where role_id = " + inEnt.data.id);
+                    var opNum = await dbHelper.Exec(string.Format("insert into sys_role_module(role_id,module_id) select {0} role_id,id module_id from sys_module where id in ({1}) ", inEnt.data.id, string.Join(",", moduleIdList)));
                     if (opNum != moduleIdList.Count())
                     {
                         reObj.success = false;

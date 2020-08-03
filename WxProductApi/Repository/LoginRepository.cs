@@ -141,7 +141,7 @@ namespace Repository
                 if (loginList.Count() == 0)
                 {
                     SysLoginEntity inLogin = new SysLoginEntity();
-                    inLogin.id = await new SequenceRepository().GetNextID<SysLoginEntity>();
+                    inLogin.id = await SequenceRepository.GetNextID<SysLoginEntity>();
                     inLogin.loginName = inEnt.loginName;
                     inLogin.password = inEnt.password.Md5();
                     inLogin.isLocked = 0;
@@ -165,7 +165,7 @@ namespace Repository
                 SysUserEntity inUser = new SysUserEntity();
                 inUser.loginName = inEnt.loginName;
                 inUser.name = inEnt.userName;
-                inUser.id = await new SequenceRepository().GetNextID<SysUserEntity>();
+                inUser.id = await SequenceRepository.GetNextID<SysUserEntity>();
                 inUser.districtId = 1;
                 inUser.createTime =Helper.DataTimeHelper.getDateLong(DateTime.Now);
                 inUser.status = 1;
@@ -220,7 +220,7 @@ namespace Repository
             {
                 return reObj;
             }
-            if (inEnt.data.ID == 0) inEnt.data.ID = await new SequenceRepository().GetNextID<SysLoginHistoryEntity>();
+            if (inEnt.data.ID == 0) inEnt.data.ID = await SequenceRepository.GetNextID<SysLoginHistoryEntity>();
             //记录登录日志
             await new LoginHistoryRepository().Save(inEnt);
 
@@ -526,7 +526,7 @@ namespace Repository
             if (login == null)
             {
                 SysLoginEntity inLogin = new SysLoginEntity();
-                inLogin.id = await new SequenceRepository().GetNextID<SysLoginEntity>();
+                inLogin.id = await SequenceRepository.GetNextID<SysLoginEntity>();
                 inLogin.loginName = NewLoginName;
                 inLogin.password = string.IsNullOrEmpty(pwd) ? NewLoginName.Md5() : pwd.Md5();
                 inLogin.isLocked = 0;

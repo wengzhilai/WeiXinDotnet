@@ -79,6 +79,7 @@ namespace WxProductApi
             services.TryAddSingleton<IQueryRepository, QueryRepository>();
             services.TryAddSingleton<IRoleRepository, RoleRepository>();
             services.TryAddSingleton<IUserRepository, UserRepository>();
+            services.TryAddSingleton<IFileRepository, FileRepository>();
             #endregion
 
             #region JWT Config

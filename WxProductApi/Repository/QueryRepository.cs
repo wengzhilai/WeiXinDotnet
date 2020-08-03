@@ -48,7 +48,7 @@ namespace Repository
             if (string.IsNullOrEmpty(inEnt.orderStr)) inEnt.orderStr = "(SELECT 0)";
             try
             {
-                reObj.dataList = new DapperHelper().Query(AllSql);
+                reObj.dataList = dal.Query(AllSql);
                 reObj.total = reObj.dataList.Count();
 
             }
@@ -95,7 +95,7 @@ namespace Repository
             try
             {
                 reObj.msg = AllSql;
-                reObj.data = new DapperHelper().ExecuteBytesAsync(AllSql);
+                reObj.data = dal.ExecuteBytesAsync(AllSql);
             }
             catch
             {
@@ -130,13 +130,13 @@ namespace Repository
                 var sqlList = reObj.msg.Split(';');
                 if (sqlList.Count() > 0)
                 {
-                    reObj.dataList = new DapperHelper().Query(sqlList[0]);
+                    reObj.dataList = dal.Query(sqlList[0]);
                 }
 
                 if (sqlList.Count() > 1)
                 {
                     int allNum = 0;
-                    int.TryParse(await new DapperHelper().ExecuteScalarAsync(sqlList[1]), out allNum);
+                    int.TryParse(await dal.ExecuteScalarAsync(sqlList[1]), out allNum);
                     reObj.total = allNum;
                 }
             }
@@ -177,7 +177,7 @@ namespace Repository
             try
             {
 
-                DataTable dt = new DapperHelper().GetDataTable(reObj.msg);
+                DataTable dt = dal.GetDataTable(reObj.msg);
                 for (int i = 0; i < dt.Columns.Count; i++)
                 {
                     var t = dt.Columns[i];
@@ -411,7 +411,7 @@ SELECT COUNT(1) ALL_NUM FROM ({0}) T {4}
         public async Task<int> Save(DtoSave<SysQueryEntity> inEnt)
         {
             if(inEnt.data.id==0){
-                inEnt.data.id=await new SequenceRepository().GetNextID<SysQueryEntity>();
+                inEnt.data.id=await SequenceRepository.GetNextID<SysQueryEntity>();
             }
             return await dal.Save(inEnt);
         }

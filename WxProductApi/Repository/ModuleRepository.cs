@@ -65,7 +65,7 @@ namespace Repository
             ResultObj<int> reObj = new ResultObj<int>();
             if (inEnt.data.id == 0)
             {
-                inEnt.data.id = await new SequenceRepository().GetNextID<SysModuleEntity>();
+                inEnt.data.id = await SequenceRepository.GetNextID<SysModuleEntity>();
                 reObj.data = await dbHelper.Save(inEnt);
             }
             else

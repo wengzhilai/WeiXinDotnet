@@ -38,6 +38,12 @@
             </summary>
             <returns></returns>
         </member>
+        <member name="P:WxProductApi.Config.AppConfig.FileCfg">
+            <summary>
+            图片配置
+            </summary>
+            <value></value>
+        </member>
         <member name="T:WxProductApi.Config.ConfigWebConfig">
             <summary>
             配置
@@ -63,6 +69,29 @@
         <member name="P:WxProductApi.Config.BaseConfig.PwdComplexity">
             <summary>
             密码复杂度
+            </summary>
+            <value></value>
+        </member>
+        <member name="T:WxProductApi.Config.FileCfg">
+            <summary>
+            图片配置
+            </summary>
+        </member>
+        <member name="P:WxProductApi.Config.FileCfg.path">
+            <summary>
+            图片存放路径
+            </summary>
+            <value></value>
+        </member>
+        <member name="P:WxProductApi.Config.FileCfg.min_w">
+            <summary>
+            生成小图片宽
+            </summary>
+            <value></value>
+        </member>
+        <member name="P:WxProductApi.Config.FileCfg.min_h">
+            <summary>
+            生成小图片高
             </summary>
             <value></value>
         </member>
@@ -420,7 +449,14 @@
         </member>
         <member name="M:WxProductApi.Controllers.TestController.Test(Models.DtoKey)">
             <summary>
-            接口测试
+            测试配置
+            </summary>
+            <param name="inEnt"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WxProductApi.Controllers.TestController.TestDB(Models.DtoKey)">
+            <summary>
+            测试数据连接
             </summary>
             <param name="inEnt"></param>
             <returns></returns>
@@ -428,6 +464,63 @@
         <member name="M:WxProductApi.Controllers.TestController.TestAuth(Models.DtoKey)">
             <summary>
             权限接口测试
+            </summary>
+            <param name="inEnt"></param>
+            <returns></returns>
+        </member>
+        <member name="T:WxProductApi.Controllers.UpFileController">
+            <summary>
+            授权管理
+            </summary>
+        </member>
+        <member name="M:WxProductApi.Controllers.UpFileController.#ctor(Microsoft.AspNetCore.Hosting.IWebHostEnvironment,IRepository.IFileRepository)">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:WxProductApi.Controllers.UpFileController.UploadPhotos">
+            <summary>
+            图片上传
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:WxProductApi.Controllers.UpFileController.LookfileByPath(System.String,System.String,System.String)">
+            <summary>
+            根据路径查看图片
+            </summary>
+            <param name="dir"></param>
+            <param name="fileName"></param>
+            <param name="type"></param>
+            <returns></returns>
+        </member>
+        <member name="T:WxProductApi.Controllers.UserController">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:WxProductApi.Controllers.UserController.#ctor(IRepository.IUserRepository)">
+            <summary>
+            
+            </summary>
+            <param name="User"></param>
+        </member>
+        <member name="M:WxProductApi.Controllers.UserController.save(Models.DtoSave{Models.Entity.SysUserEntity})">
+            <summary>
+            保存Query
+            </summary>
+            <param name="inEnt"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WxProductApi.Controllers.UserController.singleByKey(Models.DtoDo{System.Int32})">
+            <summary>
+            查找单条
+            </summary>
+            <param name="inEnt"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WxProductApi.Controllers.UserController.delete(Models.DtoDo{System.Int32})">
+            <summary>
+            删除单条
             </summary>
             <param name="inEnt"></param>
             <returns></returns>
@@ -487,63 +580,6 @@
             <param name="app"></param>
             <param name="env"></param>
             <param name="_appConfig"></param>
-        </member>
-        <member name="T:WebApi.Controllers.UpFileController">
-            <summary>
-            授权管理
-            </summary>
-        </member>
-        <member name="M:WebApi.Controllers.UpFileController.#ctor(Microsoft.AspNetCore.Hosting.IWebHostEnvironment)">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="M:WebApi.Controllers.UpFileController.UploadPhotos">
-            <summary>
-            图片上传
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:WebApi.Controllers.UpFileController.LookfileByPath(System.String,System.String,System.String)">
-            <summary>
-            根据路径查看图片
-            </summary>
-            <param name="dir"></param>
-            <param name="fileName"></param>
-            <param name="type"></param>
-            <returns></returns>
-        </member>
-        <member name="T:ApiUser.Controllers.UserController">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="M:ApiUser.Controllers.UserController.#ctor(IRepository.IUserRepository)">
-            <summary>
-            
-            </summary>
-            <param name="User"></param>
-        </member>
-        <member name="M:ApiUser.Controllers.UserController.save(Models.DtoSave{Models.Entity.SysUserEntity})">
-            <summary>
-            保存Query
-            </summary>
-            <param name="inEnt"></param>
-            <returns></returns>
-        </member>
-        <member name="M:ApiUser.Controllers.UserController.singleByKey(Models.DtoDo{System.Int32})">
-            <summary>
-            查找单条
-            </summary>
-            <param name="inEnt"></param>
-            <returns></returns>
-        </member>
-        <member name="M:ApiUser.Controllers.UserController.delete(Models.DtoDo{System.Int32})">
-            <summary>
-            删除单条
-            </summary>
-            <param name="inEnt"></param>
-            <returns></returns>
         </member>
         <member name="T:Helper.AuthHelper">
             <summary>
@@ -807,6 +843,11 @@
             <param name="sKey"></param> 
             <returns></returns> 
         </member>
+        <member name="T:Helper.ImageHelper">
+            <summary>
+            图片处理
+            </summary>
+        </member>
         <member name="M:Helper.ImageHelper.Resize(System.String,System.Int32,System.Int32)">
             <summary>
             重置图片
@@ -818,6 +859,15 @@
         <member name="M:Helper.ImageHelper.ResizeBitmap(System.IO.FileStream,System.Int32,System.Int32)">
             <summary>
             重置图片
+            </summary>
+            <param name="pngStream"></param>
+            <param name="minW"></param>
+            <param name="minH"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Helper.ImageHelper.ResizeByte(System.IO.FileStream,System.Int32,System.Int32)">
+            <summary>
+            缩放图片
             </summary>
             <param name="pngStream"></param>
             <param name="minW"></param>
@@ -2238,80 +2288,65 @@
             用户姓名
             </summary>
         </member>
-        <member name="T:Models.Entity.FilesEntity">
+        <member name="T:Models.Entity.SysFilesEntity">
             <summary>
             登录
             </summary>
         </member>
-        <member name="P:Models.Entity.FilesEntity.id">
+        <member name="P:Models.Entity.SysFilesEntity.id">
             <summary>
             ID
             </summary>
         </member>
-        <member name="P:Models.Entity.FilesEntity.name">
+        <member name="P:Models.Entity.SysFilesEntity.name">
             <summary>
             名称
             </summary>
         </member>
-        <member name="P:Models.Entity.FilesEntity.path">
+        <member name="P:Models.Entity.SysFilesEntity.path">
             <summary>
             路径
             </summary>
         </member>
-        <member name="P:Models.Entity.FilesEntity.length">
+        <member name="P:Models.Entity.SysFilesEntity.length">
             <summary>
             大小
             </summary>
         </member>
-        <member name="P:Models.Entity.FilesEntity.uploadTime">
+        <member name="P:Models.Entity.SysFilesEntity.uploadTime">
             <summary>
             添加时间
             </summary>
         </member>
-        <member name="P:Models.Entity.FilesEntity.remark">
+        <member name="P:Models.Entity.SysFilesEntity.remark">
             <summary>
             备注
             </summary>
         </member>
-        <member name="P:Models.Entity.FilesEntity.url">
+        <member name="P:Models.Entity.SysFilesEntity.url">
             <summary>
             相对路径
             </summary>
         </member>
-        <member name="P:Models.Entity.FilesEntity.fileType">
+        <member name="P:Models.Entity.SysFilesEntity.fileType">
             <summary>
             文件类型
             </summary>
         </member>
-        <member name="P:Models.Entity.FilesEntity.md5Str">
+        <member name="P:Models.Entity.SysFilesEntity.md5Str">
             <summary>
             文件md5
             </summary>
             <value></value>
         </member>
-        <member name="P:Models.Entity.FilesEntity.base64Str">
+        <member name="P:Models.Entity.SysFilesEntity.base64Str">
             <summary>
             文件base64
             </summary>
         </member>
-        <member name="T:Models.Entity.SequenceEntity">
+        <member name="P:Models.Entity.SysFilesEntity.isUse">
             <summary>
-            
-            </summary>
-        </member>
-        <member name="P:Models.Entity.SequenceEntity.seq_name">
-            <summary>
-            表名
-            </summary>
-        </member>
-        <member name="P:Models.Entity.SequenceEntity.current_val">
-            <summary>
-            当前值
-            </summary>
-        </member>
-        <member name="P:Models.Entity.SequenceEntity.increment_val">
-            <summary>
-            增加值
+            是否在用,0给吗没用，1表示在用
             </summary>
         </member>
         <member name="T:Models.Entity.SysLoginEntity">
@@ -2761,6 +2796,26 @@
             </summary>
             <value></value>
         </member>
+        <member name="T:Models.Entity.SysSequenceEntity">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Models.Entity.SysSequenceEntity.seq_name">
+            <summary>
+            表名
+            </summary>
+        </member>
+        <member name="P:Models.Entity.SysSequenceEntity.current_val">
+            <summary>
+            当前值
+            </summary>
+        </member>
+        <member name="P:Models.Entity.SysSequenceEntity.increment_val">
+            <summary>
+            增加值
+            </summary>
+        </member>
         <member name="T:Models.Entity.SysUserEntity">
             <summary>
             系统用户
@@ -3135,6 +3190,11 @@
             总记录数
             </summary>
         </member>
+        <member name="T:Repository.FileRepository">
+            <summary>
+            图片处理服务
+            </summary>
+        </member>
         <member name="M:Repository.FileRepository.SingleByKey(System.Int32)">
             <summary>
             获取单条
@@ -3142,11 +3202,18 @@
             <param name="key"></param>
             <returns></returns>
         </member>
-        <member name="M:Repository.FileRepository.FindAll(System.Linq.Expressions.Expression{System.Func{Models.Entity.FilesEntity,System.Boolean}})">
+        <member name="M:Repository.FileRepository.FindAll(System.Linq.Expressions.Expression{System.Func{Models.Entity.SysFilesEntity,System.Boolean}})">
             <summary>
             查找所有
             </summary>
             <param name="inParm"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Repository.FileRepository.Save(Models.DtoSave{Models.Entity.SysFilesEntity})">
+            <summary>
+            保存
+            </summary>
+            <param name="inEnt"></param>
             <returns></returns>
         </member>
         <member name="M:Repository.LoginHistoryRepository.SingleByKey(System.Int32)">
@@ -3374,11 +3441,18 @@
             <param name="inParm"></param>
             <returns></returns>
         </member>
-        <member name="M:IRepository.IFileRepository.FindAll(System.Linq.Expressions.Expression{System.Func{Models.Entity.FilesEntity,System.Boolean}})">
+        <member name="M:IRepository.IFileRepository.FindAll(System.Linq.Expressions.Expression{System.Func{Models.Entity.SysFilesEntity,System.Boolean}})">
             <summary>
             查找所有
             </summary>
             <param name="inParm"></param>
+            <returns></returns>
+        </member>
+        <member name="M:IRepository.IFileRepository.Save(Models.DtoSave{Models.Entity.SysFilesEntity})">
+            <summary>
+            保存
+            </summary>
+            <param name="inEnt"></param>
             <returns></returns>
         </member>
         <member name="M:IRepository.ILoginRepository.FindAll(System.Linq.Expressions.Expression{System.Func{Models.Entity.SysLoginEntity,System.Boolean}})">

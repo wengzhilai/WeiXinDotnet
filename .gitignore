@@ -32,13 +32,16 @@ Log
 /connect.lock
 /coverage
 /libpeerconnection.log
+*/upfile/*
 npm-debug.log
 testem.log
 
 
 *.out
 **/*.out
-*.pdb
+**/*.pdb
+**/*.bpb
+**/*.eab
 # e2e
 /e2e/*.js
 /e2e/*.map

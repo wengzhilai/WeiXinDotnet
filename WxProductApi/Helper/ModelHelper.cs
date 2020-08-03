@@ -327,7 +327,7 @@ namespace Helper
                     object[] attrsGenerated = proInfo.GetCustomAttributes(typeof(DatabaseGeneratedAttribute), true);
                     if (attrsGenerated.Length > 0)
                     {
-                        _IsAuto = ((DatabaseGeneratedAttribute)attrsGenerated[0]).DatabaseGeneratedOption != DatabaseGeneratedOption.None;
+                        _IsAuto = ((DatabaseGeneratedAttribute)attrsGenerated[0]).DatabaseGeneratedOption != DatabaseGeneratedOption.Computed;
                     }
                     else
                     {

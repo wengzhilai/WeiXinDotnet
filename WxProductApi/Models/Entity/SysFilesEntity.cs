@@ -8,8 +8,8 @@ namespace Models.Entity
     /// <summary>
     /// 登录
     /// </summary>
-    [Table("files")]
-    public class FilesEntity : BaseModel
+    [Table("sys_files")]
+    public class SysFilesEntity : BaseModel
     {
         /// <summary>
         /// ID
@@ -83,6 +83,10 @@ namespace Models.Entity
         [Display(Name = "文件base64")]
         [Column("base64_str")]
         public string base64Str{get;set;}
-        
+        /// <summary>
+        /// 是否在用,0给吗没用，1表示在用
+        /// </summary>
+        [Column("is_use")]
+        public int isUse{get;set;}
     }
 }

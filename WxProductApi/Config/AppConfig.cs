@@ -24,7 +24,7 @@ namespace WxProductApi.Config
         /// jwtKey配置
         /// </summary>
         /// <value></value>
-        public string JwtKey{get;set;}
+        public string JwtKey { get; set; }
 
         /// <summary>
         /// 数据库配置
@@ -37,6 +37,11 @@ namespace WxProductApi.Config
         /// </summary>
         /// <returns></returns>
         public BaseConfig BaseConfig { get; set; }
+        /// <summary>
+        /// 图片配置
+        /// </summary>
+        /// <value></value>
+        public FileCfg FileCfg{get;set;}
     }
 
     /// <summary>
@@ -61,7 +66,7 @@ namespace WxProductApi.Config
         public string server { get; set; }
         public string userid { get; set; }
         public string pwd { get; set; }
-        public string port { get; set; } 
+        public string port { get; set; }
         public string database { get; set; }
         public string sslmode { get; set; }
 
@@ -71,7 +76,8 @@ namespace WxProductApi.Config
     /// <summary>
     ///  系统验证
     /// </summary>
-    public class BaseConfig{
+    public class BaseConfig
+    {
         /// <summary>
         /// 是否需要验证码
         /// </summary>
@@ -81,13 +87,35 @@ namespace WxProductApi.Config
         /// 短信验证码有效时间
         /// </summary>
         /// <value></value>
-        public int  VerifyExpireMinute{ get; set; }=30;
+        public int VerifyExpireMinute { get; set; } = 30;
 
         /// <summary>
         /// 密码复杂度
         /// </summary>
         /// <value></value>
-        public int PwdComplexity{get;set;}
+        public int PwdComplexity { get; set; }
 
     }
+    /// <summary>
+    /// 图片配置
+    /// </summary>
+    public class FileCfg
+    {
+        /// <summary>
+        /// 图片存放路径
+        /// </summary>
+        /// <value></value>
+        public string path { get; set; }
+        /// <summary>
+        /// 生成小图片宽
+        /// </summary>
+        /// <value></value>
+        public int min_w { get; set; }
+        /// <summary>
+        /// 生成小图片高
+        /// </summary>
+        /// <value></value>
+        public int min_h { get; set; }
+    }
+
 }

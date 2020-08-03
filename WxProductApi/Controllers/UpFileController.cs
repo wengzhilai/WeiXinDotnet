@@ -8,8 +8,9 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Cors;
 using Models;
 using Models.Entity;
+using IRepository;
 
-namespace WebApi.Controllers
+namespace WxProductApi.Controllers
 {
     /// <summary>
     /// 授权管理
@@ -19,15 +20,16 @@ namespace WebApi.Controllers
     [ApiController]
     public class UpFileController : ControllerBase
     {
-
+        IFileRepository file;
         private readonly IWebHostEnvironment _env;
         /// <summary>
         /// 
         /// </summary>
         public UpFileController(
-             IWebHostEnvironment hostingEnvironment)
+             IWebHostEnvironment hostingEnvironment, IFileRepository file)
         {
             _env = hostingEnvironment;
+            this.file = file;
         }
 
         /// <summary>
@@ -36,16 +38,15 @@ namespace WebApi.Controllers
         /// <returns></returns>
         [HttpPost]
         [RequestSizeLimit(100_000_000)] //最大100m左右
-        async public Task<ResultObj<FilesEntity>> UploadPhotos()
+        async public Task<ResultObj<SysFilesEntity>> UploadPhotos()
         {
 
-            ResultObj<FilesEntity> reEnt = new ResultObj<FilesEntity>();
+            ResultObj<SysFilesEntity> reEnt = new ResultObj<SysFilesEntity>();
 
             var files = Request.Form.Files;
             var fileFolder = string.Format("{0}", DateTime.Now.ToString("yyyyMM"));
-            fileFolder = "PromotePic";
-            if (!Directory.Exists(Path.Combine("wwwroot", fileFolder)))
-                Directory.CreateDirectory(Path.Combine("wwwroot", fileFolder));
+            if (!Directory.Exists(Path.Combine(Global.appConfig.FileCfg.path, fileFolder)))
+                Directory.CreateDirectory(Path.Combine(Global.appConfig.FileCfg.path, fileFolder));
 
             foreach (var formFile in files)
             {
@@ -56,37 +57,39 @@ namespace WebApi.Controllers
                     var filePath = Path.Combine(fileFolder, fileName);
                     var filePath_min = Path.Combine(fileFolder, fileName_min);
                     
-                    var allPath = Path.Combine(_env.ContentRootPath, "wwwroot/" + filePath);
+                    var allPath = Path.Combine(_env.ContentRootPath, Path.Combine(Global.appConfig.FileCfg.path , filePath));
                     using (var stream = new FileStream(allPath, FileMode.Create))
                     {
                         await formFile.CopyToAsync(stream);
-                        reEnt.success = true;
                         reEnt.msg = filePath;
-
                         byte[] bytes=Helper.ImageHelper.ResizeByte(stream,100,100);
 
-                        using (var stream_min = new FileStream(Path.Combine(_env.ContentRootPath, "wwwroot/" + filePath_min), FileMode.Create))
+                        using (var stream_min = new FileStream(Path.Combine(_env.ContentRootPath, Path.Combine(Global.appConfig.FileCfg.path,filePath_min)), FileMode.Create))
                         {
                             stream_min.Write(bytes);
                             stream_min.Close();
                         }
 
-                        // BinaryReader r = new BinaryReader(stream);
-                        // r.BaseStream.Seek(0, SeekOrigin.Begin);    //将文件指针设置到文件开
-                        // bytes = r.ReadBytes((int)r.BaseStream.Length);
-                        
-                        reEnt.data = new FilesEntity
+                        var fileEnt=new SysFilesEntity
                         {
                             id=0,
                             name = fileName,
                             path = allPath,
-                            url = fileName,                            
+                            url = filePath,                            
                             length = stream.Length,
                             uploadTime = Helper.DataTimeHelper.getDateLong(DateTime.Now),
                             fileType = Path.GetExtension(formFile.FileName),
                             md5Str=Helper.Fun.Md5Hash(bytes),
-                            base64Str=Convert.ToBase64String(bytes)
+                            base64Str=Convert.ToBase64String(bytes),
+                            isUse=0
                         };
+                        fileEnt.id=await file.Save(new DtoSave<SysFilesEntity>{data=fileEnt});
+                        reEnt.success = fileEnt.id>0;
+                        // BinaryReader r = new BinaryReader(stream);
+                        // r.BaseStream.Seek(0, SeekOrigin.Begin);    //将文件指针设置到文件开
+                        // bytes = r.ReadBytes((int)r.BaseStream.Length);
+                        
+                        reEnt.data = fileEnt;
                         stream.Flush();
                     }
                 }
@@ -107,7 +110,7 @@ namespace WebApi.Controllers
         public IActionResult LookfileByPath(string dir, string fileName, string type)
         {
             Response.Body.Dispose();
-            var allPath = Path.Combine(_env.ContentRootPath, "UpFiles", dir, fileName + "." + type);
+            var allPath = Path.Combine(_env.ContentRootPath, Global.appConfig.FileCfg.path, dir, fileName + "." + type);
             return File(System.IO.File.ReadAllBytes(allPath), @"image/png");
         }
 

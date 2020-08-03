@@ -14,15 +14,18 @@ using System.Linq.Expressions;
 
 namespace Repository
 {
+    /// <summary>
+    /// 图片处理服务
+    /// </summary>
     public class FileRepository : IFileRepository
     {
-        DapperHelper<FilesEntity> dbHelper = new DapperHelper<FilesEntity>();
+        DapperHelper<SysFilesEntity> dbHelper = new DapperHelper<SysFilesEntity>();
         /// <summary>
         /// 获取单条
         /// </summary>
         /// <param name="key"></param>
         /// <returns></returns>
-        public Task<FilesEntity> SingleByKey(int key)
+        public Task<SysFilesEntity> SingleByKey(int key)
         {
             return dbHelper.SingleByKey(key);
         }
@@ -32,9 +35,21 @@ namespace Repository
         /// </summary>
         /// <param name="inParm"></param>
         /// <returns></returns>
-        public Task<IEnumerable<FilesEntity>> FindAll(Expression<Func<FilesEntity, bool>> inParm = null)
+        public Task<IEnumerable<SysFilesEntity>> FindAll(Expression<Func<SysFilesEntity, bool>> inParm = null)
         {
             return dbHelper.FindAll(inParm);
+        }
+        /// <summary>
+        /// 保存
+        /// </summary>
+        /// <param name="inEnt"></param>
+        /// <returns></returns>
+        public async Task<int> Save(DtoSave<SysFilesEntity> inEnt)
+        {
+            if(inEnt.data.id==0){
+                inEnt.data.id=await SequenceRepository.GetNextID<SysFilesEntity>();
+            }
+            return await dbHelper.Save(inEnt);
         }
     }
 }

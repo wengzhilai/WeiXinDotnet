@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50505
 File Encoding         : 65001
 
-Date: 2020-07-31 14:42:46
+Date: 2020-08-03 17:09:08
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -30,6 +30,7 @@ CREATE TABLE `sys_files` (
   `file_type` varchar(50) NOT NULL DEFAULT '' COMMENT '文件类型',
   `md5_str` char(32) NOT NULL DEFAULT '' COMMENT 'md5值',
   `base64_str` text NOT NULL DEFAULT '' COMMENT '小图的base64',
+  `is_use` int(11) NOT NULL DEFAULT 0,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -189,6 +190,22 @@ INSERT INTO `sys_role_module` VALUES ('1', '4');
 INSERT INTO `sys_role_module` VALUES ('1', '5');
 
 -- ----------------------------
+-- Table structure for `sys_sequence`
+-- ----------------------------
+DROP TABLE IF EXISTS `sys_sequence`;
+CREATE TABLE `sys_sequence` (
+  `seq_name` varchar(50) NOT NULL COMMENT '表名',
+  `current_val` int(11) NOT NULL DEFAULT 0 COMMENT '当前ID',
+  `increment_val` int(11) NOT NULL DEFAULT 1 COMMENT '每次增加值',
+  PRIMARY KEY (`seq_name`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of sys_sequence
+-- ----------------------------
+INSERT INTO `sys_sequence` VALUES ('sys_files', '7', '1');
+
+-- ----------------------------
 -- Table structure for `sys_user`
 -- ----------------------------
 DROP TABLE IF EXISTS `sys_user`;
@@ -207,7 +224,7 @@ CREATE TABLE `sys_user` (
 -- ----------------------------
 -- Records of sys_user
 -- ----------------------------
-INSERT INTO `sys_user` VALUES ('1', 'admin', '18180770313', '', '0', '0', '0', '');
+INSERT INTO `sys_user` VALUES ('1', 'admin', '18180770313', '202008\\0.png', '0', '0', '0', '111');
 
 -- ----------------------------
 -- Table structure for `sys_user_role`

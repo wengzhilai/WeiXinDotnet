@@ -22,28 +22,28 @@ namespace Repository
 //   )
     public class SequenceRepository
     {
-        DapperHelper<SequenceEntity> dbHelper = new DapperHelper<SequenceEntity>();
+        static DapperHelper<SysSequenceEntity> dbHelper = new DapperHelper<SysSequenceEntity>();
         /// <summary>
         /// 获取单条
         /// </summary>
         /// <param name="key"></param>
         /// <returns></returns>
-        public async Task<int> GetNextID<T>()where T : new()
+        public static async Task<int> GetNextID<T>()where T : new()
         {
             string tableName=new ModelHelper<T> ().GetTableName();
             var single=await dbHelper.SingleByKey(tableName);
             if(single==null){
-                single= new SequenceEntity();
+                single= new SysSequenceEntity();
                 single.seq_name=tableName;
                 single.current_val=1;
                 single.increment_val=1;
-                await dbHelper.Save(new DtoSave<SequenceEntity>{
+                await dbHelper.Save(new DtoSave<SysSequenceEntity>{
                     data=single,
                     ignoreFieldList=new List<string>()
                 });
             }else{
                 single.current_val+=single.increment_val;
-                await dbHelper.Update(new DtoSave<SequenceEntity>
+                await dbHelper.Update(new DtoSave<SysSequenceEntity>
                 {
                     data = single,
                     saveFieldListExp = x => new object[] { x.current_val },
