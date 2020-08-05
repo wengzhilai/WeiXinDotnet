@@ -80,6 +80,7 @@ namespace WxProductApi
             services.TryAddSingleton<IRoleRepository, RoleRepository>();
             services.TryAddSingleton<IUserRepository, UserRepository>();
             services.TryAddSingleton<IFileRepository, FileRepository>();
+            services.TryAddSingleton<IWeiXinRepository, WeiXinRepository>();
             #endregion
 
             #region JWT Config

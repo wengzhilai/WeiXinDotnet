@@ -244,6 +244,18 @@
             @param inEnt
             @return
         </member>
+        <member name="T:WxProductApi.Controllers.IWeiXinController">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:WxProductApi.Controllers.IWeiXinController.saveLog(Models.Entity.WxQuestLogEntity)">
+            <summary>
+            保存微信连接日志
+            </summary>
+            <param name="inObj"></param>
+            <returns></returns>
+        </member>
         <member name="T:WxProductApi.Controllers.LoginController">
             <summary>
             
@@ -1479,6 +1491,11 @@
             用户授权的作用域
             </summary>
         </member>
+        <member name="P:Helper.WeiChat.Entities.WebpageUserInfo.openid">
+            <summary>
+            用户唯一标识
+            </summary>
+        </member>
         <member name="P:Helper.WeiChat.Entities.WebpageUserInfo.nickname">
             <summary>
             用户昵称
@@ -1492,11 +1509,6 @@
         <member name="P:Helper.WeiChat.Entities.WebpageUserInfo.province">
             <summary>
             	用户个人资料填写的省份
-            </summary>
-        </member>
-        <member name="P:Helper.WeiChat.Entities.WebpageUserInfo.openid">
-            <summary>
-            用户唯一标识
             </summary>
         </member>
         <member name="P:Helper.WeiChat.Entities.WebpageUserInfo.city">
@@ -2885,6 +2897,96 @@
             </summary>
             <value></value>
         </member>
+        <member name="T:Models.Entity.WxQuestLogEntity">
+            <summary>
+            微信请求日记
+            </summary>
+        </member>
+        <member name="P:Models.Entity.WxQuestLogEntity.id">
+            <summary>
+            id
+            </summary>
+        </member>
+        <member name="P:Models.Entity.WxQuestLogEntity.toUserName">
+            <summary>
+            目标用户
+            </summary>
+        </member>
+        <member name="P:Models.Entity.WxQuestLogEntity.fromUserName">
+            <summary>
+            from_user_name
+            </summary>
+        </member>
+        <member name="P:Models.Entity.WxQuestLogEntity.msgType">
+            <summary>
+            msg_type
+            </summary>
+        </member>
+        <member name="P:Models.Entity.WxQuestLogEntity.content">
+            <summary>
+            content
+            </summary>
+        </member>
+        <member name="P:Models.Entity.WxQuestLogEntity.eventType">
+            <summary>
+            event_type
+            </summary>
+        </member>
+        <member name="P:Models.Entity.WxQuestLogEntity.eventKey">
+            <summary>
+            event_key
+            </summary>
+        </member>
+        <member name="P:Models.Entity.WxQuestLogEntity.ticket">
+            <summary>
+            ticket
+            </summary>
+        </member>
+        <member name="T:Models.Entity.WxUserEntity">
+            <summary>
+            微信请求日记
+            </summary>
+        </member>
+        <member name="P:Models.Entity.WxUserEntity.openid">
+            <summary>
+            id
+            </summary>
+        </member>
+        <member name="P:Models.Entity.WxUserEntity.nickname">
+            <summary>
+            用户昵称
+            </summary>
+        </member>
+        <member name="P:Models.Entity.WxUserEntity.sex">
+            <summary>
+            sex	用户的性别，值为1时是男性，值为2时是女性，值为0时是未知
+            </summary>
+        </member>
+        <member name="P:Models.Entity.WxUserEntity.province">
+            <summary>
+            	用户个人资料填写的省份
+            </summary>
+        </member>
+        <member name="P:Models.Entity.WxUserEntity.city">
+            <summary>
+            普通用户个人资料填写的城市
+            </summary>
+        </member>
+        <member name="P:Models.Entity.WxUserEntity.country">
+            <summary>
+             国家，如中国为CN
+            </summary>
+        </member>
+        <member name="P:Models.Entity.WxUserEntity.headimgurl">
+            <summary>
+             用户头像
+            </summary>
+        </member>
+        <member name="P:Models.Entity.WxUserEntity.unionid">
+            <summary>
+            只有在用户将公众号绑定到微信开放平台帐号后，才会出现该字段。
+            </summary>
+        </member>
         <member name="P:Models.GlobalUser.Ticket">
             <summary>
             登录凭证
@@ -3441,6 +3543,20 @@
             <param name="inParm"></param>
             <returns></returns>
         </member>
+        <member name="M:Repository.WeiXinRepository.saveLog(Models.Entity.WxQuestLogEntity)">
+            <summary>
+            保存日志
+            </summary>
+            <param name="inObj"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Repository.WeiXinRepository.saveUser(Models.Entity.WxUserEntity)">
+            <summary>
+            保存用户
+            </summary>
+            <param name="inObj"></param>
+            <returns></returns>
+        </member>
         <member name="M:IRepository.IFileRepository.FindAll(System.Linq.Expressions.Expression{System.Func{Models.Entity.SysFilesEntity,System.Boolean}})">
             <summary>
             查找所有
@@ -3687,6 +3803,25 @@
             删除
             </summary>
             <param name="scriptId">主键 ID</param>
+            <returns></returns>
+        </member>
+        <member name="T:IRepository.IWeiXinRepository">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:IRepository.IWeiXinRepository.saveLog(Models.Entity.WxQuestLogEntity)">
+            <summary>
+            保存微信连接日志
+            </summary>
+            <param name="inObj"></param>
+            <returns></returns>
+        </member>
+        <member name="M:IRepository.IWeiXinRepository.saveUser(Models.Entity.WxUserEntity)">
+            <summary>
+            添加微信用户，
+            </summary>
+            <param name="inObj"></param>
             <returns></returns>
         </member>
     </members>

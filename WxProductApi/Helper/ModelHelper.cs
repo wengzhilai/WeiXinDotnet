@@ -331,7 +331,7 @@ namespace Helper
                     }
                     else
                     {
-                        _IsAuto = true;
+                        _IsAuto = false;
                     }
                     break;
                 }

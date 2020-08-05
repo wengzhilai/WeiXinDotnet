@@ -17,6 +17,9 @@ using Microsoft.AspNetCore.Rewrite;
 using Microsoft.Net.Http.Headers;
 using System.Web;
 using Microsoft.Extensions.Options;
+using Models.Entity;
+using Repository;
+using IRepository;
 
 namespace WxProductApi.Controllers
 {
@@ -25,16 +28,19 @@ namespace WxProductApi.Controllers
     public class WeiXinController : ControllerBase
     {
 
+        IWeiXinRepository weiXin;
         AppConfig appConfig;
-        public WeiXinController(IOptions<AppConfig> _appConfig){
-            appConfig=_appConfig.Value;
+        public WeiXinController(IOptions<AppConfig> _appConfig, IWeiXinRepository _weiXin)
+        {
+            appConfig = _appConfig.Value;
+            this.weiXin = _weiXin;
         }
 
         [HttpGet]
         public string index(string echostr)
         {
 
-            PostModel postModel= TypeChange.UrlToEntities<PostModel>(Request.QueryString.Value);
+            PostModel postModel = TypeChange.UrlToEntities<PostModel>(Request.QueryString.Value);
             if (CheckSignature.Check(postModel.Signature, postModel.Timestamp, postModel.Nonce, appConfig.WeiXin.Token))
             {
                 return echostr; //返回随机字符串则表示验证通过
@@ -61,7 +67,7 @@ namespace WxProductApi.Controllers
 
                 using (var reader = new StreamReader(Request.Body, encoding: Encoding.UTF8))
                 {
-                    var body =await reader.ReadToEndAsync();
+                    var body = await reader.ReadToEndAsync();
                     var xml = TypeChange.XmlToDict(body);
                     String toUserName = xml.GetValueOrDefault("ToUserName");
                     String fromUserName = xml.GetValueOrDefault("FromUserName");
@@ -70,7 +76,17 @@ namespace WxProductApi.Controllers
                     String eventType = xml.GetValueOrDefault("Event");
                     String eventKey = xml.GetValueOrDefault("EventKey");
                     String ticket = xml.GetValueOrDefault("Ticket");
-
+                    await weiXin.saveLog(new WxQuestLogEntity
+                    {
+                        id = await SequenceRepository.GetNextID<WxQuestLogEntity>(),
+                        toUserName = toUserName,
+                        fromUserName = fromUserName,
+                        msgType = msgType,
+                        content = content,
+                        eventType = eventType,
+                        eventKey = eventKey,
+                        ticket = ticket,
+                    });
 
                     if (MessageUtil.MESSAGE_EVENT.Equals(msgType))
                     {
@@ -98,7 +114,7 @@ namespace WxProductApi.Controllers
                                     case MessageUtil.CLICK_DOWNURL:
                                         replay = MessageUtil.downloadApp();
                                         break;
-      
+
                                     case MessageUtil.CLICK_ETC_INSTALL:
                                         replay = MessageUtil.etcInstallPlace();
                                         break;
@@ -125,14 +141,18 @@ namespace WxProductApi.Controllers
         }
 
         [HttpGet]
-        public string GetUserInfo(string state,string code){
-            if(string.IsNullOrEmpty(code)){
-                var url=Helper.WeiChat.Utility.GetWebpageAuthorization(appConfig.WeiXin.Appid,$"http://{Request.Host.Host}{Request.Path}",state,false);
+        public async Task<string> GetUserInfoAsync(string state, string code)
+        {
+            if (string.IsNullOrEmpty(code))
+            {
+                var url = Helper.WeiChat.Utility.GetWebpageAuthorization(appConfig.WeiXin.Appid, $"http://{Request.Host.Host}{Request.Path}", state, false);
                 Response.Redirect(url);
                 return "";
             }
-            else{
-                var reStr=Helper.WeiChat.Utility.GetWebpageUserInfo(appConfig.WeiXin.Appid,appConfig.WeiXin.Secret,code);
+            else
+            {
+                var reStr = Helper.WeiChat.Utility.GetWebpageUserInfo(appConfig.WeiXin.Appid, appConfig.WeiXin.Secret, code);
+                await weiXin.saveUser(reStr);
                 return TypeChange.ObjectToStr(reStr);
             }
         }
@@ -180,11 +200,11 @@ namespace WxProductApi.Controllers
             }
             reObj.data = new JsApiModel();
             reObj.data.noncestr = Guid.NewGuid().ToString("n").Substring(10);
-            reObj.data.timestamp = TypeChange.DateToInt64().ToString().Substring(0,10);
+            reObj.data.timestamp = TypeChange.DateToInt64().ToString().Substring(0, 10);
             reObj.data.url = inObj.Key;
             reObj.data.appid = appConfig.WeiXin.Appid;
 
-            reObj.data.signature = CheckSignature.GetSignature(new List<string> { "noncestr=" + reObj.data.noncestr, "timestamp=" + reObj.data.timestamp, "url=" + reObj.data.url, "jsapi_ticket="+jsapiTicket },"&");
+            reObj.data.signature = CheckSignature.GetSignature(new List<string> { "noncestr=" + reObj.data.noncestr, "timestamp=" + reObj.data.timestamp, "url=" + reObj.data.url, "jsapi_ticket=" + jsapiTicket }, "&");
             return reObj;
         }
 
@@ -215,19 +235,19 @@ namespace WxProductApi.Controllers
             makeMenu.button.AddLast(new MenuNodeModel()
             {
                 name = "ETC安装激活点",
-                type= "click",
+                type = "click",
                 key = MessageUtil.CLICK_ETC_INSTALL,
             });
             makeMenu.button.AddLast(new MenuNodeModel()
             {
                 name = "推广赚钱",
-                type= "click",
+                type = "click",
                 key = MessageUtil.CLICK_GetMoney,
             });
             makeMenu.button.AddLast(new MenuNodeModel()
             {
                 name = "获取物流帮手",
-                type= "click",
+                type = "click",
                 key = MessageUtil.CLICK_DOWNURL,
             });
             Result result = new Result();

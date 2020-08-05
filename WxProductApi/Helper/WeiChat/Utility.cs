@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using Helper.WeiChat.Entities;
+using Models.Entity;
 
 namespace Helper.WeiChat
 {
@@ -120,24 +121,24 @@ namespace Helper.WeiChat
             throw new Exception(reJson);
         }
 
-        public static WebpageUserInfo GetWebpageUserInfo(string access_token,string openid){
+        public static WxUserEntity GetWebpageUserInfo(string access_token,string openid){
             string url=$"https://api.weixin.qq.com/sns/userinfo?access_token={access_token}&openid={openid}&lang=zh_CN";
             string reJson= Fun.HttpGetJson(url);
             var t= TypeChange.JsonToObject(reJson);
             if(t.ContainsKey("openid")){
-                return TypeChange.JsonToObject<WebpageUserInfo>(reJson);
+                return TypeChange.JsonToObject<WxUserEntity>(reJson);
             }
             throw new Exception(reJson);
         }
 
-        public static WebpageUserInfo GetWebpageUserInfo(string appid,string secret,string code){
+        public static WxUserEntity GetWebpageUserInfo(string appid,string secret,string code){
             var webpageToken=GetWebpageToken(appid,secret,code);
 
             string url=$"https://api.weixin.qq.com/sns/userinfo?access_token={webpageToken.access_token}&openid={webpageToken.openid}&lang=zh_CN";
             string reJson= Fun.HttpGetJson(url);
             var t= TypeChange.JsonToObject(reJson);
             if(t.ContainsKey("openid")){
-                return TypeChange.JsonToObject<WebpageUserInfo>(reJson);
+                return TypeChange.JsonToObject<WxUserEntity>(reJson);
             }
             throw new Exception(reJson);
         }

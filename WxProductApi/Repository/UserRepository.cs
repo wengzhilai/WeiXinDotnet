@@ -96,8 +96,8 @@ namespace Repository
                 }
                 else
                 {
-                    
-                    dbHelper.Exec("delete from sys_user_role where user_id = " + inEnt.data.id);
+
+                    int v = await dbHelper.Exec("delete from sys_user_role where user_id = " + inEnt.data.id);
 
                     foreach (var item in inEnt.data.roleIdList)
                     {
