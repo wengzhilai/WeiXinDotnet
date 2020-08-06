@@ -537,6 +537,11 @@
             <param name="inEnt"></param>
             <returns></returns>
         </member>
+        <member name="F:WxProductApi.Controllers.WeiXinController.httpContextAccessor">
+            <summary>
+            用于获取IP地址
+            </summary>
+        </member>
         <member name="M:WxProductApi.Controllers.WeiXinController.PostXml(Helper.WeiChat.Entities.XmlModel)">
             <summary>
             用于微信绑定时间
@@ -668,6 +673,27 @@
             返回影响的条数
             </summary>
             <param name="inObj"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Helper.DataTimeHelper.getDateLong(System.DateTime)">
+            <summary>
+            获取时间格式
+            </summary>
+            <param name="dt"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Helper.DataTimeHelper.getDateLongTimestamp(System.DateTime)">
+            <summary>
+            获取时间戳
+            </summary>
+            <param name="dt"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Helper.DataTimeHelper.StampToDateTime(System.String)">
+            <summary>
+            时间戳转为格式
+            </summary>
+            <param name="timeStamp"></param>
             <returns></returns>
         </member>
         <member name="M:Helper.Fun.CheckPassword(System.String,System.Int32)">
@@ -854,6 +880,35 @@
             <param name="Text"></param> 
             <param name="sKey"></param> 
             <returns></returns> 
+        </member>
+        <member name="T:Helper.HttpClientHelper">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Helper.HttpClientHelper.Get``1(System.Net.Http.HttpClient,System.String)">
+            <summary>
+            
+            </summary>
+            <param name="httpClient"></param>
+            <param name="url"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Helper.HttpClientHelper.MyGetFile(System.Net.Http.HttpClient,System.String)">
+            <summary>
+            
+            </summary>
+            <param name="httpClient"></param>
+            <param name="url"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Helper.HttpClientHelper.GetAddressAsync(System.Net.Http.HttpClient,System.String)">
+            <summary>
+            获取IP详细地址
+            </summary>
+            <param name="httpClient"></param>
+            <param name="ip"></param>
+            <returns></returns>
         </member>
         <member name="T:Helper.ImageHelper">
             <summary>
@@ -1628,6 +1683,21 @@
             jsapi_ticket是公众号用于调用微信JS接口的临时票据
             </summary>
             <param name="accessToken"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Helper.WeiChat.Utility.SetMenu(System.String,System.String)">
+            <summary>
+            设置菜单
+            </summary>
+            <param name="accessToken"></param>
+            <param name="menuStr"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Helper.WeiChat.Utility.GetUserInfo(System.String)">
+            <summary>
+            获取用户基本信息
+            </summary>
+            <param name="openid"></param>
             <returns></returns>
         </member>
         <member name="M:Helper.WeiChat.Utility.GetWebpageAuthorization(System.String,System.String,System.String,System.Boolean)">
@@ -2987,6 +3057,77 @@
             只有在用户将公众号绑定到微信开放平台帐号后，才会出现该字段。
             </summary>
         </member>
+        <member name="P:Models.Entity.WxUserEntity.ip">
+            <summary>
+            IP地址
+            </summary>
+        </member>
+        <member name="P:Models.Entity.WxUserEntity.address">
+            <summary>
+            真实地址
+            </summary>
+        </member>
+        <member name="P:Models.Entity.WxUserEntity.createTime">
+            <summary>
+            真实地址
+            </summary>
+        </member>
+        <member name="P:Models.Entity.WxUserEntity.lastTime">
+            <summary>
+            真实地址
+            </summary>
+        </member>
+        <member name="P:Models.Entity.WxUserEntity.language">
+            <summary>
+            language
+            </summary>
+        </member>
+        <member name="P:Models.Entity.WxUserEntity.subscribe">
+            <summary>
+            subscribe
+            </summary>
+        </member>
+        <member name="P:Models.Entity.WxUserEntity.subscribe_time">
+            <summary>
+            subscribe_time
+            </summary>
+        </member>
+        <member name="P:Models.Entity.WxUserEntity.remark">
+            <summary>
+            remark
+            </summary>
+        </member>
+        <member name="P:Models.Entity.WxUserEntity.groupid">
+            <summary>
+            groupid
+            </summary>
+        </member>
+        <member name="P:Models.Entity.WxUserEntity.tagidListStr">
+            <summary>
+            tagid_list_str
+            </summary>
+        </member>
+        <member name="P:Models.Entity.WxUserEntity.subscribe_scene">
+            <summary>
+            subscribe_scene
+            </summary>
+        </member>
+        <member name="P:Models.Entity.WxUserEntity.qr_scene">
+            <summary>
+            qr_scene
+            </summary>
+        </member>
+        <member name="P:Models.Entity.WxUserEntity.qr_scene_str">
+            <summary>
+            qr_scene_str
+            </summary>
+        </member>
+        <member name="P:Models.Entity.WxUserEntity.tagid_list">
+            <summary>
+            用户被打上的标签ID列表
+            </summary>
+            <value></value>
+        </member>
         <member name="P:Models.GlobalUser.Ticket">
             <summary>
             登录凭证
@@ -3550,7 +3691,7 @@
             <param name="inObj"></param>
             <returns></returns>
         </member>
-        <member name="M:Repository.WeiXinRepository.saveUser(Models.Entity.WxUserEntity)">
+        <member name="M:Repository.WeiXinRepository.saveUser(Models.Entity.WxUserEntity,System.Collections.Generic.List{System.String})">
             <summary>
             保存用户
             </summary>
@@ -3817,7 +3958,7 @@
             <param name="inObj"></param>
             <returns></returns>
         </member>
-        <member name="M:IRepository.IWeiXinRepository.saveUser(Models.Entity.WxUserEntity)">
+        <member name="M:IRepository.IWeiXinRepository.saveUser(Models.Entity.WxUserEntity,System.Collections.Generic.List{System.String})">
             <summary>
             添加微信用户，
             </summary>

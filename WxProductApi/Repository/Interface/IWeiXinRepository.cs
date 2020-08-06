@@ -24,7 +24,7 @@ namespace IRepository
         /// </summary>
         /// <param name="inObj"></param>
         /// <returns></returns>
-        Task<ResultObj<int>> saveUser(WxUserEntity inObj);
+        Task<ResultObj<int>> saveUser(WxUserEntity inObj,List<string> saveFieldList);
 
     }
 }

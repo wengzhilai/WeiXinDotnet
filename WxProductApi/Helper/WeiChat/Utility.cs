@@ -3,12 +3,13 @@ using System.Collections.Generic;
 using System.Text;
 using Helper.WeiChat.Entities;
 using Models.Entity;
+using WxProductApi;
 
 namespace Helper.WeiChat
 {
     public static class Utility
     {
-        public static string ReadAccessToken(string appid=null, string secret=null)
+        public static string ReadAccessToken(string appid = null, string secret = null)
         {
             var token = RedisReadHelper.StringGet("WECHA_ACCESS_TOKEN_BUS");
             if (string.IsNullOrEmpty(token))
@@ -26,8 +27,10 @@ namespace Helper.WeiChat
         /// <param name="appid"></param>
         /// <param name="secret"></param>
         /// <returns></returns>
-        public static string GetAccessToken(string appid,string secret)
+        public static string GetAccessToken(string appid, string secret)
         {
+            if (string.IsNullOrEmpty(appid)) appid = Global.appConfig.WeiXin.Appid;
+            if (string.IsNullOrEmpty(secret)) secret = Global.appConfig.WeiXin.Secret;
             var token = "";
             string access_tokenJson = Fun.HttpGetJson(string.Format("https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid={0}&secret={1}", appid, secret));
             var dict = TypeChange.JsonToObject<Dictionary<string, string>>(access_tokenJson);
@@ -44,7 +47,7 @@ namespace Helper.WeiChat
         /// <param name="token"></param>
         /// <param name="postEnt"></param>
         /// <returns></returns>
-        public static string GetQrCodeTicket(string token,string postEnt=null)
+        public static string GetQrCodeTicket(string token, string postEnt = null)
         {
             var ticket = "";
             if (string.IsNullOrEmpty(postEnt))
@@ -69,8 +72,8 @@ namespace Helper.WeiChat
         public static string GetJsapiTicket(string accessToken)
         {
             var ticket = "";
-            
-            ticket = Fun.HttpGetJson("https://api.weixin.qq.com/cgi-bin/ticket/getticket?access_token="+ accessToken + "&type=jsapi");
+
+            ticket = Fun.HttpGetJson("https://api.weixin.qq.com/cgi-bin/ticket/getticket?access_token=" + accessToken + "&type=jsapi");
             var ticketDict = TypeChange.JsonToObject<Dictionary<string, string>>(ticket);
             if (ticketDict.ContainsKey("ticket"))
             {
@@ -79,8 +82,13 @@ namespace Helper.WeiChat
 
             return ticket;
         }
-
-        public static string SetMenu(string accessToken,string menuStr)
+        /// <summary>
+        /// 设置菜单
+        /// </summary>
+        /// <param name="accessToken"></param>
+        /// <param name="menuStr"></param>
+        /// <returns></returns>
+        public static string SetMenu(string accessToken, string menuStr)
         {
             var msgStr = Fun.HttpPostJson("https://api.weixin.qq.com/cgi-bin/menu/create?access_token=" + accessToken, menuStr);
             var ticketDict = TypeChange.JsonToObject<Dictionary<string, string>>(msgStr);
@@ -92,6 +100,22 @@ namespace Helper.WeiChat
         }
 
         /// <summary>
+        /// 获取用户基本信息
+        /// </summary>
+        /// <param name="openid"></param>
+        /// <returns></returns>
+        public static WxUserEntity GetUserInfo(string openid)
+        {
+            var msgStr = Fun.HttpGetJson($"https://api.weixin.qq.com/cgi-bin/user/info?access_token={ReadAccessToken()}&openid={openid}");
+            var ticketDict = TypeChange.JsonToObject(msgStr);
+            if (ticketDict.ContainsKey("errcode"))
+            {
+                throw new Exception(ticketDict.GetValue("errmsg").ToString());
+            }
+            return TypeChange.JsonToObject<WxUserEntity>(msgStr);;
+        }
+
+        /// <summary>
         /// 获取网页授权的地址
         /// </summary>
         /// <param name="appid"></param>
@@ -99,8 +123,9 @@ namespace Helper.WeiChat
         /// <param name="state">该值会传入到回调地址里</param>
         /// <param name="isConfirm">true 表示要弹出确认框</param>
         /// <returns></returns>
-        public static string GetWebpageAuthorization(string appid,string redirect_uri,string state,bool isConfirm){
-            var scope=isConfirm?"snsapi_userinfo":"snsapi_base";
+        public static string GetWebpageAuthorization(string appid, string redirect_uri, string state, bool isConfirm)
+        {
+            var scope = isConfirm ? "snsapi_userinfo" : "snsapi_base";
             return $"https://open.weixin.qq.com/connect/oauth2/authorize?appid={appid}&redirect_uri={redirect_uri}&response_type=code&scope={scope}&state={state}#wechat_redirect";
         }
 
@@ -111,33 +136,39 @@ namespace Helper.WeiChat
         /// <param name="secret"></param>
         /// <param name="code">网页授权地址返回的code</param>
         /// <returns></returns>
-        public static WebpageToken GetWebpageToken(string appid,string secret,string code){
-            var url=$"https://api.weixin.qq.com/sns/oauth2/access_token?appid={appid}&secret={secret}&code={code}&grant_type=authorization_code";
-            string reJson= Fun.HttpGetJson(url);
-            var t= TypeChange.JsonToObject(reJson);
-            if(t.ContainsKey("openid")){
+        public static WebpageToken GetWebpageToken(string appid, string secret, string code)
+        {
+            var url = $"https://api.weixin.qq.com/sns/oauth2/access_token?appid={appid}&secret={secret}&code={code}&grant_type=authorization_code";
+            string reJson = Fun.HttpGetJson(url);
+            var t = TypeChange.JsonToObject(reJson);
+            if (t.ContainsKey("openid"))
+            {
                 return TypeChange.JsonToObject<WebpageToken>(reJson);
             }
             throw new Exception(reJson);
         }
 
-        public static WxUserEntity GetWebpageUserInfo(string access_token,string openid){
-            string url=$"https://api.weixin.qq.com/sns/userinfo?access_token={access_token}&openid={openid}&lang=zh_CN";
-            string reJson= Fun.HttpGetJson(url);
-            var t= TypeChange.JsonToObject(reJson);
-            if(t.ContainsKey("openid")){
+        public static WxUserEntity GetWebpageUserInfo(string access_token, string openid)
+        {
+            string url = $"https://api.weixin.qq.com/sns/userinfo?access_token={access_token}&openid={openid}&lang=zh_CN";
+            string reJson = Fun.HttpGetJson(url);
+            var t = TypeChange.JsonToObject(reJson);
+            if (t.ContainsKey("openid"))
+            {
                 return TypeChange.JsonToObject<WxUserEntity>(reJson);
             }
             throw new Exception(reJson);
         }
 
-        public static WxUserEntity GetWebpageUserInfo(string appid,string secret,string code){
-            var webpageToken=GetWebpageToken(appid,secret,code);
+        public static WxUserEntity GetWebpageUserInfo(string appid, string secret, string code)
+        {
+            var webpageToken = GetWebpageToken(appid, secret, code);
 
-            string url=$"https://api.weixin.qq.com/sns/userinfo?access_token={webpageToken.access_token}&openid={webpageToken.openid}&lang=zh_CN";
-            string reJson= Fun.HttpGetJson(url);
-            var t= TypeChange.JsonToObject(reJson);
-            if(t.ContainsKey("openid")){
+            string url = $"https://api.weixin.qq.com/sns/userinfo?access_token={webpageToken.access_token}&openid={webpageToken.openid}&lang=zh_CN";
+            string reJson = Fun.HttpGetJson(url);
+            var t = TypeChange.JsonToObject(reJson);
+            if (t.ContainsKey("openid"))
+            {
                 return TypeChange.JsonToObject<WxUserEntity>(reJson);
             }
             throw new Exception(reJson);

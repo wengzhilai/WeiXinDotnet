@@ -1,5 +1,6 @@
 
 using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -40,7 +41,7 @@ namespace Models.Entity
         /// </summary>
         [Column("province")]
         public string province { get; set; }
-        
+
         /// <summary>
         /// 普通用户个人资料填写的城市
         /// </summary>
@@ -65,6 +66,99 @@ namespace Models.Entity
         [Column("unionid")]
         public string unionid { get; set; }
 
+        /// <summary>
+        /// IP地址
+        /// </summary>
+        [Column("ip")]
+        public string ip { get; set; }
 
+        /// <summary>
+        /// 真实地址
+        /// </summary>
+        [Column("address")]
+        public string address { get; set; }
+
+        /// <summary>
+        /// 真实地址
+        /// </summary>
+        [Column("create_time")]
+        public long createTime { get; set; }
+
+        /// <summary>
+        /// 真实地址
+        /// </summary>
+        [Column("last_time")]
+        public long lastTime { get; set; }
+
+
+
+
+        /// <summary>
+        /// language
+        /// </summary>
+        [Required]
+        [StringLength(20)]
+        [Column("language")]
+        public string language { get; set; }
+        /// <summary>
+        /// subscribe
+        /// </summary>
+        [Required]
+        [Column("subscribe")]
+        public int subscribe { get; set; }
+        /// <summary>
+        /// subscribe_time
+        /// </summary>
+        [Required]
+        [Column("subscribe_time")]
+        public Int64 subscribe_time { get; set; }
+        /// <summary>
+        /// remark
+        /// </summary>
+        [Required]
+        [StringLength(100)]
+        [Column("remark")]
+        public string remark { get; set; }
+        /// <summary>
+        /// groupid
+        /// </summary>
+        [Required]
+        [Column("groupid")]
+        public int groupid { get; set; }
+        /// <summary>
+        /// tagid_list_str
+        /// </summary>
+        [Required]
+        [StringLength(100)]
+        [Column("tagid_list_str")]
+        public string tagidListStr { get {return string.Join(",",tagid_list);}}
+        /// <summary>
+        /// subscribe_scene
+        /// </summary>
+        [Required]
+        [StringLength(30)]
+        [Column("subscribe_scene")]
+        public string subscribe_scene { get; set; }
+        /// <summary>
+        /// qr_scene
+        /// </summary>
+        [Required]
+        [StringLength(10)]
+        [Column("qr_scene")]
+        public string qr_scene { get; set; }
+        /// <summary>
+        /// qr_scene_str
+        /// </summary>
+        [Required]
+        [StringLength(10)]
+        [Column("qr_scene_str")]
+        public string qr_scene_str { get; set; }
+
+        /// <summary>
+        /// 用户被打上的标签ID列表
+        /// </summary>
+        /// <value></value>
+        public List<int> tagid_list{get;set;}=new List<int>();
+        
     }
 }

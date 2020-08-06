@@ -81,6 +81,8 @@ namespace WxProductApi
             services.TryAddSingleton<IUserRepository, UserRepository>();
             services.TryAddSingleton<IFileRepository, FileRepository>();
             services.TryAddSingleton<IWeiXinRepository, WeiXinRepository>();
+            //获取用户IP
+            services.AddSingleton<IHttpContextAccessor,HttpContextAccessor>();
             #endregion
 
             #region JWT Config
@@ -181,7 +183,7 @@ namespace WxProductApi
 
 
             services.AddControllers();
-
+            services.AddHttpClient();
             services.Configure<FormOptions>(x =>
             {
                 x.ValueLengthLimit = int.MaxValue;

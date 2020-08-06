@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50505
 File Encoding         : 65001
 
-Date: 2020-08-03 17:09:08
+Date: 2020-08-06 15:49:37
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -204,6 +204,7 @@ CREATE TABLE `sys_sequence` (
 -- Records of sys_sequence
 -- ----------------------------
 INSERT INTO `sys_sequence` VALUES ('sys_files', '7', '1');
+INSERT INTO `sys_sequence` VALUES ('wx_quest_log', '45', '1');
 
 -- ----------------------------
 -- Table structure for `sys_user`
@@ -243,3 +244,80 @@ CREATE TABLE `sys_user_role` (
 -- Records of sys_user_role
 -- ----------------------------
 INSERT INTO `sys_user_role` VALUES ('1', '1');
+
+-- ----------------------------
+-- Table structure for `wx_quest_log`
+-- ----------------------------
+DROP TABLE IF EXISTS `wx_quest_log`;
+CREATE TABLE `wx_quest_log` (
+  `id` int(11) NOT NULL,
+  `to_user_name` varchar(100) NOT NULL DEFAULT '',
+  `from_user_name` varchar(100) NOT NULL DEFAULT '',
+  `msg_type` varchar(100) NOT NULL DEFAULT '',
+  `content` varchar(1000) NOT NULL DEFAULT '',
+  `event_type` varchar(100) NOT NULL DEFAULT '',
+  `event_key` varchar(100) NOT NULL DEFAULT '',
+  `ticket` varchar(100) DEFAULT '',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of wx_quest_log
+-- ----------------------------
+INSERT INTO `wx_quest_log` VALUES ('1', '', 'oJwhPxIiFt7npgUpPF4tOhGS3YMI', 'event', '', 'subscribe', '', '');
+INSERT INTO `wx_quest_log` VALUES ('2', '', 'oJwhPxIiFt7npgUpPF4tOhGS3YMI', 'event', '', 'unsubscribe', '', '');
+INSERT INTO `wx_quest_log` VALUES ('6', 'gh_79f9a3893207', 'oJwhPxIiFt7npgUpPF4tOhGS3YMI', 'event', '', 'unsubscribe', '', '');
+INSERT INTO `wx_quest_log` VALUES ('7', 'gh_79f9a3893207', 'oJwhPxIiFt7npgUpPF4tOhGS3YMI', 'event', '', 'subscribe', '', '');
+INSERT INTO `wx_quest_log` VALUES ('9', 'gh_79f9a3893207', 'oJwhPxIiFt7npgUpPF4tOhGS3YMI', 'event', '', 'unsubscribe', '', '');
+INSERT INTO `wx_quest_log` VALUES ('11', 'gh_79f9a3893207', 'oJwhPxIiFt7npgUpPF4tOhGS3YMI', 'event', '', 'subscribe', '', '');
+INSERT INTO `wx_quest_log` VALUES ('13', 'gh_79f9a3893207', 'oJwhPxIiFt7npgUpPF4tOhGS3YMI', 'event', '', 'subscribe', '', '');
+INSERT INTO `wx_quest_log` VALUES ('15', 'gh_79f9a3893207', 'oJwhPxIiFt7npgUpPF4tOhGS3YMI', 'event', '', 'subscribe', '', '');
+INSERT INTO `wx_quest_log` VALUES ('17', 'gh_79f9a3893207', 'oJwhPxIiFt7npgUpPF4tOhGS3YMI', 'event', '', 'subscribe', '', '');
+INSERT INTO `wx_quest_log` VALUES ('19', 'gh_79f9a3893207', 'oJwhPxIiFt7npgUpPF4tOhGS3YMI', 'event', '', 'subscribe', '', '');
+INSERT INTO `wx_quest_log` VALUES ('21', 'gh_79f9a3893207', 'oJwhPxIiFt7npgUpPF4tOhGS3YMI', 'event', '', 'subscribe', '', '');
+INSERT INTO `wx_quest_log` VALUES ('23', 'gh_79f9a3893207', 'oJwhPxIiFt7npgUpPF4tOhGS3YMI', 'event', '', 'subscribe', '', '');
+INSERT INTO `wx_quest_log` VALUES ('25', 'gh_79f9a3893207', 'oJwhPxIiFt7npgUpPF4tOhGS3YMI', 'event', '', 'subscribe', '', '');
+INSERT INTO `wx_quest_log` VALUES ('27', 'gh_79f9a3893207', 'oJwhPxIiFt7npgUpPF4tOhGS3YMI', 'event', '', 'subscribe', '', '');
+INSERT INTO `wx_quest_log` VALUES ('29', 'gh_79f9a3893207', 'oJwhPxIiFt7npgUpPF4tOhGS3YMI', 'event', '', 'subscribe', '', '');
+INSERT INTO `wx_quest_log` VALUES ('31', 'gh_79f9a3893207', 'oJwhPxIiFt7npgUpPF4tOhGS3YMI', 'event', '', 'unsubscribe', '', '');
+INSERT INTO `wx_quest_log` VALUES ('33', 'gh_79f9a3893207', 'oJwhPxIiFt7npgUpPF4tOhGS3YMI', 'event', '', 'unsubscribe', '', '');
+INSERT INTO `wx_quest_log` VALUES ('35', 'gh_79f9a3893207', 'oJwhPxIiFt7npgUpPF4tOhGS3YMI', 'event', '', 'unsubscribe', '', '');
+INSERT INTO `wx_quest_log` VALUES ('37', 'gh_79f9a3893207', 'oJwhPxIiFt7npgUpPF4tOhGS3YMI', 'event', '', 'unsubscribe', '', '');
+INSERT INTO `wx_quest_log` VALUES ('39', 'gh_79f9a3893207', 'oJwhPxIiFt7npgUpPF4tOhGS3YMI', 'event', '', 'unsubscribe', '', '');
+INSERT INTO `wx_quest_log` VALUES ('41', 'gh_79f9a3893207', 'oJwhPxIiFt7npgUpPF4tOhGS3YMI', 'event', '', 'unsubscribe', '', '');
+INSERT INTO `wx_quest_log` VALUES ('43', 'gh_79f9a3893207', 'oJwhPxIiFt7npgUpPF4tOhGS3YMI', 'event', '', 'unsubscribe', '', '');
+INSERT INTO `wx_quest_log` VALUES ('45', 'gh_79f9a3893207', 'oJwhPxIiFt7npgUpPF4tOhGS3YMI', 'event', '', 'unsubscribe', '', '');
+
+-- ----------------------------
+-- Table structure for `wx_user`
+-- ----------------------------
+DROP TABLE IF EXISTS `wx_user`;
+CREATE TABLE `wx_user` (
+  `openid` varchar(50) NOT NULL DEFAULT '' COMMENT '用户唯一标识',
+  `nickname` varchar(100) NOT NULL DEFAULT '' COMMENT '用户昵称',
+  `sex` varchar(100) NOT NULL DEFAULT '' COMMENT '用户的性别，值为1时是男性，值为2时是女性，值为0时是未知',
+  `province` varchar(1000) NOT NULL DEFAULT '' COMMENT '用户个人资料填写的省份',
+  `city` varchar(100) NOT NULL DEFAULT '' COMMENT '普通用户个人资料填写的城市',
+  `country` varchar(100) NOT NULL DEFAULT '' COMMENT '国家，如中国为CN',
+  `headimgurl` varchar(500) NOT NULL DEFAULT '' COMMENT '用户头像',
+  `unionid` varchar(100) NOT NULL DEFAULT '' COMMENT '只有在用户将公众号绑定到微信开放平台帐号后，才会出现该字段',
+  `ip` varchar(16) NOT NULL DEFAULT '' COMMENT 'ip地址',
+  `address` varchar(20) NOT NULL DEFAULT '' COMMENT '地址',
+  `create_time` bigint(20) NOT NULL COMMENT '创建时间',
+  `last_time` bigint(20) NOT NULL COMMENT '最后时间',
+  `language` varchar(20) NOT NULL DEFAULT '' COMMENT '用户的语言，简体中文为zh_CN',
+  `subscribe` int(11) NOT NULL COMMENT '用户是否订阅该公众号标识，值为0时，代表此用户没有关注该公众号，拉取不到其余信息。',
+  `subscribe_time` bigint(20) NOT NULL COMMENT '用户关注时间，为时间戳。如果用户曾多次关注，则取最后关注时间',
+  `remark` varchar(100) NOT NULL DEFAULT '' COMMENT '公众号运营者对粉丝的备注',
+  `groupid` int(11) NOT NULL COMMENT '用户所在的分组ID',
+  `tagid_list_str` varchar(100) NOT NULL DEFAULT '' COMMENT '用户被打上的标签ID列表',
+  `subscribe_scene` varchar(30) NOT NULL DEFAULT '' COMMENT '户关注的渠道来源',
+  `qr_scene` varchar(10) NOT NULL DEFAULT '' COMMENT '二维码扫码场景',
+  `qr_scene_str` varchar(10) NOT NULL DEFAULT '' COMMENT '二维码扫码场景描述',
+  PRIMARY KEY (`openid`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of wx_user
+-- ----------------------------
+INSERT INTO `wx_user` VALUES ('oJwhPxIiFt7npgUpPF4tOhGS3YMI', '翁志来', '1', '四川', '南充', '中国', 'http://thirdwx.qlogo.cn/mmopen/q8cn3WLCTWnM1b4jQWEay5DSTHP3aRnic3kLcU94JK6fEGekBKygL33jb0AAa8uicHdlmnU4BbyFicGNWMT8uelJDkSmquKMAmN/132', '', '127.0.0.1', '未知未知', '20200806142740', '20200806151435', 'zh_CN', '0', '1596700101', '', '0', '', 'ADD_SCENE_QR_CODE', '0', '');

@@ -20,6 +20,7 @@ using Microsoft.Extensions.Options;
 using Models.Entity;
 using Repository;
 using IRepository;
+using System.Net.Http;
 
 namespace WxProductApi.Controllers
 {
@@ -30,10 +31,17 @@ namespace WxProductApi.Controllers
 
         IWeiXinRepository weiXin;
         AppConfig appConfig;
-        public WeiXinController(IOptions<AppConfig> _appConfig, IWeiXinRepository _weiXin)
+        /// <summary>
+        /// 用于获取IP地址
+        /// </summary>
+        IHttpContextAccessor httpContextAccessor;
+        private IHttpClientFactory httpClientFactory;
+        public WeiXinController(IOptions<AppConfig> _appConfig, IWeiXinRepository _weiXin, IHttpContextAccessor _httpContextAccessor, IHttpClientFactory _httpClientFactory)
         {
             appConfig = _appConfig.Value;
             this.weiXin = _weiXin;
+            this.httpContextAccessor = _httpContextAccessor;
+            httpClientFactory = _httpClientFactory;
         }
 
         [HttpGet]
@@ -93,19 +101,19 @@ namespace WxProductApi.Controllers
                         switch (eventType.ToLower())
                         {
                             case "subscribe": //订阅
-                                if (!string.IsNullOrEmpty(ticket) && !string.IsNullOrEmpty(fromUserName))
-                                {
-                                    // var saveEnt = new EtcWeixinEntity()
-                                    // {
-                                    //     openid = fromUserName,
-                                    //     createTime = DateTime.Now,
-                                    //     parentTicket = ticket,
-                                    //     eventKey = eventKey,
-                                    // };
-                                    // var t= weixin.save(saveEnt);
+                                if (!string.IsNullOrEmpty(fromUserName))
+                                {   
+                                    var userinfo= Helper.WeiChat.Utility.GetUserInfo(fromUserName);
+                                    await weiXin.saveUser(userinfo,new List<string>{"nickname","headimgurl","subscribe","subscribe_time","remark","groupid","tagidListStr","subscribe_scene","qr_scene","qr_scene_str"});
                                 }
                                 break;
                             case "unsubscribe": //取消订阅
+                                var unsubscribeUser= new WxUserEntity(){
+                                    subscribe=0,
+                                    openid=fromUserName,
+                                    subscribe_time=Helper.DataTimeHelper.getDateLongTimestamp(DateTime.Now)
+                                };
+                                await weiXin.saveUser(unsubscribeUser,new List<string>{"subscribe","subscribe_time"});
                                 break;
                             case "click": //点击事件
                                 String replay = "";
@@ -143,16 +151,24 @@ namespace WxProductApi.Controllers
         [HttpGet]
         public async Task<string> GetUserInfoAsync(string state, string code)
         {
+            //Request.Headers.Select(x=>x.Key+"="+x.Value).ToArray()
             if (string.IsNullOrEmpty(code))
             {
+                string ip=this.httpContextAccessor.HttpContext.Connection.RemoteIpAddress.ToString();
+                state=$"{state}|{ip}";
                 var url = Helper.WeiChat.Utility.GetWebpageAuthorization(appConfig.WeiXin.Appid, $"http://{Request.Host.Host}{Request.Path}", state, false);
                 Response.Redirect(url);
                 return "";
             }
             else
             {
+                var stateList=state.Split('|');
+                state=stateList[0];
                 var reStr = Helper.WeiChat.Utility.GetWebpageUserInfo(appConfig.WeiXin.Appid, appConfig.WeiXin.Secret, code);
-                await weiXin.saveUser(reStr);
+                reStr.ip=stateList[1];
+                var addressList=await httpClientFactory.CreateClient().GetAddressAsync(reStr.ip);
+                reStr.address=string.Join("",addressList);
+                await weiXin.saveUser(reStr,new List<string>{"nickname","headimgurl","lastTime","ip","address","subscribe"});
                 return TypeChange.ObjectToStr(reStr);
             }
         }

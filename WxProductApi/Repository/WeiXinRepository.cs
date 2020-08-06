@@ -37,7 +37,7 @@ namespace Repository
         /// </summary>
         /// <param name="inObj"></param>
         /// <returns></returns>
-        public async Task<ResultObj<int>> saveUser(WxUserEntity inObj)
+        public async Task<ResultObj<int>> saveUser(WxUserEntity inObj,List<string> saveFieldList)
         {
             ResultObj<int> resultObj = new ResultObj<int>();
             var saveEnt = new DtoSave<WxUserEntity>() { data = inObj };
@@ -46,11 +46,14 @@ namespace Repository
             {
                 saveEnt.ignoreFieldList=new List<string>{"openid"};
                 saveEnt.whereList=new List<string>{"openid"};
-                saveEnt.saveFieldList=new List<string>{"nickname","headimgurl"};
+                saveEnt.data.lastTime=DataTimeHelper.getDateLong(DateTime.Now);
+                saveEnt.saveFieldList=saveFieldList;
                 resultObj.data = await dbHelper_user.Update(saveEnt);
             }
             else
             {
+                saveEnt.data.createTime=DataTimeHelper.getDateLong(DateTime.Now);
+                saveEnt.data.lastTime=saveEnt.data.createTime;
                 resultObj.data = await dbHelper_user.Save(saveEnt);
             }
 
