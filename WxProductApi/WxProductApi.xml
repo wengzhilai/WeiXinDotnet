@@ -348,6 +348,31 @@
             <param name="inEnt"></param>
             <returns></returns>
         </member>
+        <member name="T:WxProductApi.Controllers.PsAdminController">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:WxProductApi.Controllers.PsAdminController.#ctor(IRepository.IPsAdminRepository)">
+            <summary>
+            
+            </summary>
+            <param name="module"></param>
+        </member>
+        <member name="M:WxProductApi.Controllers.PsAdminController.save(Models.DtoSave{Models.Entity.PsAdminEntity})">
+            <summary>
+            保存Query
+            </summary>
+            <param name="inEnt"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WxProductApi.Controllers.PsAdminController.delete(Models.DtoDo{System.String})">
+            <summary>
+            删除单条
+            </summary>
+            <param name="inEnt"></param>
+            <returns></returns>
+        </member>
         <member name="T:WxProductApi.Controllers.QueryController">
             <summary>
             
@@ -1719,6 +1744,18 @@
             <param name="code">网页授权地址返回的code</param>
             <returns></returns>
         </member>
+        <member name="T:System.Security.Claims.ClaimsPrincipalExtensions">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:System.Security.Claims.ClaimsPrincipalExtensions.userId(System.Security.Claims.ClaimsPrincipal)">
+            <summary>
+            获取用户ID
+            </summary>
+            <param name="source"></param>
+            <returns></returns>
+        </member>
         <member name="T:System.StringExtensions">
             <summary>
             字符串扩展类
@@ -2368,6 +2405,26 @@
         <member name="P:Models.Entity.FaUserRoleEntityView.userName">
             <summary>
             用户姓名
+            </summary>
+        </member>
+        <member name="T:Models.Entity.PsAdminEntity">
+            <summary>
+            管理员
+            </summary>
+        </member>
+        <member name="P:Models.Entity.PsAdminEntity.openid">
+            <summary>
+            openid
+            </summary>
+        </member>
+        <member name="P:Models.Entity.PsAdminEntity.userId">
+            <summary>
+            user_id
+            </summary>
+        </member>
+        <member name="P:Models.Entity.PsAdminEntity.createTime">
+            <summary>
+            create_time
             </summary>
         </member>
         <member name="T:Models.Entity.SysFilesEntity">
@@ -3570,6 +3627,25 @@
             <param name="inParm"></param>
             <returns></returns>
         </member>
+        <member name="T:Repository.PsAdminRepository">
+            <summary>
+            图片处理服务
+            </summary>
+        </member>
+        <member name="M:Repository.PsAdminRepository.Delete(System.String)">
+            <summary>
+            删除
+            </summary>
+            <param name="openid"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Repository.PsAdminRepository.Save(Models.DtoSave{Models.Entity.PsAdminEntity})">
+            <summary>
+            保存
+            </summary>
+            <param name="inEnt"></param>
+            <returns></returns>
+        </member>
         <member name="M:Repository.QueryRepository.QueryExecute(Models.Entity.QuerySearchDto)">
             <summary>
             获取所有数据
@@ -3812,6 +3888,25 @@
             查找所有模块菜单
             </summary>
             <param name="inParm"></param>
+            <returns></returns>
+        </member>
+        <member name="T:IRepository.IPsAdminRepository">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:IRepository.IPsAdminRepository.Save(Models.DtoSave{Models.Entity.PsAdminEntity})">
+            <summary>
+            保存
+            </summary>
+            <param name="inEnt"></param>
+            <returns></returns>
+        </member>
+        <member name="M:IRepository.IPsAdminRepository.Delete(System.String)">
+            <summary>
+            删除
+            </summary>
+            <param name="openid">主键 ID</param>
             <returns></returns>
         </member>
         <member name="M:IRepository.IQueryRepository.QueryExecute(Models.Entity.QuerySearchDto)">

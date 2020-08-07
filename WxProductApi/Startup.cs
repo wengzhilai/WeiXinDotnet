@@ -83,6 +83,8 @@ namespace WxProductApi
             services.TryAddSingleton<IWeiXinRepository, WeiXinRepository>();
             //获取用户IP
             services.AddSingleton<IHttpContextAccessor,HttpContextAccessor>();
+
+            services.AddSingleton<IPsAdminRepository,PsAdminRepository>();
             #endregion
 
             #region JWT Config

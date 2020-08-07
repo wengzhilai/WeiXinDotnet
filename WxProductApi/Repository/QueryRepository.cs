@@ -13,6 +13,7 @@ using System.Data;
 using System.Linq.Expressions;
 using System.Globalization;
 using System.Text;
+using Newtonsoft.Json.Linq;
 
 namespace Repository
 {
@@ -154,11 +155,11 @@ namespace Repository
         /// <param name="code"></param>
         /// <param name="sqlStr"></param>
         /// <returns></returns>
-        public async Task<ResultObj<QueryCfg>> MakeQueryCfg(string code)
+        public async Task<ResultObj<string>> MakeQueryCfg(string code)
         {
-            ResultObj<QueryCfg> reObj = new ResultObj<QueryCfg>();
+            ResultObj<String> reObj = new ResultObj<String>();
             QuerySearchDto inEnt = new QuerySearchDto() { code = code };
-            List<QueryCfg> reEnt = new List<QueryCfg>();
+            JObject reEnt = new JObject();
             SysQueryEntity query = await dal.Single(i => i.code == inEnt.code);
 
             if (query == null)
@@ -177,7 +178,7 @@ namespace Repository
             try
             {
 
-                DataTable dt = dal.GetDataTable(reObj.msg);
+                DataTable dt = dal.GetDataTable(reObj.msg);                
                 for (int i = 0; i < dt.Columns.Count; i++)
                 {
                     var t = dt.Columns[i];
@@ -188,53 +189,26 @@ namespace Repository
                         tmp = "int";
                     }
                     string searchType = "";
-                    string searchScript = null;
                     switch (tmp)
                     {
                         case "int":
-                            searchScript = "";
                             searchType = "numberbox";
                             break;
                         case "datetime":
-                            searchScript = "";
                             searchType = "datetimebox";
                             break;
                         default:
                             searchType = "text";
                             break;
                     }
-
-                    reEnt.Add(new QueryCfg()
-                    {
-                        fieldName = t.ColumnName,
-                        show = true,
-                        fieldType = t.DataType.FullName,
-                        width = "120",
-                        canSearch = true,
-                        searchType = searchType,
-                        searchScript = searchScript,
-                        sortable = true,
-                        alias = t.Caption,
-                        isVariable = "false"
-                    });
+                    JObject itemObj=new JObject();
+                    itemObj["title"]=t.ColumnName;
+                    itemObj["type"]=searchType;
+                    itemObj["editable"]=true;
+                    reEnt[t.ColumnName]=itemObj;
                 }
-                #region 获取当前状态
-                {
-                    if (query != null)
-                    {
-                        IList<QueryCfg> old = TypeChange.ToJsonObject<List<QueryCfg>>(query.queryCfgJson);
-                        if (old != null)
-                        {
-                            for (int i = 0; i < reEnt.Count; i++)
-                            {
-                                var t0 = old.SingleOrDefault(x => x.fieldName == reEnt[i].fieldName);
-                                if (t0 != null) reEnt[i] = t0;
-                            }
-                        }
-                    }
-                }
-                #endregion
-                reObj.dataList = reEnt;
+                
+                reObj.data = reEnt.ToString();
                 return reObj;
             }
             catch

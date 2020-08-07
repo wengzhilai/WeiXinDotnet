@@ -142,9 +142,9 @@ namespace WxProductApi.Controllers
         /// <param name="code"></param>
         /// <returns></returns>
         [HttpPost]
-        public async Task<ResultObj<QueryCfg>> makeQueryCfg(string code)
+        public async Task<ResultObj<String>> makeQueryCfg(string code)
         {
-            ResultObj<QueryCfg> reObj = new ResultObj<QueryCfg>();
+            ResultObj<String> reObj = new ResultObj<String>();
             try
             {
                 reObj = await _query.MakeQueryCfg(code);
@@ -171,6 +171,41 @@ namespace WxProductApi.Controllers
             ResultObj<int> reObj = new ResultObj<int>();
             try
             {
+                if(string.IsNullOrEmpty(inEnt.data.queryCfgJson)){
+                    inEnt.data.queryCfgJson=TypeChange.ObjectToStr((await _query.MakeQueryCfg(inEnt.data.code)).data);
+                }
+                if(string.IsNullOrEmpty(inEnt.data.rowsBtn)){
+                   inEnt.data.rowsBtn=@"
+[{
+		""title"": ""修改"",
+		""class"": ""nb-edit"",
+		""openModal"": ""RoleEditComponent"",
+		""readUrl"": ""user/*/singleByKey"",
+		""apiUrl"": ""user/*/save""
+	},
+	{
+		""title"": ""删除"",
+		""class"": ""nb-trash"",
+		""apiUrl"": ""user/*/delete"",
+		""confirmTip"": ""确定要删除吗？""
+	}
+]"; 
+                }
+                if(string.IsNullOrEmpty(inEnt.data.heardBtn)){
+                    inEnt.data.heardBtn=@"
+[{
+		""title"": ""添加"",
+		""class"": ""nb-plus"",
+		""click"": ""nowThis.Add('user/*/save')""
+	},
+	{
+		""title"": ""批量删除"",
+		""class"": ""ion-delete"",
+		""click"": ""nowThis.Exec('user/*/delete','id','删除要删除吗？')""
+	}
+]                 
+                    ";
+                }
                 if (inEnt.data.id == 0)
                 {
                     reObj.data = await _query.Save(inEnt);

@@ -30,7 +30,7 @@ namespace Helper
                     new Claim(ClaimTypes.Name, user.name.ToString()),
                     new Claim(ClaimTypes.Role, RoleFactory(user.roleIdList))
                 }),
-                Expires = DateTime.UtcNow.AddHours(10),
+                Expires = DateTime.UtcNow.AddMonths(1),
 
                 SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)
             };

@@ -39,7 +39,7 @@ namespace IRepository
         /// <param name="code"></param>
         /// <param name="sqlStr"></param>
         /// <returns></returns>
-        Task<ResultObj<QueryCfg>> MakeQueryCfg(string code);
+        Task<ResultObj<string>> MakeQueryCfg(string code);
 
         /// <summary>
         /// 生成分页的SQL
