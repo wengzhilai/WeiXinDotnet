@@ -76,8 +76,19 @@ namespace Repository
 
                 return reObj;
             }
-            IList<QueryCfg> cfg = TypeChange.ToJsonObject<List<QueryCfg>>(query.queryCfgJson);
 
+            JObject cfg = TypeChange.JsonToObject(query.queryCfgJson);
+            Dictionary<string,string> dict=new Dictionary<string, string>();
+            foreach (var item in cfg)
+            {
+                try
+                {
+                    dict.Add(item.Key,item.Value["title"].ToString());
+                }
+                catch 
+                {
+                }
+            }
             string whereStr = "";
             string AllSql = MakeSql(inEnt, query.queryConf, ref whereStr);
             //如果条件为空
@@ -96,10 +107,12 @@ namespace Repository
             try
             {
                 reObj.msg = AllSql;
-                reObj.data = dal.ExecuteBytesAsync(AllSql);
+                reObj.data = dal.ExecuteBytesAsync(AllSql,null,dict);
             }
-            catch
+            catch(Exception e)
             {
+                reObj.msg=e.Message;
+                reObj.success=false;
                 return reObj;
             }
             return reObj;

@@ -107,16 +107,23 @@ namespace WxProductApi.Controllers
         /// </summary>
         /// <param name="querySearchModel"></param>
         /// <returns></returns>
-        [HttpPost]
+        [HttpGet]
         [AllowAnonymous]
-        public async Task<IActionResult> downFile(QuerySearchDto querySearchModel)
+        public async Task<IActionResult> downFileGet(string code,int page,int rows,string order,string sort)
         {
-            querySearchModel.page = 1;
-            querySearchModel.rows = 1000000000;
+            QuerySearchDto postJson=new QuerySearchDto();
+            postJson.code=code;
+            postJson.sort=sort;
+            postJson.order=order;
+            postJson.page = 1;
+            postJson.rows = 1000000000;
             // var reData =await _query.QueryExecuteCsv(querySearchModel);
             // Session[string.Format("SQL_{0}", querySearchModel.Code)] = sqlStr;
-            var tmepObj = await _query.QueryExecuteCsv(querySearchModel);
-            return File(tmepObj.data.ToArray(), "application/octet-stream", string.Format("{0}.csv", querySearchModel.code));
+            var tmepObj = await _query.QueryExecuteCsv(postJson);
+            if(tmepObj.success){
+                return File(tmepObj.data.ToArray(), "application/octet-stream", string.Format("{0}.csv", postJson.code));
+            }
+            return Ok(tmepObj);
         }
 
         /// <summary>
@@ -126,7 +133,7 @@ namespace WxProductApi.Controllers
         /// <returns></returns>
         [HttpGet]
         [AllowAnonymous]
-        public async Task<IActionResult> downFile(DtoKey code)
+        public async Task<IActionResult> downFileByCode(DtoKey code)
         {
             var tmepObj = await _query.QueryExecuteCsv(new QuerySearchDto{
                 code=code.Key,

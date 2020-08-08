@@ -199,7 +199,7 @@
             @param inEnt
             @return
         </member>
-        <member name="M:WxProductApi.Controllers.IQueryController.downFile(Models.DtoKey)">
+        <member name="M:WxProductApi.Controllers.IQueryController.downFileByCode(Models.DtoKey)">
             下载文件
             @param postJson
             @return
@@ -398,14 +398,14 @@
             <param name="inEnt"></param>
             <returns></returns>
         </member>
-        <member name="M:WxProductApi.Controllers.QueryController.downFile(Models.Entity.QuerySearchDto)">
+        <member name="M:WxProductApi.Controllers.QueryController.downFileGet(System.String,System.Int32,System.Int32,System.String,System.String)">
             <summary>
             导出Excel数据
             </summary>
             <param name="querySearchModel"></param>
             <returns></returns>
         </member>
-        <member name="M:WxProductApi.Controllers.QueryController.downFile(Models.DtoKey)">
+        <member name="M:WxProductApi.Controllers.QueryController.downFileByCode(Models.DtoKey)">
             <summary>
             
             </summary>

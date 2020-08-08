@@ -51,6 +51,6 @@ namespace WxProductApi.Controllers
          * @param postJson
          * @return
          */
-        Task<IActionResult> downFile(DtoKey postJson);
+        Task<IActionResult> downFileByCode(DtoKey postJson);
     }
 }

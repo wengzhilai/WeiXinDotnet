@@ -92,10 +92,11 @@ namespace Helper
             return result;
         }
 
-        public List<byte> ExecuteBytesAsync(string sql, object param = null)
+        public List<byte> ExecuteBytesAsync(string sql, object param = null,Dictionary<string,string> columnsAlias=null)
         {
             List<byte> reEnt = new List<byte>();
 
+ 
             connection.Open();
             try
             {
@@ -108,7 +109,13 @@ namespace Helper
                     List<string> allColumns = new List<string>();
                     for (int a = 0; a < reader.FieldCount; a++)
                     {
-                        allColumns.Add(reader.GetName(a).Trim());
+                        var itemName=reader.GetName(a).Trim();
+                        if(columnsAlias==null || !columnsAlias.ContainsKey(itemName) || columnsAlias[itemName]==null){
+                            allColumns.Add(itemName);
+                        }
+                        else{
+                            allColumns.Add(columnsAlias[itemName]);
+                        }
                     }
                     reEnt.AddRange(Encoding.UTF8.GetBytes(string.Join(",", allColumns) + "\r\n"));
 
@@ -127,12 +134,12 @@ namespace Helper
             catch (Exception e)
             {
                 LogHelper.WriteErrorLog(typeof(DapperHelper), e.ToString());
+                throw e;
             }
             finally
             {
                 connection.Close();
             }
-            return null;
         }
 
         async public Task<string> ExecuteScalarAsync(string sql, object param = null)
