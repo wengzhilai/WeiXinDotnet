@@ -11,7 +11,7 @@ namespace IRepository
     /// <summary>
     /// 
     /// </summary>
-    public interface IPsAdminRepository
+    public interface IPsBatchRepository
     {
 
         /// <summary>
@@ -19,7 +19,7 @@ namespace IRepository
         /// </summary>
         /// <param name="inEnt"></param>
         /// <returns></returns>
-        Task<ResultObj<int>> Save(DtoSave<PsAdminEntity> inEnt);
+        Task<ResultObj<int>> Save(DtoSave<PsBatchEntity> inEnt);
 
         /// <summary>
         /// 删除
@@ -27,6 +27,13 @@ namespace IRepository
         /// <param name="id">主键 ID</param>
         /// <returns></returns>
         Task<ResultObj<int>> Delete(int id);
+
+        /// <summary>
+        /// 生成批次csv文件
+        /// </summary>
+        /// <param name="batchId"></param>
+        /// <returns></returns>
+        Task<byte[]> MakeCsvByte(int batchId);
 
     }
 }

@@ -14,11 +14,17 @@ namespace Models.Entity
     {
 
         /// <summary>
+        /// ID
+        /// </summary>
+        [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Computed)]
+        [Display(Name = "ID")]
+        [Column]
+        public int id { get; set; }
+
+        /// <summary>
         /// openid
         /// </summary>
-        [Required]
-        [DatabaseGenerated(DatabaseGeneratedOption.Computed)]
-        [Key]
         [Column("openid")]
         public string openid { get; set; }
         /// <summary>

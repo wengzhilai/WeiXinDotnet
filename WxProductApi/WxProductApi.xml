@@ -366,7 +366,7 @@
             <param name="inEnt"></param>
             <returns></returns>
         </member>
-        <member name="M:WxProductApi.Controllers.PsAdminController.delete(Models.DtoDo{System.String})">
+        <member name="M:WxProductApi.Controllers.PsAdminController.delete(Models.DtoDo{System.Int32})">
             <summary>
             删除单条
             </summary>
@@ -2412,6 +2412,11 @@
             管理员
             </summary>
         </member>
+        <member name="P:Models.Entity.PsAdminEntity.id">
+            <summary>
+            ID
+            </summary>
+        </member>
         <member name="P:Models.Entity.PsAdminEntity.openid">
             <summary>
             openid
@@ -3632,7 +3637,7 @@
             图片处理服务
             </summary>
         </member>
-        <member name="M:Repository.PsAdminRepository.Delete(System.String)">
+        <member name="M:Repository.PsAdminRepository.Delete(System.Int32)">
             <summary>
             删除
             </summary>
@@ -3902,7 +3907,7 @@
             <param name="inEnt"></param>
             <returns></returns>
         </member>
-        <member name="M:IRepository.IPsAdminRepository.Delete(System.String)">
+        <member name="M:IRepository.IPsAdminRepository.Delete(System.Int32)">
             <summary>
             删除
             </summary>

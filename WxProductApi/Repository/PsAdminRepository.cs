@@ -16,12 +16,12 @@ namespace Repository
         /// <summary>
         /// 删除
         /// </summary>
-        /// <param name="openid"></param>
+        /// <param name="id"></param>
         /// <returns></returns>
-        public async Task<ResultObj<int>> Delete(string openid)
+        public async Task<ResultObj<int>> Delete(int id)
         {
             var reObj = new ResultObj<int>();
-            reObj.data = await dbHelper.Delete(x => x.openid == openid);
+            reObj.data = await dbHelper.Delete(x => x.id == id);
             reObj.success = reObj.data > 0;
             return reObj;
         }
@@ -35,6 +35,7 @@ namespace Repository
         {
             var reObj = new ResultObj<int>();
             inEnt.data.createTime = Helper.DataTimeHelper.getDateLong(DateTime.Now);
+            inEnt.data.id=await SequenceRepository.GetNextID<PsAdminEntity>();
             reObj.data = await dbHelper.Save(inEnt);
             reObj.success = reObj.data > 0;
             return reObj;

@@ -61,7 +61,7 @@ namespace WxProductApi.Controllers
         /// <param name="inEnt"></param>
         /// <returns></returns>
         [HttpPost]
-        public async Task<ResultObj<int>> delete(DtoDo<string> inEnt)
+        public async Task<ResultObj<int>> delete(DtoDo<int> inEnt)
         {
             ResultObj<int> reObj = new ResultObj<int>();
             try
