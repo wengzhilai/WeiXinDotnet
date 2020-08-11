@@ -85,6 +85,7 @@ namespace WxProductApi
             services.AddSingleton<IHttpContextAccessor,HttpContextAccessor>();
 
             services.AddSingleton<IPsAdminRepository,PsAdminRepository>();
+            services.AddSingleton<IPsBatchRepository,PsBatchRepository>();
             #endregion
 
             #region JWT Config

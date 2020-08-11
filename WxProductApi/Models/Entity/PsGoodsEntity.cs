@@ -1,5 +1,6 @@
 
 using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -53,6 +54,11 @@ namespace Models.Entity
         [Column("confirm_time")]
         public Int64? confirmTime { get; set; }
 
+        /// <summary>
+        /// 查看日志
+        /// </summary>
+        /// <value></value>
+        public List<PsGoodsLogEntity> allLogs { get; set; }
 
     }
 }

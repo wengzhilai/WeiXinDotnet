@@ -35,5 +35,18 @@ namespace IRepository
         /// <returns></returns>
         Task<byte[]> MakeCsvByte(int batchId);
 
+        /// <summary>
+        /// 产品详情
+        /// </summary>
+        /// <param name="inLog"></param>
+        /// <returns></returns>
+        Task<ResultObj<PsGoodsEntity>> GoodsDetail(PsGoodsLogEntity inLog);
+        /// <summary>
+        /// 检测产品码
+        /// </summary>
+        /// <param name="inLog"></param>
+        /// <returns></returns>
+        Task<ResultObj<PsGoodsEntity>> GoodsCheck(PsGoodsLogEntity inLog,string code);
+
     }
 }
