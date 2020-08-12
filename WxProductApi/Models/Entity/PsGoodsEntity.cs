@@ -26,7 +26,7 @@ namespace Models.Entity
         [Required]
         [Key]
         [Column("code")]
-        public Int64 code { get; set; }
+        public string code { get; set; }
 
         /// <summary>
         /// 批次ID
@@ -52,7 +52,7 @@ namespace Models.Entity
         /// 确认时间
         /// </summary>
         [Column("confirm_time")]
-        public Int64? confirmTime { get; set; }
+        public Int64 confirmTime { get; set; }
 
         /// <summary>
         /// 查看日志

@@ -45,6 +45,13 @@ namespace Models.Entity
         [Column("down_num")]
         public int downNum { get; set; }
 
+        /// <summary>
+        /// 代码
+        /// </summary>
+        [Required]
+        [Column("code")]
+        public string code { get; set; }
+
 
     }
 }

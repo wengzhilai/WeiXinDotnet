@@ -239,7 +239,7 @@ namespace Helper
 
         public static DataTable JsonToDataTable(string strJson)
         {
-     
+
 
             //取出表名  
             Regex rg = new Regex(@"(?<={)[^:]+(?=:\[)", RegexOptions.IgnoreCase);
@@ -586,7 +586,7 @@ namespace Helper
             string content = string.Empty;
             try
             {
-                Console.WriteLine("请求地址："+server_addr);
+                Console.WriteLine("请求地址：" + server_addr);
                 DateTime startTime = new DateTime(1970, 1, 1);
                 var cdt = (int)(DateTime.Now - startTime).TotalSeconds;
                 HttpWebRequest request = (HttpWebRequest)WebRequest.Create(server_addr);
@@ -822,7 +822,7 @@ namespace Helper
             {
                 reStr += HourToShiChen(inTime.Value.Hour) + "时";
             }
-            
+
             return reStr;
         }
 
@@ -1012,6 +1012,45 @@ namespace Helper
                 return "";
             }
 
+        }
+
+        /// <summary>
+        /// Base64编码
+        /// </summary>
+        /// <param name="code"></param>
+        /// <returns></returns>
+        public static string Base64Encode(string code)
+        {
+            string encode = "";
+            byte[] bytes = Encoding.UTF8.GetBytes(code);
+            try
+            {
+                encode = Convert.ToBase64String(bytes);
+            }
+            catch
+            {
+                encode = code;
+            }
+            return encode;
+        }
+        /// <summary>
+        /// Base64解码
+        /// </summary>
+        /// <param name="code"></param>
+        /// <returns></returns>
+        public static string Base64Decode(string code)
+        {
+            string decode = "";
+            byte[] bytes = Convert.FromBase64String(code);
+            try
+            {
+                decode = Encoding.UTF8.GetString(bytes);
+            }
+            catch
+            {
+                decode = code;
+            }
+            return decode;
         }
     }
 

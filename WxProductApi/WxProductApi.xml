@@ -373,6 +373,70 @@
             <param name="inEnt"></param>
             <returns></returns>
         </member>
+        <member name="T:WxProductApi.Controllers.PsGoodsController">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:WxProductApi.Controllers.PsGoodsController.httpContextAccessor">
+            <summary>
+            用于获取IP地址
+            </summary>
+        </member>
+        <member name="M:WxProductApi.Controllers.PsGoodsController.#ctor(IRepository.IPsBatchRepository,Microsoft.AspNetCore.Http.IHttpContextAccessor,Microsoft.Extensions.Options.IOptions{WxProductApi.Config.AppConfig},System.Net.Http.IHttpClientFactory,IRepository.IWeiXinRepository)">
+            <summary>
+            
+            </summary>
+            <param name="module"></param>
+            <param name="httpContextAccessor"></param>
+            <param name="_appConfig"></param>
+            <param name="httpClientFactory"></param>
+            <param name="weiXin"></param>
+        </member>
+        <member name="M:WxProductApi.Controllers.PsGoodsController.Save(Models.DtoSave{Models.Entity.PsBatchEntity})">
+            <summary>
+            保存
+            </summary>
+            <param name="inEnt"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WxProductApi.Controllers.PsGoodsController.Delete(System.Int32)">
+            <summary>
+            删除
+            </summary>
+            <param name="id">主键 ID</param>
+            <returns></returns>
+        </member>
+        <member name="M:WxProductApi.Controllers.PsGoodsController.downCsv(System.String)">
+            <summary>
+            下载文件
+            </summary>
+            <param name="key"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WxProductApi.Controllers.PsGoodsController.GoodsDetail(System.String,System.String)">
+            <summary>
+            产品详情
+            </summary>
+            <param name="code"></param>
+            <param name="state">是产品的GUID</param>
+            <returns></returns>
+        </member>
+        <member name="M:WxProductApi.Controllers.PsGoodsController.GoodsCheck(System.String,System.String)">
+            <summary>
+            检测产品码
+            </summary>
+            <param name="code"></param>
+            <param name="state">是产品的{guid}_{code}</param>
+            <returns></returns>
+        </member>
+        <member name="M:WxProductApi.Controllers.PsGoodsController.ShowHtml(System.String)">
+            <summary>
+            显示网页
+            </summary>
+            <param name="htmlStr"></param>
+            <returns></returns>
+        </member>
         <member name="T:WxProductApi.Controllers.QueryController">
             <summary>
             
@@ -905,6 +969,20 @@
             <param name="Text"></param> 
             <param name="sKey"></param> 
             <returns></returns> 
+        </member>
+        <member name="M:Helper.Fun.Base64Encode(System.String)">
+            <summary>
+            Base64编码
+            </summary>
+            <param name="code"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Helper.Fun.Base64Decode(System.String)">
+            <summary>
+            Base64解码
+            </summary>
+            <param name="code"></param>
+            <returns></returns>
         </member>
         <member name="T:Helper.HttpClientHelper">
             <summary>
@@ -2185,6 +2263,17 @@
             </summary>
             <value></value>
         </member>
+        <member name="T:Models.KeyCodeDto">
+            <summary>
+            key和code
+            </summary>
+        </member>
+        <member name="P:Models.KeyCodeDto.key">
+            <summary>
+            key
+            </summary>
+            <value></value>
+        </member>
         <member name="T:Models.LogingDto">
             <summary>
             用户登录实体
@@ -2430,6 +2519,112 @@
         <member name="P:Models.Entity.PsAdminEntity.createTime">
             <summary>
             create_time
+            </summary>
+        </member>
+        <member name="T:Models.Entity.PsBatchEntity">
+            <summary>
+            产品批次
+            </summary>
+        </member>
+        <member name="P:Models.Entity.PsBatchEntity.id">
+            <summary>
+            id
+            </summary>
+        </member>
+        <member name="P:Models.Entity.PsBatchEntity.createTime">
+            <summary>
+            创建时间
+            </summary>
+        </member>
+        <member name="P:Models.Entity.PsBatchEntity.introduce">
+            <summary>
+            介绍
+            </summary>
+        </member>
+        <member name="P:Models.Entity.PsBatchEntity.goodsNum">
+            <summary>
+            产品数量
+            </summary>
+        </member>
+        <member name="P:Models.Entity.PsBatchEntity.downNum">
+            <summary>
+            下载次数
+            </summary>
+        </member>
+        <member name="P:Models.Entity.PsBatchEntity.code">
+            <summary>
+            代码
+            </summary>
+        </member>
+        <member name="T:Models.Entity.PsGoodsEntity">
+            <summary>
+            产品明细
+            </summary>
+        </member>
+        <member name="P:Models.Entity.PsGoodsEntity.id">
+            <summary>
+            id
+            </summary>
+        </member>
+        <member name="P:Models.Entity.PsGoodsEntity.code">
+            <summary>
+            代码
+            </summary>
+        </member>
+        <member name="P:Models.Entity.PsGoodsEntity.batchId">
+            <summary>
+            批次ID
+            </summary>
+        </member>
+        <member name="P:Models.Entity.PsGoodsEntity.lookNum">
+            <summary>
+            查看次数
+            </summary>
+        </member>
+        <member name="P:Models.Entity.PsGoodsEntity.openid">
+            <summary>
+            用户唯一标识
+            </summary>
+        </member>
+        <member name="P:Models.Entity.PsGoodsEntity.confirmTime">
+            <summary>
+            确认时间
+            </summary>
+        </member>
+        <member name="P:Models.Entity.PsGoodsEntity.allLogs">
+            <summary>
+            查看日志
+            </summary>
+            <value></value>
+        </member>
+        <member name="T:Models.Entity.PsGoodsLogEntity">
+            <summary>
+            产品明细
+            </summary>
+        </member>
+        <member name="P:Models.Entity.PsGoodsLogEntity.id">
+            <summary>
+            id
+            </summary>
+        </member>
+        <member name="P:Models.Entity.PsGoodsLogEntity.goodsGuid">
+            <summary>
+            goods_guid
+            </summary>
+        </member>
+        <member name="P:Models.Entity.PsGoodsLogEntity.openid">
+            <summary>
+            openid
+            </summary>
+        </member>
+        <member name="P:Models.Entity.PsGoodsLogEntity.createTime">
+            <summary>
+            create_time
+            </summary>
+        </member>
+        <member name="P:Models.Entity.PsGoodsLogEntity.ip">
+            <summary>
+            ip
             </summary>
         </member>
         <member name="T:Models.Entity.SysFilesEntity">
@@ -3190,86 +3385,6 @@
             </summary>
             <value></value>
         </member>
-        <member name="P:Models.GlobalUser.Ticket">
-            <summary>
-            登录凭证
-            </summary>
-        </member>
-        <member name="P:Models.GlobalUser.Guid">
-            <summary>
-            登录凭证
-            </summary>
-        </member>
-        <member name="P:Models.GlobalUser.UserId">
-            <summary>
-            用户ID
-            </summary>
-        </member>
-        <member name="P:Models.GlobalUser.DistrictId">
-            <summary>
-            当前节点ID
-            </summary>
-        </member>
-        <member name="P:Models.GlobalUser.DistrictCode">
-            <summary>
-            当前节点代码
-            </summary>
-        </member>
-        <member name="P:Models.GlobalUser.LevelId">
-            <summary>
-            用户层级
-            </summary>
-        </member>
-        <member name="P:Models.GlobalUser.Region">
-            <summary>
-            当前区域
-            </summary>
-        </member>
-        <member name="P:Models.GlobalUser.UserName">
-            <summary>
-            用户姓名
-            </summary>
-        </member>
-        <member name="P:Models.GlobalUser.LoginName">
-            <summary>
-            用户登录名
-            </summary>
-        </member>
-        <member name="P:Models.GlobalUser.RoleID">
-            <summary>
-            用户权限ID
-            </summary>
-        </member>
-        <member name="P:Models.GlobalUser.RegionList">
-            <summary>
-            区域层级
-            </summary>
-        </member>
-        <member name="P:Models.GlobalUser.RuleRegionStr">
-            <summary>
-            用户管辖区域
-            </summary>
-        </member>
-        <member name="P:Models.GlobalUser.LastOpTime">
-            <summary>
-            最后操作时间
-            </summary>
-        </member>
-        <member name="P:Models.GlobalUser.LoginIP">
-            <summary>
-            登录IP
-            </summary>
-        </member>
-        <member name="M:Models.GlobalUser.GetRegionLeveStr">
-            <summary>
-            区域层级
-            </summary>
-        </member>
-        <member name="M:Models.GlobalUser.GetRoleAllStr">
-            <summary>
-            所有角色字符串
-            </summary>
-        </member>
         <member name="T:Models.KTV">
             <summary>
             主键 类型 值
@@ -3365,61 +3480,6 @@
              用户令牌
             </summary>
             <value></value>
-        </member>
-        <member name="T:Models.RelativeItem">
-            <summary>
-            关系数据
-            </summary>
-        </member>
-        <member name="P:Models.RelativeItem.Id">
-            <summary>
-            主键
-            </summary>
-        </member>
-        <member name="P:Models.RelativeItem.ElderId">
-            <summary>
-            辈字排号
-            </summary>
-        </member>
-        <member name="P:Models.RelativeItem.ElderName">
-            <summary>
-            辈字
-            </summary>
-        </member>
-        <member name="P:Models.RelativeItem.Name">
-            <summary>
-            姓名
-            </summary>
-        </member>
-        <member name="P:Models.RelativeItem.FatherId">
-            <summary>
-            父亲ID
-            </summary>
-        </member>
-        <member name="P:Models.RelativeItem.IcoUrl">
-            <summary>
-            头像图片
-            </summary>
-        </member>
-        <member name="P:Models.RelativeItem.Sex">
-            <summary>
-            性别
-            </summary>
-        </member>
-        <member name="P:Models.RelativeItem.x">
-            <summary>
-            坐标X
-            </summary>
-        </member>
-        <member name="P:Models.RelativeItem.y">
-            <summary>
-            坐标Y
-            </summary>
-        </member>
-        <member name="P:Models.RelativeItem.CompletionRatio">
-            <summary>
-            完成比例
-            </summary>
         </member>
         <member name="P:Models.Result.success">
             <summary>
@@ -3641,10 +3701,52 @@
             <summary>
             删除
             </summary>
-            <param name="openid"></param>
+            <param name="id"></param>
             <returns></returns>
         </member>
         <member name="M:Repository.PsAdminRepository.Save(Models.DtoSave{Models.Entity.PsAdminEntity})">
+            <summary>
+            保存
+            </summary>
+            <param name="inEnt"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Repository.PsBatchRepository">
+            <summary>
+            图片处理服务
+            </summary>
+        </member>
+        <member name="M:Repository.PsBatchRepository.Delete(System.Int32)">
+            <summary>
+            删除
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Repository.PsBatchRepository.GoodsCheck(Models.Entity.PsGoodsLogEntity,System.String)">
+            <summary>
+            检测货物
+            </summary>
+            <param name="inLog"></param>
+            <param name="code"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Repository.PsBatchRepository.GoodsDetail(Models.Entity.PsGoodsLogEntity)">
+            <summary>
+            查看详情
+            </summary>
+            <param name="inLog"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Repository.PsBatchRepository.MakeCsvByte(System.Int32,System.String)">
+            <summary>
+            生成文件
+            </summary>
+            <param name="batchId"></param>
+            <param name="url"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Repository.PsBatchRepository.Save(Models.DtoSave{Models.Entity.PsBatchEntity})">
             <summary>
             保存
             </summary>
@@ -3911,7 +4013,48 @@
             <summary>
             删除
             </summary>
-            <param name="openid">主键 ID</param>
+            <param name="id">主键 ID</param>
+            <returns></returns>
+        </member>
+        <member name="T:IRepository.IPsBatchRepository">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:IRepository.IPsBatchRepository.Save(Models.DtoSave{Models.Entity.PsBatchEntity})">
+            <summary>
+            保存
+            </summary>
+            <param name="inEnt"></param>
+            <returns></returns>
+        </member>
+        <member name="M:IRepository.IPsBatchRepository.Delete(System.Int32)">
+            <summary>
+            删除
+            </summary>
+            <param name="id">主键 ID</param>
+            <returns></returns>
+        </member>
+        <member name="M:IRepository.IPsBatchRepository.MakeCsvByte(System.Int32,System.String)">
+            <summary>
+            生成批次csv文件
+            </summary>
+            <param name="batchId">批次ID</param>
+            <param name="url">url前缀</param>
+            <returns></returns>
+        </member>
+        <member name="M:IRepository.IPsBatchRepository.GoodsDetail(Models.Entity.PsGoodsLogEntity)">
+            <summary>
+            产品详情
+            </summary>
+            <param name="inLog"></param>
+            <returns></returns>
+        </member>
+        <member name="M:IRepository.IPsBatchRepository.GoodsCheck(Models.Entity.PsGoodsLogEntity,System.String)">
+            <summary>
+            检测产品码
+            </summary>
+            <param name="inLog"></param>
             <returns></returns>
         </member>
         <member name="M:IRepository.IQueryRepository.QueryExecute(Models.Entity.QuerySearchDto)">

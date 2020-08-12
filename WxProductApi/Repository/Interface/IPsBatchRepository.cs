@@ -31,9 +31,10 @@ namespace IRepository
         /// <summary>
         /// 生成批次csv文件
         /// </summary>
-        /// <param name="batchId"></param>
+        /// <param name="batchId">批次ID</param>
+        /// <param name="url">url前缀</param>
         /// <returns></returns>
-        Task<byte[]> MakeCsvByte(int batchId);
+        Task<byte[]> MakeCsvByte(int batchId,string url);
 
         /// <summary>
         /// 产品详情

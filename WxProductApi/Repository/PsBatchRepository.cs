@@ -56,11 +56,11 @@ namespace Repository
                     if (opNum < 1) throw new Exception("保存日志失败");
                     goods.confirmTime = inLog.createTime;
                     goods.openid = inLog.openid;
-                    opNum=await dbHelperGoods.Update(new DtoSave<PsGoodsEntity> { data = goods, saveFieldListExp = x => new object[] { x.confirmTime, x.openid }, whereListExp = x => new object[] { x.id } });
+                    opNum = await dbHelperGoods.Update(new DtoSave<PsGoodsEntity> { data = goods, saveFieldListExp = x => new object[] { x.confirmTime, x.openid }, whereListExp = x => new object[] { x.id } });
                     if (opNum < 1) throw new Exception("更新检测失败");
                     dbHelperGoods.TranscationCommit();
-                    reObj.success=true;
-                    reObj.data=goods;
+                    reObj.success = true;
+                    reObj.data = goods;
                 }
                 catch (Exception e)
                 {
@@ -120,8 +120,9 @@ namespace Repository
         /// 生成文件
         /// </summary>
         /// <param name="batchId"></param>
+        /// <param name="url"></param>
         /// <returns></returns>
-        public async Task<byte[]> MakeCsvByte(int batchId)
+        public async Task<byte[]> MakeCsvByte(int batchId,string url)
         {
             var single = await dbHelper.Single(x => x.id == batchId);
             if (single == null)
@@ -144,7 +145,8 @@ namespace Repository
                         downList.Add(new PsGoodsEntity
                         {
                             id = Guid.NewGuid().ToString("N"),
-                            code = Int64.Parse($"{new Random(1).Next(10000000, 99999999)}{ new Random(1).Next(10000000, 99999999)}"),
+                            code = $"{single.code}{new Random(i).Next(1000000, 9999999)}{ new Random(i+single.goodsNum).Next(1000000, 9999999)}",
+                            batchId=batchId,
                             lookNum = 0,
                             openid = "",
                             confirmTime = 0
@@ -180,7 +182,7 @@ namespace Repository
 
                 foreach (var item in downList)
                 {
-                    reEnt.AddRange(Encoding.UTF8.GetBytes($"{item.code},{item.id}\r\n"));
+                    reEnt.AddRange(Encoding.UTF8.GetBytes($"{item.code},{url}{item.id}\r\n"));
                 }
                 return reEnt.ToArray();
                 #endregion
@@ -203,9 +205,18 @@ namespace Repository
         {
             var reObj = new ResultObj<int>();
             inEnt.data.createTime = Helper.DataTimeHelper.getDateLong(DateTime.Now);
-            inEnt.data.id = await SequenceRepository.GetNextID<PsBatchEntity>();
-            reObj.data = await dbHelper.Save(inEnt);
-            reObj.success = reObj.data > 0;
+            if (inEnt.data.id == 0)
+            {
+                inEnt.data.id = await SequenceRepository.GetNextID<PsBatchEntity>();
+                reObj.data = await dbHelper.Save(inEnt);
+                reObj.success = reObj.data > 0;
+
+            }
+            else
+            {
+                var opNum= await dbHelper.Update(inEnt);
+                reObj.success = opNum > 0;
+            }
             return reObj;
         }
     }

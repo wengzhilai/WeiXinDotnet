@@ -186,7 +186,6 @@ namespace WxProductApi.Controllers
 [{
 		""title"": ""修改"",
 		""class"": ""nb-edit"",
-		""openModal"": ""RoleEditComponent"",
 		""readUrl"": ""user/*/singleByKey"",
 		""apiUrl"": ""user/*/save""
 	},
