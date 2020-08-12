@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50505
 File Encoding         : 65001
 
-Date: 2020-08-10 21:01:40
+Date: 2020-08-12 15:04:33
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -42,12 +42,15 @@ CREATE TABLE `ps_batch` (
   `introduce` varchar(1000) NOT NULL DEFAULT '' COMMENT '介绍',
   `goods_num` int(11) NOT NULL DEFAULT 0 COMMENT '产品数量',
   `down_num` int(11) NOT NULL COMMENT '下载次数',
+  `code` varchar(2) NOT NULL DEFAULT '' COMMENT '代码',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of ps_batch
 -- ----------------------------
+INSERT INTO `ps_batch` VALUES ('1', '20200811173911', '数控', '50', '0', 'YK');
+INSERT INTO `ps_batch` VALUES ('2', '20200811180148', '数控', '5000', '3', 'YC');
 
 -- ----------------------------
 -- Table structure for `ps_goods`
@@ -55,7 +58,7 @@ CREATE TABLE `ps_batch` (
 DROP TABLE IF EXISTS `ps_goods`;
 CREATE TABLE `ps_goods` (
   `id` char(32) NOT NULL COMMENT 'guid',
-  `code` bigint(20) NOT NULL COMMENT '代码',
+  `code` varchar(16) NOT NULL COMMENT '代码',
   `batch_id` int(11) NOT NULL DEFAULT 0 COMMENT '批次ID',
   `look_num` int(11) NOT NULL COMMENT '查看次数',
   `openid` varchar(50) NOT NULL DEFAULT '' COMMENT '用户唯一标识',
@@ -65,6 +68,23 @@ CREATE TABLE `ps_goods` (
 
 -- ----------------------------
 -- Records of ps_goods
+-- ----------------------------
+
+-- ----------------------------
+-- Table structure for `ps_goods_log`
+-- ----------------------------
+DROP TABLE IF EXISTS `ps_goods_log`;
+CREATE TABLE `ps_goods_log` (
+  `id` int(11) NOT NULL COMMENT 'guid',
+  `goods_guid` char(32) NOT NULL COMMENT '产品代码',
+  `openid` varchar(100) NOT NULL DEFAULT '' COMMENT '用户唯一标识',
+  `create_time` bigint(20) NOT NULL,
+  `ip` varchar(16) NOT NULL COMMENT 'IP地址',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of ps_goods_log
 -- ----------------------------
 
 -- ----------------------------
@@ -172,6 +192,7 @@ INSERT INTO `sys_module` VALUES ('11', '1', '查询管理', '/pages/query/query?
 INSERT INTO `sys_module` VALUES ('12', '0', '微信管理', '', '', '0', '0', '0', '', 'bulb', '', '0', '0');
 INSERT INTO `sys_module` VALUES ('13', '12', '微信管理员', '/pages/query/query?code=PsAdmin', 'PsAdmin', '0', '0', '0', '', 'bulb', '', '0', '0');
 INSERT INTO `sys_module` VALUES ('14', '12', '公众号粉丝', '/pages/query/query?code=WxUser', 'WxUser', '1', '0', '0', '', 'bulb', '', '0', '0');
+INSERT INTO `sys_module` VALUES ('15', '12', '产品批次管理', '/pages/query/query?code=batch', 'batch', '1', '0', '0', '', 'bulb', '', '0', '0');
 
 -- ----------------------------
 -- Table structure for `sys_query`
@@ -207,6 +228,7 @@ INSERT INTO `sys_query` VALUES ('3', '模块管理', 'module', '1', '10', '1', '
 INSERT INTO `sys_query` VALUES ('4', '角色管理', 'role', '1', '10', '1', '1', 'select id , name,remark from sys_role', '\r\n{\r\n  \"id\": {\r\n	\"title\": \"角色ID\",\r\n	\"defaultValue\": 0,\r\n	\"type\": \"number\",\r\n	\"editable\": false\r\n  },\r\n  \"name\": {\r\n	\"title\": \"角色名\",\r\n	\"type\": \"string\"\r\n  },\r\n  \"remark\": {\r\n	\"title\": \"备注\",\r\n	\"type\": \"string\"\r\n  },\r\n  \"moduleIdStr\": {\r\n	\"title\": \"所有模块\",\r\n	\"inputWidth\":\"12\",\r\n	\"type\": \"treeview\",\r\n	\"editor\":{\"type\": \"treeview\"}\r\n  }\r\n}\r\n', '', '', '[{\n		\"title\": \"修改\",\n		\"class\": \"nb-edit\",\n		\"openModal\": \"RoleEditComponent\",\n		\"readUrl\": \"user/role/singleByKey\",\n		\"apiUrl\": \"user/role/save\"\n	},\n	{\n		\"title\": \"删除\",\n		\"class\": \"nb-trash\",\n		\"apiUrl\": \"user/role/delete\",\n		\"confirmTip\": \"确定要删除吗？\"\n	}\n]', '[{\n		\"title\": \"添加\",\n		\"class\": \"nb-plus\",\n		\"click\": \"nowThis.Add(\'user/role/save\',\'RoleEditComponent\',{Key:0},\'user/role/singleByKey\')\"\n	},\n	{\n		\"title\": \"批量删除\",\n		\"class\": \"ion-delete\",\n		\"click\": \"nowThis.Exec(\'user/role/delete\',\'ID\',\'删除要删除吗？\')\"\n	},\n	{\n		\"title\": \"导出\",\n		\"class\": \"nb-archive\",\n		\"click\": \"nowThis.onExportXls()\"\n	}\n]', '', '', '', '管理角色');
 INSERT INTO `sys_query` VALUES ('11', '微信管理员', 'PsAdmin', '1', '10', '1', '0', 'SELECT\r\n	a.id,\r\n	b.openid,\r\n	b.nickname,\r\n	b.sex,\r\n	b.ip,\r\n	b.headimgurl,\r\n	b.address,\r\n	b.create_time,\r\n	b.last_time,\r\n	b.subscribe,\r\n	b.subscribe_time \r\nFROM\r\n	ps_admin AS a \r\nINNER JOIN wx_user AS b ON b.openid = a.openid\r\n', '{\n  \"id\": {\n    \"title\": \"id\",\n    \"type\": \"int\",\n    \"editable\": false\n  },\"openid\": {\n    \"title\": \"微信openid\",\n    \"type\": \"text\",\n    \"editable\": true\n  },\n  \"nickname\": {\n    \"title\": \"微信名\",\n    \"type\": \"text\",\n    \"editable\": false\n  },\n  \"sex\": {\n    \"title\": \"性别\",\n    \"type\": \"text\",\n    \"editable\": false\n  },\n  \"ip\": {\n    \"title\": \"ip地址\",\n    \"type\": \"text\",\n    \"editable\": false\n  },\n  \"headimgurl\": {\n    \"title\": \"头像\",\n    \"type\": \"text\",\n    \"editable\": false\n  },\n  \"address\": {\n    \"title\": \"地址\",\n    \"type\": \"text\",\n    \"editable\": false\n  },\n  \"create_time\": {\n    \"title\": \"关注时间\",\n    \"type\": \"numberbox\",\n    \"editable\": false\n  },\n  \"last_time\": {\n    \"title\": \"最后活动时间\",\n    \"type\": \"numberbox\",\n    \"editable\": false\n  },\n  \"subscribe\": {\n    \"title\": \"是否订阅\",\n    \"type\": \"text\",\n    \"editable\": false\n  },\n  \"subscribe_time\": {\n    \"title\": \"订阅时间\",\n    \"type\": \"numberbox\",\n    \"editable\": false\n  }\n}', '', '', '[{\r\n\r\n	},\r\n	{\r\n		\"title\": \"删除\",\r\n		\"class\": \"nb-trash\",\r\n		\"apiUrl\": \"ps/PsAdmin/delete\",\r\n		\"confirmTip\": \"确定要删除吗？\"\r\n	}\r\n]', '[{\n		\"title\": \"添加\",\n		\"class\": \"nb-plus\",\n		\"click\": \"nowThis.Add(\'ps/PsAdmin/save\')\"\n	},\n	{\n		\"title\": \"批量删除\",\n		\"class\": \"ion-delete\",\n		\"click\": \"nowThis.Exec(\'ps/PsAdmin/delete\',\'id\',\'删除要删除吗？\')\"\n	}\n]                 \n                    ', '', '', '', '');
 INSERT INTO `sys_query` VALUES ('12', '微信用户', 'WxUser', '1', '20', '1', '0', 'SELECT\na.openid id,\na.nickname,\na.sex,\na.province,\na.city,\na.country,\na.headimgurl,\na.unionid,\na.ip,\na.address,\na.create_time,\na.last_time,\na.`language`,\na.groupid,\na.subscribe,\na.subscribe_time,\na.remark,\na.tagid_list_str,\na.subscribe_scene,\na.qr_scene,\na.qr_scene_str\nFROM\nwx_user AS a', '{\n  \"id\": {\n    \"title\": \"id\",\n    \"type\": \"text\",\n    \"editable\": true\n  },\n  \"nickname\": {\n    \"title\": \"微信名\",\n    \"type\": \"text\",\n    \"editable\": true\n  },\n  \"sex\": {\n    \"title\": \"性别\",\n    \"type\": \"text\",\n    \"editable\": true\n  },\n  \"province\": {\n    \"title\": \"省\",\n    \"type\": \"text\",\n    \"editable\": true\n  },\n  \"city\": {\n    \"title\": \"市\",\n    \"type\": \"text\",\n    \"editable\": true\n  },\n  \"country\": {\n    \"title\": \"国家\",\n    \"type\": \"text\",\n    \"editable\": true\n  },\n  \"headimgurl\": {\n    \"title\": \"头像\",\n    \"type\": \"text\",\n    \"editable\": true\n  },\n  \"ip\": {\n    \"title\": \"IP地址\",\n    \"type\": \"text\",\n    \"editable\": true\n  },\n  \"address\": {\n    \"title\": \"地址\",\n    \"type\": \"text\",\n    \"editable\": true\n  },\n  \"create_time\": {\n    \"title\": \"创建时间\",\n    \"type\": \"numberbox\",\n    \"editable\": true\n  },\n  \"last_time\": {\n    \"title\": \"最近访问时间\",\n    \"type\": \"numberbox\",\n    \"editable\": true\n  },\n  \"language\": {\n    \"title\": \"语言\",\n    \"type\": \"text\",\n    \"editable\": true\n  },\n  \"subscribe\": {\n    \"title\": \"订阅\",\n    \"type\": \"text\",\n    \"editable\": true\n  },\n  \"subscribe_time\": {\n    \"title\": \"订阅时间\",\n    \"type\": \"numberbox\",\n    \"editable\": true\n  }\n}', '', '', '[]', '[]', '', '', '', '');
+INSERT INTO `sys_query` VALUES ('13', '产品批次', 'batch', '1', '10', '1', '0', 'SELECT\n	a.id,\n        a.code,\n	a.create_time createTime,\n	a.introduce,\n	a.goods_num goodsNum,\n	a.down_num downNum\nFROM\n	ps_batch a', '{\n  \"id\": {\n    \"title\": \"id\",\n    \"type\": \"text\",\n    \"editable\": false\n  },\n  \"code\": {\n    \"title\": \"代码\",\n    \"type\": \"text\",\n    \"editable\": true\n  },\n  \"createTime\": {\n    \"title\": \"创建时间\",\n    \"type\": \"numberbox\",\n    \"editable\": false\n  },\n  \"introduce\": {\n    \"title\": \"介绍\",\n    \"type\": \"text\",\n    \"editable\": true\n  },\n  \"goodsNum\": {\n    \"title\": \"产品数量\",\n    \"type\": \"text\",\n    \"editable\": true\n  },\n  \"downNum\": {\n    \"title\": \"下载次数\",\n    \"type\": \"text\",\n    \"editable\": false\n  }\n}', '', '', '\n[{\n		\"title\": \"修改\",\n		\"class\": \"nb-edit\",\n		\"apiUrl\": \"ps/PsGoods/save\"\n	},\n	{\n		\"title\": \"下载\",\n		\"class\": \"ion-archive\",\n		\"apiUrl\": \"ps/PsGoods/downCsv\",\n                \"urlType\":\"down\",\n		\"confirmTip\": \"确定要下载吗？\"\n	}\n]', '\n[{\n		\"title\": \"添加\",\n		\"class\": \"nb-plus\",\n		\"click\": \"nowThis.Add(\'ps/PsGoods/save\')\"\n	}\n]                 \n                    ', '', '', '', '');
 
 -- ----------------------------
 -- Table structure for `sys_role`
@@ -224,6 +246,7 @@ CREATE TABLE `sys_role` (
 -- Records of sys_role
 -- ----------------------------
 INSERT INTO `sys_role` VALUES ('1', '系统管理员', '', '0');
+INSERT INTO `sys_role` VALUES ('2', '管理员', '', '0');
 
 -- ----------------------------
 -- Table structure for `sys_role_module`
@@ -250,6 +273,11 @@ INSERT INTO `sys_role_module` VALUES ('1', '11');
 INSERT INTO `sys_role_module` VALUES ('1', '12');
 INSERT INTO `sys_role_module` VALUES ('1', '13');
 INSERT INTO `sys_role_module` VALUES ('1', '14');
+INSERT INTO `sys_role_module` VALUES ('1', '15');
+INSERT INTO `sys_role_module` VALUES ('2', '12');
+INSERT INTO `sys_role_module` VALUES ('2', '13');
+INSERT INTO `sys_role_module` VALUES ('2', '14');
+INSERT INTO `sys_role_module` VALUES ('2', '15');
 
 -- ----------------------------
 -- Table structure for `sys_sequence`
@@ -266,10 +294,13 @@ CREATE TABLE `sys_sequence` (
 -- Records of sys_sequence
 -- ----------------------------
 INSERT INTO `sys_sequence` VALUES ('ps_admin', '2', '1');
+INSERT INTO `sys_sequence` VALUES ('ps_batch', '2', '1');
+INSERT INTO `sys_sequence` VALUES ('ps_goods_log', '34', '1');
 INSERT INTO `sys_sequence` VALUES ('sys_files', '7', '1');
-INSERT INTO `sys_sequence` VALUES ('sys_module', '14', '1');
-INSERT INTO `sys_sequence` VALUES ('sys_query', '12', '1');
-INSERT INTO `sys_sequence` VALUES ('wx_quest_log', '45', '1');
+INSERT INTO `sys_sequence` VALUES ('sys_module', '15', '1');
+INSERT INTO `sys_sequence` VALUES ('sys_query', '13', '1');
+INSERT INTO `sys_sequence` VALUES ('sys_user', '5', '1');
+INSERT INTO `sys_sequence` VALUES ('wx_quest_log', '49', '1');
 
 -- ----------------------------
 -- Table structure for `sys_user`
@@ -291,6 +322,7 @@ CREATE TABLE `sys_user` (
 -- Records of sys_user
 -- ----------------------------
 INSERT INTO `sys_user` VALUES ('1', 'admin', '18180770313', '202008\\0.png', '0', '0', '0', '111');
+INSERT INTO `sys_user` VALUES ('5', '彭越', '184283525011', '', '0', '0', '0', '');
 
 -- ----------------------------
 -- Table structure for `sys_user_role`
@@ -309,6 +341,7 @@ CREATE TABLE `sys_user_role` (
 -- Records of sys_user_role
 -- ----------------------------
 INSERT INTO `sys_user_role` VALUES ('1', '1');
+INSERT INTO `sys_user_role` VALUES ('2', '5');
 
 -- ----------------------------
 -- Table structure for `wx_quest_log`
@@ -352,6 +385,8 @@ INSERT INTO `wx_quest_log` VALUES ('39', 'gh_79f9a3893207', 'oJwhPxIiFt7npgUpPF4
 INSERT INTO `wx_quest_log` VALUES ('41', 'gh_79f9a3893207', 'oJwhPxIiFt7npgUpPF4tOhGS3YMI', 'event', '', 'unsubscribe', '', '');
 INSERT INTO `wx_quest_log` VALUES ('43', 'gh_79f9a3893207', 'oJwhPxIiFt7npgUpPF4tOhGS3YMI', 'event', '', 'unsubscribe', '', '');
 INSERT INTO `wx_quest_log` VALUES ('45', 'gh_79f9a3893207', 'oJwhPxIiFt7npgUpPF4tOhGS3YMI', 'event', '', 'unsubscribe', '', '');
+INSERT INTO `wx_quest_log` VALUES ('47', 'gh_79f9a3893207', 'oJwhPxIiFt7npgUpPF4tOhGS3YMI', 'event', '', 'subscribe', '', '');
+INSERT INTO `wx_quest_log` VALUES ('49', 'gh_79f9a3893207', 'oJwhPxEEH8gDNcx8B4R4RtB43Mjc', 'event', '', 'subscribe', '', '');
 
 -- ----------------------------
 -- Table structure for `wx_user`
@@ -385,4 +420,6 @@ CREATE TABLE `wx_user` (
 -- ----------------------------
 -- Records of wx_user
 -- ----------------------------
-INSERT INTO `wx_user` VALUES ('oJwhPxIiFt7npgUpPF4tOhGS3YMI', '翁志来', '1', '四川', '南充', '中国', 'http://thirdwx.qlogo.cn/mmopen/q8cn3WLCTWnM1b4jQWEay5DSTHP3aRnic3kLcU94JK6fEGekBKygL33jb0AAa8uicHdlmnU4BbyFicGNWMT8uelJDkSmquKMAmN/132', '', '127.0.0.1', '未知未知', '20200806142740', '20200806151435', 'zh_CN', '0', '1596700101', '', '0', '', 'ADD_SCENE_QR_CODE', '0', '');
+INSERT INTO `wx_user` VALUES ('oJwhPxDJVwKJLP1qbDKGuqCzCY-w', '加油', '0', '', '', '', 'https://thirdwx.qlogo.cn/mmopen/vi_32/Q0j4TwGTfTKfsdaiargZibEvP6GaWlh9S1YCQ1ccM7D6bCZcg1NPNSU4tavfq9ZIGV7oPOUVmLGrbZyrFHS37Gag/132', '', '127.0.0.1', '未知未知', '20200812143839', '20200812143839', '', '0', '0', '', '0', '', '', '', '');
+INSERT INTO `wx_user` VALUES ('oJwhPxEEH8gDNcx8B4R4RtB43Mjc', '物流', '2', '四川', '成都', '中国', 'http://thirdwx.qlogo.cn/mmopen/vi_32/sibKHGaZz0uXPWTHxXQDrlV9OC1SIicCT2RPXkc3M8Suh5SribxicibsiavkxIXaHLjMiba9G3qvlzSQgIf54SkBcN2ibA/132', '', '127.0.0.1', '未知未知', '20200812144230', '20200812144530', 'zh_CN', '0', '1597214550', '', '0', '', 'ADD_SCENE_QR_CODE', '0', '');
+INSERT INTO `wx_user` VALUES ('oJwhPxIiFt7npgUpPF4tOhGS3YMI', '翁志来', '1', '四川', '南充', '中国', 'http://thirdwx.qlogo.cn/mmopen/vi_32/5AricnI6TcZsEPWsQGcPN4N0wavvIyJepJcN8faBticEtZw0UlQeKM8Vic8QN3vb55zt3vYQqBhlt3XF0dlcibbWsQ/132', '', '127.0.0.1', '未知未知', '20200806142740', '20200812143906', 'zh_CN', '0', '1597199454', '', '0', '', 'ADD_SCENE_QR_CODE', '0', '');

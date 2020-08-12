@@ -49,7 +49,7 @@ namespace Models.Entity
         /// </summary>
         [Display(Name = "区域")]
         [Column("district_id")]
-        public int? districtId { get; set; }
+        public int districtId { get; set; }
 
         /// <summary>
         /// 是否可用

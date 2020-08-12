@@ -98,7 +98,7 @@ namespace Repository
                 {
 
                     int v = await dbHelper.Exec("delete from sys_user_role where user_id = " + inEnt.data.id);
-
+                
                     foreach (var item in inEnt.data.roleIdList)
                     {
                         var opNum = await dbHelper.Exec(string.Format("insert into sys_user_role(role_id,user_id) values({0},{1}) ", item, inEnt.data.id));
