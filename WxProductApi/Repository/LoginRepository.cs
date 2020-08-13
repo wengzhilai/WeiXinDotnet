@@ -59,7 +59,8 @@ namespace Repository
         {
             DapperHelper<SysLoginEntity> dbHelper = new DapperHelper<SysLoginEntity>();
             dbHelper.TranscationBegin();
-            ResultObj<int> reObj = await LoginReg(inEnt, dbHelper);
+            DapperHelper<SysUserEntity> dbHelperUser=new DapperHelper<SysUserEntity>(dbHelper.GetConnection(),dbHelper.GetTransaction());
+            ResultObj<int> reObj = await LoginReg(inEnt, dbHelperUser,dbHelper);
             if (reObj.success)
             {
                 dbHelper.TranscationCommit();
@@ -71,7 +72,7 @@ namespace Repository
             return reObj;
         }
 
-        public async Task<ResultObj<int>> LoginReg(LogingDto inEnt, DapperHelper<SysLoginEntity> dbHelper)
+        public async Task<ResultObj<int>> LoginReg(LogingDto inEnt, DapperHelper<SysUserEntity> dbHelperUser, DapperHelper<SysLoginEntity> dbHelper)
         {
             ResultObj<int> reObj = new ResultObj<int>();
             #region 验证值
@@ -122,7 +123,7 @@ namespace Repository
             //}
             #endregion
 
-            var userList = await new UserRepository().FindAll(x => x.loginName == inEnt.loginName);
+            var userList = await dbHelperUser.FindAll(x => x.loginName == inEnt.loginName);
             #region 检测电话号码是否存在
             if (userList.Count() > 0)
             {
@@ -169,7 +170,7 @@ namespace Repository
                 inUser.districtId = 1;
                 inUser.createTime =Helper.DataTimeHelper.getDateLong(DateTime.Now);
                 inUser.status = 1;
-                reObj.success = await new DapperHelper<SysUserEntity>(dbHelper.GetConnection(), dbHelper.GetTransaction()).Save(new DtoSave<SysUserEntity>
+                reObj.success = await dbHelperUser.Save(new DtoSave<SysUserEntity>
                 {
                     data = inUser,
                     ignoreFieldList = new List<string>()

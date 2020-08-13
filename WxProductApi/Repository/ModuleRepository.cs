@@ -83,8 +83,9 @@ namespace Repository
             if (!roleIdList.Contains(1))
             {
                 DapperHelper<FaRoleModuleEntityView> roleModule = new DapperHelper<FaRoleModuleEntityView>();
-                var allModel = await roleModule.FindAll(string.Format("c.IS_HIDE==0 and a.ROLE_ID in ({0})", string.Join(",", roleIdList)));
-                reObj.dataList = GetChildItems(Fun.ClassListToCopy<FaRoleModuleEntityView, SysModuleEntity>(allModel.ToList()), 0);
+                var allModel = await roleModule.FindAll(string.Format("c.is_hide=0 and a.role_id in ({0})", string.Join(",", roleIdList)));
+                var tmpList=Fun.ClassListToCopy<FaRoleModuleEntityView, SysModuleEntity>(allModel.ToList());
+                reObj.dataList = GetChildItems(tmpList, 0);
             }
             else
             {

@@ -19,7 +19,7 @@ namespace Models
         /// </summary>
         [Display(Name = "角色名")]
         [Column("b.name")]
-        public string RoleName { get; set; }
+        public string roleName { get; set; }
 
         /// <summary>
         /// 角色ID
@@ -27,7 +27,7 @@ namespace Models
         /// <value></value>
         [Display(Name = "角色ID")]
         [Column("a.role_id")]
-        public int ROLE_ID { get; set; }
+        public int roleId { get; set; }
 
 
         /// <summary>
@@ -36,7 +36,7 @@ namespace Models
         /// <value></value>
         [Display(Name = "模块ID")]
         [Column("a.module_id")]
-        public int MODULE_ID { get; set; }
+        public int id { get; set; }
 
                 /// <summary>
         /// 上级
@@ -44,28 +44,28 @@ namespace Models
         [Range(0, 2147483647)]
         [Display(Name = "上级")]
         [Column("c.parent_id")]
-        public Nullable<int> PARENT_ID { get; set; }
+        public int parentId { get; set; }
         /// <summary>
         /// 模块名
         /// </summary>
         [StringLength(60)]
         [Display(Name = "模块名")]
         [Column("c.name")]
-        public string NAME { get; set; }
+        public string name { get; set; }
         /// <summary>
         /// 地址
         /// </summary>
         [StringLength(2000)]
         [Display(Name = "地址")]
         [Column("c.location")]
-        public string LOCATION { get; set; }
+        public string location { get; set; }
         /// <summary>
         /// 代码
         /// </summary>
         [StringLength(20)]
         [Display(Name = "代码")]
         [Column("c.code")]
-        public string CODE { get; set; }
+        public string code { get; set; }
         /// <summary>
         /// 调试
         /// </summary>
@@ -73,7 +73,7 @@ namespace Models
         [Range(0, 2147483647)]
         [Display(Name = "调试")]
         [Column("c.is_debug")]
-        public Int16 IS_DEBUG { get; set; }
+        public Int16 isDebug { get; set; }
         /// <summary>
         /// 隐藏
         /// </summary>
@@ -81,7 +81,7 @@ namespace Models
         [Range(0, 2147483647)]
         [Display(Name = "隐藏")]
         [Column("c.is_hide")]
-        public Int16 IS_HIDE { get; set; }
+        public Int16 isHide { get; set; }
         /// <summary>
         /// 排序
         /// </summary>
@@ -89,41 +89,41 @@ namespace Models
         [Range(0, 2147483647)]
         [Display(Name = "排序")]
         [Column("c.show_order")]
-        public Int16 SHOW_ORDER { get; set; }
+        public Int16 showOrder { get; set; }
         /// <summary>
         /// 描述
         /// </summary>
         [StringLength(2000)]
         [Display(Name = "描述")]
         [Column("c.description")]
-        public string DESCRIPTION { get; set; }
+        public string description { get; set; }
         /// <summary>
         /// 图片
         /// </summary>
         [StringLength(2000)]
         [Display(Name = "图片")]
         [Column("c.image_url")]
-        public string IMAGE_URL { get; set; }
+        public string imageUrl { get; set; }
         /// <summary>
         /// 桌面角色
         /// </summary>
         [StringLength(200)]
         [Display(Name = "桌面角色")]
         [Column("c.desktop_role")]
-        public string DESKTOP_ROLE { get; set; }
+        public string desktopRole { get; set; }
         /// <summary>
         /// 宽
         /// </summary>
         [Range(0, 2147483647)]
         [Display(Name = "宽")]
         [Column("c.w")]
-        public Nullable<int> W { get; set; }
+        public Nullable<int> w { get; set; }
         /// <summary>
         /// 高
         /// </summary>
         [Range(0, 2147483647)]
         [Display(Name = "高")]
         [Column("c.h")]
-        public Nullable<int> H { get; set; }
+        public Nullable<int> h { get; set; }
     }
 }

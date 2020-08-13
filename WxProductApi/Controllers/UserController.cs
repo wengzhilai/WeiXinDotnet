@@ -22,13 +22,16 @@ namespace WxProductApi.Controllers
     public class UserController : ControllerBase, IUserController
     {
         IUserRepository _respoitory;
+        ILoginRepository resLogin;
         /// <summary>
         /// 
         /// </summary>
         /// <param name="User"></param>
-        public UserController(IUserRepository User)
+        /// <param name="_resLogin"></param>
+        public UserController(IUserRepository User, ILoginRepository _resLogin)
         {
             this._respoitory = User;
+            this.resLogin = _resLogin;
         }
 
 

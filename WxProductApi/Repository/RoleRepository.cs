@@ -26,7 +26,7 @@ namespace Repository
         {
             var ent = await dbHelper.SingleByKey(key);
             DapperHelper<FaRoleModuleEntityView> roleModule = new DapperHelper<FaRoleModuleEntityView>();
-            ent.moduleIdStr = (await roleModule.FindAll(i => i.ROLE_ID == key)).Select(i => i.MODULE_ID).ToArray();
+            ent.moduleIdStr = (await roleModule.FindAll(i => i.roleId == key)).Select(i => i.id).ToArray();
             return ent;
         }
 

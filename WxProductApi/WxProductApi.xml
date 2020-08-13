@@ -599,11 +599,12 @@
             
             </summary>
         </member>
-        <member name="M:WxProductApi.Controllers.UserController.#ctor(IRepository.IUserRepository)">
+        <member name="M:WxProductApi.Controllers.UserController.#ctor(IRepository.IUserRepository,IRepository.ILoginRepository)">
             <summary>
             
             </summary>
             <param name="User"></param>
+            <param name="_resLogin"></param>
         </member>
         <member name="M:WxProductApi.Controllers.UserController.save(Models.DtoSave{Models.Entity.SysUserEntity})">
             <summary>
@@ -2294,41 +2295,6 @@
             密码
             </summary>
         </member>
-        <member name="P:Models.LogingDto.imei">
-            <summary>
-            手机串号
-            </summary>
-        </member>
-        <member name="P:Models.LogingDto.version">
-            <summary>
-            版本号
-            </summary>
-        </member>
-        <member name="P:Models.LogingDto.code">
-            <summary>
-            短信验证码
-            </summary>
-        </member>
-        <member name="P:Models.LogingDto.openid">
-            <summary>
-            微信
-            </summary>
-        </member>
-        <member name="P:Models.LogingDto.userId">
-            <summary>
-            用户ID
-            </summary>
-        </member>
-        <member name="P:Models.LogingDto.pollCode">
-            <summary>
-            推荐码
-            </summary>
-        </member>
-        <member name="P:Models.LogingDto.type">
-            <summary>
-            类型
-            </summary>
-        </member>
         <member name="T:Models.ResetPasswordDto">
             <summary>
             用户登录实体
@@ -2389,79 +2355,79 @@
             用户扩展
             </summary>
         </member>
-        <member name="P:Models.FaRoleModuleEntityView.RoleName">
+        <member name="P:Models.FaRoleModuleEntityView.roleName">
             <summary>
             角色名
             </summary>
         </member>
-        <member name="P:Models.FaRoleModuleEntityView.ROLE_ID">
+        <member name="P:Models.FaRoleModuleEntityView.roleId">
             <summary>
             角色ID
             </summary>
             <value></value>
         </member>
-        <member name="P:Models.FaRoleModuleEntityView.MODULE_ID">
+        <member name="P:Models.FaRoleModuleEntityView.id">
             <summary>
             模块ID
             </summary>
             <value></value>
         </member>
-        <member name="P:Models.FaRoleModuleEntityView.PARENT_ID">
+        <member name="P:Models.FaRoleModuleEntityView.parentId">
             <summary>
             上级
             </summary>
         </member>
-        <member name="P:Models.FaRoleModuleEntityView.NAME">
+        <member name="P:Models.FaRoleModuleEntityView.name">
             <summary>
             模块名
             </summary>
         </member>
-        <member name="P:Models.FaRoleModuleEntityView.LOCATION">
+        <member name="P:Models.FaRoleModuleEntityView.location">
             <summary>
             地址
             </summary>
         </member>
-        <member name="P:Models.FaRoleModuleEntityView.CODE">
+        <member name="P:Models.FaRoleModuleEntityView.code">
             <summary>
             代码
             </summary>
         </member>
-        <member name="P:Models.FaRoleModuleEntityView.IS_DEBUG">
+        <member name="P:Models.FaRoleModuleEntityView.isDebug">
             <summary>
             调试
             </summary>
         </member>
-        <member name="P:Models.FaRoleModuleEntityView.IS_HIDE">
+        <member name="P:Models.FaRoleModuleEntityView.isHide">
             <summary>
             隐藏
             </summary>
         </member>
-        <member name="P:Models.FaRoleModuleEntityView.SHOW_ORDER">
+        <member name="P:Models.FaRoleModuleEntityView.showOrder">
             <summary>
             排序
             </summary>
         </member>
-        <member name="P:Models.FaRoleModuleEntityView.DESCRIPTION">
+        <member name="P:Models.FaRoleModuleEntityView.description">
             <summary>
             描述
             </summary>
         </member>
-        <member name="P:Models.FaRoleModuleEntityView.IMAGE_URL">
+        <member name="P:Models.FaRoleModuleEntityView.imageUrl">
             <summary>
             图片
             </summary>
         </member>
-        <member name="P:Models.FaRoleModuleEntityView.DESKTOP_ROLE">
+        <member name="P:Models.FaRoleModuleEntityView.desktopRole">
             <summary>
             桌面角色
             </summary>
         </member>
-        <member name="P:Models.FaRoleModuleEntityView.W">
+        <member name="P:Models.FaRoleModuleEntityView.w">
             <summary>
             宽
             </summary>
         </member>
-        <member name="P:Models.FaRoleModuleEntityView.H">
+        <member name="P:Models.FaRoleModuleEntityView.h">
             <summary>
             高
             </summary>
@@ -3853,6 +3819,11 @@
             <param name="key"></param>
             <returns></returns>
         </member>
+        <member name="T:Repository.UserRepository">
+            <summary>
+            
+            </summary>
+        </member>
         <member name="M:Repository.UserRepository.SingleByKey(System.Int32)">
             <summary>
             获取单条
@@ -3909,6 +3880,15 @@
             <para>2、添加用户</para>
             </summary>
             <param name="inEnt"></param>
+            <returns></returns>
+        </member>
+        <member name="M:IRepository.ILoginRepository.LoginReg(Models.LogingDto,Helper.DapperHelper{Models.Entity.SysUserEntity},Helper.DapperHelper{Models.Entity.SysLoginEntity})">
+            <summary>
+            注册账号
+            </summary>
+            <param name="inEnt"></param>
+            <param name="dbHelperUser"></param>
+            <param name="dbHelper"></param>
             <returns></returns>
         </member>
         <member name="M:IRepository.ILoginRepository.LoginOut(Models.DtoSave{Models.Entity.SysLoginHistoryEntity})">

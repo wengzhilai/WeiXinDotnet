@@ -41,10 +41,7 @@ namespace WxProductApi.Controllers
             var reObj = new ResultObj<SysModuleEntity>();
             try
             {
-                //var allKey = User.Claims.Select(x => new KV { K = x.Type, V = x.Value }).ToList();
-
-                // var userId = User.Claims.Single(a => a.Type == "id").Value;
-                var userId=1;
+                var userId=User.userId();
                 reObj = await this._respoitory.GetMGetMenuByUserId(Convert.ToInt32(userId));
             }
             catch (Exception e)

@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
+using Helper;
 using Models;
 using Models.Entity;
 
@@ -28,6 +29,15 @@ namespace IRepository
         /// <param name="inEnt"></param>
         /// <returns></returns>
         Task<ResultObj<int>> LoginReg(LogingDto inEnt);
+
+        /// <summary>
+        /// 注册账号
+        /// </summary>
+        /// <param name="inEnt"></param>
+        /// <param name="dbHelperUser"></param>
+        /// <param name="dbHelper"></param>
+        /// <returns></returns>
+        Task<ResultObj<int>> LoginReg(LogingDto inEnt, DapperHelper<SysUserEntity> dbHelperUser, DapperHelper<SysLoginEntity> dbHelper);
         /// <summary>
         /// 注销用户登录状态
         /// <para>清除用户的缓存状态</para>

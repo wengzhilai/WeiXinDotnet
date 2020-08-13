@@ -14,9 +14,19 @@ using System.Linq.Expressions;
 
 namespace Repository
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public class UserRepository : IUserRepository
     {
         DapperHelper<SysUserEntity> dbHelper = new DapperHelper<SysUserEntity>();
+        ILoginRepository loginRepository;
+
+        public UserRepository(ILoginRepository loginRepository)
+        {
+            this.loginRepository = loginRepository;
+        }
+
         /// <summary>
         /// 获取单条
         /// </summary>
@@ -24,7 +34,7 @@ namespace Repository
         /// <returns></returns>
         public async Task<SysUserEntity> SingleByKey(int key)
         {
-            var ent=await dbHelper.SingleByKey(key);
+            var ent = await dbHelper.SingleByKey(key);
             ent.roleIdList = (await new DapperHelper<FaUserRoleEntityView>().FindAll(i => i.userId == key)).Select(x => x.roleId).ToList();
             DapperHelper<FaUserRoleEntityView> dapperUserRole = new DapperHelper<FaUserRoleEntityView>();
             var role = await dapperUserRole.FindAll(i => i.userId == ent.id);
@@ -32,7 +42,7 @@ namespace Repository
             ent.isLeader = role.Count(i => i.roleId == 2) > 0;
             return ent;
         }
-        
+
 
         /// <summary>
         /// 查找所有
@@ -52,13 +62,13 @@ namespace Repository
         public async Task<ResultObj<SysUserEntity>> UserLogin(string username, string password)
         {
             ResultObj<SysUserEntity> reObj = new ResultObj<SysUserEntity>();
-            DapperHelper<SysLoginEntity> dapper=new DapperHelper<SysLoginEntity>();
-            var login=await dapper.Single(x=>x.loginName==username);
+            DapperHelper<SysLoginEntity> dapper = new DapperHelper<SysLoginEntity>();
+            var login = await dapper.Single(x => x.loginName == username);
             if (login != null)
             {
                 if (login.password.ToLower().Equals(Fun.Md5Hash(password).ToLower()))
                 {
-                    reObj.data =await new DapperHelper<SysUserEntity>().Single(x=>x.loginName == username);
+                    reObj.data = await new DapperHelper<SysUserEntity>().Single(x => x.loginName == username);
                 }
                 else
                 {
@@ -77,43 +87,43 @@ namespace Repository
             ResultObj<int> reObj = new ResultObj<int>();
             try
             {
+                if(inEnt.data.roleIdList==null)inEnt.data.roleIdList=new List<int>();
                 dbHelper.TranscationBegin();
                 if (inEnt.data.id == 0)
                 {
-                    inEnt.data.id = await SequenceRepository.GetNextID<SysUserEntity>();
-                    reObj.data = await dbHelper.Save(inEnt);
+                    DapperHelper<SysLoginEntity> dbHelperlog = new DapperHelper<SysLoginEntity>(dbHelper.GetConnection(), dbHelper.GetTransaction());
+                    var addResult = await loginRepository.LoginReg(new LogingDto { loginName = inEnt.data.loginName, password = "123456", userName = inEnt.data.name }, dbHelper, dbHelperlog);
+                    if (!addResult.success) return addResult;
+                    inEnt.data.id = addResult.data;
                 }
                 else
                 {
                     reObj.data = await dbHelper.Update(inEnt);
-                }
-
-                reObj.success = reObj.data > 0;
-                if (!reObj.success)
-                {
-                    reObj.msg = "保存角色失败";
-                    dbHelper.TranscationRollback();
-                }
-                else
-                {
-
-                    int v = await dbHelper.Exec("delete from sys_user_role where user_id = " + inEnt.data.id);
-                
-                    foreach (var item in inEnt.data.roleIdList)
+                    reObj.success = reObj.data > 0;
+                    if (!reObj.success)
                     {
-                        var opNum = await dbHelper.Exec(string.Format("insert into sys_user_role(role_id,user_id) values({0},{1}) ", item, inEnt.data.id));
-                        if (opNum != 1)
-                        {
-                            reObj.success = false;
-                            reObj.msg = "保存用户模块失败";
-                            dbHelper.TranscationRollback();
-                            return reObj;
-                        }
+                        reObj.msg = "保存角色失败";
+                        dbHelper.TranscationRollback();
+                        return reObj;
                     }
-
-                    reObj.success = true;
-                    dbHelper.TranscationCommit();
                 }
+
+                int v = await dbHelper.Exec("delete from sys_user_role where user_id = " + inEnt.data.id);
+
+                foreach (var item in inEnt.data.roleIdList)
+                {
+                    var opNum = await dbHelper.Exec(string.Format("insert into sys_user_role(role_id,user_id) values({0},{1}) ", item, inEnt.data.id));
+                    if (opNum != 1)
+                    {
+                        reObj.success = false;
+                        reObj.msg = "保存用户模块失败";
+                        dbHelper.TranscationRollback();
+                        return reObj;
+                    }
+                }
+
+                reObj.success = true;
+                dbHelper.TranscationCommit();
 
             }
             catch (Exception e)
@@ -129,8 +139,22 @@ namespace Repository
         public async Task<ResultObj<int>> Delete(int keyId)
         {
             ResultObj<int> reObj = new ResultObj<int>();
-            reObj.data = await dbHelper.Delete(i => i.id == keyId);
-            reObj.success = reObj.data > 0;
+            dbHelper.TranscationBegin();
+            try
+            {
+                await dbHelper.Exec("delete from sys_user_role where user_id = " + keyId);
+                await dbHelper.Exec("DELETE sys_login FROM sys_login ,sys_user where sys_login.login_name=sys_user.login_name and sys_user.id=" + keyId);
+                reObj.data = await dbHelper.Delete(i => i.id == keyId);
+                reObj.success = reObj.data > 0;
+                dbHelper.TranscationCommit();
+            }
+            catch (Exception e)
+            {
+                reObj.success = false;
+                reObj.msg = e.Message;
+                dbHelper.TranscationRollback();
+            }
+
             return reObj;
         }
     }
