@@ -1,0 +1,58 @@
+<div>
+  <ul *ngIf="messageList && messageList.length">
+    <li *ngFor="let item of messageList">{{item}}</li>
+  </ul>
+  <div [ngStyle]="{'height':screenheight+'px','overflow-y':'auto'}">
+    <div class="row show-grid">
+      <div class="col-md-4">
+        <div class="form-group">
+          <label>{{inputs['name'].title}}</label>
+          <input [(ngModel)]="bean[inputs['name'].name]" type="text" class="form-control"
+            placeholder="{{inputs['name'].placeholder}}">
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="form-group">
+          <label>{{inputs['tableName'].title}}</label>
+          <input [(ngModel)]="bean[inputs['tableName'].name]" type="text" class="form-control"
+            placeholder="{{inputs['tableName'].placeholder}}">
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="form-group">
+          <label>{{inputs['stauts'].title}}</label>
+          <select [(ngModel)]="bean[inputs['stauts'].name]" class="form-control">
+            <option *ngFor="let opt of inputs['stauts'].editor.config.list" value="{{opt.value}}">{{opt.title}}</option>
+          </select>
+        </div>
+      </div>
+    </div>
+    <div class="row show-grid">
+      <div class="col-md-12">
+        <div class="form-group">
+          <label>{{inputs['introduce'].title}}</label>
+          <textarea [(ngModel)]="bean[inputs['introduce'].name]" rows="2"
+            placeholder="{{inputs['introduce'].placeholder}}" class="form-control"></textarea>
+        </div>
+      </div>
+    </div>
+    <div class="row show-grid">
+      <div class="col-md-1">
+        <button type="button" nbButton (click)="showAdd($event)">
+          <i class="nb-plus-circled"></i>
+          <span>{{"public.Create"|translate}}</span>
+        </button>
+      </div>
+    </div>
+    <div class="row show-grid">
+      <div class="col-md-12">
+        {{bean["moduleIdStr"]}}
+        <ng2-smart-table [settings]="settings" [source]="source">
+        </ng2-smart-table>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="modal-footer">
+  <button type="button" *ngFor="let item of buttons" nbButton (click)="ButtonClick(item.click)">{{item.name}}</button>
+</div>

@@ -1,0 +1,9 @@
+<select *ngIf="multiple==null || multiple==false" [(ngModel)]="myModel" class="form-control">
+  <option *ngFor="let opt of ListData" value="{{opt.id}}" selected="{{myModel!=null && myModel==opt.id}}">{{opt.name}}
+  </option>
+</select>
+
+<select *ngIf="multiple!=null && multiple==true" [(ngModel)]="myModel" class="form-control" multiple>
+  <option *ngFor="let opt of ListData" value="{{opt.id}}"  selected="{{myModel!=null && myModel==opt.id}}">{{opt.name}}
+  </option>
+</select>

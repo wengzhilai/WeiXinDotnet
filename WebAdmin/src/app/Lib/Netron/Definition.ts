@@ -1,0 +1,4 @@
+
+interface NetronEvent {
+    shiftKey: boolean;
+}

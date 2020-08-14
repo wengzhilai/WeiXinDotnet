@@ -1,0 +1,29 @@
+export class SaveUserInfoDto {
+    ALIAS: string = "";
+    AUTHORITY: string = "";
+    BIRTHDAY_PLACE: string = "";
+    BIRTHDAY_TIME: string = "";
+    COUPLE_ID: number = 0;
+    DIED_PLACE: string = "";
+    DIED_TIME: string = "";
+    FATHER_ID: number = 0;
+    ICON_FILES_ID: number = 0;
+    ID: number = 0;
+    IS_LIVE: any = 1;
+    IconFiles: any = {};
+    LEVEL_ID: string = "";
+    LOGIN_NAME: string = "";
+    NAME: string = "";
+    REMARK: string = "";
+    SEX: string = "";
+    YEARS_TYPE: string = "";
+    EDUCATION: string = "";
+    INDUSTRY: string = "";
+    BIRTHDAY_CHINA_YEAR: string = "";
+    DIED_CHINA_YEAR: string = "";
+
+    BirthdaylunlarDate: string = "";
+    BirthdaysolarDate: string = "";
+    DiedlunlarDate: string = "";
+    DiedsolarDate: string = "";
+}

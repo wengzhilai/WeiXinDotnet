@@ -1,0 +1,31 @@
+<div class="row show-grid" [ngStyle]="{'height':screenheight+'px','overflow-y':'auto'}">
+  <ng-container *ngFor="let item of ItmeArr;let i = index">
+    <div class="col-md-4" *ngIf="item.editable==null || item.editable==true">
+      <div class="form-group">
+        <label for="inputFirstName">{{item.title}}</label>
+        <input *ngIf="item.editor==null || item.editor.type=='text';else elseBlock" id="input{{i}}"
+          [(ngModel)]="bean[item.name]" type="{{item.type}}" class="form-control" placeholder="{{item.placeholder}}">
+        <ng-template #elseBlock>
+          <ng-container [ngSwitch]="item.editor.type">
+            <select *ngSwitchCase="'list'" id="input{{i}}" [(ngModel)]="bean[item.name]" class="form-control">
+              <option *ngFor="let opt of item.editor.config.list" value="{{opt.value}}">{{opt.title}}</option>
+            </select>
+            <select *ngSwitchCase="'completer'" id="input{{i}}" [(ngModel)]="bean[item.name]" class="form-control">
+              <option *ngFor="let opt of item.editor.config.completer.data" value="{{opt.value}}">{{opt.title}}
+              </option>
+            </select>
+            <input-select *ngSwitchCase="'listAsyn'" id="input{{i}}" [(myModel)]="bean[item.name]"
+              [PostEnt]="item.editor.config.postEnt" [ApiUrl]="item.editor.config.api">
+            </input-select>
+            <textarea *ngSwitchCase="'textarea'" id="input{{i}}" [(ngModel)]="bean[item.name]" rows="3"
+              placeholder="{{item.placeholder}}" class="form-control"></textarea>
+
+            <input *ngSwitchDefault id="input{{i}}" [(ngModel)]="bean[item.name]" type="{{item.type}}"
+              class="form-control" placeholder="{{item.placeholder}}">
+          </ng-container>
+        </ng-template>
+      </div>
+      <qrcode *ngIf="item.editable==null || item.editable==true" [qrdata]="'Your QR code data string'" [size]="256" [level]="'M'"></qrcode>
+    </div>
+  </ng-container>
+</div>

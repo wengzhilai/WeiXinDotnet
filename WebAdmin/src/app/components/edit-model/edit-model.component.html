@@ -1,0 +1,46 @@
+<div>
+  <ul *ngIf="messageList && messageList.length">
+    <li *ngFor="let item of messageList">{{item}}</li>
+  </ul>
+  <div class="row show-grid" [ngStyle]="{'overflow-y':'auto'}">
+    <ng-container *ngFor="let item of ItmeArr;let i = index">
+      <div class="{{item.style==null?'col-md-4':item.style}}" *ngIf="item.editable==null || item.editable==true">
+        <div class="form-group">
+          <label for="inputFirstName">{{item.title}}</label>
+          <input *ngIf="item.editor==null || item.editor.type=='text';else elseBlock" id="input{{i}}"
+            [(ngModel)]="bean[item.name]" type="{{item.type=='int'?'number':item.type}}" class="form-control" placeholder="{{item.placeholder}}">
+          <ng-template #elseBlock>
+            <ng-container [ngSwitch]="item.editor.type">
+              <input-checkbox *ngSwitchCase="'checkbox'" [(myModel)]="bean[item.name]" class="form-control"></input-checkbox>
+              <select *ngSwitchCase="'list'" id="input{{i}}" [(ngModel)]="bean[item.name]" class="form-control">
+                <option *ngFor="let opt of item.editor.config.list" value="{{opt.value}}">{{opt.title}}</option>
+              </select>
+              <select *ngSwitchCase="'completer'" id="input{{i}}" [(ngModel)]="bean[item.name]" class="form-control">
+                <option *ngFor="let opt of item.editor.config.completer.data" value="{{opt.value}}">{{opt.title}}
+                </option>
+              </select>
+              <input-select *ngSwitchCase="'listAsyn'" id="input{{i}}" [(myModel)]="bean[item.name]" [PostEnt]="item.editor.config.postEnt" [multiple]="item.editor.config.multiple" [ApiUrl]="item.editor.config.api">
+              </input-select>
+              <input-select-tree *ngSwitchCase="'listTreeAsyn'" id="input{{i}}" [(myModel)]="bean[item.name]" [PostEnt]="item.editor.config.postEnt" [options]="item.editor.config.TreeOptions" [ApiUrl]="item.editor.config.api">
+              </input-select-tree>
+              <textarea *ngSwitchCase="'textarea'" id="input{{i}}" [(ngModel)]="bean[item.name]" rows="3"
+                placeholder="{{item.placeholder}}" class="form-control"></textarea>
+              <input *ngSwitchCase="'Date'" id="input{{i}}" [(ngModel)]="bean[item.name]" class="form-control"
+                  [bsConfig]="item.editor.bsConfig"
+                  bsDatepicker >
+              <ngx-up-single-pic *ngSwitchCase="'file'" [(myModel)]="bean[item.name]" [pathType]="'userIcon'" [CanEdit]="true"></ngx-up-single-pic>
+
+              <input *ngSwitchDefault id="input{{i}}" [(ngModel)]="bean[item.name]" type="{{item.type=='int'?'number':item.type}}"
+                class="form-control" placeholder="{{item.placeholder}}">
+            </ng-container>
+          </ng-template>
+        </div>
+
+      </div>
+    </ng-container>
+  </div>
+</div>
+<div class="modal-footer">
+  <button type="button" *ngFor="let item of buttons" nbButton
+    (click)="ButtonClick(item.click)">{{item.name}}</button>
+</div>
