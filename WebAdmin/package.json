@@ -21,6 +21,7 @@
     "@angular/platform-browser-dynamic": "~10.0.5",
     "@angular/router": "~10.0.5",
     "@nebular/eva-icons": "6.0.0",
+    "@nebular/security": "^6.0.0",
     "@nebular/theme": "^6.0.0",
     "eva-icons": "^1.1.2",
     "rxjs": "~6.5.5",

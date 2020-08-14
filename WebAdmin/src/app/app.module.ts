@@ -4,19 +4,33 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { NbThemeModule, NbLayoutModule,NbSidebarModule, NbButtonModule,NbIconModule  } from '@nebular/theme';
+import { 
+  NbThemeModule, 
+  NbLayoutModule,
+  NbSidebarModule, 
+  NbButtonModule,
+  NbIconModule,
+  NbChatModule,
+  NbDatepickerModule,
+  NbDialogModule,
+  NbMenuModule,
+  NbToastrModule,
+  NbWindowModule,
+  } from '@nebular/theme';
 import { NbEvaIconsModule } from '@nebular/eva-icons';
 import { RouterModule } from '@angular/router';
-import { QueryComponent } from './query/query.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
     AppComponent,
-    QueryComponent
   ],
   imports: [
     RouterModule,
     BrowserModule,
+    HttpClientModule,
+
+
     AppRoutingModule,
     BrowserAnimationsModule,
     NbThemeModule.forRoot({ name: 'dark' }),
@@ -24,7 +38,13 @@ import { QueryComponent } from './query/query.component';
     NbSidebarModule.forRoot(), 
     NbButtonModule,
     NbEvaIconsModule,
-    NbIconModule 
+    NbIconModule ,
+    NbChatModule.forRoot(),
+    NbDatepickerModule.forRoot(),
+    NbDialogModule.forRoot(),
+    NbMenuModule.forRoot(),
+    NbToastrModule.forRoot(),
+    NbWindowModule.forRoot(),
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 
-import { MENU_ITEMS } from './pages-menu';
 import { HttpHelper } from '../Helper/HttpHelper';
 import { DtoResultObj } from '../Model/DtoRec/DtoResult';
 import { NbMenuItem } from '@nebular/theme';
@@ -15,7 +14,7 @@ import { NbMenuItem } from '@nebular/theme';
   `,
 })
 export class PagesComponent implements OnInit {
-  menu = MENU_ITEMS;
+  menu = [];
   cfgMenu: NbMenuItem[]
   constructor(
     public httpHelper: HttpHelper,
@@ -51,7 +50,6 @@ export class PagesComponent implements OnInit {
       });
       console.log(nowMenu)
 
-      nowMenu = nowMenu.concat(MENU_ITEMS)
       this.menu =frist.concat(nowMenu);
     });
   }

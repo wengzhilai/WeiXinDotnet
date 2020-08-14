@@ -20,7 +20,7 @@ const routes: Routes = [{
     },
     {
       path: '',
-      redirectTo: 'dashboard',
+      redirectTo: 'query',
       pathMatch: 'full',
     },
     {
