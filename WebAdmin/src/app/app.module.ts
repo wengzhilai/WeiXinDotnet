@@ -20,6 +20,7 @@ import {
 import { NbEvaIconsModule } from '@nebular/eva-icons';
 import { RouterModule } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
+import { ThemeModule } from './@theme/theme.module';
 
 @NgModule({
   declarations: [
@@ -45,6 +46,7 @@ import { HttpClientModule } from '@angular/common/http';
     NbMenuModule.forRoot(),
     NbToastrModule.forRoot(),
     NbWindowModule.forRoot(),
+    ThemeModule.forRoot(),
   ],
   providers: [],
   bootstrap: [AppComponent]

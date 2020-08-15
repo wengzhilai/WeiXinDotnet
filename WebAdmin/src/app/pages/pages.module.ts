@@ -9,7 +9,7 @@ import { ThemeModule } from '../@theme/theme.module';
   imports: [
     PagesRoutingModule,
     NbMenuModule,
-    ThemeModule,
+    // ThemeModule,
   ],
   declarations: [
     PagesComponent,
