@@ -22,9 +22,9 @@ export class PagesComponent implements OnInit {
   }
 
   ngOnInit() {
-    // setTimeout(() => {
-    //   this.LoadModule();
-    // }, 100);
+    setTimeout(() => {
+      this.LoadModule();
+    }, 100);
   }
 
   LoadModule() {

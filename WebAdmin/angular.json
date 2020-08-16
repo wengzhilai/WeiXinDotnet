@@ -92,7 +92,8 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.scss"
+              "src/styles.scss",
+              "~@nebular/theme/styles/prebuilt/default.css"
             ],
             "scripts": []
           }

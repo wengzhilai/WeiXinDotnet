@@ -1,6 +1,7 @@
 export class LocalStorageHelper {
     public static GetCookie(cookieName: string): string {
         var reObj = localStorage.getItem(cookieName);
+        if (reObj == null) reObj = "";
         return reObj
     }
 
