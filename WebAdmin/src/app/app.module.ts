@@ -6,18 +6,10 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { 
   NbThemeModule, 
-  NbLayoutModule,
   NbSidebarModule, 
-  NbButtonModule,
-  NbIconModule,
-  NbChatModule,
-  NbDatepickerModule,
-  NbDialogModule,
   NbMenuModule,
-  NbToastrModule,
-  NbWindowModule,
+
   } from '@nebular/theme';
-import { NbEvaIconsModule } from '@nebular/eva-icons';
 import { RouterModule } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
 import { ThemeModule } from './@theme/theme.module';
@@ -34,18 +26,9 @@ import { ThemeModule } from './@theme/theme.module';
 
     AppRoutingModule,
     BrowserAnimationsModule,
-    NbThemeModule.forRoot({ name: 'dark' }),
-    NbLayoutModule,
+    
     NbSidebarModule.forRoot(), 
-    NbButtonModule,
-    NbEvaIconsModule,
-    NbIconModule ,
-    NbChatModule.forRoot(),
-    NbDatepickerModule.forRoot(),
-    NbDialogModule.forRoot(),
     NbMenuModule.forRoot(),
-    NbToastrModule.forRoot(),
-    NbWindowModule.forRoot(),
     ThemeModule.forRoot(),
   ],
   providers: [],

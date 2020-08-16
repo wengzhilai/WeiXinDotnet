@@ -123,6 +123,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "WebAdmin"
+    }
+  },
+  "defaultProject": "WebAdmin",
+  "cli": {
+    "analytics": "e1f40701-03ed-48b6-8bef-6d54c5178ebe"
+  }
 }

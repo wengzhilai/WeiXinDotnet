@@ -9,11 +9,6 @@ const routes: Routes = [{
   component: PagesComponent,
   children: [
     {
-      path: 'user',
-      loadChildren: () => import('./user/user.module')
-        .then(m => m.UserModule),
-    }, 
-    {
       path: 'query',
       loadChildren: () => import('./query/query.module')
         .then(m => m.QueryModule),

@@ -7,11 +7,11 @@ import { NbMenuItem } from '@nebular/theme';
 @Component({
   selector: 'ngx-pages',
   template: `
-  <ngx-one-column-layout>
-    <nb-menu [items]="menu"></nb-menu>
-    <router-outlet></router-outlet>
-  </ngx-one-column-layout>
-  `,
+<ngx-one-column-layout>
+  <nb-menu [items]="menu"></nb-menu>
+  <router-outlet></router-outlet>
+</ngx-one-column-layout>
+`
 })
 export class PagesComponent implements OnInit {
   menu = [];
@@ -22,9 +22,9 @@ export class PagesComponent implements OnInit {
   }
 
   ngOnInit() {
-    setTimeout(() => {
-      this.LoadModule();
-    }, 100);
+    // setTimeout(() => {
+    //   this.LoadModule();
+    // }, 100);
   }
 
   LoadModule() {
