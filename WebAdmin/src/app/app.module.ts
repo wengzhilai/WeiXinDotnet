@@ -9,6 +9,7 @@ import {
   NbMenuModule,
   NbDialogModule,
   NbCardModule,
+  NbButtonModule,
   } from '@nebular/theme';
 import { RouterModule } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
@@ -31,6 +32,7 @@ import { ThemeModule } from './@theme/theme.module';
     NbMenuModule.forRoot(),
     NbDialogModule.forRoot(),
     NbCardModule,
+    NbButtonModule,
     ThemeModule.forRoot(),
   ],
   providers: [],

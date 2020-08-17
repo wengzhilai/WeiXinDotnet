@@ -1,5 +1,4 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { TranslateService } from '../Lib/ngx-translate/public_api';
 
 /**
  * Generated class for the FormatStringPipe pipe.
@@ -12,7 +11,7 @@ import { TranslateService } from '../Lib/ngx-translate/public_api';
 })
 export class FormatStringPipe implements PipeTransform {
 
-  constructor(private translate: TranslateService) {
+  constructor() {
   }
   /**
    * Takes a value and makes it lowercase.
@@ -31,7 +30,7 @@ export class FormatStringPipe implements PipeTransform {
         for (let index = 0; index < regList.length; index++) {
           let element = regList[index];
           element = element.replace(/{{|}}/g, "");
-          let v = this.translate.instant(element)
+          let v = element
           tempStr = tempStr.replace(new RegExp("{{" + element + "}}", "gm"), v);
         }
       }

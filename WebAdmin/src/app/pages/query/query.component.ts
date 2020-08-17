@@ -1,14 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 
 @Component({
-  selector: 'app-query',
-  templateUrl: './query.component.html',
+  selector: 'query',
+  template: `
+    <router-outlet></router-outlet>
+  `,
 })
-export class QueryComponent implements OnInit {
-
-  constructor() { }
-
-  ngOnInit(): void {
-  }
-
+export class QueryComponent {
 }

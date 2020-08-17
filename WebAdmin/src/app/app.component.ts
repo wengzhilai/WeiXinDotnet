@@ -14,10 +14,10 @@ import { Fun } from './Config/Fun';
 
   <ng-template #dialog let-data let-ref="dialogRef">
     <nb-card>
-      <nb-card-header>Template Dialog</nb-card-header>
-      <nb-card-body>{{ data }}</nb-card-body>
+      <nb-card-header>{{ data.header }}</nb-card-header>
+      <nb-card-body>{{ data.subHeader }}</nb-card-body>
       <nb-card-footer>
-        <button nbButton (click)="ref.close()">Close Dialog</button>
+        <button nbButton (click)="ref.close()">{{data.buttons[0]}}</button>
       </nb-card-footer>
     </nb-card>
   </ng-template>

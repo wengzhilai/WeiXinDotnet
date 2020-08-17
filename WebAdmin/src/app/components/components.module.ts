@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
-import { TranslateModule } from '../Lib/ngx-translate/public_api';
 import { QRCodeModule } from '../Lib/angularx-qrcode/QRCodeModule';
 import { PipesModule } from '../pipes/pipes.module';
 import { QueryEditComponent } from './query-edit/query-edit.component';
@@ -23,6 +22,7 @@ import {
   NbRadioModule,
   NbSelectModule,
   NbUserModule,
+  NbListModule,
 } from '@nebular/theme';
 import { FileUploadModule } from '../Lib/ng2-file-upload';
 import { UpSinglePicComponent } from './up-single-pic/up-single-pic.component';
@@ -40,7 +40,6 @@ import { Ng2SmartTableModule } from '../Lib/ng2-smart-table/public-api';
     LookModelComponent,QueryFilterComponent,UpSinglePicComponent,InputCheckboxComponent
   ],
   imports: [
-    TranslateModule,
     ReactiveFormsModule,
     FormsModule,
     CommonModule,
@@ -55,6 +54,7 @@ import { Ng2SmartTableModule } from '../Lib/ng2-smart-table/public-api';
     NbRadioModule,
     NbSelectModule,
     NbUserModule,
+    NbListModule,
     Ng2SmartTableModule,
     QRCodeModule,
     FileUploadModule,

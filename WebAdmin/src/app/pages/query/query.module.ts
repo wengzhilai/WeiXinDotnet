@@ -1,18 +1,59 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { QueryComponent } from "./query.component";
-import { IndexComponent } from './index/index.component';
-import { routing } from "./query.routing";
+import { ThemeModule } from '../../@theme/theme.module';
 
+import { QueryListPage } from './query-list/query-list';
+import { QueryRoutingModule } from './query.routes';
+import { QueryQueryComponent } from './query/query';
+import { QueryComponent } from './query.component';
+import { ComponentsModule } from '../../components/components.module';
+import { QueryEditComponent } from '../../components/query-edit/query-edit.component';
+import { TableEditComponent } from '../../components/table-edit/table-edit.component';
+import {
+  NbActionsModule,
+  NbAlertModule,
+  NbButtonModule,
+  NbCardModule,
+  NbTabsetModule,
+  NbUserModule,
+  NbRadioModule,
+  NbSelectModule,
+  NbListModule,
+  NbIconModule,
+  NbWindowModule,
+} from '@nebular/theme';
+import { Ng2SmartTableModule } from '../../Lib/ng2-smart-table/public-api';
 
 @NgModule({
-  declarations: [
-    QueryComponent,
-    IndexComponent,
+  entryComponents: [
+    QueryEditComponent,
+    TableEditComponent,
   ],
   imports: [
-    routing,
-    CommonModule
-  ]
+    ThemeModule,
+    Ng2SmartTableModule,
+    QueryRoutingModule,
+    ComponentsModule,
+    
+    NbActionsModule,
+    NbButtonModule,
+    NbCardModule,
+    NbTabsetModule,
+    NbUserModule,
+    NbRadioModule,
+    NbSelectModule,
+    NbListModule,
+    NbIconModule,
+    NbAlertModule,
+    NbWindowModule.forRoot(),
+  ],
+  declarations: [
+    QueryListPage,
+    QueryQueryComponent,
+    QueryComponent,
+  ],
+
+  exports: [
+  ],
 })
-export class QueryModule { }
+export class QueryModule {
+}

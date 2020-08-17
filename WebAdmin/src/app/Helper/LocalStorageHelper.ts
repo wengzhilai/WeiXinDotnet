@@ -18,8 +18,13 @@ export class LocalStorageHelper {
     }
 
     public static SetObjectCookie(cookieName: string, obj: object, validity?: number, validityType?: string, domain?: string, path?: string, needsSecureConnection?: boolean) {
-        let value: string = JSON.stringify(obj);
-        this.SetCookie(cookieName, value, validity, validityType, domain, path, needsSecureConnection)
+        let value: String="";
+        if(typeof(obj)=="string"){
+            value=obj
+        }else{
+            value = JSON.stringify(obj);
+        }
+        this.SetCookie(cookieName, value.toString(), validity, validityType, domain, path, needsSecureConnection)
     }
 
     public static DeleteCookie(cookieName: string, domain?: string, path?: string) {

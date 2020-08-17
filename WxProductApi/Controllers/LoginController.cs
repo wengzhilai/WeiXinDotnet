@@ -56,7 +56,7 @@ namespace WxProductApi.Controllers
                 var tokeStr=Helper.AuthHelper.GenerateToken(loginResult.data);
                 reobj.success = true;
                 reobj.code = tokeStr;
-                reobj.data = TypeChange.ObjectToStr(reobj);
+                reobj.data = TypeChange.ObjectToStr(loginResult.data);
                 
             }
             else

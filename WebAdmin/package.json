@@ -11,6 +11,7 @@
   },
   "private": true,
   "dependencies": {
+    "@akveo/ng2-completer": "^9.0.1",
     "@angular/animations": "~10.0.5",
     "@angular/cdk": "^10.0.0",
     "@angular/common": "~10.0.5",
@@ -24,6 +25,7 @@
     "@nebular/theme": "6.0.0",
     "bootstrap": "^4.5.2",
     "eva-icons": "^1.1.2",
+    "lodash": "^4.17.20",
     "rxjs": "~6.5.5",
     "tslib": "^2.0.0",
     "zone.js": "~0.10.3"

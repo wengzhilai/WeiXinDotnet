@@ -3,6 +3,9 @@ import { NbMediaBreakpointsService, NbMenuService, NbSidebarService, NbThemeServ
 
 import { map, takeUntil } from 'rxjs/operators';
 import { Subject } from 'rxjs';
+import { GlobalHelper } from 'src/app/Helper/GlobalHelper';
+import { Variable } from '@angular/compiler/src/render3/r3_ast';
+import { Variables } from 'src/app/Config/Variables';
 
 @Component({
   selector: 'ngx-header',
@@ -14,7 +17,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
   private destroy$: Subject<void> = new Subject<void>();
   userPictureOnly: boolean = false;
   user: any;
-
+  Variables=Variables;
   themes = [
     {
       value: 'default',
@@ -36,7 +39,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
   currentTheme = 'default';
 
-  userMenu = [ { title: 'Profile' }, { title: 'Log out' } ];
+  userMenu = [{ title: "个人资料",link:"user/Profile" }, { title: "退出",url:"/auth/login" }];
 
   constructor(private sidebarService: NbSidebarService,
               private menuService: NbMenuService,
@@ -47,14 +50,10 @@ export class HeaderComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.currentTheme = this.themeService.currentTheme;
 
-
-    const { xl } = this.breakpointService.getBreakpointsMap();
-    this.themeService.onMediaQueryChange()
-      .pipe(
-        map(([, currentBreakpoint]) => currentBreakpoint.width < xl),
-        takeUntil(this.destroy$),
-      )
-      .subscribe((isLessThanXl: boolean) => this.userPictureOnly = isLessThanXl);
+    this.user= GlobalHelper.GetUserObject();
+    console.log(this.user)
+    this.userPictureOnly = false
+    this.user.iconFiles=Variables.ImgUrl+this.user.iconFiles.replace("\\","/");
 
     this.themeService.onThemeChange()
       .pipe(

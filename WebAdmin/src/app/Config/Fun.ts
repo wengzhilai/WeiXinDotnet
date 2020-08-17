@@ -4,6 +4,7 @@ import { TemplateRef } from '@angular/core';
 
 export class Fun {
 
+
     //加载对话框
     public static loader: NbDialogRef<any>;
     //加载显示对象
@@ -112,10 +113,11 @@ export class Fun {
      * @memberof CommonService
      */
     public static ShowLoading(msg = "数据加载中....") {
-        this.loader = this.dialogService.open(this.loadingDiv, { context: msg,closeOnBackdropClick:false,closeOnEsc:false });
+        this.loader = this.dialogService.open(this.loadingDiv, { context: msg, closeOnBackdropClick: false, closeOnEsc: false });
         setTimeout(() => {
-            this.loader.close();
-        }, 5*1000);
+            if (this.loader != null)
+                this.loader.close();
+        }, 5 * 1000);
     };
 
     /**
@@ -197,4 +199,73 @@ export class Fun {
 
         return keyMesg
     }
+
+
+
+    /**
+    * 获取类的所有属性
+    * 
+    * @param {any} bean 传入的类
+    * @param {any} cfg {id:{editable:false}}读取配置是否可以编辑
+    * @returns 返回类的所有字段的字符串，以逗号分隔
+    * @memberof CommonService
+    */
+    public static GetBeanNameStr(bean: any, cfg: any) {
+        var tmpArr = [];
+        for (var item in bean) {
+            var objV = bean[item];
+            if (typeof (objV) != "string" || objV.indexOf('/Date(') != 0) {
+                tmpArr.push(item);
+            }
+        }
+        if (cfg != null) {
+            for (let index = 0; index < tmpArr.length; index++) {
+                const element = tmpArr[index];
+                if (cfg[element] != null && cfg[element]["editable"] != null && cfg[element]["editable"] == false) {
+                    tmpArr.splice(index, 1);
+                }
+            }
+
+        }
+        return tmpArr;
+    }
+
+    /**
+     * 格式化日期
+     * 
+     * @param {Date} dt 
+     * @param {string} fmt 
+     * @returns 
+     * @memberof CommonService
+     */
+    public static DateFormat(dt: Date, fmt: string) {
+        var o = {
+            "M+": dt.getMonth() + 1,                 //月份
+            "d+": dt.getDate(),                    //日
+            "h+": dt.getHours(),                   //小时
+            "m+": dt.getMinutes(),                 //分
+            "s+": dt.getSeconds(),                 //秒
+            "q+": Math.floor((dt.getMonth() + 3) / 3), //季度
+            "S": dt.getMilliseconds()             //毫秒
+        };
+        if (/(y+)/.test(fmt))
+            fmt = fmt.replace(RegExp.$1, (dt.getFullYear() + "").substr(4 - RegExp.$1.length));
+        for (var k in o)
+            if (new RegExp("(" + k + ")").test(fmt))
+                fmt = fmt.replace(RegExp.$1, (RegExp.$1.length == 1) ? (o[k]) : (("00" + o[k]).substr(("" + o[k]).length)));
+        return fmt;
+    };
+
+    public static UrlToJosn(url: String): any {
+        console.log("url转josn");
+        if (url == null || url == "" || url.indexOf('?') == -1) return {};
+        let arr = url.split('?')[1].split('&');   //先通过？分解得到？后面的所需字符串，再将其通过&分解开存放在数组里
+        let obj = {};
+        for (let i of arr) {
+            obj[i.split('=')[0]] = i.split('=')[1];  //对数组每项用=分解开，=前为对象属性名，=后为属性值
+        }
+        console.log(obj);
+        return obj;
+    }
+
 }

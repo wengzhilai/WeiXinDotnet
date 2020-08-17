@@ -3,7 +3,7 @@ export class Variables {
 
   constructor() { }
 
-  static System:string="设备管理系统";
+  static System:string="study";
 
   /**
    * 调试模式
@@ -19,7 +19,7 @@ export class Variables {
    * 接口地址
    */
   static Api:string = 'http://127.0.0.1:5000/';
-  static ImgUrl:string = 'http://127.0.0.1:5000/';
+  static ImgUrl:string = 'http://127.0.0.1:5000/file/UpFile/LookfileByPath/';
   // static Api:string = 'http://coreapi.wjbjp.cn/';
   // static ImgUrl:string = 'http://coreapi.wjbjp.cn/';
   // static Api:string = 'http://dotnetapi.wjbjp.cn/Api/';

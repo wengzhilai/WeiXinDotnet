@@ -1,0 +1,18 @@
+<nb-card style="overflow-x:auto;overflow-y:hidden">
+  <nb-card-header>
+    查询管理
+  </nb-card-header>
+  <tr #btnHead>
+    <td [attr.colspan]="clmNum">
+      <button type="button" nbButton (click)="onSave($event)">
+        <i class="nb-plus-circled"></i>
+        <span>创建时间</span>
+      </button>
+    </td>
+  </tr>
+  <nb-card-body>
+    <ng2-smart-table #samrtTable [settings]="settings" [source]="source" (create)="onSave($event)"
+      (delete)="onDelete($event)" (edit)="onSave($event)">
+    </ng2-smart-table>
+  </nb-card-body>
+</nb-card>

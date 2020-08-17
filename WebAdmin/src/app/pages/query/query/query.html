@@ -1,0 +1,33 @@
+<nb-card style="overflow-x:auto;overflow-y:hidden">
+  <nb-card-header>
+    {{queryEnt.name}}
+  </nb-card-header>
+
+  <nb-card-body>
+    <div>
+
+      <nb-alert outline="info" >
+        <div class="row show-grid"> 
+        <div class="col-md-11">{{queryEnt.remark}}</div>
+        <div class="col-md-1" style="font-size: 1.5rem !important;font-weight: bold;">
+          <i (click)="ReLoad()" class="nb-loop"></i>
+        </div>
+      </div>
+      </nb-alert>
+    </div>
+
+    <tr #btnHead>
+      <td [attr.colspan]="clmNum">
+          <div style="float: left;margin-right: 5px;" *ngFor="let item of headBtnSet">
+            <button type="button" nbButton (click)="HeadBtnClick(this,item.click)">
+              <i class="{{item.class}}"></i>
+              <span>{{item.title}}</span>
+            </button>
+          </div>
+      </td>
+    </tr>
+    <ng2-smart-table style="margin: 5px" #samrtTable [settings]="settings" [source]="source" (delete)="onDelete($event)"
+      (edit)="onSave(this,$event)" (create)="onSave(this,$event)" (userRowSelect)="userRowSelect($event)" *ngIf="LoadSetting">
+    </ng2-smart-table>
+  </nb-card-body>
+</nb-card>

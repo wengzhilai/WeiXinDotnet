@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { HttpHelper } from '../Helper/HttpHelper';
 import { DtoResultObj } from '../Model/DtoRec/DtoResult';
 import { NbMenuItem } from '@nebular/theme';
+import { Fun } from '../Config/Fun';
 
 @Component({
   selector: 'ngx-pages',
@@ -69,6 +70,7 @@ export class PagesComponent implements OnInit {
         icon: element["imageUrl"],
         link: url.split('?')[0],
         // link: url.split('?')[0],
+        queryParams: Fun.UrlToJosn(url),
         home:true,
         children: this.JsonToMenuItemJson(element["children"])
       })
