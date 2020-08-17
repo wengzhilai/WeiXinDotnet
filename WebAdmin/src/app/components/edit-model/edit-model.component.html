@@ -2,9 +2,9 @@
   <ul *ngIf="messageList && messageList.length">
     <li *ngFor="let item of messageList">{{item}}</li>
   </ul>
-  <div>
+  <nb-card  [ngStyle]="{'overflow-y':'auto'}">
     <ng-container *ngFor="let item of ItmeArr;let i = index">
-      <ng-container *ngIf="item.editable==null || item.editable==true">
+      <nb-card-body *ngIf="item.editable==null || item.editable==true">
         <div class="form-group">
           <label for="inputFirstName">{{item.title}}</label>
           <input *ngIf="item.editor==null || item.editor.type=='text';else elseBlock" id="input{{i}}"
@@ -29,21 +29,21 @@
                 [PostEnt]="item.editor.config.postEnt" [options]="item.editor.config.TreeOptions"
                 [ApiUrl]="item.editor.config.api">
               </input-select-tree>
-              <textarea nbInput *ngSwitchCase="'textarea'" id="input{{i}}" [(ngModel)]="bean[item.name]" rows="3"
+              <textarea nbInput  *ngSwitchCase="'textarea'" id="input{{i}}" [(ngModel)]="bean[item.name]" rows="3"
                 placeholder="{{item.placeholder}}" class="form-control"></textarea>
-              <input nbInput *ngSwitchCase="'Date'" id="input{{i}}" [(ngModel)]="bean[item.name]" class="form-control"
+              <input nbInput  *ngSwitchCase="'Date'" id="input{{i}}" [(ngModel)]="bean[item.name]" class="form-control"
                 [bsConfig]="item.editor.bsConfig" bsDatepicker>
               <ngx-up-single-pic *ngSwitchCase="'file'" [(myModel)]="bean[item.name]" [pathType]="'userIcon'"
                 [CanEdit]="true"></ngx-up-single-pic>
 
-              <input nbInput *ngSwitchDefault id="input{{i}}" [(ngModel)]="bean[item.name]"
+              <input nbInput  *ngSwitchDefault id="input{{i}}" [(ngModel)]="bean[item.name]"
                 type="{{item.type=='int'?'number':item.type}}" class="form-control" placeholder="{{item.placeholder}}">
             </ng-container>
           </ng-template>
         </div>
-      </ng-container>
+      </nb-card-body>
     </ng-container>
-  </div>
+  </nb-card>
 </div>
 <div class="modal-footer">
   <button type="button" *ngFor="let item of buttons" nbButton (click)="ButtonClick(item.click)">{{item.name}}</button>

@@ -2,7 +2,7 @@ import { Component, OnInit, ViewChild, ViewContainerRef, Renderer2 } from '@angu
 import { ActivatedRoute } from '@angular/router';
 import { SmartTableDataSource } from '../../../Helper/SmartTableDataSource';
 import { HttpHelper } from '../../../Helper/HttpHelper';
-import { NbWindowService } from '@nebular/theme';
+import { NbWindowService, NbWindowState } from '@nebular/theme';
 import { DtoResultObj } from '../../../Model/DtoRec/DtoResult';
 import { Variables } from '../../../Config/Variables';
 import { Fun } from '../../../Config/Fun';
@@ -211,7 +211,6 @@ export class QueryQueryComponent implements OnInit {
       // console.log(this.configJson);
       this.windowService.open(thisOpenMode, {
         closeOnBackdropClick:false,
-        closeOnEsc:false,
         windowClass: "DivWindow",
         title: title,
         context: {

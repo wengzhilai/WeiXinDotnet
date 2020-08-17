@@ -19,7 +19,6 @@ import {
   NbSelectModule,
   NbListModule,
   NbIconModule,
-  NbWindowModule,
 } from '@nebular/theme';
 import { Ng2SmartTableModule } from '../../Lib/ng2-smart-table/public-api';
 
@@ -44,7 +43,6 @@ import { Ng2SmartTableModule } from '../../Lib/ng2-smart-table/public-api';
     NbListModule,
     NbIconModule,
     NbAlertModule,
-    NbWindowModule.forRoot(),
   ],
   declarations: [
     QueryListPage,

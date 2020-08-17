@@ -2,6 +2,8 @@
 
 @import '~@nebular/theme/styles/globals';
 
+@import  '~bootstrap/dist/css/bootstrap.min.css';
+
 @include nb-install() {
   @include nb-theme-global();
 };
