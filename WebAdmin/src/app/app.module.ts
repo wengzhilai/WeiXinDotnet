@@ -11,8 +11,10 @@ import {
   NbCardModule,
   NbButtonModule,
   NbWindowModule,
+  NbIconModule,
   } from '@nebular/theme';
 import { RouterModule } from '@angular/router';
+import { NbEvaIconsModule } from '@nebular/eva-icons';
 import { HttpClientModule } from '@angular/common/http';
 import { ThemeModule } from './@theme/theme.module';
 
@@ -35,7 +37,10 @@ import { ThemeModule } from './@theme/theme.module';
     NbWindowModule.forRoot(),
     NbCardModule,
     NbButtonModule,
+    NbIconModule,
     ThemeModule.forRoot(),
+
+    NbEvaIconsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -2,9 +2,9 @@
   <ul *ngIf="messageList && messageList.length">
     <li *ngFor="let item of messageList">{{item}}</li>
   </ul>
-  <nb-card  [ngStyle]="{'overflow-y':'auto'}">
+  <div class="row show-grid" [ngStyle]="{'height':screenheight+'px','overflow-y':'auto'}">
     <ng-container *ngFor="let item of ItmeArr;let i = index">
-      <nb-card-body *ngIf="item.editable==null || item.editable==true">
+      <div class="col-md-4" *ngIf="item.editable==null || item.editable==true">
         <div class="form-group">
           <label for="inputFirstName">{{item.title}}</label>
           <input *ngIf="item.editor==null || item.editor.type=='text';else elseBlock" id="input{{i}}"
@@ -41,10 +41,12 @@
             </ng-container>
           </ng-template>
         </div>
-      </nb-card-body>
+
+      </div>
     </ng-container>
-  </nb-card>
+  </div>
 </div>
 <div class="modal-footer">
-  <button type="button" *ngFor="let item of buttons" nbButton (click)="ButtonClick(item.click)">{{item.name}}</button>
+  <button type="button" *ngFor="let item of buttons" nbButton
+    (click)="ButtonClick(item.click)">{{item.name}}</button>
 </div>

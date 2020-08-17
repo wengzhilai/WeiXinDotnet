@@ -20,6 +20,7 @@ import {
   NbListModule,
   NbIconModule,
 } from '@nebular/theme';
+import { NbEvaIconsModule } from '@nebular/eva-icons'
 import { Ng2SmartTableModule } from '../../Lib/ng2-smart-table/public-api';
 
 @NgModule({
@@ -43,6 +44,8 @@ import { Ng2SmartTableModule } from '../../Lib/ng2-smart-table/public-api';
     NbListModule,
     NbIconModule,
     NbAlertModule,
+
+    NbEvaIconsModule
   ],
   declarations: [
     QueryListPage,

@@ -111,7 +111,10 @@ namespace WxProductApi.Controllers
         {
             Response.Body.Dispose();
             var allPath = Path.Combine(_env.ContentRootPath, Global.appConfig.FileCfg.path, dir, fileName + "." + type);
-            return File(System.IO.File.ReadAllBytes(allPath), @"image/png");
+            if(System.IO.File.Exists(allPath))
+                return File(System.IO.File.ReadAllBytes(allPath), @"image/png");
+            else
+                return null;
         }
 
     }
