@@ -213,7 +213,7 @@ namespace WxProductApi
             }
 
             // app.UseHttpsRedirection();
-
+            app.UseStaticFiles();
             #region 使用SwaggerUI
 
             app.UseSwagger();
