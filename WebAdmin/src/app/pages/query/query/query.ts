@@ -97,12 +97,12 @@ export class QueryQueryComponent implements OnInit {
         //如果没有配置筛选，则添加
         this.headBtnSet.push({
           "title": "导出",
-          "class": "ion-archive",
+          "class": "download",
           "click": "nowThis.onExportXls()"
         })
         this.headBtnSet.push({
           "title": "筛选",
-          "class": "ion-funnel",
+          "class": "funnel",
           "click": "nowThis.OpenFilter()"
         })
         //读取行按钮

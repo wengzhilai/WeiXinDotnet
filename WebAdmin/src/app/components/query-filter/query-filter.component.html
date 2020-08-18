@@ -7,9 +7,11 @@
       <div class="col-md-4">
         <div class="form-group">
           <label for="inputFirstName">{{item.title}}</label>
-          <nb-select *ngIf="item.filter.opType!=null"  [(ngModel)]="item.filter.opTypeValue" size="tiny" (selectedChange)="(item.filter.opTypeValue=='is null' || item.filter.opTypeValue=='is not null')?bean[item.name]=item.filter.opTypeValue:''">
+          <div style="width: 20px;">
+          <nb-select  *ngIf="item.filter.opType!=null"   [(ngModel)]="item.filter.opTypeValue" size="tiny" (selectedChange)="(item.filter.opTypeValue=='is null' || item.filter.opTypeValue=='is not null')?bean[item.name]=item.filter.opTypeValue:''">
             <nb-option *ngFor="let op of item.filter.opType" value="{{op.opType}}">{{op.opName}}</nb-option>
           </nb-select>
+        </div>
           <input *ngIf="item.filter==null || item.filter.type=='text';else elseBlock" id="input{{i}}"
             [(ngModel)]="bean[item.name]" type="{{item.type=='int'?'number':item.type}}" class="form-control" placeholder="{{item.placeholder}}">
           <ng-template #elseBlock>
