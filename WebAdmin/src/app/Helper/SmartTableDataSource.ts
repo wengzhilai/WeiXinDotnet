@@ -193,12 +193,12 @@ protected addSortRequestParams(httpParams: HttpParams): HttpParams {
         cancelButtonContent: '<i class="nb-close"></i>',
       },
       edit: {
-        editButtonContent: '<i class="nb-edit"></i>',
+        editButtonContent: '<i class="iconfont icon-edit"></i>',
         saveButtonContent: '<i class="nb-checkmark"></i>',
         cancelButtonContent: '<i class="nb-close"></i>',
       },
       delete: {
-        deleteButtonContent: '<i class="nb-trash"></i>',
+        deleteButtonContent: '<i class="iconfont icon-ashbin"></i>',
       },
       actions: {
         columnTitle: "操作",

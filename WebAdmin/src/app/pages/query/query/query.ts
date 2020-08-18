@@ -132,12 +132,12 @@ export class QueryQueryComponent implements OnInit {
         if (this.rowBtnSet.length > 0) {
           if (this.rowBtnSet[0].class != null) {
             this.settings.actions.edit = true
-            this.settings.edit.editButtonContent = '<i class="' + this.rowBtnSet[0].class + '"></i>'
+            this.settings.edit.editButtonContent = '<i class="iconfont ' + this.rowBtnSet[0].class + '"></i>'
           }
           if (this.rowBtnSet.length > 1) {
             if (this.rowBtnSet[1].class != null) {
               this.settings.actions.delete = true
-              this.settings.delete.deleteButtonContent = '<i class="' + this.rowBtnSet[1].class + '"></i>'
+              this.settings.delete.deleteButtonContent = '<i class="iconfont ' + this.rowBtnSet[1].class + '"></i>'
             }
           }
         }

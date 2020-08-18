@@ -14,17 +14,17 @@
             <ng-container [ngSwitch]="item.editor.type">
               <nb-checkbox *ngSwitchCase="'checkbox'" [(myModel)]="bean[item.name]" class="form-control">
               </nb-checkbox>
-              <nb-select *ngSwitchCase="'list'" id="input{{i}}" [(ngModel)]="bean[item.name]" class="form-control">
+              <select *ngSwitchCase="'list'" id="input{{i}}" [(ngModel)]="bean[item.name]" class="form-control">
                 <option *ngFor="let opt of item.editor.config.list" value="{{opt.value}}">{{opt.title}}</option>
-              </nb-select>
-              <nb-select *ngSwitchCase="'completer'" id="input{{i}}" [(ngModel)]="bean[item.name]" class="form-control">
+              </select>
+              <select *ngSwitchCase="'completer'" id="input{{i}}" [(ngModel)]="bean[item.name]" class="form-control">
                 <option *ngFor="let opt of item.editor.config.completer.data" value="{{opt.value}}">{{opt.title}}
                 </option>
-              </nb-select>
-              <nb-select *ngSwitchCase="'listAsyn'" id="input{{i}}" [(myModel)]="bean[item.name]"
+              </select>
+              <input-select *ngSwitchCase="'listAsyn'" id="input{{i}}" [(myModel)]="bean[item.name]"
                 [PostEnt]="item.editor.config.postEnt" [multiple]="item.editor.config.multiple"
                 [ApiUrl]="item.editor.config.api">
-              </nb-select>
+              </input-select>
               <input-select-tree *ngSwitchCase="'listTreeAsyn'" id="input{{i}}" [(myModel)]="bean[item.name]"
                 [PostEnt]="item.editor.config.postEnt" [options]="item.editor.config.TreeOptions"
                 [ApiUrl]="item.editor.config.api">

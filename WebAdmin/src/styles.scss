@@ -4,7 +4,13 @@
 
 @import  '~bootstrap/dist/css/bootstrap.min.css';
 
+@import './assets/iconfont/iconfont.css';
+
 @include nb-install() {
   @include nb-theme-global();
 };
+
+.form-control {
+  background-color: transparent;
+}
 /* You can add global styles to this file, and also import other style files */

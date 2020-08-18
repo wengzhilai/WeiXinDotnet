@@ -1,5 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { NbMediaBreakpointsService, NbMenuService, NbSidebarService, NbThemeService } from '@nebular/theme';
+import { NbMediaBreakpointsService, NbMenuService, NbSidebarService, NbThemeService, NbSearchService } from '@nebular/theme';
 
 import { map, takeUntil } from 'rxjs/operators';
 import { Subject } from 'rxjs';
@@ -17,7 +17,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
   private destroy$: Subject<void> = new Subject<void>();
   userPictureOnly: boolean = false;
   user: any;
-  Variables=Variables;
+  Variables = Variables;
   themes = [
     {
       value: 'default',
@@ -39,21 +39,25 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
   currentTheme = 'default';
 
-  userMenu = [{ title: "个人资料",link:"user/Profile" }, { title: "退出",url:"/auth/login" }];
+  userMenu = [{ title: "个人资料", link: "user/Profile" }, { title: "退出", url: "/auth/login" }];
 
   constructor(private sidebarService: NbSidebarService,
-              private menuService: NbMenuService,
-              private themeService: NbThemeService,
-              private breakpointService: NbMediaBreakpointsService) {
+    private menuService: NbMenuService,
+    private themeService: NbThemeService,
+    private searchService: NbSearchService) {
+    this.searchService.onSearchSubmit()
+      .subscribe((data: any) => {
+        alert(data.term);
+      })
   }
 
   ngOnInit() {
     this.currentTheme = this.themeService.currentTheme;
 
-    this.user= GlobalHelper.GetUserObject();
+    this.user = GlobalHelper.GetUserObject();
     console.log(this.user)
     this.userPictureOnly = false
-    this.user.iconFiles=Variables.ImgUrl+this.user.iconFiles.replace("\\","/");
+    this.user.iconFiles = Variables.ImgUrl + this.user.iconFiles.replace("\\", "/");
 
     this.themeService.onThemeChange()
       .pipe(

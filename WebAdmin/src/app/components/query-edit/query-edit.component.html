@@ -60,26 +60,26 @@
     </div>
     <div class="row show-grid">
       <div class="col-md-12">
-        <nb-card size="small">
+        <nb-card>
           <nb-tabset>
             <nb-tab tabTitle="{{inputs['query_cfg_json'].title}}">
               <span>
-                <textarea [(ngModel)]="bean[inputs['query_cfg_json'].name]" rows="10"
+                <textarea [(ngModel)]="bean[inputs['query_cfg_json'].name]" rows="7"
                   placeholder="{{inputs['query_cfg_json'].placeholder}}" class="form-control"></textarea></span>
             </nb-tab>
             <nb-tab tabTitle="{{inputs['rows_btn'].title}}">
               <span>
-                <textarea [(ngModel)]="bean[inputs['rows_btn'].name]" rows="10"
+                <textarea [(ngModel)]="bean[inputs['rows_btn'].name]" rows="7"
                   placeholder="{{inputs['rows_btn'].placeholder}}" class="form-control"></textarea></span>
             </nb-tab>
             <nb-tab tabTitle="{{inputs['heard_btn'].title}}">
               <span>
-                <textarea [(ngModel)]="bean[inputs['heard_btn'].name]" rows="10"
+                <textarea [(ngModel)]="bean[inputs['heard_btn'].name]" rows="7"
                   placeholder="{{inputs['heard_btn'].placeholder}}" class="form-control"></textarea></span>
             </nb-tab>
             <nb-tab tabTitle="{{inputs['js_str'].title}}">
               <span>
-                <textarea [(ngModel)]="bean[inputs['js_str'].name]" rows="10"
+                <textarea [(ngModel)]="bean[inputs['js_str'].name]" rows="7"
                   placeholder="{{inputs['js_str'].placeholder}}" class="form-control"></textarea></span>
             </nb-tab>
           </nb-tabset>
