@@ -422,19 +422,22 @@
             <param name="state">是产品的GUID</param>
             <returns></returns>
         </member>
-        <member name="M:WxProductApi.Controllers.PsGoodsController.GoodsCheck(System.String,System.String)">
+        <member name="M:WxProductApi.Controllers.PsGoodsController.GoodsCheck(System.String,System.String,System.String)">
             <summary>
             检测产品码
             </summary>
             <param name="code"></param>
             <param name="state">是产品的{guid}_{code}</param>
+            <param name="prcode">是产品的代码</param>
             <returns></returns>
         </member>
-        <member name="M:WxProductApi.Controllers.PsGoodsController.ShowHtml(System.String)">
+        <member name="M:WxProductApi.Controllers.PsGoodsController.ShowHtml(System.String,System.String,System.String)">
             <summary>
             显示网页
             </summary>
             <param name="htmlStr"></param>
+            <param name="headStr"></param>
+            <param name="bootStr"></param>
             <returns></returns>
         </member>
         <member name="T:WxProductApi.Controllers.QueryController">

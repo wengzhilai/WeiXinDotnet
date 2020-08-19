@@ -1,0 +1,19 @@
+#/etc/systemd/system/wx.service
+
+[Unit]
+Description=Demo .NET Web API Application running on CentOS 7
+
+[Service]
+WorkingDirectory=/home/www/ps/WeiXinDotnet/WxProductApi/bin/Debug/netcoreapp3.1
+ExecStart=dotnet WxProductApi.dll
+RestartSec=20 # Restart service after 10 seconds if dotnet service crashes
+SyslogIdentifier=dotnet-WxProductApi
+User=root
+Environment=ASPNETCORE_ENVIRONMENT=Production
+Environment=ASPNETCORE_URLS=http://*:9200
+
+[Install]
+WantedBy=multi-user.target
+
+
+#systemctl start wx

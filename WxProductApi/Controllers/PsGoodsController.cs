@@ -88,10 +88,10 @@ namespace WxProductApi.Controllers
         [HttpGet]
         public async Task<IActionResult> downCsv(string key)
         {
-            var url=Request.Path.Value.Replace("downCsv","GoodsDetail");
-            var hostAddress="t1.ngrok.wjbjp.cn";
+            var url = Request.Path.Value.Replace("downCsv", "GoodsDetail");
+            var hostAddress = "t1.ngrok.wjbjp.cn";
             // hostAddress=Request.Host.Host;
-            var reByte = await _respoitory.MakeCsvByte(int.Parse(key),$"http://{hostAddress}{url}?state=");
+            var reByte = await _respoitory.MakeCsvByte(int.Parse(key), $"http://{hostAddress}{url}?state=");
             return File(reByte, "application/octet-stream", $"{DateTime.Now.ToString("yyyyMMdd")}.csv");
         }
 
@@ -111,8 +111,8 @@ namespace WxProductApi.Controllers
                 string ip = this.httpContextAccessor.HttpContext.Connection.RemoteIpAddress.ToString();
                 state = $"{state}|{ip}";
                 string rebackUrl = $"http://{Request.Host.Host}{Request.Path}";
-                rebackUrl=HttpUtility.UrlEncode(rebackUrl);
-                var url = Helper.WeiChat.Utility.GetWebpageAuthorization(appConfig.WeiXin.Appid, rebackUrl,Fun.Base64Encode(state), true);
+                rebackUrl = HttpUtility.UrlEncode(rebackUrl);
+                var url = Helper.WeiChat.Utility.GetWebpageAuthorization(appConfig.WeiXin.Appid, rebackUrl, Fun.Base64Encode(state), true);
                 Response.Redirect(url);
             }
             else
@@ -141,42 +141,101 @@ namespace WxProductApi.Controllers
                     openid = wxUser.openid
                 };
                 var reObj = await _respoitory.GoodsDetail(inLog);
-                StringBuilder htmlStringBuilder = new StringBuilder();
-
                 if (reObj.success)
                 {
+                    string headStr = @"
+    <style>
+        body {
+            font-size: 12px;
+        }
+        input{
+            border: 1px solid #333333;
+        }
+        button {
+            font-size: 12px;
+            border: 1px solid #333333;
+        }
+        .black_overlay {
+            display: none;
+            position: absolute;
+            top: 0%;
+            left: 0%;
+            width: 100%;
+            height: 100%;
+            background-color: black;
+            -moz-opacity: 0.5;
+            opacity: .50;
+            filter: alpha(opacity=50);
+        }
+
+        .white_content {
+            display: none;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -80%);
+            width: 50%;
+            height: 100px;
+            padding: 20px;
+            background-color: white;
+            overflow: auto;
+            text-align: center;
+        }
+
+        .white_content div {
+            margin-bottom: 5px;
+        }
+    </style>
+";
+                    string bootStr = @"
+<script type='text/javascript'>
+    function openDialog() {
+        document.getElementById('light').style.display = 'block';
+        document.getElementById('fade').style.display = 'block'
+    }
+    function closeDialog() {
+        document.getElementById('light').style.display = 'none';
+        document.getElementById('fade').style.display = 'none'
+    }
+</script>
+";
+                    StringBuilder htmlStringBuilder = new StringBuilder();
+                    htmlStringBuilder.Append($"<a>");
                     htmlStringBuilder.Append($"该产品是正品，已查阅{reObj.data.lookNum}次<br />");
                     if (reObj.data.confirmTime == 0)
                     {
-                        htmlStringBuilder.Append($"还未被确认，<a onclick=\"checkGoods()\" href=\"#\">点击确认</a>");
-                        var jsStr = @"
-<script>
-    function checkGoods(){
-        var word = prompt('请输入产品编码',"""");
-        if(word){
-            alert('{state}_'+word)
-            window.location='GoodsCheck?state={state}_'+word
-        }
-        else{
-            alert('不能为空')
-        }
-    }
-</script>
-                        ";
-                        jsStr = jsStr.Replace("{state}", state);
-                        htmlStringBuilder.Append(jsStr);
+                        htmlStringBuilder.Append($"还未被确认，<a onclick=\"openDialog()\" href=\"#\">点击确认</a>");
                     }
                     else
                     {
                         htmlStringBuilder.Append($"确认时间：{Helper.DataTimeHelper.getDate(reObj.data.confirmTime).ToString()}\r\n<br />");
                         htmlStringBuilder.Append($"产品编号：{reObj.data.code}");
                     }
+                    htmlStringBuilder.Append($"</a>");
+                    htmlStringBuilder.Append(@"
+    <div id='fade' class='black_overlay'></div>
+    <div id='light' class='white_content'>
+        <form action='GoodsCheck' method='GET'>
+            <div>
+                <a>请输入产品编号</a>
+            </div>
+            <div>
+                <input name='prcode' />
+            </div>
+            <div>
+                <input name='state' type='hidden' value='aaabb'/>
+                <button  onclick='submit()'>确定</button>
+                <button type='reset' onclick='closeDialog()' style='margin-left: 10px;'>取消</button>
+            </div>
+        </form>
+    </div>                    
+                    ");
+                    await ShowHtml(htmlStringBuilder.ToString(), headStr, bootStr);
                 }
                 else
                 {
-                    htmlStringBuilder.Append(reObj.msg);
+                    await ShowHtml(reObj.msg);
                 }
-                await ShowHtml(htmlStringBuilder.ToString());
             }
 
         }
@@ -185,14 +244,16 @@ namespace WxProductApi.Controllers
         /// </summary>
         /// <param name="code"></param>
         /// <param name="state">是产品的{guid}_{code}</param>
+        /// <param name="prcode">是产品的代码</param>
         /// <returns></returns>
         [AllowAnonymous]
         [HttpGet]
-        public async Task GoodsCheck(string code, string state)
+        public async Task GoodsCheck(string code, string state, string prcode)
         {
             if (string.IsNullOrEmpty(code))
             {
                 string ip = this.httpContextAccessor.HttpContext.Connection.RemoteIpAddress.ToString();
+                if (!string.IsNullOrEmpty(prcode)) state = $"{state}_{prcode}";
                 state = $"{state}|{ip}";
                 var url = Helper.WeiChat.Utility.GetWebpageAuthorization(appConfig.WeiXin.Appid, $"http://{Request.Host.Host}{Request.Path}", Fun.Base64Encode(state), false);
                 Response.Redirect(url);
@@ -240,17 +301,23 @@ namespace WxProductApi.Controllers
         /// 显示网页
         /// </summary>
         /// <param name="htmlStr"></param>
+        /// <param name="headStr"></param>
+        /// <param name="bootStr"></param>
         /// <returns></returns>
-        private async Task ShowHtml(string htmlStr)
+        private async Task ShowHtml(string htmlStr, string headStr = null, string bootStr = null)
         {
             StringBuilder htmlStringBuilder = new StringBuilder();
             htmlStringBuilder.Append("<html>");
-            htmlStringBuilder.Append("<head><meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\" /> </head>");//支持中文
+            
+            htmlStringBuilder.Append("<head>");//支持中文
+            htmlStringBuilder.Append("<meta charset='utf-8'>");
+            htmlStringBuilder.Append("<meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">");
+            if (!string.IsNullOrEmpty(headStr)) htmlStringBuilder.Append(headStr);//支持中文
+            htmlStringBuilder.Append("</head>");//支持中文
             htmlStringBuilder.Append("<body>");
-            htmlStringBuilder.Append("<spen style=\"font-size: 300%\">");//让字体变大
             htmlStringBuilder.Append(htmlStr);
-            htmlStringBuilder.Append("</spen>");
             htmlStringBuilder.Append("</body>");
+            if (!string.IsNullOrEmpty(bootStr)) htmlStringBuilder.Append(bootStr);//支持中文
             htmlStringBuilder.Append("</html>");
             var result = htmlStringBuilder.ToString();
             var data = Encoding.UTF8.GetBytes(result);
