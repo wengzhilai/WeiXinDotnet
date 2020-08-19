@@ -152,9 +152,13 @@ namespace WxProductApi.Controllers
                         var jsStr = @"
 <script>
     function checkGoods(){
-        var word = prompt(""请输入产品编码"","""");
+        var word = prompt('请输入产品编码',"""");
         if(word){
+            alert('{state}_'+word)
             window.location='GoodsCheck?state={state}_'+word
+        }
+        else{
+            alert('不能为空')
         }
     }
 </script>
