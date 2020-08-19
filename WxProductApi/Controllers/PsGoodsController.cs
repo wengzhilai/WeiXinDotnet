@@ -143,7 +143,13 @@ namespace WxProductApi.Controllers
                 var reObj = await _respoitory.GoodsDetail(inLog);
                 if (reObj.success)
                 {
-                    string headStr = @"
+
+                    StringBuilder htmlStringBuilder = new StringBuilder();
+                    htmlStringBuilder.Append($"<a>");
+                    htmlStringBuilder.Append($"该产品是正品，已查阅{reObj.data.lookNum}次<br />");
+                    if (reObj.data.confirmTime == 0)
+                    {
+                        string headStr = @"
     <style>
         body {
             font-size: 12px;
@@ -187,7 +193,7 @@ namespace WxProductApi.Controllers
         }
     </style>
 ";
-                    string bootStr = @"
+                        string bootStr = @"
 <script type='text/javascript'>
     function openDialog() {
         document.getElementById('light').style.display = 'block';
@@ -199,20 +205,9 @@ namespace WxProductApi.Controllers
     }
 </script>
 ";
-                    StringBuilder htmlStringBuilder = new StringBuilder();
-                    htmlStringBuilder.Append($"<a>");
-                    htmlStringBuilder.Append($"该产品是正品，已查阅{reObj.data.lookNum}次<br />");
-                    if (reObj.data.confirmTime == 0)
-                    {
                         htmlStringBuilder.Append($"还未被确认，<a onclick=\"openDialog()\" href=\"#\">点击确认</a>");
-                    }
-                    else
-                    {
-                        htmlStringBuilder.Append($"确认时间：{Helper.DataTimeHelper.getDate(reObj.data.confirmTime).ToString()}\r\n<br />");
-                        htmlStringBuilder.Append($"产品编号：{reObj.data.code}");
-                    }
-                    htmlStringBuilder.Append($"</a>");
-                    htmlStringBuilder.Append(@"
+                        htmlStringBuilder.Append($"</a>");
+                        htmlStringBuilder.Append(@"
     <div id='fade' class='black_overlay'></div>
     <div id='light' class='white_content'>
         <form action='GoodsCheck' method='GET'>
@@ -230,7 +225,16 @@ namespace WxProductApi.Controllers
         </form>
     </div>                    
                     ");
-                    await ShowHtml(htmlStringBuilder.ToString(), headStr, bootStr);
+                        await ShowHtml(htmlStringBuilder.ToString(), headStr, bootStr);
+                    }
+                    else
+                    {
+                        htmlStringBuilder.Append($"确认时间：{Helper.DataTimeHelper.getDate(reObj.data.confirmTime).ToString()}\r\n<br />");
+                        htmlStringBuilder.Append($"产品编号：{reObj.data.code}");
+                        htmlStringBuilder.Append($"</a>");
+                        await ShowHtml(htmlStringBuilder.ToString());
+                    }
+
                 }
                 else
                 {
@@ -308,7 +312,7 @@ namespace WxProductApi.Controllers
         {
             StringBuilder htmlStringBuilder = new StringBuilder();
             htmlStringBuilder.Append("<html>");
-            
+
             htmlStringBuilder.Append("<head>");//支持中文
             htmlStringBuilder.Append("<meta charset='utf-8'>");
             htmlStringBuilder.Append("<meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">");
