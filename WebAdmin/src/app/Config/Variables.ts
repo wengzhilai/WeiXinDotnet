@@ -19,6 +19,7 @@ export class Variables {
    * 接口地址
    */
   static Api:string = 'http://t1.ngrok.wjbjp.cn/';
+  // static Api:string = 'http://127.0.0.1:980/';
   static ImgUrl:string = Variables.Api+'file/UpFile/LookfileByPath/';
   // static Api:string = 'http://coreapi.wjbjp.cn/';
   // static ImgUrl:string = 'http://coreapi.wjbjp.cn/';

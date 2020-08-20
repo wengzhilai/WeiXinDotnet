@@ -6,6 +6,7 @@ using Helper;
 using IRepository;
 using Models;
 using Models.Entity;
+using System.Linq;
 
 namespace Repository
 {
@@ -102,6 +103,8 @@ namespace Repository
 
                     goods.allLogs = new List<PsGoodsLogEntity>(await dbHelperGoodsLog.FindAll(x => x.goodsGuid == inLog.goodsGuid));
                     goods.lookNum = goods.allLogs.Count;
+                    
+                    goods.batchCode=(await dbHelper.Single(x=>x.id==goods.batchId))?.code;
 
                     reObj.success = true;
                     reObj.data = goods;
@@ -145,8 +148,9 @@ namespace Repository
                         downList.Add(new PsGoodsEntity
                         {
                             id = Guid.NewGuid().ToString("N"),
-                            code = $"{single.code}{new Random(i).Next(1000000, 9999999)}{ new Random(i+single.goodsNum).Next(1000000, 9999999)}",
+                            code = $"{new Random(i).Next(10000000, 99999999)}{ new Random(i+single.goodsNum).Next(10000000, 99999999)}",
                             batchId=batchId,
+                            proNum=i+1,
                             lookNum = 0,
                             openid = "",
                             confirmTime = 0
@@ -163,6 +167,7 @@ namespace Repository
                 else
                 {
                     downList = new List<PsGoodsEntity>(await dbHelper_good.FindAll(x => x.batchId == batchId));
+                    downList=downList.OrderBy(x=>x.proNum).ToList();
                 }
 
                 #region 更新下载次数
@@ -178,11 +183,14 @@ namespace Repository
 
                 #region 生成csv数据
                 List<byte> reEnt = new List<byte>();
-                reEnt.AddRange(Encoding.UTF8.GetBytes($"代码,二维码地址\r\n"));
+                reEnt.AddRange(Encoding.UTF8.GetBytes($"产品编号,防伪码,二维码地址\r\n"));
 
                 foreach (var item in downList)
                 {
-                    reEnt.AddRange(Encoding.UTF8.GetBytes($"{item.code},{url}{item.id}\r\n"));
+                    string proNumStr=$"0000000000{item.proNum}";
+                    proNumStr=proNumStr.Substring(proNumStr.Length-10);
+
+                    reEnt.AddRange(Encoding.UTF8.GetBytes($"{single.code.ToUpper()}{proNumStr},{item.code},{url}{item.id}\r\n"));
                 }
                 return reEnt.ToArray();
                 #endregion

@@ -2535,9 +2535,14 @@
             id
             </summary>
         </member>
+        <member name="P:Models.Entity.PsGoodsEntity.proNum">
+            <summary>
+            产品编码
+            </summary>
+        </member>
         <member name="P:Models.Entity.PsGoodsEntity.code">
             <summary>
-            代码
+            防伪码
             </summary>
         </member>
         <member name="P:Models.Entity.PsGoodsEntity.batchId">
@@ -2563,6 +2568,12 @@
         <member name="P:Models.Entity.PsGoodsEntity.allLogs">
             <summary>
             查看日志
+            </summary>
+            <value></value>
+        </member>
+        <member name="P:Models.Entity.PsGoodsEntity.batchCode">
+            <summary>
+            产品批次编号
             </summary>
             <value></value>
         </member>

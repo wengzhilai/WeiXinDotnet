@@ -146,19 +146,23 @@ namespace WxProductApi.Controllers
 
                     StringBuilder htmlStringBuilder = new StringBuilder();
                     htmlStringBuilder.Append($"<a>");
-                    htmlStringBuilder.Append($"该产品是正品，已查阅{reObj.data.lookNum}次<br />");
+                    string proNumStr=$"00000000{reObj.data.proNum}";
+                    proNumStr=proNumStr.Substring(proNumStr.Length-8);
+                    htmlStringBuilder.Append($"产品编号：{reObj.data.batchCode}{proNumStr}<br />");
+                    htmlStringBuilder.Append($"查阅次数：{reObj.data.lookNum}次<br />");
                     if (reObj.data.confirmTime == 0)
                     {
+                        #region css样式
                         string headStr = @"
     <style>
         body {
-            font-size: 12px;
+            font-size: 14px;
         }
         input{
             border: 1px solid #333333;
         }
         button {
-            font-size: 12px;
+            font-size: 14px;
             border: 1px solid #333333;
         }
         .black_overlay {
@@ -193,6 +197,9 @@ namespace WxProductApi.Controllers
         }
     </style>
 ";
+                        #endregion
+
+                        #region js脚本
                         string bootStr = @"
 <script type='text/javascript'>
     function openDialog() {
@@ -205,32 +212,38 @@ namespace WxProductApi.Controllers
     }
 </script>
 ";
-                        htmlStringBuilder.Append($"还未被确认，<a onclick=\"openDialog()\" href=\"#\">点击确认</a>");
+                        #endregion
+
+                        htmlStringBuilder.Append($"<a onclick=\"openDialog()\" href=\"#\">点击验证</a>");
                         htmlStringBuilder.Append($"</a>");
-                        htmlStringBuilder.Append(@"
+                        
+                        #region 验证框
+                        htmlStringBuilder.Append($@"
     <div id='fade' class='black_overlay'></div>
     <div id='light' class='white_content'>
         <form action='GoodsCheck' method='GET'>
             <div>
-                <a>请输入产品编号</a>
+                <a>请输入产品防伪码</a>
             </div>
             <div>
                 <input name='prcode' />
             </div>
             <div>
-                <input name='state' type='hidden' value='aaabb'/>
+                <input name='state' type='hidden' value='{state}'/>
                 <button  onclick='submit()'>确定</button>
                 <button type='reset' onclick='closeDialog()' style='margin-left: 10px;'>取消</button>
             </div>
         </form>
     </div>                    
                     ");
+                        #endregion
+
                         await ShowHtml(htmlStringBuilder.ToString(), headStr, bootStr);
                     }
                     else
                     {
-                        htmlStringBuilder.Append($"确认时间：{Helper.DataTimeHelper.getDate(reObj.data.confirmTime).ToString()}\r\n<br />");
-                        htmlStringBuilder.Append($"产品编号：{reObj.data.code}");
+                        htmlStringBuilder.Append($"验证时间：{Helper.DataTimeHelper.getDate(reObj.data.confirmTime).ToString()}\r\n<br />");
+                        htmlStringBuilder.Append($"防 伪 码：{reObj.data.code}");
                         htmlStringBuilder.Append($"</a>");
                         await ShowHtml(htmlStringBuilder.ToString());
                     }
@@ -296,7 +309,7 @@ namespace WxProductApi.Controllers
                 }
                 else
                 {
-                    await ShowHtml($"产品码有误。<a href=\"GoodsDetail?state={goodsGuid}\">点击返回</a>");
+                    await ShowHtml($"产品防伪码有误。<a href=\"GoodsDetail?state={goodsGuid}\">点击返回</a>");
                 }
             }
         }

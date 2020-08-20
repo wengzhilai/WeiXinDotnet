@@ -16,15 +16,21 @@ namespace Models.Entity
         /// <summary>
         /// id
         /// </summary>
+        [Key]
         [Required]
         [StringLength(32)]
         [Column("id")]
         public string id { get; set; }
         /// <summary>
-        /// 代码
+        /// 产品编码
         /// </summary>
         [Required]
-        [Key]
+        [Column("pro_num")]
+        public int proNum { get; set; }
+        /// <summary>
+        /// 防伪码
+        /// </summary>
+        [Required]
         [Column("code")]
         public string code { get; set; }
 
@@ -59,6 +65,12 @@ namespace Models.Entity
         /// </summary>
         /// <value></value>
         public List<PsGoodsLogEntity> allLogs { get; set; }
+
+        /// <summary>
+        /// 产品批次编号
+        /// </summary>
+        /// <value></value>
+        public string batchCode { get; set; }
 
     }
 }
